@@ -1,18 +1,20 @@
 package com.ideaas.lared.domain;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @Table(name = "USERS")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "USU_ID")
     private Long id;
-
-    @Column(name = "USU_NOMBRE_COMPLETO")
-    private String nombreCompleto;
 
     @Column(name = "USU_USERNAME")
     private String username;
@@ -36,6 +38,15 @@ public class User {
         this.mail = mail;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
     public String getUsername() {
         return username;
     }
@@ -44,6 +55,7 @@ public class User {
         this.username = username;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
@@ -60,19 +72,29 @@ public class User {
         this.mail = mail;
     }
 
-    public Long getId() {
-        return id;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getNombreCompleto() {
-        return nombreCompleto;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.EMPTY_LIST;
+    }
+
 }
