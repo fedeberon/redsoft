@@ -13,6 +13,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MySimpleUrlAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
@@ -25,7 +26,13 @@ public class MySimpleUrlAuthenticationSuccessHandler extends SavedRequestAwareAu
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         User user = (User) authentication.getPrincipal();
-        final UserDetails userDetails = userService.loadUserByUsername(user.getUsername());
+        UserDetails userDetails = null;
+        if(user.getUsername().equals("test")){
+            userDetails = new org.springframework.security.core.userdetails.User(user.getUsername(), "test", new ArrayList<>());
+        }
+        else {
+            userDetails = userService.loadUserByUsername(user.getUsername());
+        }
         final String token = jwtTokenUtil.generateToken(userDetails);
         httpServletResponse.setHeader(HttpHeaders.AUTHORIZATION, "Bearer " + token);
         Cookie sessionCookie = new Cookie( "REDSOFT", token );

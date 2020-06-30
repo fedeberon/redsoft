@@ -41,19 +41,15 @@
                             <table class="table table-head-fixed text-nowrap">
                                 <thead>
                                 <tr>
-                                    <th>Nombre completo</th>
-                                    <th>Nombre de usuario</th>
+                                    <th>Username</th>
                                     <th>Correo electr&oacute;nico</th>
-                                    <th>Contrase&ntilde;a</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <c:forEach items="${usuarios}" var="bo">
                                     <tr>
-                                        <td>${bo.nombreCompleto}</td>
                                         <td>${bo.username}</td>
                                         <td>${bo.mail}</td>
-                                        <td>${bo.password}</td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>

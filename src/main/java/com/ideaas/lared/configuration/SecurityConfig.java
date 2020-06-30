@@ -1,6 +1,6 @@
 package com.ideaas.lared.configuration;
 
-import com.ideaas.lared.service.IUserService;
+import com.ideaas.lared.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //Config for H2 Console
         security.headers().frameOptions().disable();
         security.headers().frameOptions().sameOrigin();
-
+        security.httpBasic();
         security.csrf().disable().
                 authorizeRequests()
                 .antMatchers("/MDB/**").permitAll()
@@ -47,6 +47,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/data/**").permitAll()
                 .antMatchers("/pages/**").permitAll()
                 .antMatchers("/assets/**").permitAll()
+                .antMatchers("/cart/success").permitAll()
+                .antMatchers("/cart/pending").permitAll()
+                .antMatchers("/cart/failure").permitAll()
+                .antMatchers("/order/byPreferenceId").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -87,7 +91,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .roles("MANAGER");
 
     }
-
 
     @Bean
     public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){

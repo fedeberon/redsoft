@@ -2,6 +2,7 @@ package com.ideaas.lared.service;
 
 import com.ideaas.lared.dao.UsuarioDao;
 import com.ideaas.lared.domain.User;
+import com.ideaas.lared.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
