@@ -43,7 +43,11 @@ public class MercadoPagoServiceImpl implements MercadoPagoService {
         order.getDetails().forEach(detail -> {
             detail.setOrder(order);
             Item item = new Item();
-            item.setTitle(detail.getProduct().getName()).setQuantity(detail.getQuantity().intValue()).setUnitPrice(detail.getProduct().getPrice().floatValue()).setPictureUrl(detail.getProduct().getImage());
+            item
+                .setTitle(detail.getProduct().getName())
+                .setQuantity(detail.getQuantity().intValue())
+                .setUnitPrice(detail.getProduct().getPrice().floatValue());
+                //.setPictureUrl(detail.getProduct().getImage());
             preference.appendItem(item);
         });
         preference.setPayer(payer);

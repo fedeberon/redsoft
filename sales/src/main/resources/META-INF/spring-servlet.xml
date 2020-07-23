@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       						http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+          					http://www.springframework.org/schema/context
+          					http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.rpsistemas.*" />
+
+    <bean id="entityManagerFactoryRPSistemas" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.rpsistemas.*"/>
+        <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapterRPSistemas"/>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+        <property name="jdbcUrl" value="jdbc:sqlserver://200.110.135.89\RPSISTEMAS:50128;database=factu_la_red_wifi_chips"/>
+        <property name="user" value="lrw_web"/>
+        <property name="password" value="LaRed7890"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="packagesToScan">
+            <list>
+                <value>com.rpsistemas.*</value>
+            </list>
+        </property>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <!-- <prop key="hibernate.hbm2ddl.auto">update</prop> -->
+            </props>
+        </property>
+    </bean>
+
+    <bean id="hibernateJpaVendorAdapterRPSistemas" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+
+
+</beans>
