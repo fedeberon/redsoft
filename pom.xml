@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
-    <modules>
-        <module>RPSistemas</module>
-    </modules>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<groupId>com.ideaas.lared</groupId>
+	<artifactId>redsoft</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>redsoft</name>
+	<packaging>pom</packaging>
+	<description>Demo project for Spring Boot</description>
 
-    <groupId>com.ideaas.rpsistemas</groupId>
-    <artifactId>RedSoft</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>Parent</name>
-    <description>Demo project for Spring Boot</description>
-
+	<modules>
+		<module>RedSoftWeb</module>
+		<module>RPSistemas</module>
+	</modules>
 
 </project>
