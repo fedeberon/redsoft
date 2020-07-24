@@ -21,9 +21,9 @@ import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan( basePackages = "com.ideaas.lared.*")
+@ComponentScan(basePackages = "com.ideaas.lared.*")
 @EnableJpaRepositories(
-        basePackages = { "com.ideaas.lared.*"},
+        basePackages = {"com.ideaas.lared.*"},
         entityManagerFactoryRef = "entityManagerFactory",
         transactionManagerRef = "transactionManager")
 public class DataBaseConfiguration {

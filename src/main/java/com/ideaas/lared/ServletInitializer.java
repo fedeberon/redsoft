@@ -10,14 +10,14 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication(scanBasePackages = "com.ideaas.lared")
 public class ServletInitializer extends SpringBootServletInitializer {
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(com.ideaas.lared.ServletInitializer.class);
-	}
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(com.ideaas.lared.ServletInitializer.class);
+    }
 
 
-	public static void main(String[] args) {
-		SpringApplication.run(com.ideaas.lared.ServletInitializer.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(com.ideaas.lared.ServletInitializer.class, args);
+    }
 
 }

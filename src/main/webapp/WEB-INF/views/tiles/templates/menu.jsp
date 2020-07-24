@@ -1,10 +1,10 @@
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="org.springframework.security.core.userdetails.UserDetails" %>
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    String username = ((UserDetails)principal).getUsername();
+    String username = ((UserDetails) principal).getUsername();
 %>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -23,7 +23,8 @@
                 <img src="/assets/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block"><%=username%></a>
+                <a href="#" class="d-block"><%=username%>
+                </a>
             </div>
         </div>
 
