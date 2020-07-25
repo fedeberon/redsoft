@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -43,31 +45,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/data/**").permitAll()
                 .antMatchers("/pages/**").permitAll()
                 .antMatchers("/assets/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/index*", "/static/**", "/*.js", "/*.json", "/*.ico").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/home", true);
+                .defaultSuccessUrl("/index.html",true);
 
     }
 
+
+    public SecurityConfig() {
+        super();
+    }
+
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-        auth.userDetailsService(usuarioService).passwordEncoder(bcrypt);
-
-//        auth.inMemoryAuthentication()
-//                .withUser("fede")
-//                .password("{noop}fede")
-//                .roles("USER")
-//                .and()
-//                .withUser("admin")
-//                .password("{noop}admin")
-//                .credentialsExpired(true)
-//                .accountExpired(true)
-//                .accountLocked(true)
-//                .authorities("WRITE_PRIVILEGES", "READ_PRIVILEGES")
-//                .roles("MANAGER");
+    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+        // @formatter:off
+        auth.inMemoryAuthentication()
+                .withUser("user").password("{noop}user").roles("USER")
+                .and()
+                .withUser("admin")
+                .password("{noop}admin")
+                .authorities("WRITE_PRIVILEGES", "READ_PRIVILEGES")
+                .roles("MANAGER");
+        // @formatter:on
     }
 
 }
