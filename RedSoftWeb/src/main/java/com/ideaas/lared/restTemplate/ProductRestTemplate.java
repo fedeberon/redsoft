@@ -2,9 +2,6 @@ package com.ideaas.lared.restTemplate;
 
 import com.ideaas.lared.domain.Product;
 import com.ideaas.lared.restTemplate.interfaces.MyFunction;
-import com.ideaas.lared.utils.Util;
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -17,7 +14,6 @@ import java.util.Objects;
 
 public class ProductRestTemplate implements MyFunction<List<Product>> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductRestTemplate.class);
 
     private final RestTemplate restTemplate;
 

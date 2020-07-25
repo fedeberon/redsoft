@@ -1,15 +1,10 @@
 package com.ideaas.lared.utils;
 
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
-
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.function.Consumer;
 
 public class Util {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(Util.class);
 
     public static <T> T getValue(Map<String, T> map, String key){
         try {
@@ -29,7 +24,6 @@ public class Util {
             try {
                 consumer.accept(i);
             } catch (NullPointerException e) {
-                LOGGER.error("Exception parser data: " + e.getMessage());
             }
         };
     }
