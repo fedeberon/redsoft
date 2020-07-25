@@ -1,6 +1,6 @@
 package com.ideaas.lared.configuration;
 
-import com.ideaas.lared.service.IUserService;
+import com.ideaas.lared.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +21,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    @Qualifier("usuarioService")
     private IUserService usuarioService;
 
     @Autowired
@@ -56,18 +55,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         auth.userDetailsService(usuarioService).passwordEncoder(bcrypt);
 
-//        auth.inMemoryAuthentication()
-//                .withUser("fede")
-//                .password("{noop}fede")
-//                .roles("USER")
-//                .and()
-//                .withUser("admin")
-//                .password("{noop}admin")
-//                .credentialsExpired(true)
-//                .accountExpired(true)
-//                .accountLocked(true)
-//                .authorities("WRITE_PRIVILEGES", "READ_PRIVILEGES")
-//                .roles("MANAGER");
+        auth.inMemoryAuthentication()
+                .withUser("fede")
+                .password("{noop}fede")
+                .roles("USER")
+                .and()
+                .withUser("admin")
+                .password("{noop}admin")
+                .credentialsExpired(true)
+                .accountExpired(true)
+                .accountLocked(true)
+                .authorities("WRITE_PRIVILEGES", "READ_PRIVILEGES")
+                .roles("MANAGER");
     }
 
 }

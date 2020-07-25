@@ -1,7 +1,7 @@
 package com.ideaas.lared.web;
 
 import com.ideaas.lared.domain.User;
-import com.ideaas.lared.service.IUserService;
+import com.ideaas.lared.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
