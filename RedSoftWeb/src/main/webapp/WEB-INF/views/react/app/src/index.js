@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './Home';
+import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Product from "./product";
 
 ReactDOM.render(
-    <Product />,
+    <App />,
     document.getElementById('root')
 );
