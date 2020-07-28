@@ -11,7 +11,7 @@ const { reducer, actions } = createSlice({
     },
     remove(state, action) {
         let product = null;
-        state.items.map((object, index) =>  object.code == action.payload.code ? product = object : '' );
+        state.items.map((object, index) =>  object.code === action.payload.code ? product = object : '' );
         let indexToDelete = state.items.indexOf(product);
         if (indexToDelete !== -1) {
             delete state.items[indexToDelete]
