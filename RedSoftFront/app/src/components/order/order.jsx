@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import {ordersActions} from "../../store";
+import {ordersActions, preferenceActions} from "../../store";
 import {Button, Table} from 'react-bootstrap';
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+import Preference from "./preference";
 
 let api = axios.create({
     baseURL: 'http://localhost:8086/api',
@@ -16,29 +17,33 @@ const Order = () => {
     const products = useSelector(state => Object.values(state.order.items));
 
 
-    const handleSubmit = async () => {
-        let order = {
-            details: []
-        };
+    const [preferenceIsReady, setPreferenceIsReady] = useState(false)
+
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        let details = [];
 
         products.map((product, index) => {
             let detail = {
                 product: {
                     code: product.code,
-                    description: product.description
+                    name: product.description,
+                    price: 200
                 },
                 quantity: 1
             }
-            order.details.push(detail);
+            details.push(detail);
         })
 
         debugger;
         try {
             const res = await api
-                .get('/cart/preference')
+                .post('/cart/preference', details)
                 .then(function (res) {
-                    //useHistory.push("/order/preference");
-                    console.log(res.data.json);
+                    console.log(res.data);
+                    dispatch(preferenceActions.set(res.data));
+                    setPreferenceIsReady(true)
                 })
                 .catch(function (error) {
                     console.log(error)
@@ -54,8 +59,8 @@ const Order = () => {
     }
 
     return (
-        <>
-            <form onSubmit={() => handleSubmit()}>
+        <>  {!preferenceIsReady ?
+            <form onSubmit={handleSubmit}>
                 <Table responsive>
                     <thead>
                     <tr>
@@ -78,6 +83,8 @@ const Order = () => {
                 </Table>
                 <Button variant="success" type="submit">Pagar</Button>
             </form>
+            :
+            <Preference /> }
         </>
     )
 

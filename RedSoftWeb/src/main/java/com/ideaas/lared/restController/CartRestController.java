@@ -5,12 +5,14 @@ import com.ideaas.lared.domain.Order;
 import com.ideaas.lared.service.interfaces.MercadoPagoService;
 import com.mercadopago.exceptions.MPException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class CartRestController {
 
