@@ -13,7 +13,11 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -22,21 +26,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    @Qualifier("usuarioService")
-    private IUserService usuarioService;
+    private JwtRequestFilter jwtRequestFilter;
 
     @Autowired
-    private BCryptPasswordEncoder bcrypt;
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
-    }
+    @Qualifier("usuarioService")
+    private UserDetailsService userService;
 
     @Override
     protected void configure(HttpSecurity security) throws Exception {
-
+        //H2 Config
+        security.headers().frameOptions().disable();
+        security.headers().frameOptions().sameOrigin();
         security.csrf().disable().
                 authorizeRequests()
                 .antMatchers("/MDB/**").permitAll()
@@ -44,31 +44,51 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/data/**").permitAll()
                 .antMatchers("/pages/**").permitAll()
                 .antMatchers("/assets/**").permitAll()
+                .antMatchers("/cart/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/index*", "/static/**", "/*.js", "/*.json", "/*.ico").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/index.html",true);
+                .loginPage("/login").permitAll();
+                //.defaultSuccessUrl("/index.html",true);
 
+        security.logout()
+                .logoutSuccessUrl("/login")
+                .invalidateHttpSession(true)
+                .deleteCookies("REDSOFT");
+
+        security.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+    }
 
-    public SecurityConfig() {
-        super();
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        return new MySimpleUrlAuthenticationSuccessHandler();
     }
 
     @Override
-    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        // @formatter:off
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("user").password("{noop}user").roles("USER")
+                .withUser("fede")
+                .password("{noop}fede")
+                .roles("USER")
                 .and()
                 .withUser("admin")
                 .password("{noop}admin")
+                .credentialsExpired(false)
+                .accountExpired(false)
+                .accountLocked(false)
                 .authorities("WRITE_PRIVILEGES", "READ_PRIVILEGES")
                 .roles("MANAGER");
-        // @formatter:on
     }
 
 }

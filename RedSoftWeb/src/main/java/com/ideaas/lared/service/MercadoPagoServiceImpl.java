@@ -28,7 +28,7 @@ public class MercadoPagoServiceImpl implements MercadoPagoService {
     }
 
     @Override
-    public String createAndRedirect(Order order) throws MPException {
+    public String createPreference(Order order) throws MPException {
         Preference preference = new Preference();
         Payer payer = new Payer();
         payer.setEmail("fedeberon@hotmail.com");
