@@ -2,7 +2,13 @@ import React from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import {ordersActions} from "../../store";
 import {Button, Table} from 'react-bootstrap';
-import api from '../../axios'
+import axios from 'axios'
+import { useHistory } from 'react-router-dom'
+
+let api = axios.create({
+    baseURL: 'http://localhost:8086/api',
+    timeout: 10000,
+});
 
 const Order = () => {
     const dispatch = useDispatch();
@@ -11,7 +17,6 @@ const Order = () => {
 
 
     const handleSubmit = async () => {
-        debugger;
         let order = {
             details: []
         };
@@ -27,8 +32,21 @@ const Order = () => {
             order.details.push(detail);
         })
 
-        let data = await api.post('http://localhost:8084/cart/preference', order);
-        console.log(data);
+        debugger;
+        try {
+            const res = await api
+                .get('/cart/preference')
+                .then(function (res) {
+                    //useHistory.push("/order/preference");
+                    console.log(res.data.json);
+                })
+                .catch(function (error) {
+                    console.log(error)
+                });
+        }
+        catch (error){
+            console.log(error);
+        }
     }
 
     const removeProduct = (product) => {
@@ -58,7 +76,7 @@ const Order = () => {
                         }
                     </tbody>
                 </Table>
-                <Button variant="success" type={"submit"}>Pagar</Button>
+                <Button variant="success" type="submit">Pagar</Button>
             </form>
         </>
     )

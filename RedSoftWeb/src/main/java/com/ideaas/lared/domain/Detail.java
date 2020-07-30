@@ -15,7 +15,7 @@ public class Detail {
     @JoinColumn(name = "DET_ORD_ID")
     private Order order;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "DET_PRO_ID")
     private Product product;
 

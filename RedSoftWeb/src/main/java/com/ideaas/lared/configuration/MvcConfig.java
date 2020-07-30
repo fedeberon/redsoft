@@ -46,14 +46,4 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/index.html").addResourceLocations("/WEB-INF/views/react/app/build/index.html");
     }
 
-    @Bean
-    public ViewResolver viewResolver() {
-        final InternalResourceViewResolver bean = new InternalResourceViewResolver();
-
-        bean.setViewClass(JstlView.class);
-        bean.setPrefix("/WEB-INF/views/");
-        bean.setSuffix(".jsp");
-
-        return bean;
-    }
 }

@@ -10,8 +10,8 @@ import javax.persistence.Table;
 public class Product {
 
     @Id
-    @Column(name = "PRO_ID")
-    private Long id;
+    @Column(name = "PRO_CODE")
+    private String code;
 
     @Column(name = "PRO_NAME")
     private String name;
@@ -21,14 +21,6 @@ public class Product {
 
     @Column(name = "PRO_URL_IMAGE")
     private String image;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -54,17 +46,13 @@ public class Product {
         this.image = image;
     }
 
-    private String code;
-
-    private String description;
-
     public Product withCode(String code){
         this.code = code;
         return this;
     }
 
-    public Product withDescription(String description){
-        this.description = description;
+    public Product withDescription(String name){
+        this.name = name;
         return this;
     }
 
@@ -76,11 +64,4 @@ public class Product {
         this.code = code;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

@@ -12,11 +12,16 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.MERGE)
     private List<Detail> details;
 
     @Column(name = "ORD_PREFERENCE")
     private String preferenceId;
+
+    public Order withDetails(List<Detail> details){
+        this.details = details;
+        return this;
+    }
 
     public Long getId() {
         return id;
