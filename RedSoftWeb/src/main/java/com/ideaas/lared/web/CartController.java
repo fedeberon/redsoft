@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("cart")
@@ -28,4 +29,20 @@ public class CartController {
             return "error/pago";
         }
     }
+
+    @RequestMapping("success")
+    public String success(@RequestParam("collection_id") String collectionId,
+                           @RequestParam("collection_status") String collectionStatus,
+                            @RequestParam("external_reference") String externalReference,
+                             @RequestParam("payment_type") String paymentType,
+                              @RequestParam("merchant_order_id") String merchantOrderId,
+                               @RequestParam("preference_id") String preferenceId,
+                                @RequestParam("site_id") String siteId,
+                                 @RequestParam("processing_mode") String processingMode,
+                                  @RequestParam("merchant_account_id") String merchantAccountId){
+
+        System.out.println(collectionId.concat(" ").concat(collectionStatus));
+        return "";
+    }
+
 }
