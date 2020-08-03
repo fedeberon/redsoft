@@ -48,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/pages/**").permitAll()
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/api/cart/**").permitAll()
-                .antMatchers("/cart/*").permitAll()
+                .antMatchers("/cart/**").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**" ).permitAll()
                 .antMatchers(HttpMethod.GET, "/index*", "/static/**", "/*.js", "/*.json", "/*.ico").permitAll()
                 .anyRequest().authenticated()

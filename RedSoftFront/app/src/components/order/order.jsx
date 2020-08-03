@@ -16,9 +16,7 @@ const Order = () => {
 
     const products = useSelector(state => Object.values(state.order.items));
 
-
     const [preferenceIsReady, setPreferenceIsReady] = useState(false)
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
