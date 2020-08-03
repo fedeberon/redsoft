@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.ServletException;
+
 @Controller
 @RequestMapping("cart")
 public class CartController {
@@ -21,7 +23,7 @@ public class CartController {
     }
 
     @RequestMapping("payment")
-    private String preparePay(@ModelAttribute Order order){
+    private String preparePay(@ModelAttribute Order order) {
         try {
             return mercadoPagoService.createPreference(order);
         } catch (MPException e) {
@@ -32,17 +34,64 @@ public class CartController {
 
     @RequestMapping("success")
     public String success(@RequestParam("collection_id") String collectionId,
-                           @RequestParam("collection_status") String collectionStatus,
-                            @RequestParam("external_reference") String externalReference,
-                             @RequestParam("payment_type") String paymentType,
-                              @RequestParam("merchant_order_id") String merchantOrderId,
-                               @RequestParam("preference_id") String preferenceId,
-                                @RequestParam("site_id") String siteId,
-                                 @RequestParam("processing_mode") String processingMode,
-                                  @RequestParam("merchant_account_id") String merchantAccountId){
+                          @RequestParam("collection_status") String collectionStatus,
+                          @RequestParam("external_reference") String externalReference,
+                          @RequestParam("payment_type") String paymentType,
+                          @RequestParam("merchant_order_id") String merchantOrderId,
+                          @RequestParam("preference_id") String preferenceId,
+                          @RequestParam("site_id") String siteId,
+                          @RequestParam("processing_mode") String processingMode,
+                          @RequestParam("merchant_account_id") String merchantAccountId)
+            {
 
-        System.out.println(collectionId.concat(" ").concat(collectionStatus));
+        System.out.println(collectionId.concat(" ").concat(collectionStatus)
+                .concat(" ").concat(externalReference).concat(" ").concat(paymentType)
+                .concat(" ").concat(merchantOrderId).concat(" ").concat(preferenceId)
+                .concat(" ").concat(siteId).concat(" ").concat(processingMode)
+                .concat(" ").concat(merchantAccountId));
         return "";
     }
+
+    @RequestMapping("pending")
+    public String pending(@RequestParam("collection_id") String collectionId,
+                          @RequestParam("collection_status") String collectionStatus,
+                          @RequestParam("external_reference") String externalReference,
+                          @RequestParam("payment_type") String paymentType,
+                          @RequestParam("merchant_order_id") String merchantOrderId,
+                          @RequestParam("preference_id") String preferenceId,
+                          @RequestParam("site_id") String siteId,
+                          @RequestParam("processing_mode") String processingMode,
+                          @RequestParam("merchant_account_id") String merchantAccountId)
+           {
+        System.out.println(collectionId.concat(" ").concat(collectionStatus)
+                .concat(" ").concat(externalReference).concat(" ").concat(paymentType)
+                .concat(" ").concat(merchantOrderId).concat(" ").concat(preferenceId)
+                .concat(" ").concat(siteId).concat(" ").concat(processingMode)
+                .concat(" ").concat(merchantAccountId));
+
+        return "";
+    }
+
+    @RequestMapping("failure")
+    public String failure(@RequestParam("collection_id") String collectionId,
+                          @RequestParam("collection_status") String collectionStatus,
+                          @RequestParam("external_reference") String externalReference,
+                          @RequestParam("payment_type") String paymentType,
+                          @RequestParam("merchant_order_id") String merchantOrderId,
+                          @RequestParam("preference_id") String preferenceId,
+                          @RequestParam("site_id") String siteId,
+                          @RequestParam("processing_mode") String processingMode,
+                          @RequestParam("merchant_account_id") String merchantAccountId)
+    {
+        System.out.println(collectionId.concat(" ").concat(collectionStatus)
+                .concat(" ").concat(externalReference).concat(" ").concat(paymentType)
+                .concat(" ").concat(merchantOrderId).concat(" ").concat(preferenceId)
+                .concat(" ").concat(siteId).concat(" ").concat(processingMode)
+                .concat(" ").concat(merchantAccountId));
+
+        return "";
+    }
+
+
 
 }

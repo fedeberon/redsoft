@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom'
 import Preference from "./preference";
 
 let api = axios.create({
-    baseURL: 'http://localhost:8086/api',
+    baseURL: 'http://localhost:8886/api',
     timeout: 10000,
 });
 
