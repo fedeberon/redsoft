@@ -86,6 +86,6 @@ public class CartController {
                 .concat(" ").concat(siteId).concat(" ").concat(processingMode)
                 .concat(" ").concat(merchantAccountId));
 
-        return "/WEB-INF/views/pages/order/detail.jsp";
+        return "order-detail";
     }
 }
