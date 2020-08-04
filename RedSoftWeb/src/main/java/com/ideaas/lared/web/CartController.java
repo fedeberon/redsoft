@@ -41,15 +41,14 @@ public class CartController {
                           @RequestParam("preference_id") String preferenceId,
                           @RequestParam("site_id") String siteId,
                           @RequestParam("processing_mode") String processingMode,
-                          @RequestParam("merchant_account_id") String merchantAccountId)
-            {
-
+                          @RequestParam("merchant_account_id") String merchantAccountId) {
         System.out.println(collectionId.concat(" ").concat(collectionStatus)
                 .concat(" ").concat(externalReference).concat(" ").concat(paymentType)
                 .concat(" ").concat(merchantOrderId).concat(" ").concat(preferenceId)
                 .concat(" ").concat(siteId).concat(" ").concat(processingMode)
                 .concat(" ").concat(merchantAccountId));
-        return "";
+
+        return "order-detail";
     }
 
     @RequestMapping("pending")
@@ -61,15 +60,14 @@ public class CartController {
                           @RequestParam("preference_id") String preferenceId,
                           @RequestParam("site_id") String siteId,
                           @RequestParam("processing_mode") String processingMode,
-                          @RequestParam("merchant_account_id") String merchantAccountId)
-           {
+                          @RequestParam("merchant_account_id") String merchantAccountId) {
         System.out.println(collectionId.concat(" ").concat(collectionStatus)
                 .concat(" ").concat(externalReference).concat(" ").concat(paymentType)
                 .concat(" ").concat(merchantOrderId).concat(" ").concat(preferenceId)
                 .concat(" ").concat(siteId).concat(" ").concat(processingMode)
                 .concat(" ").concat(merchantAccountId));
 
-        return "";
+        return "order-detail";
     }
 
     @RequestMapping("failure")
@@ -81,17 +79,13 @@ public class CartController {
                           @RequestParam("preference_id") String preferenceId,
                           @RequestParam("site_id") String siteId,
                           @RequestParam("processing_mode") String processingMode,
-                          @RequestParam("merchant_account_id") String merchantAccountId)
-    {
+                          @RequestParam("merchant_account_id") String merchantAccountId) {
         System.out.println(collectionId.concat(" ").concat(collectionStatus)
                 .concat(" ").concat(externalReference).concat(" ").concat(paymentType)
                 .concat(" ").concat(merchantOrderId).concat(" ").concat(preferenceId)
                 .concat(" ").concat(siteId).concat(" ").concat(processingMode)
                 .concat(" ").concat(merchantAccountId));
 
-        return "";
+        return "/WEB-INF/views/pages/order/detail.jsp";
     }
-
-
-
 }
