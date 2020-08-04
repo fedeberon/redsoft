@@ -11,6 +11,10 @@
         <put-attribute name="footer" value="/WEB-INF/views/tiles/templates/footer.jsp" />
     </definition>
 
+    <definition name="template-mercado-pago" template="/WEB-INF/views/tiles/layouts/mercadoPago/index.jsp">
+        <put-attribute name="body" value="" />
+    </definition>
+
     <definition name="home" extends="template-def">
         <put-attribute name="title" value="Welcome" />
         <put-attribute name="body" value="/WEB-INF/views/pages/home.jsp" />
@@ -48,8 +52,7 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/editor-form.jsp" />
     </definition>
 
-    <definition name="order-detail" extends="template-def">
-        <put-attribute name="title" value="order-detail" />
+    <definition name="order-detail" extends="template-mercado-pago">
         <put-attribute name="body" value="/WEB-INF/views/pages/order/detail.jsp" />
     </definition>
 
