@@ -1,30 +1,46 @@
-<table class="table">
+<table class="table table-bordered">
     <thead>
     <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">Parameters</th>
+        <th scope="col">Values</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <td scope="row" ><p class="text-left">Collection Id</p></td>
+        <td><%=request.getParameter("collection_id")%></td>
     </tr>
     <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
+        <td scope="row" ><p class="text-left">Collection Status</th>
+        <td><%=request.getParameter("collection_status")%></td>
     </tr>
     <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
+        <td scope="row" ><p class="text-left">External Reference</th>
+        <td><%=request.getParameter("external_reference")%></td>
+    </tr>
+    <tr>
+        <td scope="row" ><p class="text-left">Payment Type</p></td>
+        <td><%=request.getParameter("payment_type")%></td>
+    </tr>
+    <tr>
+        <td scope="row" ><p class="text-left">Merchant Order Id</p></td>
+        <td><%=request.getParameter("merchant_order_id")%></td>
+    </tr>
+    <tr>
+        <td scope="row" ><p class="text-left">Preference Id</p></td>
+        <td><%=request.getParameter("preference_id")%></td>
+    </tr>
+    <tr>
+        <td scope="row" ><p class="text-left">Site Id</p></td>
+        <td><%=request.getParameter("site_id")%></td>
+    </tr>
+    <tr>
+        <td scope="row" ><p class="text-left">Proccesing mode</p></td>
+        <td><%=request.getParameter("processing_mode")%></td>
+    </tr>
+    <tr>
+        <td scope="row" ><p class="text-left">Merchant Account Id</p></td>
+        <td><%=request.getParameter("merchant_account_id")%></td>
     </tr>
     </tbody>
 </table>
