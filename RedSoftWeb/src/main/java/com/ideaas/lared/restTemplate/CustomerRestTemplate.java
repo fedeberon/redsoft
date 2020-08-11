@@ -1,5 +1,6 @@
 package com.ideaas.lared.restTemplate;
 
+import com.ideaas.lared.domain.Customer;
 import com.ideaas.lared.domain.Product;
 import com.ideaas.lared.restTemplate.interfaces.MyFunction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,22 +15,21 @@ import java.util.List;
 import java.util.Objects;
 
 @Component
-public class ProductRestTemplate implements MyFunction<List<Product>> {
-
+public class CustomerRestTemplate implements MyFunction<List<Customer>> {
 
     private final RestTemplate restTemplate;
 
-    @Value("${rpsistemas-data.url}")
+    @Value("${ispcube-data.url}")
     private String url;
 
-    @Value("${rpsistemas-data.key}")
+    @Value("${ispcube-data.key}")
     private String key;
 
-    @Value("${rpsistemas-data.value}")
+    @Value("${ispcube-data.value}")
     private String value;
 
     @Autowired
-    public ProductRestTemplate(RestTemplateBuilder restTemplate) {
+    public CustomerRestTemplate(RestTemplateBuilder restTemplate) {
         this.restTemplate = restTemplate.build();
         this.restTemplate.getInterceptors().add((request, body, execution) -> {
             request.getHeaders().set(key, value);
@@ -38,18 +38,19 @@ public class ProductRestTemplate implements MyFunction<List<Product>> {
     }
 
     @Override
-    public List<Product> apply() {
-        LinkedHashMap mapResult = restTemplate.getForObject(url.concat("product/list"),  LinkedHashMap.class);
+    public List<Customer> apply() {
+        LinkedHashMap mapResult = restTemplate.getForObject(url.concat("sudominio.com/customers?page=1&limit=10"),  LinkedHashMap.class);
         return convert(mapResult);
     }
 
-    private List<Product> convert(LinkedHashMap anObject) {
-        List<Product> products = new ArrayList<>();
-        if (Objects.isNull(anObject)) return products;
+
+    private List<Customer> convert(LinkedHashMap anObject) {
+        List<Customer> customer = new ArrayList<>();
+        if (Objects.isNull(anObject)) return customer;
         String code = (String) anObject.get("code");
         String description = (String) anObject.get("description");
-        products.add(new Product().withCode(code).withDescription(description));
+        customer.add(new Customer().withNumber(code).withName(description));
 
-        return products;
+        return customer;
     }
 }

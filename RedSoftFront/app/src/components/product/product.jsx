@@ -41,13 +41,9 @@ class Products extends Component {
 
                     {this.state.products.map((product, index) => {
                         return (
-                            <tr key={index}>
-                                <td>{product.code}</td>
-                                <td>{product.description}</td>
-                                <td>
-                                    <Button  variant="primary" onClick={() => {this.handleDetail(index)}}> Ver Detalle</Button>
-                                </td>
-                            </tr>
+
+                            <CardDetailComponet title={ product.name  } img={ prod.ima} />
+
                         );
                     })}
                     </tbody>
