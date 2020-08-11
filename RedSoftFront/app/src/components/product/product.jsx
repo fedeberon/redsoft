@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import api from '../../axios'
 import Table from 'react-bootstrap/Table'
 import Spinner from 'react-bootstrap/Spinner'
-import {Button, Badge} from 'react-bootstrap'
+import {Button, Badge, Card} from 'react-bootstrap'
 import Detail from './detail'
 
 class Products extends Component {
@@ -26,28 +26,23 @@ class Products extends Component {
     render() {
         return <div> {!this.state.details ?
             <>
-                <Table responsive>
-                    <thead>
-                    <tr>
-                        <th>Code</th>
-                        <th>description</th>
-                        <th>
-                            <Badge variant="info">Se encontraron {this.state.products.length} productos</Badge>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {this.state.isLoading && <tr><td colSpan={3}><Spinner animation="border"/></td></tr>}
+                    {this.state.isLoading && <Spinner animation="border"/>}
 
                     {this.state.products.map((product, index) => {
                         return (
-
-                            <CardDetailComponet title={ product.name  } img={ prod.ima} />
-
+                                <Card style={{ width: '18rem' }}>
+                                    <Card.Body>
+                                        <Card.Title>{product.code}</Card.Title>
+                                        <Card.Subtitle className="mb-2 text-muted">{product.description}</Card.Subtitle>
+                                        <Card.Text>
+                                            Some quick example text to build on the card title and make up the bulk of
+                                            the card's content.
+                                        </Card.Text>
+                                        <Button  variant="primary" onClick={() => {this.handleDetail(index)}}> Ver Detalle</Button>
+                                    </Card.Body>
+                                </Card>
                         );
                     })}
-                    </tbody>
-                </Table>
             </>
             :
             <Detail product={this.state.selected} handleDetail={this.handleDetail}/>}

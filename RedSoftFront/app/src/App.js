@@ -8,13 +8,15 @@ import OrderDetail from './components/order/detail'
 import store from './store';
 import Header from "./components/header/header";
 import Preference from "./components/order/preference"
+import MenuComponent from "./components/header/MenuComponent";
 
 function App() {
    
   return (
     <Provider store={store}>
         <Router>
-            <Header />
+            {/*<Header />*/}
+            <MenuComponent/>
             <OrderDetail />
             <Switch>
                 <Route exact path="/" component={Products} />
