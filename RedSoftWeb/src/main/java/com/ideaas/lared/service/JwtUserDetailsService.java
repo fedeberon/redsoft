@@ -8,10 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-@Service
-public class JwtUserDetailsService implements UserDetailsService {
+public class JwtUserDetailsService {
 
-    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {
         if ("admin".equals(username))
