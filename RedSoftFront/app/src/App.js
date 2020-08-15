@@ -9,6 +9,12 @@ import store from './store';
 import Header from "./components/header/header";
 import Preference from "./components/order/preference"
 import MenuComponent from "./components/header/MenuComponent";
+import CarouselComponent from "./components/home/CarouselComponent";
+import BannersHomeComponent from "./components/home/BannersHomeComponent";
+import CategoriesHomeComponent from "./components/home/CategoriesHomeComponent";
+import FeaturedProductsComponent from "./components/home/FeaturedProductsComponent";
+import FooterComponent from "./components/footer/FooterComponent";
+import ModalCart from "./components/header/ModalCart";
 
 function App() {
    
@@ -17,7 +23,13 @@ function App() {
         <Router>
             {/*<Header />*/}
             <MenuComponent/>
-            <OrderDetail />
+            <CarouselComponent/>
+            <BannersHomeComponent/>
+            <CategoriesHomeComponent/>
+            <FeaturedProductsComponent/>
+            <ModalCart/>
+            <FooterComponent/>
+            {/*<OrderDetail />*/}
             <Switch>
                 <Route exact path="/" component={Products} />
                 <Route exact path="/product/" component={Products} />
