@@ -7,14 +7,9 @@ import Products from './components/product/product'
 import OrderDetail from './components/order/detail'
 import store from './store';
 import Header from "./components/header/header";
+import CarruselComponent from './components/home/CarruselComponent'
 import Preference from "./components/order/preference"
 import MenuComponent from "./components/header/MenuComponent";
-import CarouselComponent from "./components/home/CarouselComponent";
-import BannersHomeComponent from "./components/home/BannersHomeComponent";
-import CategoriesHomeComponent from "./components/home/CategoriesHomeComponent";
-import FeaturedProductsComponent from "./components/home/FeaturedProductsComponent";
-import FooterComponent from "./components/footer/FooterComponent";
-import ModalCart from "./components/header/ModalCart";
 
 function App() {
    
@@ -23,12 +18,9 @@ function App() {
         <Router>
             {/*<Header />*/}
             <MenuComponent/>
-            <CarouselComponent/>
-            <BannersHomeComponent/>
-            <CategoriesHomeComponent/>
-            <FeaturedProductsComponent/>
-            <ModalCart/>
-            <FooterComponent/>
+
+            <CarruselComponent/>
+
             {/*<OrderDetail />*/}
             <Switch>
                 <Route exact path="/" component={Products} />

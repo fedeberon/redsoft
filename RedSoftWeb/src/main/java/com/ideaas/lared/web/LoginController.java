@@ -13,4 +13,10 @@ public class LoginController {
         return "login";
     }
 
+    @RequestMapping(value = {"/" , "/home"}, method = RequestMethod.GET)
+    public String home() {
+        return "home";
+    }
+
+
 }
