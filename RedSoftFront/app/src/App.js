@@ -14,7 +14,6 @@ import BannersHomeComponent from "./components/home/BannersHomeComponent";
 import CategoriesHomeComponent from "./components/home/CategoriesHomeComponent";
 import FeaturedProductsComponent from "./components/home/FeaturedProductsComponent";
 import FooterComponent from "./components/footer/FooterComponent";
-import ModalCart from "./components/header/ModalCart";
 
 function App() {
    
@@ -27,7 +26,6 @@ function App() {
             <BannersHomeComponent/>
             <CategoriesHomeComponent/>
             <FeaturedProductsComponent/>
-            <ModalCart/>
             <FooterComponent/>
             {/*<OrderDetail />*/}
             <Switch>
@@ -37,7 +35,7 @@ function App() {
                 <Route exact path="/order/" component={OrderDetail} />
                 <Route exact path="/order/details" component={Order}/>
                 <Route exact path="/order/preference" component={Preference}/>
-          </Switch>
+            </Switch>
         </Router>
     </Provider>
               
