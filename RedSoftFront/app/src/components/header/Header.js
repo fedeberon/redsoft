@@ -3,7 +3,6 @@ import ModalCart from "./ModalCart";
 import {Link, Route} from "react-router-dom";
 import Contacto from "../contacto/Contacto";
 import {BrowserRouter as Router} from 'react-router-dom';
-import Switch from "react-bootstrap/Switch";
 
 
 class Header extends React.Component {
@@ -247,7 +246,7 @@ class Header extends React.Component {
                                                     La Red</a></li>
                                                 <li className="nav-item"><a className="nav-link" href="#">Acceso a
                                                     clientes</a></li>
-                                                <li className="nav-item"><Link to="/contacto">Contacto</Link></li>
+                                                <li className="nav-item"><a className="nav-link" href="/contacto">Contacto</a></li>
                                                 </ul>
 
                                             </Router>

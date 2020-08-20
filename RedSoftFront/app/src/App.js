@@ -18,8 +18,6 @@ import Switch from "react-bootstrap/Switch";
 import Route from "react-router-dom/es/Route";
 
 
-
-
 function App() {
    
   return (
@@ -31,10 +29,8 @@ function App() {
             <CategoriesHomeComponent/>
             <FeaturedProductsComponent/>
             <FooterComponent/>
-            {/*<Contacto/>*/}
             {/*<OrderDetail />*/}
             <Switch>
-                {/*<Redirect from="/index" to="/home"/>*/}
                 <Route exact path="/" component={Products} />
                 <Route exact path="/product/" component={Products} />
                 <Route exact path="/product/:id" component={ProductDetail} />
