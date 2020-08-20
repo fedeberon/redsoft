@@ -1,14 +1,21 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {useState} from "react";
 
-class ModalCart extends React.Component {
 
-    render() {
+export default function ModalCart () {
+
+    const [show, setShow] = useState(false);
+
+    const handleModal = () => setShow(!show);
+    
+
         return (
 
             <>
+
                 {/*Original Button below*/}
-                <a data-toggle="modal" href="#" target="modalCart" class="carttop">
+                <button title="Ver carrito" className="carttop" onClick={handleModal} style={{background: "border-box", padding: '5px 35px'}}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>cart</title>
                         <path d="M20.511,37.073A3.932,3.932,0,1,0,16.58,41,3.931,3.931,0,0,0,20.511,37.073Zm-6.469,0A2.537,2.537,0,1,1,16.58,39.61,2.537,2.537,0,0,1,14.042,37.
                             073Z" fill="#161814"/>
@@ -20,15 +27,15 @@ class ModalCart extends React.Component {
                             ,0,0,5.293,2H1.041a.7.7,0,1,0,0,1.394ZM39.9,9.432,36.268,19.919a2.842,2.842,
                             0,0,1-2.684,1.91H12.05l-1.963-12.4Z" fill="#161814"/>
                     </svg>
-                    &nbsp;&nbsp;Carrito</a>
+                    &nbsp;&nbsp;Carrito</button>
 
 
-                <div className="modal right fade" id="modalCart" tabIndex="-1" role="dialog"
+                <div className={`modal right fade ${show ? "show" : ""}`} style={{display: show ? 'block' : 'none', paddingRight: '15px'}} id="modalCart" tabIndex="-1" role="dialog"
                      aria-labelledby="myModalLabel2">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span
+                                <button type="button" onClick={handleModal} className="close" data-dismiss="modal" aria-label="Close"><span
                                     aria-hidden="true">&times;</span></button>
                                 <h4 className="modal-title" id="myModalLabel2">Carrito</h4>
                             </div>
@@ -97,6 +104,5 @@ class ModalCart extends React.Component {
             </>
         )
     }
-}
-
-export default ModalCart;
+//
+// export default ModalCart;
