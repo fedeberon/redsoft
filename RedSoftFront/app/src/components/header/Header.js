@@ -1,7 +1,7 @@
 import React from "react";
 import ModalCart from "./ModalCart";
 import {Link, Route} from "react-router-dom";
-import Contacto from "../contacto/Contacto";
+
 import {BrowserRouter as Router} from 'react-router-dom';
 
 
@@ -10,15 +10,15 @@ class Header extends React.Component {
     render() {
         return (
 
-            <div>
-                <div id="myOverlay" className="overlay fade searchfull">
-                    {/*<span className="closebtn" onClick="closeSearch()" title="Close Overlay">×</span>*/}
+            <div id="myOverlay">
+                <div id="overlay" className="overlay fade searchfull">
+                    <span className="closebtn" onClick="closeSearch()" title="Close Overlay">×</span>
                     <span className="closebtn" title="Close Overlay">×</span>
                     <div className="overlay-content">
                         <form action="resultados.php">
                             <input type="text" placeholder="Buscar producto" name="search"/>
                             <button type="submit">
-                                {/*<?php include('svg/search.php');?>*/}
+
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>search</title>
                                     <path
                                         d="M39.063,37.986,27.935,26.858a14.549,14.549,0,1,0-1.078,1.077L37.985,39.063a.762.762,0,1,0,1.078-1.077ZM17.19,30.143A12.953,12.953,0,1,1,30.143,17.19,12.968,12.968,0,0,1,17.19,30.143Z"/>
@@ -73,12 +73,12 @@ class Header extends React.Component {
                 <div className="bandmobile">
                     <div className="band">
                         <button className="menu-btn"><span>&#9776;</span> Menu</button>
-                        {/*<a href="#" className="icontop" onClick="openSearch()">*/}
-                        {/*    /!*<?php include('svg/search.php');?>*!/*/}
-                        {/*</a>*/}
-                        <a href="#" data-toggle="modal" data-target="#modalCart"
+                        <a href="#" className="icontop" onClick="openSearch()">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>search</title><path d="M39.063,37.986,27.935,26.858a14.549,14.549,0,1,0-1.078,1.077L37.985,39.063a.762.762,0,1,0,1.078-1.077ZM17.19,30.143A12.953,12.953,0,1,1,30.143,17.19,12.968,12.968,0,0,1,17.19,30.143Z"/><path d="M38.523,40.507a1.985,1.985,0,0,1-1.393-.574L26.785,29.584a15.745,15.745,0,1,1,2.8-2.8L39.926,37.123a1.983,1.983,0,0,1-1.4,3.384ZM17.19,5.456A11.735,11.735,0,1,0,28.923,17.19,11.746,11.746,0,0,0,17.19,5.456Z"/></svg>
+                        </a>
+                        <a href="#" title="modal" target="#modalCart"
                            className="icontop">
-                            {/*<?php include('svg/cart.php');?>*/}
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>cart</title><path d="M20.511,37.073A3.932,3.932,0,1,0,16.58,41,3.931,3.931,0,0,0,20.511,37.073Zm-6.469,0A2.537,2.537,0,1,1,16.58,39.61,2.537,2.537,0,0,1,14.042,37.073Z" fill="#161814"/><path d="M31.137,41a3.932,3.932,0,1,0-3.931-3.931A3.931,3.931,0,0,0,31.137,41Zm0-6.468A2.537,2.537,0,1,1,28.6,37.073,2.536,2.536,0,0,1,31.137,34.536Z" fill="#161814"/><path d="M1.041,3.394H5.293A2.828,2.828,0,0,1,8.1,5.791l3.367,21.267a4.216,4.216,0,0,0,4.183,3.573h20.81a.7.7,0,0,0,0-1.395H15.649a2.829,2.829,0,0,1-2.806-2.4l-.572-3.615H33.584a4.239,4.239,0,0,0,4-2.849L41.54,8.963a.7.7,0,0,0-.659-.926H9.867l-.39-2.464A4.216,4.216,0,0,0,5.293,2H1.041a.7.7,0,1,0,0,1.394ZM39.9,9.432,36.268,19.919a2.842,2.842,0,0,1-2.684,1.91H12.05l-1.963-12.4Z" fill="#161814"/></svg>
                         </a>
                         <div className="spacer"></div>
                     </div>
@@ -92,7 +92,7 @@ class Header extends React.Component {
                         <div className="container">
                             <ul className="datos">
                                 <li>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><title>whatsapp</title>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><title>WhatsApp</title>
                                         <path
                                             d="M.529,13.5l.914-3.338a6.445,6.445,0,1,1,5.584,3.226h0A6.426,6.426,0,0,1,3.945,12.6ZM4.1,11.438l.2.116a5.343,5.343,0,0,0,2.726.746h0A5.355,5.355,0,1,0,2.49,9.791l.127.2L2.076,11.97Z"/>
                                         <path
@@ -102,21 +102,21 @@ class Header extends React.Component {
                                     &nbsp;2314 404320
                                 </li>
                                 <li>
-                                    <svg viewBox="0 0 512 512">
+                                    <svg viewBox="0 0 512 512"><title>Teléfono</title>
                                         <path
                                             d="M487.8 24.1L387 .8a31.3 31.3 0 0 0-35.8 18.1l-46.5 108.5a31.4 31.4 0 0 0 8.9 36.5l53.9 44.1a350 350 0 0 1-159.6 159.6l-44.1-53.9a31.4 31.4 0 0 0-36.5-8.9L18.9 351.3C5 357.3-2.6 372.3.8 387L24 487.7A31.2 31.2 0 0 0 54.5 512 457.4 457.4 0 0 0 512 54.5a31 31 0 0 0-24.2-30.4zM55.1 480l-23-99.6 107.4-46 59.5 72.8c103.6-48.6 159.7-104.9 208.1-208.1l-72.8-59.5 46-107.4 99.6 23A425.3 425.3 0 0 1 55.1 480z"/>
                                     </svg>
                                     &nbsp;2314 427308
                                 </li>
                                 <li>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><title>Dirección</title>
                                         <path
                                             d="M192 96c-52.935 0-96 43.065-96 96s43.065 96 96 96 96-43.065 96-96-43.065-96-96-96zm0 160c-35.29 0-64-28.71-64-64s28.71-64 64-64 64 28.71 64 64-28.71 64-64 64zm0-256C85.961 0 0 85.961 0 192c0 77.413 26.97 99.031 172.268 309.67 9.534 13.772 29.929 13.774 39.465 0C357.03 291.031 384 269.413 384 192 384 85.961 298.039 0 192 0zm0 473.931C52.705 272.488 32 256.494 32 192c0-42.738 16.643-82.917 46.863-113.137S149.262 32 192 32s82.917 16.643 113.137 46.863S352 149.262 352 192c0 64.49-20.692 80.47-160 281.931z"/>
                                     </svg>
                                     &nbsp;Av. Alsina 555
                                 </li>
                                 <li>
-                                    <svg className="{{ svg_custom_class }}" viewBox="0 0 512 512">
+                                    <svg className="{{ svg_custom_class }}" viewBox="0 0 512 512"><title>E-mail</title>
                                         <path
                                             d="M464 64H48a48 48 0 0 0-48 48v288a48 48 0 0 0 48 48h416a48 48 0 0 0 48-48V112a48 48 0 0 0-48-48zM48 96h416a16 16 0 0 1 16 16v41.4c-21.9 18.5-53.2 44-150.6 121.3-16.9 13.4-50.2 45.7-73.4 45.3-23.2.4-56.6-31.9-73.4-45.3A6862.8 6862.8 0 0 1 32 153.4V112a16 16 0 0 1 16-16zm416 320H48a16 16 0 0 1-16-16V195a11843 11843 0 0 0 130.7 104.7c20.5 16.4 56.7 52.5 93.3 52.3 36.4.3 72.3-35.5 93.3-52.3A11843 11843 0 0 0 480 195v205a16 16 0 0 1-16 16z"/>
                                     </svg>
@@ -139,7 +139,7 @@ class Header extends React.Component {
                         <div className="container">
                             <div className="row">
                                 <div className="col">
-                                    <div className="logotop"><a href="/index">
+                                    <div className="logotop"><a href="/">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 258 90"><title>logo</title>
                                             <path
                                                 d="M7.037,61.112,25.493,67.98,27.9,88.666l5.42-17.3,12.934,4.89a6.24,6.24,0,0,0,7.936-4.093L68.352,27.606l-7.906-3.06,2.46-7.439L26.448,2.273C22.316.685,19.529.523,16.509,6.555L2.56,49.805l7.663,3Z"
@@ -165,7 +165,7 @@ class Header extends React.Component {
                                         <div className="input-group-append">
                                                 <span className="input-group-text searchtop-icon" id="basic-text1">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                                         viewBox="0 0 42 42"><title>search</title>
+                                                         viewBox="0 0 42 42"><title>Search</title>
                                                         <path d="M39.063,37.986,27.935,26.858a14.549,14.549,0,1,0-1.078,1.077L37.985,39.063a.762.762,0,1,0,1.078-1.077ZM17.19,30.143A12.953,12.953,0,1,1,30.143,17.19,12.968,12.968,0,0,1,17.19,30.143Z"/>
                                                         <path
                                                             d="M38.523,40.507a1.985,1.985,0,0,1-1.393-.574L26.785,29.584a15.745,15.745,0,1,1,2.8-2.8L39.926,37.123a1.983,1.983,0,0,1-1.4,3.384ZM17.19,5.456A11.735,11.735,0,1,0,28.923,17.19,11.746,11.746,0,0,0,17.19,5.456Z"/>
@@ -191,9 +191,9 @@ class Header extends React.Component {
                                             <Router>
                                             <ul className="navbar-nav mr-auto">
                                                 <li className="nav-item"><a className="nav-link"
-                                                                            href="index.php">Inicio</a></li>
+                                                                            href="/">Inicio</a></li>
                                                 <li className="nav-item"><a className="nav-link"
-                                                                            href="servicios.php">Servicios</a></li>
+                                                                            href="/services">Servicios</a></li>
                                                 <li className="nav-item dropdown megamenu-li">
                                                     <a className="nav-link dropdown-toggle" href="" id="dropdown01"
                                                        data-toggle="dropdown" aria-haspopup="true"
@@ -242,11 +242,11 @@ class Header extends React.Component {
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li className="nav-item"><a className="nav-link" href="nosotros.php">Sobre
+                                                <li className="nav-item"><a className="nav-link" href="/aboutus">Sobre
                                                     La Red</a></li>
                                                 <li className="nav-item"><a className="nav-link" href="#">Acceso a
                                                     clientes</a></li>
-                                                <li className="nav-item"><a className="nav-link" href="/contacto">Contacto</a></li>
+                                                <li className="nav-item"><a className="nav-link" href="/contact">Contacto</a></li>
                                                 </ul>
 
                                             </Router>

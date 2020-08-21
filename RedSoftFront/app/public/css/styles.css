@@ -1,6 +1,7 @@
 
 html {scroll-behavior: smooth;}
-body {font-family: 'Overpass', sans-serif; font-weight: 400; color: #4d4d4d; font-size: 14px; background-image: url(../img/bgheader.svg); background-size: 580px; background-position: left top; background-repeat: no-repeat;}
+
+body {font-family: 'Overpass', sans-serif; font-weight: 400; color: #4d4d4d; font-size: 14px; background-image: url(public/img/bgheader.svg); background-size: 580px; background-position: left top; background-repeat: no-repeat;}
 .animate{-moz-transition: all 0.3s ease-out;  /*FF3.7+*/ -o-transition: all 0.3s ease-out;  /*Opera 10.5*/ -webkit-transition: all 0.3s ease-out;  /*Saf3.2+, Chrome*/ transition: all 0.3s ease-out;}
 .spacer {clear: both;}
 ul {list-style-type: none; margin: 0px; padding: 0px;}
@@ -50,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0px;}
 .social svg {height: 18px; margin-left: 8px;}
 
 /* Home */
-.bannershome { padding-top: 45px; padding-bottom: 40px; background-image: url(../img/bg-banners-home.svg); background-size: cover; background-position: left top; border-bottom: 1px solid #f2f2f2;}
+.bannershome { padding-top: 45px; padding-bottom: 40px; background-image: url(public/img/bg-banners-home.svg); background-size: cover; background-position: left top; border-bottom: 1px solid #f2f2f2;}
 .bannershome img {width: 100%;}
 
 /* Home Banners */
@@ -219,17 +220,105 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 	}
         
 /*Right*/
-	.modal.right.fade .modal-dialog {
+	.modal.righ.fade.show .modal-dialog {
 		right: -320px;
-		-webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
-		   -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
-		     -o-transition: opacity 0.3s linear, right 0.3s ease-out;
-		        transition: opacity 0.3s linear, right 0.3s ease-out;
+		-webkit-transition: opacity 6.3s linear, right 0.3s ease-out;
+		   -moz-transition: opacity 6.3s linear, right 0.3s ease-out;
+		     -o-transition: opacity 6.3s linear, right 0.3s ease-out;
+		        transition: opacity 6.3s linear, right 0.3s ease-out;
 	}
 	
 	.modal.right.fade.show .modal-dialog {
-		right: 0;
+		right: -1px;
+		top: -1px;
 	}
+
+body.modal-open {
+	overflow: hidden;
+}
+
+/*Kill the scroll on the body*/
+.modal-open {
+	overflow: hidden;
+}
+.modal.righ.fade.show {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+#modalCart {
+	transform: scale(1);
+}
+#modalCart .modal-dialog {
+	background: transparent;
+	animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+#modalCart .modal-dialog .modal-content {
+	transform: translateX(-1500px);
+	animation: roadRunnerIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+#modalCart.out {
+	animation: quickScaleDown 0s .5s linear forwards;
+}
+#modalCart.out .modal-dialog {
+	animation: fadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+#modalCart.out .modal-dialog .modal-content {
+	animation: roadRunnerOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;}
+
+
+@keyframes fadeIn {
+	0% {
+		background: transparent;
+	}
+	100% {
+		background: rgba(0, 0, 0, 0.7);
+	}
+}
+@keyframes fadeOut {
+	0% {
+		background: rgba(0, 0, 0, 0.7);
+	}
+	100% {
+		background: transparent;
+	}
+}
+
+@keyframes quickScaleDown {
+	0% {
+		transform: scale(1);
+	}
+	99.9% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(0);
+	}
+}
+
+@keyframes roadRunnerIn {
+	0% {
+		transform: translateX(-1500px) skewX(30deg) scaleX(1.3);
+	}
+	70% {
+		transform: translateX(30px) skewX(0deg) scaleX(0.9);
+	}
+	100% {
+		transform: translateX(0px) skewX(0deg) scaleX(1);
+	}
+}
+@keyframes roadRunnerOut {
+	0% {
+		transform: translateX(0px) skewX(0deg) scaleX(1);
+	}
+	30% {
+		transform: translateX(-30px) skewX(-5deg) scaleX(0.9);
+	}
+	100% {
+		transform: translateX(1500px) skewX(30deg) scaleX(1.3);
+	}
+}
+
 
 /* ----- MODAL STYLE ----- */
 	.modal-content {
@@ -241,6 +330,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 		border-bottom-color: #EEEEEE;
 		background-color: #FAFAFA;
 	}
+
+
 
 /* ----- v CAN BE DELETED v ----- */
 
@@ -335,18 +426,17 @@ footer {padding-top: 35px;}
 .openBtn:hover {
   background: #bbb;
 }
-
-.overlay {
-  height: 100%;
-  width: 100%;
-  display: none;
-  position: fixed;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.85);
-  -webkit-animation: fade 500ms;
-  animation: fade 500ms;
+#overlay {
+	height: 100%;
+	width: 100%;
+	display: none;
+	position: fixed;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.85);
+	-webkit-animation: fade 500ms;
+	animation: fade 500ms;
 }
 
 .overlay-content {
@@ -469,7 +559,7 @@ footer {padding-top: 35px;}
 .nosotros h2 {font-size: 22px;line-height: 29px;}
 .nosotros p {font-size: 16px;}
 
-/* Contacto */
+/* Contact */
 .contacto .recuadro {padding: 15px; padding-top: 25px;}
 .mapa iframe {margin-top: 30px;}
 .contacto .info {padding-left: 30px; padding-right: 30px; padding-top: 35px;}

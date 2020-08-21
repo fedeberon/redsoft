@@ -3,19 +3,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {useState} from "react";
 
 
+
 export default function ModalCart () {
 
     const [show, setShow] = useState(false);
 
     const handleModal = () => setShow(!show);
-    
+
 
         return (
 
             <>
+                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-                {/*Original Button below*/}
-                <button title="Ver carrito" className="carttop" onClick={handleModal} style={{background: "border-box", padding: '5px 35px'}}>
+                <button id="mod1" title="Ver carrito" className="carttop" onClick={handleModal} style={{background: "border-box", padding: '5px 35px'}}
+                type="button" data-dismiss="modal">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>cart</title>
                         <path d="M20.511,37.073A3.932,3.932,0,1,0,16.58,41,3.931,3.931,0,0,0,20.511,37.073Zm-6.469,0A2.537,2.537,0,1,1,16.58,39.61,2.537,2.537,0,0,1,14.042,37.
                             073Z" fill="#161814"/>
@@ -29,10 +32,9 @@ export default function ModalCart () {
                     </svg>
                     &nbsp;&nbsp;Carrito</button>
 
-
-                <div className={`modal right fade ${show ? "show" : ""}`} style={{display: show ? 'block' : 'none', paddingRight: '15px'}} id="modalCart" tabIndex="-1" role="dialog"
+                <div className={`modal right fade ${show ? "show" : ""}`} style={{display: show ? 'block' : 'none', paddingRight: '15px',}} id="modalCart" tabIndex="-1" role="dialog"
                      aria-labelledby="myModalLabel2">
-                    <div className="modal-dialog" role="document">
+                    <div className="modal-dialog" role="document" style={{borderRadius: '4px',}}>
                         <div className="modal-content">
                             <div className="modal-header">
                                 <button type="button" onClick={handleModal} className="close" data-dismiss="modal" aria-label="Close"><span
@@ -81,13 +83,14 @@ export default function ModalCart () {
                                 <div className="cart-total">
                                     <h2 className="row text-primary mb-0">
                                         <span className="col">Total:</span>
-                                        <span className="col text-right">$38.000,00</span>
+                                        <span className="col text-right">$11.300,00</span>
                                     </h2>
                                 </div>
 
 
                                 <div className="mb-3">
                                     <input className="btn btn-primary btn-iniciar btn-block btn-lg" type="submit"
+                                           style={{backgroundColor: '#000', borderColor: '#000', color: '#fff',}}
                                            name="go_to_checkout" value="Iniciar Compra"/>
                                 </div>
 
@@ -101,7 +104,9 @@ export default function ModalCart () {
                         </div>
                     </div>
                 </div>
+
             </>
+
         )
     }
 //

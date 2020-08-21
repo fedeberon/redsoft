@@ -11,7 +11,7 @@ class FeaturedProductsComponent extends React.Component {
 
                         <div className="col-sm-3">
                             <div className="item animate">
-                                <a href="detalle.php">
+                                <a href="/details">
                                     <figure><img src="img/producto-01.jpg" className="foto"/></figure>
                                     <div className="info">
                                         <div className="name">Auriculares con Micrófono Genius HS-610 - Rojo</div>
@@ -23,7 +23,7 @@ class FeaturedProductsComponent extends React.Component {
 
                         <div className="col-sm-3">
                             <div className="item animate">
-                                <a href="detalle.php">
+                                <a href="/details">
                                     <figure>
                                         <div className="label">20%</div>
                                         <img src="img/producto-02.jpg" className="foto"/></figure>
@@ -37,7 +37,7 @@ class FeaturedProductsComponent extends React.Component {
 
                         <div className="col-sm-3">
                             <div className="item animate">
-                                <a href="detalle.php">
+                                <a href="/details">
                                     <figure><img src="img/producto-03.jpg" className="foto"/></figure>
                                     <div className="info">
                                         <div className="name">Auriculares con Micrófono Genius HS-610 - Rojo</div>
@@ -49,7 +49,7 @@ class FeaturedProductsComponent extends React.Component {
 
                         <div className="col-sm-3">
                             <div className="item animate">
-                                <a href="detalle.php">
+                                <a href="/details">
                                     <figure><img src="img/producto-04.jpg" className="foto"/></figure>
                                     <div className="info">
                                         <div className="name">Auriculares con Micrófono Genius HS-610 - Rojo</div>
@@ -60,7 +60,7 @@ class FeaturedProductsComponent extends React.Component {
                         </div>
                     </div>
                     <div className="text-center">
-                        <a href="productos.php" className="btn btn-lg btn-light" role="button" aria-pressed="true">Ver todo</a>
+                        <a href="/products" className="btn btn-lg btn-light" role="button" aria-pressed="true">Ver todo</a>
                     </div>
                 </div>
             </div>

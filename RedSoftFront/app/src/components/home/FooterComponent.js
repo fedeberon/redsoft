@@ -4,7 +4,7 @@ class FooterComponent extends React.Component {
 
     render() {
         return (
-
+            <footer>
             <div className="footerbanda">
                 <div className="container">
                     <div className="row justify-content-md-center">
@@ -26,8 +26,8 @@ class FooterComponent extends React.Component {
                         </div>
                     </div>
                 </div>
-            </div>,
-                <footer>
+            </div>
+
                     <div className="container">
                         <div className="row">
                             <div className="col-4 col-md-3 logofooter display">
@@ -132,69 +132,7 @@ class FooterComponent extends React.Component {
                         </div>
                     </div>
                 </footer>
-
-
-    //
-    //     <!-- MegaMenu -->
-    //     <script type="text/javascript">
-    //         $(document).ready(function () {
-    //         $(".megamenu").on("click", function (e) {
-    //             e.stopPropagation();
-    //         });
-    //     })
-    //     ;
-    //     </script>
-    //
-    //     <!-- Zoom -->
-
-        // <script>
-    //         $(document).ready(function(){
-    //         $('#ex1').zoom();
-    //         $('#ex2').zoom();
-    //         $('#ex3').zoom();
-    //         $('#ex4').zoom();
-    //         $('#ex5').zoom();
-    //         $('#ex6').zoom();
-    //     });
-    //     </script>
-    //
-    //     <!-- Pushy JS -->
-
-    //
-    //     <!-- Serach Full -->
-    //     <script>
-    //         function openSearch() {
-    //         var element = document.getElementById("myOverlay");
-    //         element.classList.add("show");
-    //         element.style.display = "block";
-    //     }
-    //
-    //         function closeSearch() {
-    //         var element = document.getElementById("myOverlay");
-    //         element.classList.remove("show");
-    //         element.style.display = "none";
-    //     }
-    //     </script>
-    //
-    //     <!-- +/- -->
-	// <
-    //     script
-    //     type = "text/javascript" >
-    //         $(document).ready(function () {
-    //             $(".expand").on("click", function () {
-    //                 $expand = $(this).find(">:first-child");
-    //
-    //                 if ($expand.text() == "+") {
-    //                     $expand.text("-");
-    //                 } else {
-    //                     $expand.text("+");
-    //                 }
-    //             });
-    //         });
-    // </script>
-
         )
-
     }
 }
 
