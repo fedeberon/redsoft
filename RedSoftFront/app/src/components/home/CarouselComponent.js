@@ -4,7 +4,8 @@ class CarouselComponent extends Component {
 
     render (){
         return (
-            <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+            <div id="carouselExampleControls" className="carousel slide" data-ride="carousel"
+                 style={{right: '36px', width: '1284px'}}>
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         <img src="img/slider-desktop-01.jpg" className="d-block w-100"/>

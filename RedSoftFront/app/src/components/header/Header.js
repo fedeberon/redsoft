@@ -1,16 +1,14 @@
 import React from "react";
 import ModalCart from "./ModalCart";
-import {Link, Route} from "react-router-dom";
-
-import {BrowserRouter as Router} from 'react-router-dom';
-
+import NavBarReact from "../NavBarReact";
+import ModalCustomers from "./ModalCustomers";
 
 class Header extends React.Component {
 
     render() {
         return (
 
-            <div id="myOverlay">
+            <div id="myOverlay" style={{height: '190px'}}>
                 <div id="overlay" className="overlay fade searchfull">
                     <span className="closebtn" onClick="closeSearch()" title="Close Overlay">×</span>
                     <span className="closebtn" title="Close Overlay">×</span>
@@ -74,11 +72,26 @@ class Header extends React.Component {
                     <div className="band">
                         <button className="menu-btn"><span>&#9776;</span> Menu</button>
                         <a href="#" className="icontop" onClick="openSearch()">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>search</title><path d="M39.063,37.986,27.935,26.858a14.549,14.549,0,1,0-1.078,1.077L37.985,39.063a.762.762,0,1,0,1.078-1.077ZM17.19,30.143A12.953,12.953,0,1,1,30.143,17.19,12.968,12.968,0,0,1,17.19,30.143Z"/><path d="M38.523,40.507a1.985,1.985,0,0,1-1.393-.574L26.785,29.584a15.745,15.745,0,1,1,2.8-2.8L39.926,37.123a1.983,1.983,0,0,1-1.4,3.384ZM17.19,5.456A11.735,11.735,0,1,0,28.923,17.19,11.746,11.746,0,0,0,17.19,5.456Z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>search</title>
+                                <path
+                                    d="M39.063,37.986,27.935,26.858a14.549,14.549,0,1,0-1.078,1.077L37.985,39.063a.762.762,0,1,0,1.078-1.077ZM17.19,30.143A12.953,12.953,0,1,1,30.143,17.19,12.968,12.968,0,0,1,17.19,30.143Z"/>
+                                <path
+                                    d="M38.523,40.507a1.985,1.985,0,0,1-1.393-.574L26.785,29.584a15.745,15.745,0,1,1,2.8-2.8L39.926,37.123a1.983,1.983,0,0,1-1.4,3.384ZM17.19,5.456A11.735,11.735,0,1,0,28.923,17.19,11.746,11.746,0,0,0,17.19,5.456Z"/>
+                            </svg>
                         </a>
                         <a href="#" title="modal" target="#modalCart"
                            className="icontop">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>cart</title><path d="M20.511,37.073A3.932,3.932,0,1,0,16.58,41,3.931,3.931,0,0,0,20.511,37.073Zm-6.469,0A2.537,2.537,0,1,1,16.58,39.61,2.537,2.537,0,0,1,14.042,37.073Z" fill="#161814"/><path d="M31.137,41a3.932,3.932,0,1,0-3.931-3.931A3.931,3.931,0,0,0,31.137,41Zm0-6.468A2.537,2.537,0,1,1,28.6,37.073,2.536,2.536,0,0,1,31.137,34.536Z" fill="#161814"/><path d="M1.041,3.394H5.293A2.828,2.828,0,0,1,8.1,5.791l3.367,21.267a4.216,4.216,0,0,0,4.183,3.573h20.81a.7.7,0,0,0,0-1.395H15.649a2.829,2.829,0,0,1-2.806-2.4l-.572-3.615H33.584a4.239,4.239,0,0,0,4-2.849L41.54,8.963a.7.7,0,0,0-.659-.926H9.867l-.39-2.464A4.216,4.216,0,0,0,5.293,2H1.041a.7.7,0,1,0,0,1.394ZM39.9,9.432,36.268,19.919a2.842,2.842,0,0,1-2.684,1.91H12.05l-1.963-12.4Z" fill="#161814"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>cart</title>
+                                <path
+                                    d="M20.511,37.073A3.932,3.932,0,1,0,16.58,41,3.931,3.931,0,0,0,20.511,37.073Zm-6.469,0A2.537,2.537,0,1,1,16.58,39.61,2.537,2.537,0,0,1,14.042,37.073Z"
+                                    fill="#161814"/>
+                                <path
+                                    d="M31.137,41a3.932,3.932,0,1,0-3.931-3.931A3.931,3.931,0,0,0,31.137,41Zm0-6.468A2.537,2.537,0,1,1,28.6,37.073,2.536,2.536,0,0,1,31.137,34.536Z"
+                                    fill="#161814"/>
+                                <path
+                                    d="M1.041,3.394H5.293A2.828,2.828,0,0,1,8.1,5.791l3.367,21.267a4.216,4.216,0,0,0,4.183,3.573h20.81a.7.7,0,0,0,0-1.395H15.649a2.829,2.829,0,0,1-2.806-2.4l-.572-3.615H33.584a4.239,4.239,0,0,0,4-2.849L41.54,8.963a.7.7,0,0,0-.659-.926H9.867l-.39-2.464A4.216,4.216,0,0,0,5.293,2H1.041a.7.7,0,1,0,0,1.394ZM39.9,9.432,36.268,19.919a2.842,2.842,0,0,1-2.684,1.91H12.05l-1.963-12.4Z"
+                                    fill="#161814"/>
+                            </svg>
                         </a>
                         <div className="spacer"></div>
                     </div>
@@ -87,8 +100,8 @@ class Header extends React.Component {
                     </a></div>
                 </div>
 
-                <div className="banddesktop">
-                    <div className="band1">
+                <div className="banddesktop" style={{height: '200px'}}>
+                    <div className="band1" style={{height: '35px'}}>
                         <div className="container">
                             <ul className="datos">
                                 <li>
@@ -109,7 +122,8 @@ class Header extends React.Component {
                                     &nbsp;2314 427308
                                 </li>
                                 <li>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><title>Dirección</title>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <title>Dirección</title>
                                         <path
                                             d="M192 96c-52.935 0-96 43.065-96 96s43.065 96 96 96 96-43.065 96-96-43.065-96-96-96zm0 160c-35.29 0-64-28.71-64-64s28.71-64 64-64 64 28.71 64 64-28.71 64-64 64zm0-256C85.961 0 0 85.961 0 192c0 77.413 26.97 99.031 172.268 309.67 9.534 13.772 29.929 13.774 39.465 0C357.03 291.031 384 269.413 384 192 384 85.961 298.039 0 192 0zm0 473.931C52.705 272.488 32 256.494 32 192c0-42.738 16.643-82.917 46.863-113.137S149.262 32 192 32s82.917 16.643 113.137 46.863S352 149.262 352 192c0 64.49-20.692 80.47-160 281.931z"/>
                                     </svg>
@@ -123,19 +137,13 @@ class Header extends React.Component {
                                     &nbsp;info@laredwifi.com.ar
                                 </li>
                             </ul>
-                            <a href="" className="clientes">Acceso a clientes &nbsp;
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14">
-                                    <title>arrow-right-circle</title>
-                                    <path
-                                        d="M7,13.635A6.635,6.635,0,1,0,.365,7,6.642,6.642,0,0,0,7,13.635ZM7,1.028A5.972,5.972,0,1,1,1.028,7,5.979,5.979,0,0,1,7,1.028Z"/>
-                                    <path
-                                        d="M4.118,7.333H9.081l-1.3,1.3a.332.332,0,0,0,.471.468l1.864-1.865a.33.33,0,0,0,0-.468L8.253,4.9a.331.331,0,0,0-.468.468l1.3,1.3H4.118a.332.332,0,1,0,0,.663Z"/>
-                                </svg>
-                            </a>
+                            <div>
+                                <ModalCustomers/>
+                            </div>
                             <div className="spacer"></div>
                         </div>
                     </div>
-                    <div className="band2">
+                    <div className="band2" style={{height: '155px'}}>
                         <div className="container">
                             <div className="row">
                                 <div className="col">
@@ -166,7 +174,8 @@ class Header extends React.Component {
                                                 <span className="input-group-text searchtop-icon" id="basic-text1">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                          viewBox="0 0 42 42"><title>Search</title>
-                                                        <path d="M39.063,37.986,27.935,26.858a14.549,14.549,0,1,0-1.078,1.077L37.985,39.063a.762.762,0,1,0,1.078-1.077ZM17.19,30.143A12.953,12.953,0,1,1,30.143,17.19,12.968,12.968,0,0,1,17.19,30.143Z"/>
+                                                        <path
+                                                            d="M39.063,37.986,27.935,26.858a14.549,14.549,0,1,0-1.078,1.077L37.985,39.063a.762.762,0,1,0,1.078-1.077ZM17.19,30.143A12.953,12.953,0,1,1,30.143,17.19,12.968,12.968,0,0,1,17.19,30.143Z"/>
                                                         <path
                                                             d="M38.523,40.507a1.985,1.985,0,0,1-1.393-.574L26.785,29.584a15.745,15.745,0,1,1,2.8-2.8L39.926,37.123a1.983,1.983,0,0,1-1.4,3.384ZM17.19,5.456A11.735,11.735,0,1,0,28.923,17.19,11.746,11.746,0,0,0,17.19,5.456Z"/>
                                                     </svg>
@@ -179,102 +188,19 @@ class Header extends React.Component {
                                     <div>
                                         <ModalCart/>
                                     </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="band3">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-12">
-                                    <nav className="navbar navbar-expand-lg">
-                                        <div className="collapse navbar-collapse" id="navbar">
-                                            <Router>
-                                            <ul className="navbar-nav mr-auto">
-                                                <li className="nav-item"><a className="nav-link"
-                                                                            href="/">Inicio</a></li>
-                                                <li className="nav-item"><a className="nav-link"
-                                                                            href="/services">Servicios</a></li>
-                                                <li className="nav-item dropdown megamenu-li">
-                                                    <a className="nav-link dropdown-toggle" href="" id="dropdown01"
-                                                       data-toggle="dropdown" aria-haspopup="true"
-                                                       aria-expanded="false">Productos</a>
-                                                    <div className="dropdown-menu megamenu"
-                                                         aria-labelledby="dropdown01">
-                                                        <div className="row">
-                                                            <div className="col-sm-6 col-lg-3">
-                                                                <h5>Categoria</h5>
-                                                                <a className="dropdown-item" href="productos.php">Another
-                                                                    action</a>
-                                                                <a className="dropdown-item" href="productos.php">Something
-                                                                    else here</a>
-                                                                <a className="dropdown-item" href="productos.php">Another
-                                                                    action</a>
-                                                                <a className="dropdown-item" href="productos.php">Something
-                                                                    else here</a>
-                                                            </div>
-                                                            <div className="col-sm-6 col-lg-3">
-                                                                <h5>Categoria</h5>
-                                                                <a className="dropdown-item" href="productos.php">Another
-                                                                    action</a>
-                                                                <a className="dropdown-item" href="productos.php">Something
-                                                                    else here</a>
-                                                                <a className="dropdown-item" href="productos.php">Another
-                                                                    action</a>
-                                                            </div>
-                                                            <div className="col-sm-6 col-lg-3">
-                                                                <h5>Categoria</h5>
-                                                                <a className="dropdown-item" href="productos.php">Another
-                                                                    action</a>
-                                                                <a className="dropdown-item" href="productos.php">Something
-                                                                    else here</a>
-                                                                <a className="dropdown-item" href="productos.php">Another
-                                                                    action</a>
-                                                            </div>
-                                                            <div className="col-sm-6 col-lg-3">
-                                                                <h5>Categoria</h5>
-                                                                <a className="dropdown-item" href="productos.php">Another
-                                                                    action</a>
-                                                                <a className="dropdown-item" href="productos.php">Something
-                                                                    else here</a>
-                                                                <a className="dropdown-item" href="productos.php">Another
-                                                                    action</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li className="nav-item"><a className="nav-link" href="/aboutus">Sobre
-                                                    La Red</a></li>
-                                                <li className="nav-item"><a className="nav-link" href="#">Acceso a
-                                                    clientes</a></li>
-                                                <li className="nav-item"><a className="nav-link" href="/contact">Contacto</a></li>
-                                                </ul>
-
-                                            </Router>
-                                        </div>
-                                    </nav>
-                                    <div className="social top">
-                                        <a href="https://www.facebook.com/lared.wifi" target="_blank"
-                                           className="social-icon">
-                                            <svg viewBox="0 0 320 512">
-                                                <path
-                                                    d="M279.1 288l14.3-92.7h-89v-60c0-25.4 12.5-50.2 52.3-50.2H297V6.4S260.4 0 225.4 0C152 0 104.3 44.4 104.3 124.7v70.6H22.9V288h81.4v224h100.2V288z"/>
-                                            </svg>
-                                        </a>
-                                        <a href="" target="_blank" className="social-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                                <path
-                                                    d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
-                                            </svg>
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
+                        </div>
+
+                        {/*//NAVBARREACT*/}
+                        <div>
+                            <NavBarReact/>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
         );
     }
 }
+
 export default Header;

@@ -23,12 +23,10 @@ function App() {
    
   return (
     <Provider store={store}>
-        <div className="modal-open" style={{overflow: "hidden"}}>
         <Header/>
         <Router>
             {/*<OrderDetail />*/}
             <Switch>
-                {/*<Route exact path="/" component={ProductsList} />*/}
                 <Route exact path="/" component={HomeContainer} />
                 <Route exact path="/product/" component={Products} />
                 <Route exact path="/product/:id" component={ProductDetail} />
@@ -43,9 +41,7 @@ function App() {
             </Switch>
         </Router>
         <FooterComponent/>
-        </div>
     </Provider>
-              
   );
 }
 

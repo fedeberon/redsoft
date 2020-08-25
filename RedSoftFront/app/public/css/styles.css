@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0px;}
 .datos li {padding-right: 15px; margin-right: 15px; border-right:1px solid #eaeaea;}
 .datos li:last-child {border:0px; }
 .datos svg {height: 15px; vertical-align: middle;fill:#515151;}
-.clientes {float: right; background-color: #be1d7b; color: #fff; text-transform: uppercase; display: table; padding: 9px 18px; font-size: 14px; line-height: 14px;}
+.clientes {float: right; background-color: #be1d7b; color: #fff; text-transform: uppercase; display: table; padding: 7px; font-size: 14px; line-height: 14px;}
 .clientes svg {height: 15px; vertical-align: middle; fill:#fff; margin-left: 20px;}
 
 .band2 {background-color: rgba(86,196,207,0.3); padding-top: 12px; padding-bottom: 12px;}
@@ -231,20 +231,132 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 	.modal.right.fade.show .modal-dialog {
 		right: -1px;
 		top: -1px;
+}
+
+
+/*ModalCustomers*/
+
+@media (min-width: 576px){
+	.modal-dialog {
+		max-width: 400px;}
+
+	#modalCart.modal-content {
+		padding: 1rem;
 	}
 
-body.modal-open {
-	overflow: hidden;
 }
+
+#modalCustomer .modal-content {
+	padding: 1rem;
+	height: 482px;
+	width: 434px;
+
+}
+
+
+#modalCustomer .modal-header {
+	margin-top: -1.5rem;
+}
+
+.form-title {
+	margin: -2rem 0rem 2rem;
+}
+
+.btn-round {
+	border-radius: 3rem;
+}
+
+.delimiter {
+	padding: 1rem;
+}
+
+.social-buttons {
+.btn
+	margin: 0 0.5rem 1rem;
+
+}
+
+.signup-section {
+	padding: 0.3rem 0rem;
+}
+
+
+
+
+.dropdown-menu.show {
+	left: -170px;
+	top: 118%;
+}
+
+/*body.modal-open  {*/
+/*	overflow: hidden;*/
+/*}*/
 
 /*Kill the scroll on the body*/
 .modal-open {
 	overflow: hidden;
 }
-.modal.righ.fade.show {
+#modalCart {
 	overflow-x: hidden;
 	overflow-y: auto;
 }
+
+
+#modalCustomer {
+	transform: scaleY(0.01) scaleX(0);
+	animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+#modalCustomer .modal-dialog .modal-content {
+	transform: scale(0);
+	animation: zoomIn 0.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+#modalCustomer.out {
+	transform: scale(1);
+	animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+#modalCustomer.out .modal-dialog .modal-content {
+	animation: zoomOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes unfoldIn {
+	0% {
+		transform: scaleY(0.005) scaleX(0);
+	}
+	50% {
+		transform: scaleY(0.005) scaleX(1);
+	}
+	100% {
+		transform: scaleY(1) scaleX(1);
+	}
+}
+@keyframes unfoldOut {
+	0% {
+		transform: scaleY(1) scaleX(1);
+	}
+	50% {
+		transform: scaleY(0.005) scaleX(1);
+	}
+	100% {
+		transform: scaleY(0.005) scaleX(0);
+	}
+}
+@keyframes zoomIn {
+	0% {
+		transform: scale(0);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+@keyframes zoomOut {
+	0% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(0);
+	}
+}
+
 
 #modalCart {
 	transform: scale(1);
@@ -328,7 +440,7 @@ body.modal-open {
 
 	.modal-header {
 		border-bottom-color: #EEEEEE;
-		background-color: #FAFAFA;
+
 	}
 
 
