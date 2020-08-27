@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import 'bootstrap';
+import ReactImageZoom from 'react-image-zoom';
+import Preference from "../order/preference";
 
 class CardDetailComponent extends Component {
 
@@ -11,8 +13,9 @@ class CardDetailComponent extends Component {
                     <div className="container">
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb">
-                                <li className="breadcrumb-item"><a href="#">Home</a></li>
-                                <li className="breadcrumb-item active" aria-current="page">Computadoras</li>
+                                <li className="breadcrumb-item"><a href="/">Home</a></li>
+                                <li className="breadcrumb-item"><a href="/products">Productos</a></li>
+                                <li className="breadcrumb-item active" aria-current="page">Detalles</li>
                             </ol>
                         </nav>
 
@@ -25,15 +28,22 @@ class CardDetailComponent extends Component {
                                         <div className="label">20%</div>
                                         <img className="zoom-icon" src="img/zoom-in.svg"/>
                                         <div className="carousel-item active">
-                                            <span className="zoom" id="ex1"> <img src="img/producto-01.jpg"
-                                                                                  className="d-block w-100"/></span>
+                                            <span className="zoom" id="ex1"><ReactImageZoom width={600} height={600}
+                                             zoomWidth={700} img={"img/producto-01.jpg"} zoomPosition={"original"}
+                                             className="d-block w-100"/>
+                                            </span>
                                         </div>
                                         <div className="carousel-item">
-                                            <span className="zoom" id="ex2"><img src="img/producto-02.jpg"
-                                                                                 className="d-block w-100"/></span>
+                                            <span className="zoom" id="ex2"><ReactImageZoom width={600} height={600}
+                                             zoomWidth={700} img={"img/producto-02.jpg"} zoomPosition={"original"}
+                                             className="d-block w-100"/>
+                                            </span>
                                         </div>
-                                        <div className="carousel-item"><span className="zoom" id="ex3">
-                                            <img src="img/producto-03.jpg" className="d-block w-100"/>F</span>
+                                        <div className="carousel-item">
+                                            <span className="zoom" id="ex3"><ReactImageZoom width={500} height={500}
+                                             zoomWidth={600} img={"img/producto-03.jpg"} zoomPosition={"original"}
+                                             className="d-block w-100"/>
+                                            </span>
                                         </div>
                                     </div>
                                     <a className="carousel-control-prev" href="#carouselProduct" role="button"
@@ -79,12 +89,12 @@ class CardDetailComponent extends Component {
                                                    placeholder="1"/>
                                         </div>
                                         <div className="col-9 col-sm-6">
-                                            <button type="button" className="btn btn-lg addtocart">Comprar online
+                                            <button type="button" className="addtocart">Comprar online
                                             </button>
                                         </div>
                                     </div>
                                 </form>
-                                <a href="productos.php" className="btn btn-lg btn-whatsapp" role="button"
+                                <a href="productos.php" className="btn btn-whatsapp" role="button"
                                    aria-pressed="true">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><title>WhatsApp</title>
                                         <path
@@ -110,6 +120,7 @@ class CardDetailComponent extends Component {
                                              data-parent="#accordion">
                                             <div className="card-body">
                                                 Informacion medios de pago.
+                                                <div className="row"><Preference/></div>
                                             </div>
                                         </div>
                                     </div>

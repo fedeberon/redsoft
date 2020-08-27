@@ -1,5 +1,5 @@
 import React from 'react';
-import Products from "./product";
+import PaginationComponent from "./PaginationComponent";
 
 class ProductsList extends React.Component {
 
@@ -11,48 +11,31 @@ class ProductsList extends React.Component {
                 <div className="container">
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb">
-                            <li className="breadcrumb-item"><a href="#">Home</a></li>
-                            <li className="breadcrumb-item active" aria-current="page">Computadoras</li>
+                            <li className="breadcrumb-item"><a href="/">Home</a></li>
+                            <li className="breadcrumb-item active" href="/products" aria-current="page">Productos</li>
                         </ol>
                     </nav>
                     <h1 className="titcategory">Computadoras</h1>
                     <div className="row">
                         <div className="col-sm-3 sidebar display">
-                            <h5>Categorias</h5>
+                            <h4>Categorias</h4>
                             <div className="list-group list-group-flush">
-                                <button type="button" className="list-group-item list-group-item-action active">Cras
-                                    justo odio
+                                <button type="button" className="list-group-item list-group-item-action active">Periféricos
                                 </button>
-                                <button type="button" className="list-group-item list-group-item-action">Dapibus ac
-                                    facilisis in
+                                <button type="button" className="list-group-item list-group-item-action">Accesorios
                                 </button>
-                                <button type="button" className="list-group-item list-group-item-action">Morbi leo
-                                    risus
+                                <button type="button" className="list-group-item list-group-item-action">Notebooks
                                 </button>
-                                <button type="button" className="list-group-item list-group-item-action">Porta ac
-                                    consectetur ac
+                                <button type="button" className="list-group-item list-group-item-action">Monitores
                                 </button>
-                                <button type="button" className="list-group-item list-group-item-action">Vestibulum at
-                                    eros
+                                <button type="button" className="list-group-item list-group-item-action">Gaming
                                 </button>
                             </div>
                         </div>
                         <div className="col-sm-9">
                             <div className="row">
-                                <Products/>
+                                <PaginationComponent/>
                             </div>
-                            <nav aria-label="">
-                                <ul className="pagination pagination-lg">
-                                    <li className="page-item active" aria-current="page">
-                          <span className="page-link">
-                              1
-                    <span className="sr-only">(current)</span>
-                          </span>
-                                    </li>
-                                    <li className="page-item"><a className="page-link" href="#">2</a></li>
-                                    <li className="page-item"><a className="page-link" href="#">3</a></li>
-                                </ul>
-                            </nav>
                         </div>
                     </div>
                 </div>

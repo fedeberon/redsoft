@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0px;}
 .btn-primary:hover {color: #fff;background-color: #be1d7b;border-color: #be1d7b;}
 .btn-link {font-weight: 400;color: #000;text-decoration: none;}
 
-.btn-light {background-color: #f4f4f4; border-color: #f4f4f4; text-transform: uppercase; font-weight: 600; font-size: 15px;}
+.btn-light {background-color: #f4f4f4; border-color: #f4f4f4; font-weight: 600; font-size: 15px;}
 
 .band1 {background-color: #fff;}
 .datos {display: flex; color: #515151; float: left; font-family: 'Work Sans', sans-serif; font-weight: 400; font-size: 13px; color: #515151; margin-top: 6px;}
@@ -136,7 +136,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 #carouselProduct .carousel-control-prev-icon, #carouselProduct .carousel-control-next-icon {background: transparent; height: 42px; width: 42px;}
 #carouselProduct .carousel-control-next, #carouselProduct .carousel-control-prev {opacity: 1;}
 
-.zoom {display:inline-block;position: relative;}
+.zoom {display:inline-block; position: relative;}
 .zoom img {display: block;}
 .zoom img::selection { background-color: transparent; }
 
@@ -149,7 +149,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 
 .quantity span {color: #7c7c7c; font-weight: 300;}
 .quantity .form-control-lg{ font-size: 15px;padding: 1.3rem 1.4rem;line-height: 1.5; text-align: center;}
-.addtocart {background-color: #161814; color: #fff; text-transform: uppercase; font-size: 15px;padding: .7rem 1.4rem; margin-top: 21px;line-height: 1.5;border-radius: .3rem;}
+.addtocart {background-color: black; color: #fff; text-transform: uppercase; font-size: 15px;padding: .7rem 1.4rem; margin-top: 21px;line-height: 1.5;border-radius: 0.3rem;}
 .addtocart:hover {color: #fff; background-color: #be1d7b;}
 
 .btn-whatsapp {border: 1px solid #25d366; text-transform: uppercase; color: #25d366; font-size: 15px; margin-top: 25px; font-weight: 600;padding: .7rem 1.4rem;}
@@ -598,6 +598,18 @@ footer {padding-top: 35px;}
 
 .overlay button:hover {
   background: #bbb;
+}
+
+#page-numbers {
+	list-style: none;
+	display: flex;
+}
+
+#page-numbers > li {
+	margin-right: 0.3em;
+	color: white;
+	user-select: none;
+	cursor: pointer;
 }
 
 .searchfull button svg {height: 21px;}

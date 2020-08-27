@@ -1,11 +1,16 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useState} from "react";
+import Detail from "../order/detail";
+import product from "../product/product";
+import Order from "../order/order";
+
 
 export default function ModalCart() {
 
     const [show, setShow] = useState(false);
     const handleModal = () => setShow(!show);
+    let totalPrice = 0;
 
     return (
 
@@ -41,43 +46,32 @@ export default function ModalCart() {
                             <h4 className="modal-title" id="myModalLabel2">Carrito</h4>
                         </div>
                         <div className="modal-body">
-                            <div className="item cart animate">
-                                <div className="row">
-                                    <figure className="col-3 col-sm-3"><img src="img/producto-03.jpg"
-                                                                            className="foto"/>
-                                    </figure>
-                                    <div className="info col-4 col-sm-5">
-                                        <div className="name">Auriculares con Micrófono Genius HS-610 -
-                                            Rojo <span>x 1</span></div>
-                                    </div>
-                                    <div className="col-5 col-sm-4 price">
-                                        $5650,00
-                                        <a href=""
-                                           className="deletecart">{/*<?php include('svg/delete.php');?>*/}</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="item cart animate">
-                                <div className="row">
-                                    <figure className="col-3 col-sm-3"><img src="img/producto-03.jpg"
-                                                                            className="foto"/>
-                                    </figure>
-                                    <div className="info col-4 col-sm-5">
-                                        <div className="name">Auriculares con Micrófono Genius HS-610 -
-                                            Rojo <span>x 1</span></div>
-                                    </div>
-                                    <div className="col-5 col-sm-4 price">
-                                        $5650,00
-                                        <a href=""
-                                           className="deletecart">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427 427"><title>delete</title><path d="M272.4,154.7a10,10,0,0,0-10,10v189a10,10,0,0,0,20,0v-189A10,10,0,0,0,272.4,154.7Z"/><path d="M154.4,154.7a10,10,0,0,0-10,10v189a10,10,0,0,0,20,0v-189A10,10,0,0,0,154.4,154.7Z"/><path d="M68.4,127.121V373.5c0,14.562,5.34,28.238,14.668,38.051A49.243,49.243,0,0,0,118.8,427H308a49.229,49.229,0,0,0,35.73-15.449c9.328-9.813,14.668-23.489,14.668-38.051V127.121A38.2,38.2,0,0,0,348.6,52H297.4V39.5A39.28,39.28,0,0,0,257.8,0H169a39.28,39.28,0,0,0-39.6,39.5V52H78.2a38.2,38.2,0,0,0-9.8,75.121ZM308,407H118.8c-17.1,0-30.4-14.688-30.4-33.5V128h250V373.5C338.4,392.312,325.1,407,308,407ZM149.4,39.5A19.265,19.265,0,0,1,169,20h88.8a19.265,19.265,0,0,1,19.6,19.5V52h-128ZM78.2,72H348.6a18,18,0,0,1,0,36H78.2a18,18,0,1,1,0-36Z"/><path d="M213.4,154.7a10,10,0,0,0-10,10v189a10,10,0,0,0,20,0v-189A10,10,0,0,0,213.4,154.7Z"/></svg></a>
-                                    </div>
-                                </div>
-                            </div>
+
+                                <Order/>
+
+
+
+                            {/*<div className="item cart animate">*/}
+                            {/*    <div className="row">*/}
+                            {/*        <figure className="col-3 col-sm-3"><img src="img/producto-02.jpg"*/}
+                            {/*                                                className="foto"/>*/}
+                            {/*        </figure>*/}
+                            {/*        <div className="info col-4 col-sm-5">*/}
+                            {/*            <div className="name">Auriculares con Micrófono Genius HS-610 -*/}
+                            {/*                Rojo <span>x 1</span></div>*/}
+                            {/*        </div>*/}
+                            {/*        <div className="col-5 col-sm-4 price">*/}
+                            {/*            $5650,00*/}
+                            {/*            <a href=""*/}
+                            {/*               className="deletecart">*/}
+                            {/*                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427 427"><title>delete</title><path d="M272.4,154.7a10,10,0,0,0-10,10v189a10,10,0,0,0,20,0v-189A10,10,0,0,0,272.4,154.7Z"/><path d="M154.4,154.7a10,10,0,0,0-10,10v189a10,10,0,0,0,20,0v-189A10,10,0,0,0,154.4,154.7Z"/><path d="M68.4,127.121V373.5c0,14.562,5.34,28.238,14.668,38.051A49.243,49.243,0,0,0,118.8,427H308a49.229,49.229,0,0,0,35.73-15.449c9.328-9.813,14.668-23.489,14.668-38.051V127.121A38.2,38.2,0,0,0,348.6,52H297.4V39.5A39.28,39.28,0,0,0,257.8,0H169a39.28,39.28,0,0,0-39.6,39.5V52H78.2a38.2,38.2,0,0,0-9.8,75.121ZM308,407H118.8c-17.1,0-30.4-14.688-30.4-33.5V128h250V373.5C338.4,392.312,325.1,407,308,407ZM149.4,39.5A19.265,19.265,0,0,1,169,20h88.8a19.265,19.265,0,0,1,19.6,19.5V52h-128ZM78.2,72H348.6a18,18,0,0,1,0,36H78.2a18,18,0,1,1,0-36Z"/><path d="M213.4,154.7a10,10,0,0,0-10,10v189a10,10,0,0,0,20,0v-189A10,10,0,0,0,213.4,154.7Z"/></svg></a>*/}
+                            {/*        </div>*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
                             <div className="cart-total">
                                 <h2 className="row text-primary mb-0">
                                     <span className="col">Total:</span>
-                                    <span className="col text-right">$11.300,00</span>
+                                    <span className="col text-right">${() => totalPrice = totalPrice + product.precioUni}</span>
                                 </h2>
                             </div>
                             <div className="mb-3">

@@ -27,6 +27,7 @@ const Detail = (props) => {
                 </Card.Body>
             </Card>
 
+
     )
 }
 

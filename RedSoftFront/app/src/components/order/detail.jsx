@@ -7,9 +7,10 @@ const Detail = () => {
 
     return (
         <section>
-            <div className="cart">
+            <div className="cart" >
+
                 Tiene {products.length} productos en el carro.
-                    <Link to="/order/details"> Ver mas ..</Link>
+                    <li href="/product/details"> Ver mas ..</li>
             </div>
         </section>
     )
