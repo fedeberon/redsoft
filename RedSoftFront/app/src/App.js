@@ -29,14 +29,14 @@ function App() {
             <Switch>
                 <Route exact path="/" component={HomeContainer} />
                 <Route exact path="/product/" component={Products} />
-                <Route exact path="/product/:id" component={ProductDetail} />
+                {/*<Route exact path="/product/:id" component={ProductDetail} />*/}
                 <Route exact path="/order/" component={OrderDetail} />
                 <Route exact path="/order/details" component={Order}/>
                 <Route exact path="/order/preference" component={Preference}/>
                 <Route exact path="/contact" component={Contact}/>
                 <Route exact path="/aboutus" component={AboutUs}/>
                 <Route exact path="/services" component={Services}/>
-                <Route exact path="/details" component={CardDetailComponent}/>
+                <Route exact path="/details/:id" component={CardDetailComponent}/>
                 <Route exact path="/products" component={ProductsList}/>
             </Switch>
         </Router>

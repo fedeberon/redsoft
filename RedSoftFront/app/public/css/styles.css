@@ -203,7 +203,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 	
 	.modal.left .modal-body,
 	.modal.right .modal-body {
-		padding: 15px 15px 80px;
+		padding: 15px 15px 2px;
 	}
 
 /*Left*/

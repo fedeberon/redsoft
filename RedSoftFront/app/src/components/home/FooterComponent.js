@@ -9,7 +9,7 @@ class FooterComponent extends React.Component {
                 <div className="container">
                     <div className="row justify-content-md-center">
                         <div className="col-md-6 col-lg-5 col-xs-4">
-                            <img src="img/person.svg"/>
+                            <img src="/img/person.svg"/>
                             <ul>
                                 <li>Av. Alsina 555</li>
                                 <li>Lunes a viernes de 10 a 18 hs</li>
@@ -17,7 +17,7 @@ class FooterComponent extends React.Component {
                             </ul>
                         </div>
                         <div className="col-md-6 col-lg-5 col-xs-4">
-                            <img src="img/chat.svg"/>
+                            <img src="/img/chat.svg"/>
                             <ul>
                                 <li>Presupuestos: ventas@laredwifi.com.ar</li>
                                 <li>Consultas: contacto@laredwifi.com.ar</li>
@@ -48,7 +48,7 @@ class FooterComponent extends React.Component {
                             </div>
                             <div className="col-12 col-md-3">
                                 <ul className="datos datosfooter">
-                                    <img src="img/iso.svg" className="iso mobile"/>
+                                    <img src="/img/iso.svg" className="iso mobile"/>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14">
                                             <title>whatsapp</title>
@@ -111,7 +111,7 @@ class FooterComponent extends React.Component {
                                         </svg>
                                     </a>
                                 </div>
-                                <div className="afip"><img src="img/qr.png"/></div>
+                                <div className="afip"><img src="/img/qr.png"/></div>
                             </div>
                         </div>
                     </div>

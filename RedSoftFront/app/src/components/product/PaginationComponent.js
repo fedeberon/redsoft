@@ -1,7 +1,7 @@
 import React from 'react';
 import api from "../../axios";
 import Button from "react-bootstrap/Button";
-
+import CardDetailComponent from "./CardDetailComponent";
 
 class PaginationComponent extends React.Component {
     constructor() {
@@ -14,7 +14,9 @@ class PaginationComponent extends React.Component {
             lowerPageBound: 0,
             isPrevBtnActive: 'disabled',
             isNextBtnActive: '',
-            pageBound: 3
+            pageBound: 3,
+            details: false,
+            selected: null,
         };
         this.handleClick = this.handleClick.bind(this);
         this.btnDecrementClick = this.btnDecrementClick.bind(this);
@@ -88,10 +90,14 @@ class PaginationComponent extends React.Component {
         this.setPrevAndNextBtnClass(listid);
     }
 
+    handleDetail = (index = null) => {
+        this.setState({details: true, selected: index != null ? this.state.products[index] : null})
+    }
+
     render() {
-        const {
+        let {
             products, currentPage, todosPerPage, upperPageBound, lowerPageBound,
-            isPrevBtnActive, isNextBtnActive
+            isPrevBtnActive, isNextBtnActive, selected, details
         } = this.state;
 
 
@@ -99,20 +105,29 @@ class PaginationComponent extends React.Component {
         const indexOfLastTodo = currentPage * todosPerPage;
         const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
         const currentTodos = products.slice(indexOfFirstTodo, indexOfLastTodo);
-          const renderTodos = currentTodos.map((product, index) => {
-            return <div className="col-6 col-sm-4">
+        const renderTodos = currentTodos.map((product, index) => {
+
+            return <div className="col-6 col-sm-4"> {!this.state.details ?
                 <div className="item animate">
-                    <a href="/details">
-                        <figure><img src="img/producto-04.jpg" className="foto"/></figure>
+                    <a href={`/details/${(currentPage-1)*21 + index}`}>
+                        <figure><img src="img/producto-03.jpg" className="foto"/></figure>
                         <div className="info">
+                            <div className="key">#{(currentPage-1)*21 + index + 1}</div>
                             <div className="productName"><h5>{product.description}</h5></div>
                             <div className="codigo">{product.code}</div>
                             <div className="price">${product.precioUni}</div>
+                            <button className="btn btn-sm" onClick={() => {
+                                this.handleDetail(index)
+                            }}> Ver Detalle
+                            </button>
                         </div>
                     </a>
                 </div>
-            </div>;
+                :
+                <CardDetailComponent product={this.state.selected} handleDetail={this.handleDetail}/>}
+            </div>
         });
+
 
         // Logica para mostrar los numeros de paginas
         const pageNumbers = [];
@@ -130,8 +145,8 @@ class PaginationComponent extends React.Component {
                 )
             } else if ((number < upperPageBound + 1) && number > lowerPageBound) {
                 return (
-                    <Button variant={ number== currentPage ? 'info' : "light" }>
-                        <li className={ number== currentPage ? 'active' : "" } key={number} id={number}><a id={number} onClick={this.handleClick}>{number}</a></li>
+                    <Button variant={number == currentPage ? 'info' : "light"}>
+                        <li className={number == currentPage ? 'active' : ""} key={number} id={number}><a id={number} onClick={this.handleClick}>{number}</a></li>
                     </Button>
                 )
             }

@@ -1,6 +1,5 @@
 import React from "react";
 import {useSelector} from 'react-redux'
-import {Link} from "react-router-dom";
 
 const Detail = () => {
     const products = useSelector(state => Object.values(state.order.items));
@@ -9,8 +8,8 @@ const Detail = () => {
         <section>
             <div className="cart" >
 
-                Tiene {products.length} productos en el carro.
-                    <li href="/product/details"> Ver mas ..</li>
+                Tenés {products.length} productos en el carrito!
+                  <a href="/product/details"> Ver mas ..</a>
             </div>
         </section>
     )
