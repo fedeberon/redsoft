@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Tuple;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,9 +35,12 @@ public class ProductDaoImpl implements ProductDao {
                     .setParameter("lista_codi", "LCO")
                     .setParameter("activo", "S");
 
+
             List<Tuple> result = query.getResultList();
             result.forEach(row -> products.add(new Product()
                     .withCode(String.valueOf(row.get("cod_articulo")))
+                    .withPriceUni(String.valueOf(row.get("precio_uni")))
+                    .withPriceUniVta((BigDecimal)(row.get("precio_uni_vta")))
                     .withDescription(String.valueOf(row.get("descrip_arti")))));
 
             return products;

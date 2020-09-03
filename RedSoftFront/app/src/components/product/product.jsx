@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import api from '../../axios'
-import Table from 'react-bootstrap/Table'
 import Spinner from 'react-bootstrap/Spinner'
-import {Button, Badge, Card} from 'react-bootstrap'
-import Detail from './detail'
 
 class Products extends Component {
 
@@ -11,8 +8,7 @@ class Products extends Component {
         isLoading: false,
         products: [],
         details: false,
-        selected: null
-
+        selected: null,
     }
 
     componentDidMount() {
@@ -24,30 +20,28 @@ class Products extends Component {
     }
 
     render() {
-        return <div> {!this.state.details ?
-            <>
-                    {this.state.isLoading && <Spinner animation="border"/>}
 
-                    {this.state.products.map((product, index) => {
-                        return (
-                                <Card style={{ width: '18rem' }}>
-                                    <Card.Body>
-                                        <Card.Title>{product.code}</Card.Title>
-                                        <Card.Subtitle className="mb-2 text-muted">{product.description}</Card.Subtitle>
-                                        <Card.Text>
-                                            Some quick example text to build on the card title and make up the bulk of
-                                            the card's content.
-                                        </Card.Text>
-                                        <Button  variant="primary" onClick={() => {this.handleDetail(index)}}> Ver Detalle</Button>
-                                    </Card.Body>
-                                </Card>
-                        );
-                    })}
-            </>
-            :
-            <Detail product={this.state.selected} handleDetail={this.handleDetail}/>}
+        return (
 
-        </div>;
+            this.state.isLoading && <Spinner animation="border"/>,
+
+            this.state.products.map((product, index) =>
+
+
+                <div className="col-6 col-sm-4">
+                    <div className="item animate" key={index}>
+                        <a href="detalle.php">
+                            <figure><img src="img/producto-01.jpg" className="foto"/></figure>
+                            <div className="info">
+                                <div className="key">#{index}</div>
+                                <div className="productName"><h5>{product.description}</h5></div>
+                                <div className="codigo">{product.code}</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            )
+        )
     }
 
     findAll = async () => {

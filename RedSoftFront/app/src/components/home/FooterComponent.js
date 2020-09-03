@@ -4,12 +4,12 @@ class FooterComponent extends React.Component {
 
     render() {
         return (
-
+            <footer>
             <div className="footerbanda">
                 <div className="container">
                     <div className="row justify-content-md-center">
                         <div className="col-md-6 col-lg-5 col-xs-4">
-                            <img src="img/person.svg"/>
+                            <img src="/img/person.svg"/>
                             <ul>
                                 <li>Av. Alsina 555</li>
                                 <li>Lunes a viernes de 10 a 18 hs</li>
@@ -17,7 +17,7 @@ class FooterComponent extends React.Component {
                             </ul>
                         </div>
                         <div className="col-md-6 col-lg-5 col-xs-4">
-                            <img src="img/chat.svg"/>
+                            <img src="/img/chat.svg"/>
                             <ul>
                                 <li>Presupuestos: ventas@laredwifi.com.ar</li>
                                 <li>Consultas: contacto@laredwifi.com.ar</li>
@@ -26,8 +26,8 @@ class FooterComponent extends React.Component {
                         </div>
                     </div>
                 </div>
-            </div>,
-                <footer>
+            </div>
+
                     <div className="container">
                         <div className="row">
                             <div className="col-4 col-md-3 logofooter display">
@@ -48,7 +48,7 @@ class FooterComponent extends React.Component {
                             </div>
                             <div className="col-12 col-md-3">
                                 <ul className="datos datosfooter">
-                                    <img src="img/iso.svg" className="iso mobile"/>
+                                    <img src="/img/iso.svg" className="iso mobile"/>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14">
                                             <title>whatsapp</title>
@@ -111,7 +111,7 @@ class FooterComponent extends React.Component {
                                         </svg>
                                     </a>
                                 </div>
-                                <div className="afip"><img src="img/qr.png"/></div>
+                                <div className="afip"><img src="/img/qr.png"/></div>
                             </div>
                         </div>
                     </div>
@@ -132,78 +132,7 @@ class FooterComponent extends React.Component {
                         </div>
                     </div>
                 </footer>
-
-    //     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    //             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    //             crossOrigin="anonymous"></script>
-    //     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    //             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    //             crossOrigin="anonymous"></script>
-    //     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    //             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-    //             crossOrigin="anonymous"></script>
-    //
-    //     <!-- MegaMenu -->
-    //     <script type="text/javascript">
-    //         $(document).ready(function () {
-    //         $(".megamenu").on("click", function (e) {
-    //             e.stopPropagation();
-    //         });
-    //     })
-    //     ;
-    //     </script>
-    //
-    //     <!-- Zoom -->
-    //     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    //     <script src='js/jquery.zoom.js'></script>
-    //     <script>
-    //         $(document).ready(function(){
-    //         $('#ex1').zoom();
-    //         $('#ex2').zoom();
-    //         $('#ex3').zoom();
-    //         $('#ex4').zoom();
-    //         $('#ex5').zoom();
-    //         $('#ex6').zoom();
-    //     });
-    //     </script>
-    //
-    //     <!-- Pushy JS -->
-    //     <script src="js/pushy.min.js"></script>
-    //
-    //     <!-- Serach Full -->
-    //     <script>
-    //         function openSearch() {
-    //         var element = document.getElementById("myOverlay");
-    //         element.classList.add("show");
-    //         element.style.display = "block";
-    //     }
-    //
-    //         function closeSearch() {
-    //         var element = document.getElementById("myOverlay");
-    //         element.classList.remove("show");
-    //         element.style.display = "none";
-    //     }
-    //     </script>
-    //
-    //     <!-- +/- -->
-	// <
-    //     script
-    //     type = "text/javascript" >
-    //         $(document).ready(function () {
-    //             $(".expand").on("click", function () {
-    //                 $expand = $(this).find(">:first-child");
-    //
-    //                 if ($expand.text() == "+") {
-    //                     $expand.text("-");
-    //                 } else {
-    //                     $expand.text("+");
-    //                 }
-    //             });
-    //         });
-    // </script>
-
         )
-
     }
 }
 
