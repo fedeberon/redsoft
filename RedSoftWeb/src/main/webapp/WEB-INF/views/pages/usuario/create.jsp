@@ -32,23 +32,19 @@
                         <!-- /.card-header -->
                         <!-- form start -->
                         <c:url var="actionUrl" value="/usuario/save"/>
-                        <form:form modelAttribute="usuario" action="${actionUrl}" method="POST">
+                        <form:form modelAttribute="user" action="${actionUrl}" method="POST">
                             <input type="hidden" name="usuario.id" value="${usuario.id}"/>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Nombre completo</label>
-                                    <form:input path="nombreCompleto" cssClass="form-control"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Correo electr&oacute;nico</label>
+                                    <label for="mail">Correo electr&oacute;nico</label>
                                     <form:input path="mail" cssClass="form-control"/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Nombre de usuario</label>
+                                    <label for="username">Nombre de usuario</label>
                                     <form:input path="username" cssClass="form-control"/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Contrase&ntilde;a</label>
+                                    <label for="password">Contrase&ntilde;a</label>
                                     <form:input path="password" cssClass="form-control"/>
                                 </div>
                             </div>

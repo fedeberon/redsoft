@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tiles-definitions PUBLIC
-        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
-        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
     <definition name="template-def" template="/WEB-INF/views/tiles/layouts/layout.jsp">
@@ -9,10 +9,6 @@
         <put-attribute name="menu" value="/WEB-INF/views/tiles/templates/menu.jsp" />
         <put-attribute name="body" value="" />
         <put-attribute name="footer" value="/WEB-INF/views/tiles/templates/footer.jsp" />
-    </definition>
-
-    <definition name="template-mercado-pago" template="/WEB-INF/views/tiles/layouts/mercadoPago/index.jsp">
-        <put-attribute name="body" value="" />
     </definition>
 
     <definition name="home" extends="template-def">
@@ -52,8 +48,9 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/editor-form.jsp" />
     </definition>
 
-    <definition name="order-detail" extends="template-mercado-pago">
-        <put-attribute name="body" value="/WEB-INF/views/pages/order/detail.jsp" />
+    <definition name="order/show" extends="template-def">
+        <put-attribute name="title" value="Orden" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/order/show.jsp" />
     </definition>
 
     <!--Login -->

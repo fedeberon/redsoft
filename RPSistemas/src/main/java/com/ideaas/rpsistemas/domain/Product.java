@@ -30,6 +30,14 @@ public class Product {
         this.description = description;
         return this;
     }
+    public Product withPriceUni(String priceUni) {
+        this.precioUni = priceUni;
+        return this;
+    }
+    public Product withPriceUniVta(BigDecimal priceUniVta){
+        this.precioUniVta = priceUniVta;
+        return this;
+    }
 
     public String getCode() {
         return code;

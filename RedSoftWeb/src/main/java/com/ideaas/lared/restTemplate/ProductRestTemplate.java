@@ -5,6 +5,7 @@ import com.ideaas.lared.restTemplate.interfaces.MyFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
 
+@Component
 public class ProductRestTemplate implements MyFunction<List<Product>> {
 
 
