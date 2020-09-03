@@ -1,5 +1,4 @@
 import React from 'react';
-import ProductDetail from './components/product/detail';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Provider} from 'react-redux'
 import Order from './components/order/order';
@@ -28,9 +27,7 @@ function App() {
             {/*<OrderDetail />*/}
             <Switch>
                 <Route exact path="/" component={HomeContainer} />
-                <Route exact path="/product/" component={Products} />
-                {/*<Route exact path="/product/:id" component={ProductDetail} />*/}
-                <Route exact path="/order/" component={OrderDetail} />
+                <Route exact path="/order/" component={OrderDetail}/>
                 <Route exact path="/order/details" component={Order}/>
                 <Route exact path="/order/preference" component={Preference}/>
                 <Route exact path="/contact" component={Contact}/>
@@ -38,6 +35,8 @@ function App() {
                 <Route exact path="/services" component={Services}/>
                 <Route exact path="/details/:id" component={CardDetailComponent}/>
                 <Route exact path="/products" component={ProductsList}/>
+                <Route exact path="/products/search=:search" component={ProductsList}/>
+                {/*<Route exact path="/login" component={LoginComponent}/>*/}
             </Switch>
         </Router>
         <FooterComponent/>

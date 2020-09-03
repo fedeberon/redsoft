@@ -46,7 +46,7 @@ export default function ModalCustomer() {
                                 <button type="button" className="btn btn-info btn-block btn-round">Login</button>
                             </form>
                         </div>
-                        <div class="text-center text-muted delimiter">or use a social network</div>
+                        <div className="text-center text-muted delimiter">or use a social network</div>
 
                         <div>
                             <div style={{width: '390px', height: '40px'}}>

@@ -15,7 +15,7 @@ class ProductsList extends React.Component {
                             <li className="breadcrumb-item active" href="/products" aria-current="page">Productos</li>
                         </ol>
                     </nav>
-                    <h1 className="titcategory">Computadoras</h1>
+                    <h1 className="titcategory">Productos</h1>
                     <div className="row">
                         <div className="col-sm-3 sidebar display">
                             <h4>Categorias</h4>
@@ -34,7 +34,7 @@ class ProductsList extends React.Component {
                         </div>
                         <div className="col-sm-9">
                             <div className="row">
-                                <PaginationComponent/>
+                                <PaginationComponent search={this.props.match.params.search}/>
                             </div>
                         </div>
                     </div>

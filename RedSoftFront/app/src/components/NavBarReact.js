@@ -10,19 +10,19 @@ class NavBarReact extends React.Component {
 
     render() {
         return (
-            <div style={{backgroundColor: "white", height: '63px'}}>
-                <Container style={{backgroundColor: "white", marginRight: '80px'}}>
-                    <Navbar bg="light" variant="light" expand="xl">
+            <div style={{backgroundColor: "#f8f9fa!important", height: '53px'}}>
+                <Container style={{backgroundColor: "#fff", marginRight: '80px'}}>
+                    <Navbar  variant="light" expand="xl" style={{backgroundColor: "#fff", fontWeight: 'bold', fontSize: '15px'}}>
                         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="mr-auto" style={{width: '1150px'}}>
-                                <Nav.Link href="/">INICIO</Nav.Link>
-                                <Nav.Link href="/services">SERVICIOS</Nav.Link>
-                                <NavDropdown title="PRODUCTOS" id="dropdownMenu">
+                                <Nav.Link href="/" style={{paddingLeft: '10px', paddingRight: '10px',width: '78px'}}>INICIO</Nav.Link>
+                                <Nav.Link href="/services" style={{width: '112px'}}>SERVICIOS</Nav.Link>
+                                <NavDropdown style={{width: '137px'}} title="PRODUCTOS" id="dropdownMenu">
                                     <Row className="row01" style={{height: '155px', width: '1125px'}}>
                                         <Col xs={2} md={3} style={{flex: '20%', maxWidth: '25%'}}>
 
-                                            <span><h5>&nbsp;&nbsp;&nbsp;Categoria 1</h5></span>
+                                            <span><h5>&nbsp;&nbsp;&nbsp;Notebooks</h5></span>
                                             <NavDropdown.Divider/>
                                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -31,7 +31,7 @@ class NavBarReact extends React.Component {
                                         </Col>
                                         <Col xs={2} md={3} style={{flex: '20%', maxWidth: '25%'}}>
 
-                                            <span><h5>&nbsp;&nbsp;&nbsp;Categoria 2</h5></span>
+                                            <span><h5>&nbsp;&nbsp;&nbsp;Accesorios PC</h5></span>
                                             <NavDropdown.Divider/>
                                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -40,7 +40,7 @@ class NavBarReact extends React.Component {
                                         </Col>
                                         <Col xs={2} md={3} style={{flex: '0%', maxWidth: '25%'}}>
 
-                                            <span><h5>&nbsp;&nbsp;&nbsp;Categoria 3</h5></span>
+                                            <span><h5>&nbsp;&nbsp;&nbsp;Perifericos</h5></span>
                                             <NavDropdown.Divider/>
                                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -49,7 +49,7 @@ class NavBarReact extends React.Component {
                                         </Col>
                                         <Col xs={2} md={3} style={{flex: '20%', maxWidth: '25%'}}>
 
-                                            <span><h5>&nbsp;&nbsp;&nbsp;Categoria 4</h5></span>
+                                            <span><h5>&nbsp;&nbsp;&nbsp;Gaming</h5></span>
                                             <NavDropdown.Divider/>
                                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -58,14 +58,14 @@ class NavBarReact extends React.Component {
                                         </Col>
                                     </Row>
                                 </NavDropdown>
-                                <Nav.Link href="/aboutus">SOBRE LA RED</Nav.Link>
-                                <Nav.Link >ACCESO A CLIENTES</Nav.Link>
+                                <Nav.Link style={{width: '138px'}} href="/aboutus">SOBRE LA RED</Nav.Link>
+                                <Nav.Link style={{width: '175px'}}>ACCESO A CLIENTES</Nav.Link>
                                 <Nav.Link href="/contact">CONTACTO</Nav.Link>
                                 <div>
-                                    <div style={{width: '390px'}}>
+                                    <div style={{width: '410px'}}>
                                         <div className="social top">
                                             <a href="https://www.facebook.com/lared.wifi" target="_blank"
-                                               className="social-icon" style={{marginLeft: '300px'}}>
+                                               className="social-icon" style={{marginLeft: '308px'}}>
                                                 <svg viewBox="0 0 320 512">
                                                     <path
                                                         d="M279.1 288l14.3-92.7h-89v-60c0-25.4 12.5-50.2 52.3-50.2H297V6.4S260.4 0 225.4 0C152 0 104.3 44.4 104.3 124.7v70.6H22.9V288h81.4v224h100.2V288z"/>

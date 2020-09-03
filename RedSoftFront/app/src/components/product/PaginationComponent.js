@@ -4,8 +4,8 @@ import Button from "react-bootstrap/Button";
 import CardDetailComponent from "./CardDetailComponent";
 
 class PaginationComponent extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             products: [],
             currentPage: 1,
@@ -17,6 +17,8 @@ class PaginationComponent extends React.Component {
             pageBound: 3,
             details: false,
             selected: null,
+            textSearch: '',
+            productsBackup: []
         };
         this.handleClick = this.handleClick.bind(this);
         this.btnDecrementClick = this.btnDecrementClick.bind(this);
@@ -29,6 +31,27 @@ class PaginationComponent extends React.Component {
 
     componentDidMount() {
         this.findAll()
+    }
+
+    findAll = async () => {
+        this.setState({products: [], productsBackup: [], isLoading: true})
+        let data = await api.get('/product/list').then(({data}) => data);
+        this.setState({products: data, productsBackup: data, isLoading: false})
+
+        if (this.props.search && this.props.search != ""){
+            const text = this.props.search;
+            const data = this.state.productsBackup
+
+            const newData = data.filter(function (item) {
+                const itemData = item.description.toUpperCase()
+                const textData = text.toUpperCase()
+                return itemData.indexOf(textData) > -1
+            })
+            this.setState({
+                products: newData,
+                textSearch: text,
+            })
+        }
     }
 
     handleClick(event) {
@@ -90,14 +113,39 @@ class PaginationComponent extends React.Component {
         this.setPrevAndNextBtnClass(listid);
     }
 
-    handleDetail = (index = null) => {
-        this.setState({details: true, selected: index != null ? this.state.products[index] : null})
+    handleDetail = (productCode = null) => {
+
+        let product = this.state.products.find((e) => e.code === productCode)
+
+        this.setState({
+            details: true,
+            selected: productCode != null ? product : null
+        })
+
+    }
+
+    filter(event) {
+
+        const text = event.target.value;
+        const data = this.state.productsBackup
+        const newData = data.filter(function (item) {
+            let containsText = false;
+            const itemData = item.description.toUpperCase().split(' ');
+            const textData = text.toUpperCase().split(' ');
+            textData.map((e) => itemData.map((i) => i.indexOf(e) > -1 ? containsText = true : "" ))
+            // return itemData.indexOf(textData) > -1
+            return containsText
+        })
+        this.setState({
+            products: newData,
+            textSearch: text,
+        })
     }
 
     render() {
         let {
             products, currentPage, todosPerPage, upperPageBound, lowerPageBound,
-            isPrevBtnActive, isNextBtnActive, selected, details
+            isPrevBtnActive, isNextBtnActive,
         } = this.state;
 
 
@@ -105,20 +153,19 @@ class PaginationComponent extends React.Component {
         const indexOfLastTodo = currentPage * todosPerPage;
         const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
         const currentTodos = products.slice(indexOfFirstTodo, indexOfLastTodo);
-        const renderTodos = currentTodos.map((product, index) => {
+        const renderTodos = currentTodos.map((product) => {
 
             return <div className="col-6 col-sm-4"> {!this.state.details ?
                 <div className="item animate">
-                    <a href={`/details/${(currentPage-1)*21 + index}`}>
-                        <figure><img src="img/producto-03.jpg" className="foto"/></figure>
+                    <a href={`/details/${product.code}`}>
+                        <figure><img src="/img/producto-03.jpg" className="foto"/></figure>
                         <div className="info">
-                            <div className="key">#{(currentPage-1)*21 + index + 1}</div>
                             <div className="productName"><h5>{product.description}</h5></div>
                             <div className="codigo">{product.code}</div>
                             <div className="price">${product.precioUni}</div>
                             <button className="btn btn-sm" onClick={() => {
-                                this.handleDetail(index)
-                            }}> Ver Detalle
+                                this.handleDetail(product.code)
+                            }}>Ver Detalle
                             </button>
                         </div>
                     </a>
@@ -146,7 +193,9 @@ class PaginationComponent extends React.Component {
             } else if ((number < upperPageBound + 1) && number > lowerPageBound) {
                 return (
                     <Button variant={number == currentPage ? 'info' : "light"}>
-                        <li className={number == currentPage ? 'active' : ""} key={number} id={number}><a id={number} onClick={this.handleClick}>{number}</a></li>
+                        <li className={number == currentPage ? 'active' : ""} key={number} id={number}><a id={number}
+                                                                                                          onClick={this.handleClick}>{number}</a>
+                        </li>
                     </Button>
                 )
             }
@@ -185,6 +234,18 @@ class PaginationComponent extends React.Component {
         }
         return (
             <div>
+                <div className="row-filter">
+                    <input className="form-control col-sm-4 pl-0" type="text" style={{
+                        left: '570px',
+                        marginBottom: '10px', backgroundColor: 'ghostwhite', border: '1px solid #ced4da',
+                        fontFamily: 'unset', fontSize: 'medium', paddingTop: '0px', paddingBottom: '0px',
+                        height: '32px'
+                    }}
+                           placeholder="Filtrar por nombre..." aria-label="Search"
+                           value={this.state.text}
+                           defaultValue={this.props.search}
+                           onChange={(text) => this.filter(text)}/>
+                </div>
                 <div className="row">
                     {renderTodos}
                 </div>
@@ -201,11 +262,9 @@ class PaginationComponent extends React.Component {
         );
     }
 
-    findAll = async () => {
-        this.setState({products: [], isLoading: true})
-        let data = await api.get('/product/list').then(({data}) => data);
-        this.setState({products: data, isLoading: false})
-    }
+
+
+    v
 }
 
 export default PaginationComponent;

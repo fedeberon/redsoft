@@ -10,7 +10,7 @@ class AboutUs extends React.Component {
                 <div className="container">
                     <div className="row justify-content-md-center">
                         <div className="col-md-10">
-                            <img src="img/nosotros.jpg" className="foto"/>
+                            <img src="img/nosotros.jpg" alt="Nuestra empresa" className="foto"/>
                             <div className="row recuadro">
                                 <div className="col-sm-12">
                                     <h1>Sobre La Red</h1>

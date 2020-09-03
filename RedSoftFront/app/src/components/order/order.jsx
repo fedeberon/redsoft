@@ -75,7 +75,7 @@ const Order = () => {
                             <tr key={index}>
                                 <td>{product.code}</td>
                                 <td>{product.description}</td>
-                                <td>{product.precioUni}</td>
+                                <td>{product.precioUniVta}</td>
 
                                 <td>
                                     <Button variant="light" onClick={() => removeProduct(product)}>

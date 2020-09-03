@@ -28,10 +28,7 @@ class CardDetailComponent extends Component {
 
     render() {
 
-        // console.log(this.state.products)
-        // console.log(this.props.match.params.id)
-        const product = this.state.products[this.props.match.params.id]
-        // console.log(product)
+        let product = this.state.products.find ( (e) => e.code == this.props.match.params.id)
 
         return (
 

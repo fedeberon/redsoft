@@ -14,6 +14,8 @@ const Detail = (props) => {
     const emptyProduct = {description: "", precioUni : ""}
     const product = props.product ? props.product : emptyProduct;
 
+
+
     return (
 
         <div>
@@ -21,7 +23,7 @@ const Detail = (props) => {
             <div className="info">
                 <a>Computación</a>
                 <div className="name detalle">{product.description}</div>
-                <div className="price detalle"><span className="offer">$7000,00</span> ${product.precioUni}
+                <div className="price detalle"><span className="offer">$15.000</span> ${product.precioUniVta}
                 </div>
             </div>
 

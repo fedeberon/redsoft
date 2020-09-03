@@ -177,7 +177,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 .cart-total {margin-bottom: 30px; margin-top: 40px;}
 .cart-total h2 {font-size: 23px; font-weight: 600;}
 .btn-iniciar {text-transform: uppercase;}
-
+.input-group-text {background-color: #fff;}
 /*******************************
 * MODAL AS LEFT/RIGHT SIDEBAR
 * Add "left" or "right" in modal parent div, after class="modal".

@@ -15,7 +15,7 @@ export default function ModalCart() {
         <>
 
             <button id="mod1" title="Ver carrito" className="carttop" onClick={handleModal}
-                    style={{background: "border-box", padding: '5px 35px'}}
+                    style={{background: "border-box", padding: '5px 35px', width: '152px'}}
                     type="button" data-dismiss="modal">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>cart</title>
                     <path d="M20.511,37.073A3.932,3.932,0,1,0,16.58,41,3.931,3.931,0,0,0,20.511,37.073Zm-6.469,0A2.537,2.537,0,1,1,16.58,39.61,2.537,2.537,0,0,1,14.042,37.
