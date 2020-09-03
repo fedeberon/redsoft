@@ -1,8 +1,8 @@
-import React from "react";
+import React,{Component} from "react";
 
-class CarruselComponent extends React.Component {
+class CarouselComponent extends Component {
 
-    render() {
+    render (){
         return (
             <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                 <div className="carousel-inner">
@@ -22,9 +22,7 @@ class CarruselComponent extends React.Component {
                     <span className="sr-only">Next</span>
                 </a>
             </div>
-    );
+        );
     }
-
 }
-
-export default CarruselComponent;
+export default CarouselComponent;

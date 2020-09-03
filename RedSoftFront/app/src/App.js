@@ -7,9 +7,13 @@ import Products from './components/product/product'
 import OrderDetail from './components/order/detail'
 import store from './store';
 import Header from "./components/header/header";
-import CarruselComponent from './components/home/CarruselComponent'
 import Preference from "./components/order/preference"
 import MenuComponent from "./components/header/MenuComponent";
+import CarouselComponent from "./components/home/CarouselComponent";
+import BannersHomeComponent from "./components/home/BannersHomeComponent";
+import CategoriesHomeComponent from "./components/home/CategoriesHomeComponent";
+import FeaturedProductsComponent from "./components/home/FeaturedProductsComponent";
+import FooterComponent from "./components/footer/FooterComponent";
 
 function App() {
    
@@ -18,9 +22,11 @@ function App() {
         <Router>
             {/*<Header />*/}
             <MenuComponent/>
-
-            <CarruselComponent/>
-
+            <CarouselComponent/>
+            <BannersHomeComponent/>
+            <CategoriesHomeComponent/>
+            <FeaturedProductsComponent/>
+            <FooterComponent/>
             {/*<OrderDetail />*/}
             <Switch>
                 <Route exact path="/" component={Products} />
@@ -29,7 +35,7 @@ function App() {
                 <Route exact path="/order/" component={OrderDetail} />
                 <Route exact path="/order/details" component={Order}/>
                 <Route exact path="/order/preference" component={Preference}/>
-          </Switch>
+            </Switch>
         </Router>
     </Provider>
               
