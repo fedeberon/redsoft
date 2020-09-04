@@ -12,15 +12,16 @@ class Contact extends React.Component {
                     <div className="row">
                         <div className="col-12"><h1 className="titpage">Contacto</h1></div>
                         <div className="col-md-7">
-                            <div className="recuadro">
+                            <div className="recuadro" style={{backgroundColor: '#f8f9fa', padding: '30px'}}>
                                 <div className="row">
                                     <div className="col-md-6">
                                         <img src="/img/iso.svg" className="iso"
                                              style={{width: '30px', height: '40px'}}/>
-                                        <ul>
-                                            <li><strong>Av. Alsina 555</strong>
-                                                &nbsp;Bolivar, Buenos Aires
-                                            </li>
+                                        <ul style={{display: 'inline-table',verticalAlign: 'top',
+                                            fontSize: '14px', paddingLeft: '25px',
+                                            listStyleType: 'none'}}>
+                                            <li><strong>Av. Alsina 555</strong></li>
+                                            <li style={{marginBottom: '10px'}}>Bolivar, Buenos Aires</li>
                                             <li>Tel: 2314 404320</li>
                                             <li>2314 427308</li>
                                             <li>info@laredwifi.com.ar</li>

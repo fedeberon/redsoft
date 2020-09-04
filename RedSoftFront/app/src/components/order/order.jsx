@@ -21,21 +21,30 @@ const Order = () => {
 
     const [preferenceIsReady, setPreferenceIsReady] = useState(false)
 
+    let totalPrice = 0;
+
+    products.map((product, index) => {
+
+        totalPrice += parseFloat(product.precioUniVta)
+    })
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         let details = [];
 
-        this.state.products.map((product, index) => {
+        products.map((product, index) => {
+
             let detail = {
                 product: {
                     code: product.code,
                     name: product.description,
-                    price: 200
+                    price: product.precioUniVta,
                 },
                 quantity: 1
             }
-            details.push(detail);
+            details.push(detail)
         })
+
 
         debugger;
         try {
@@ -59,6 +68,7 @@ const Order = () => {
     }
 
     return (
+
         <>  {!preferenceIsReady ?
             <form onSubmit={handleSubmit}>
                 <Table responsive>
@@ -71,11 +81,12 @@ const Order = () => {
                     </thead>
                     <tbody>
                     {
+
                         products.map((product, index) => (
                             <tr key={index}>
                                 <td>{product.code}</td>
                                 <td>{product.description}</td>
-                                <td>{product.precioUniVta}</td>
+                                <td>${product.precioUniVta}</td>
 
                                 <td>
                                     <Button variant="light" onClick={() => removeProduct(product)}>
@@ -103,7 +114,7 @@ const Order = () => {
                     <div className="cart-total">
                         <h2 className="row text-primary mb-0">
                             <span className="col">Total:</span>
-                            <span className="col text-right">$0</span>
+                            <span className="col text-right">${totalPrice}</span>
                         </h2>
                     </div>
                     <div className="mb-3">

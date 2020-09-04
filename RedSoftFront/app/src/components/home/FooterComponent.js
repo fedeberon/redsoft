@@ -5,8 +5,9 @@ class FooterComponent extends React.Component {
     render() {
         return (
             <footer>
-            <div className="footerbanda">
-                <div className="container">
+                <div className="footerbanda" style={{paddingTop: '20px',paddingBottom: '20px'}}>
+                    <div className="container" style={{marginLeft: '100px'}}>
+
                     <div className="row justify-content-md-center">
                         <div className="col-md-6 col-lg-5 col-xs-4">
                             <img src="/img/person.svg"/>
@@ -28,7 +29,7 @@ class FooterComponent extends React.Component {
                 </div>
             </div>
 
-                    <div className="container">
+                <div className="container" style={{marginTop: '20px', marginLeft: '100px'}}>
                         <div className="row">
                             <div className="col-4 col-md-3 logofooter display">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427 363"><title>logo-02</title>

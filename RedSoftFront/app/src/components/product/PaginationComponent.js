@@ -162,7 +162,7 @@ class PaginationComponent extends React.Component {
                         <div className="info">
                             <div className="productName"><h5>{product.description}</h5></div>
                             <div className="codigo">{product.code}</div>
-                            <div className="price">${product.precioUni}</div>
+                            <div className="price">U$S {product.precioUniVta}</div>
                             <button className="btn btn-sm" onClick={() => {
                                 this.handleDetail(product.code)
                             }}>Ver Detalle

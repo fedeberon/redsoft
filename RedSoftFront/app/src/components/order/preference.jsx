@@ -8,14 +8,12 @@ const Preference = () => {
 
     return (
         <>
-         {/*   <form action="/procesar-pago" method="POST">
-                <script
-                    src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-                    data-preference-id={id}>
-                </script>
-            </form>*/}
+           <form action="/procesar-pago" method="POST">
+                <script src="www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+    data-preference-id={id}/>
+            </form>
 
-            <a href={id}> Mercado Pago </a>
+            <a href={id}>Pagar</a>
             </>
     )
 }
