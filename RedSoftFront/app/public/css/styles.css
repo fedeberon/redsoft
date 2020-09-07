@@ -11,6 +11,27 @@ h1, h2, h3, h4, h5, h6 {margin: 0px;}
 .bandmobile {display: none;}
 .mobile {display: none;}
 
+.btn-pay {color: white;}
+.tilde-success {background-image: url("/img/tilde3.png");
+    background-color: rgb(119 178 85);
+    background-size: contain;
+    height: 297px;
+    width: 340px;
+    margin-left: 42px;
+    margin-top: 15px;}
+/*.tilde-img {background-image: url(/img/tilde-success.jpg);}*/
+.success-mp {text-align: left;
+	margin-top: 34px;
+	font-size: 32px;
+	width: 250px;
+
+	color: whitesmoke;
+	font-variant-caps: small-caps;}
+
+.breadcrumb-item:hover {color: black; text-decoration: none}
+.linklr a {color: unset;); text-decoration: none}
+.linklr a:hover {color: black;); text-decoration: none;}
+
 .text-primary {color: #000!important;}
 .btn-primary {color: #fff;background-color: #000;border-color: #000;}
 .btn-primary:hover {color: #fff;background-color: #be1d7b;border-color: #be1d7b;}
@@ -29,8 +50,8 @@ h1, h2, h3, h4, h5, h6 {margin: 0px;}
 .band2 {background-color: rgba(86,196,207,0.3); padding-top: 12px; padding-bottom: 12px;}
 .band3 {background-color: #fff; border-bottom: 1px solid #eaeaea;}
 .navbar {padding-left: 0px; padding-right: 0px;}
-.navbar-expand-lg .navbar-nav .nav-link { color: #161814; text-transform: uppercase; font-size: 15px; font-weight: 600; padding-right: 1rem;padding-left: 1rem;}
-.logotop svg {height: 90px;} 
+.navbar-expand-lg .navbar-nav { color: black; text-transform: uppercase; font-size: 15px; font-weight: 600; padding-right: 1rem;padding-left: 1rem;}
+.logotop svg {height: 90px;}
 
 .searchtop {margin-top: 20px;}
 .searchtop-input {border: 0px;}
@@ -197,13 +218,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 
 	.modal.left .modal-content,
 	.modal.right .modal-content {
+
 		height: 100%;
-		overflow-y: auto;
+
 	}
 	
 	.modal.left .modal-body,
 	.modal.right .modal-body {
 		padding: 15px 15px 2px;
+		padding-top: unset;
 	}
 
 /*Left*/
@@ -232,8 +255,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 		right: -1px;
 		top: -1px;
 }
-
-
+.dropdown-toggle {
+	color: black;
+}
+.dropdown-menu {
+	color: black;
+}
 /*ModalCustomers*/
 
 @media (min-width: 576px){
@@ -279,9 +306,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 .signup-section {
 	padding: 0.3rem 0rem;
 }
-
-
-
 
 .dropdown-menu.show {
 	left: -192px;

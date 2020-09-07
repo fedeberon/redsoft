@@ -18,7 +18,7 @@ class CategoriesHomeComponent extends React.Component {
                             </a>
                         </div>
                         <div className="col-sm-4">
-                            <a href="/" className="banner">
+                            <a href="/products/categories/notebook" className="banner">
                                 <img src="img/banner-categoria-02.jpg" alt="cat2" className="foto"/>
                                     <div className="text align-middle">
                                         <div className="h2">COMPUTADORAS</div>

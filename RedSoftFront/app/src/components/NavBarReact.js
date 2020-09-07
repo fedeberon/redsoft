@@ -5,6 +5,8 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from 'react-bootstrap/Container';
+import {Link} from "react-router-dom";
+
 
 class NavBarReact extends React.Component {
 
@@ -16,51 +18,51 @@ class NavBarReact extends React.Component {
                         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="mr-auto" style={{width: '1150px'}}>
-                                <Nav.Link href="/" style={{paddingLeft: '10px', paddingRight: '10px',width: '78px'}}>INICIO</Nav.Link>
-                                <Nav.Link href="/services" style={{width: '112px'}}>SERVICIOS</Nav.Link>
-                                <NavDropdown style={{width: '137px'}} title="PRODUCTOS" id="dropdownMenu">
+                                <Nav.Link className="linklr" style={{paddingLeft: '10px', paddingRight: '10px',width: '78px'}}><Link to={"/"}>INICIO</Link></Nav.Link>
+                                <Nav.Link className="linklr" style={{width: '112px'}}><Link to={"/services"}>SERVICIOS</Link></Nav.Link>
+                                <NavDropdown className="linklr" style={{width: '137px'}} title="PRODUCTOS">
                                     <Row className="row01" style={{height: '155px', width: '1125px'}}>
                                         <Col xs={2} md={3} style={{flex: '20%', maxWidth: '25%'}}>
 
                                             <span><h5>&nbsp;&nbsp;&nbsp;Notebooks</h5></span>
                                             <NavDropdown.Divider/>
-                                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                                            <NavDropdown.Item><Link className="linklr" to={"#action/3.1"}>Action</Link></NavDropdown.Item>
+                                            <NavDropdown.Item><Link className="linklr" to={"#action/3.2"}>Action2</Link></NavDropdown.Item>
+                                            <NavDropdown.Item><Link className="linklr" to={"#action/3.3"}>Action3</Link></NavDropdown.Item>
 
                                         </Col>
                                         <Col xs={2} md={3} style={{flex: '20%', maxWidth: '25%'}}>
 
                                             <span><h5>&nbsp;&nbsp;&nbsp;Accesorios PC</h5></span>
                                             <NavDropdown.Divider/>
-                                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                                            <NavDropdown.Item><Link className="linklr" to={"#action/3.1"}>Action</Link></NavDropdown.Item>
+                                            <NavDropdown.Item><Link className="linklr" to={"#action/3.2"}>Action2</Link></NavDropdown.Item>
+                                            <NavDropdown.Item><Link className="linklr" to={"#action/3.3"}>Action3</Link></NavDropdown.Item>
 
                                         </Col>
                                         <Col xs={2} md={3} style={{flex: '0%', maxWidth: '25%'}}>
 
                                             <span><h5>&nbsp;&nbsp;&nbsp;Perifericos</h5></span>
                                             <NavDropdown.Divider/>
-                                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                                            <NavDropdown.Item><Link className="linklr" to={"#action/3.1"}>Action</Link></NavDropdown.Item>
+                                            <NavDropdown.Item><Link className="linklr" to={"#action/3.2"}>Action2</Link></NavDropdown.Item>
+                                            <NavDropdown.Item><Link className="linklr" to={"#action/3.3"}>Action3</Link></NavDropdown.Item>
 
                                         </Col>
                                         <Col xs={2} md={3} style={{flex: '20%', maxWidth: '25%'}}>
 
                                             <span><h5>&nbsp;&nbsp;&nbsp;Gaming</h5></span>
                                             <NavDropdown.Divider/>
-                                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                                            <NavDropdown.Item><Link className="linklr" to={"#action/3.1"}>Action</Link></NavDropdown.Item>
+                                            <NavDropdown.Item><Link className="linklr" to={"#action/3.2"}>Action2</Link></NavDropdown.Item>
+                                            <NavDropdown.Item><Link className="linklr" to={"#action/3.3"}>Action3</Link></NavDropdown.Item>
 
                                         </Col>
                                     </Row>
                                 </NavDropdown>
-                                <Nav.Link style={{width: '138px'}} href="/aboutus">SOBRE LA RED</Nav.Link>
-                                <Nav.Link style={{width: '175px'}}>ACCESO A CLIENTES</Nav.Link>
-                                <Nav.Link href="/contact">CONTACTO</Nav.Link>
+                                <Nav.Link className="linklr" style={{width: '138px'}} href="/aboutus"><Link to={"/aboutus"}>SOBRE LA RED</Link></Nav.Link>
+                                <Nav.Link className="linklr" style={{width: '175px'}}><Link to={"#"}>ACCESO A CLIENTES</Link></Nav.Link>
+                                <Nav.Link className="linklr" href="/contact"><Link to={"/contact"}>CONTACTO</Link></Nav.Link>
                                 <div>
                                     <div style={{width: '410px'}}>
                                         <div className="social top">
