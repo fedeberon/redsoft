@@ -1,17 +1,21 @@
 import React from 'react';
-import ProductDetail from './components/product/detail';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router} from 'react-router-dom';
 import {Provider} from 'react-redux'
 import Order from './components/order/order';
 import OrderDetail from './components/order/detail'
 import store from './store';
-import Header from "./components/header/header";
+import Header from "./components/header/Header";
 import Preference from "./components/order/preference"
-import CarouselComponent from "./components/home/CarouselComponent";
-import BannersHomeComponent from "./components/home/BannersHomeComponent";
-import CategoriesHomeComponent from "./components/home/CategoriesHomeComponent";
-import FeaturedProductsComponent from "./components/home/FeaturedProductsComponent";
-import ModalCart from "./components/header/ModalCart";
+import FooterComponent from "./components/home/FooterComponent";
+import Contact from "./components/navbar/Contact";
+import Switch from "react-bootstrap/Switch";
+import Route from "react-router-dom/es/Route";
+import HomeContainer from "./components/HomeContainer";
+import AboutUs from "./components/navbar/AboutUs";
+import Services from "./components/navbar/Services";
+import CardDetailComponent from "./components/product/CardDetailComponent";
+import ProductsList from "./components/product/ProductsList";
+
 
 function App() {
    
