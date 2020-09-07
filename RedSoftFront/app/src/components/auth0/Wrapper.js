@@ -8,11 +8,9 @@ const Wrapper = ({ children }) => {
     } = useAuth0();
     console.log("**************** Wrapper component *****************");
     console.log(useAuth0());
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
+
     if (error) {
-        return <div>Oops... {error.message}</div>;
+        return <li>Oops... {error.message}</li>;
     }
     return <>{children}</>;
 }
