@@ -3,12 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {useState} from "react";
 import Order from "../order/order";
 import Detail from "../order/detail";
+import {Button} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 export default function ModalCart() {
 
     const [show, setShow] = useState(false);
     const handleModal = () => setShow(!show);
-    let totalPrice = 0;
 
     return (
 
@@ -42,10 +43,10 @@ export default function ModalCart() {
                                     aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
                             <h4 className="modal-title" id="myModalLabel2">Carrito</h4>
+                            {/*<Detail/>*/}
                         </div>
                         <div className="modal-body">
                             <div>
-                                <Detail/>
                                 <Order/>
                             </div>
                         </div>
@@ -53,8 +54,8 @@ export default function ModalCart() {
                         </div>
                         <div className="row mb-2">
                             <div className="text-center w-100">
-                                <a href="#" onClick={handleModal} className="js-modal-close btn-link">Seguir
-                                    comprando</a>
+                                <Link href={"#"} onClick={handleModal} className="js-modal-close btn-link">Seguir
+                                    comprando</Link>
                             </div>
                         </div>
                     </div>

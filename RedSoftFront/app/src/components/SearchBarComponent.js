@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 class SearchBarComponent extends React.Component {
 
@@ -21,7 +22,7 @@ class SearchBarComponent extends React.Component {
                        value={this.state.textSearch}
                        onChange={(event) => this.setState({textSearch: event.target.value})}/>
                 <div className="input-group-text searchtop-icon" id="basic-text1" style={{backgroundColor: '#fff'}}>
-                    <a id="asd" href={`/products/search=${this.state.textSearch}`} style={{
+                    <Link id="asd" to={`/products/search=${this.state.textSearch}`} style={{
                         pointerEvents: `${textSearch.length === 0 ? 'none' : "auto"}`,
                         cursor: `${textSearch.length === 0 ? 'default' : 'pointer'}`
                     }}>
@@ -34,7 +35,7 @@ class SearchBarComponent extends React.Component {
                               d="M38.523,40.507a1.985,1.985,0,0,1-1.393-.574L26.785,29.584a15.745,15.745,0,1,1,2.8-2.8L39.926,37.123a1.983,1.983,0,0,1-1.4,3.384ZM17.19,5.456A11.735,11.735,0,1,0,28.923,17.19,11.746,11.746,0,0,0,17.19,5.456Z"/>
                         </svg>
                        </span>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

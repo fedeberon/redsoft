@@ -2,7 +2,6 @@ import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Provider} from 'react-redux'
 import Order from './components/order/order';
-import Products from './components/product/product'
 import OrderDetail from './components/order/detail'
 import store from './store';
 import Header from "./components/header/Header";
@@ -22,8 +21,8 @@ function App() {
    
   return (
     <Provider store={store}>
-        <Header/>
         <Router>
+            <Header/>
             {/*<OrderDetail />*/}
             <Switch>
                 <Route exact path="/" component={HomeContainer} />
@@ -36,6 +35,7 @@ function App() {
                 <Route exact path="/details/:id" component={CardDetailComponent}/>
                 <Route exact path="/products" component={ProductsList}/>
                 <Route exact path="/products/search=:search" component={ProductsList}/>
+
                 {/*<Route exact path="/login" component={LoginComponent}/>*/}
             </Switch>
         </Router>

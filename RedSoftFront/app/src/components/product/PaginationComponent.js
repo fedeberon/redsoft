@@ -2,6 +2,7 @@ import React from 'react';
 import api from "../../axios";
 import Button from "react-bootstrap/Button";
 import CardDetailComponent from "./CardDetailComponent";
+import {Link} from "react-router-dom";
 
 class PaginationComponent extends React.Component {
     constructor(props) {
@@ -157,7 +158,7 @@ class PaginationComponent extends React.Component {
 
             return <div className="col-6 col-sm-4"> {!this.state.details ?
                 <div className="item animate">
-                    <a href={`/details/${product.code}`}>
+                    <Link to={`/details/${product.code}`}>
                         <figure><img src="/img/producto-03.jpg" className="foto"/></figure>
                         <div className="info">
                             <div className="productName"><h5>{product.description}</h5></div>
@@ -168,7 +169,7 @@ class PaginationComponent extends React.Component {
                             }}>Ver Detalle
                             </button>
                         </div>
-                    </a>
+                    </Link>
                 </div>
                 :
                 <CardDetailComponent product={this.state.selected} handleDetail={this.handleDetail}/>}
@@ -186,15 +187,17 @@ class PaginationComponent extends React.Component {
             if (number === 1 && currentPage === 1) {
                 return (
                     <Button variant="info">
-                        <li key={number} className='active' id={number}><a id={number}
-                                                                           onClick={this.handleClick}>{number}</a></li>
+                        <li key={number} className='active'
+                            id={number}><a id={number}
+                                           onClick={this.handleClick}>{number}</a></li>
                     </Button>
                 )
             } else if ((number < upperPageBound + 1) && number > lowerPageBound) {
                 return (
                     <Button variant={number == currentPage ? 'info' : "light"}>
-                        <li className={number == currentPage ? 'active' : ""} key={number} id={number}><a id={number}
-                                                                                                          onClick={this.handleClick}>{number}</a>
+                        <li className={number == currentPage ? 'active' : ""}
+                            key={number} id={number}><a id={number}
+                                                        onClick={this.handleClick}>{number}</a>
                         </li>
                     </Button>
                 )
@@ -239,11 +242,11 @@ class PaginationComponent extends React.Component {
                         left: '570px',
                         marginBottom: '10px', backgroundColor: 'ghostwhite', border: '1px solid #ced4da',
                         fontFamily: 'unset', fontSize: 'medium', paddingTop: '0px', paddingBottom: '0px',
-                        height: '32px'
+                        height: '32px', width: '262px'
                     }}
                            placeholder="Filtrar por nombre..." aria-label="Search"
                            value={this.state.text}
-                           defaultValue={this.props.search}
+                           // defaultValue={this.props.search}
                            onChange={(text) => this.filter(text)}/>
                 </div>
                 <div className="row">

@@ -5,6 +5,7 @@ import Preference from "../order/preference";
 import ProductDetail from "./detail";
 import {useDispatch} from 'react-redux';
 import api from "../../axios";
+import {Link} from "react-router-dom";
 
 class CardDetailComponent extends Component {
 
@@ -37,8 +38,8 @@ class CardDetailComponent extends Component {
                     <div className="container">
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb">
-                                <li className="breadcrumb-item"><a href="/">Home</a></li>
-                                <li className="breadcrumb-item"><a href="/products">Productos</a></li>
+                                <Link className="breadcrumb-item linklr" to={"/"}>Home</Link>
+                                <Link className="breadcrumb-item linklr" to={"/products"}>Productos</Link>
                                 <li className="breadcrumb-item active" aria-current="page">Detalles</li>
                             </ol>
                         </nav>
