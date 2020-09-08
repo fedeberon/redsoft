@@ -12,17 +12,12 @@ import java.util.List;
 @RequestMapping("api/cutomer")
 public class CustomerRestController {
 
-    private MyFunction<List<Customer>> function;
-
-    @Autowired
-    public CustomerRestController(MyFunction<List<Customer>> function) {
-        this.function = function;
-    }
-
     @RequestMapping("list")
      public List<Customer> findAll(){
-        List<Customer> customers = function.apply();
+        /*List<Customer> customers = function.apply();
 
-        return customers;
+        return customers;*/
+
+        return null;
     }
 }

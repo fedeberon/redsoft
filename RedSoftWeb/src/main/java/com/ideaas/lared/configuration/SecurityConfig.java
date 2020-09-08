@@ -3,11 +3,13 @@ package com.ideaas.lared.configuration;
 import com.ideaas.lared.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -39,6 +41,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Qualifier("usuarioService")
     private UserDetailsService userService;
 
+
+    @Value(value = "${com.auth0.domain}")
+    private String domain;
+
+    @Value(value = "${com.auth0.clientId}")
+    private String clientId;
+
+    @Value(value = "${com.auth0.clientSecret}")
+    private String clientSecret;
+
     @Override
     protected void configure(HttpSecurity security) throws Exception {
         //H2 Config
@@ -53,6 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/api/cart/**").permitAll()
                 .antMatchers("/cart/**").permitAll()
+                .antMatchers("/authenticate/**").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**" ).permitAll()
                 .antMatchers(HttpMethod.GET, "/index*", "/static/**", "/*.js", "/*.json", "/*.ico").permitAll()
                 .anyRequest().authenticated()
@@ -85,7 +98,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userService);
     }
 
     @Bean
@@ -112,6 +125,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .accountLocked(false)
                 .authorities("WRITE_PRIVILEGES", "READ_PRIVILEGES")
                 .roles("MANAGER");
+    }
+
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return this.authenticationManager();
     }
 
 }

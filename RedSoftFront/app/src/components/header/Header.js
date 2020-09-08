@@ -1,9 +1,11 @@
 import React from "react";
 import ModalCart from "./ModalCart";
 import NavBarReact from "../NavBarReact";
-import ModalCustomers from "./ModalCustomers";
 import SearchBarComponent from "../SearchBarComponent";
 import {Link} from "react-router-dom";
+import Wrapper from "../auth0/Wrapper";
+import Profile from "../auth0/Profile";
+import LogoutButton from "../auth0/Logout";
 
 
 class Header extends React.Component {
@@ -148,10 +150,10 @@ class Header extends React.Component {
                                         </svg>
                                         &nbsp;info@laredwifi.com.ar
                                     </li>
+                                    <Profile/>
+                                    <LogoutButton/>
+                                    <Wrapper/>
                                 </ul>
-                                <div>
-                                    <ModalCustomers/>
-                                </div>
                                 <div className="spacer"></div>
                             </div>
                         </div>
