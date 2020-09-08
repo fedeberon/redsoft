@@ -39,7 +39,7 @@ public class ProductRestTemplate implements MyFunction<List<Product>> {
 
     @Override
     public List<Product> apply() {
-        LinkedHashMap mapResult = restTemplate.getForObject(url.concat("product/list"),  LinkedHashMap.class);
+        LinkedHashMap mapResult = restTemplate.getForObject(url.concat("api/product/list"),  LinkedHashMap.class);
         return convert(mapResult);
     }
 

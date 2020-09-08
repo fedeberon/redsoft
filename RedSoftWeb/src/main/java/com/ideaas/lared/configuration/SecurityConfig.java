@@ -3,6 +3,7 @@ package com.ideaas.lared.configuration;
 import com.ideaas.lared.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -39,6 +40,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     @Qualifier("usuarioService")
     private UserDetailsService userService;
+
+
+    @Value(value = "${com.auth0.domain}")
+    private String domain;
+
+    @Value(value = "${com.auth0.clientId}")
+    private String clientId;
+
+    @Value(value = "${com.auth0.clientSecret}")
+    private String clientSecret;
 
     @Override
     protected void configure(HttpSecurity security) throws Exception {
