@@ -22,7 +22,7 @@ class NavBarReact extends React.Component {
                                 <Nav.Link className="linklr" style={{width: '112px'}}><Link to={"/services"}>SERVICIOS</Link></Nav.Link>
                                 <NavDropdown className="linklr" style={{width: '137px'}} title="PRODUCTOS">
                                     <Row className="row01" style={{height: '155px', width: '1125px'}}>
-                                        <Col xs={2} md={3} style={{flex: '20%', maxWidth: '25%'}}>
+                                        <Col xs={2} md={3} style={{flex: '0 1 20%', maxWidth: '25%'}}>
 
                                             <span><h5>&nbsp;&nbsp;&nbsp;Notebooks</h5></span>
                                             <NavDropdown.Divider/>

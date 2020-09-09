@@ -18,8 +18,7 @@ class Header extends React.Component {
     render() {
 
         return (
-            console.log(this.textSearch),
-                <div id="myOverlay" style={{height: '200px'}}>
+                <div id="myOverlay">
                     <div id="overlay" className="overlay fade searchfull">
                         {/*<span className="closebtn" onClick={closeSearch()} title="Close Overlay">×</span>*/}
                         <span className="closebtn" title="Close Overlay">×</span>
@@ -111,7 +110,7 @@ class Header extends React.Component {
                     </div>
 
                     <div className="banddesktop" style={{height: '200px'}}>
-                        <div className="band1" style={{height: '35px'}}>
+                        <div className="band1" style={{height: '33px'}}>
                             <div className="container">
                                 <ul className="datos">
                                     <li>
@@ -181,18 +180,16 @@ class Header extends React.Component {
                                     <SearchBarComponent/>
                                     {/*===MODAL===*/}
                                     <div className="col-sm-2" style={{width: '230px', paddingRight: '0px',paddingLeft: '23px',}}>
-                                            <ModalCart/>
+                                        <ModalCart/>
                                     </div>
                                 </div>
                             </div >
-
                             {/*//NAVBARREACT*/}
                             <div style={{height: '53px', backgroundColor: '#fff'}}>
                                 <NavBarReact/>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
         );

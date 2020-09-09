@@ -12,24 +12,49 @@ h1, h2, h3, h4, h5, h6 {margin: 0px;}
 .mobile {display: none;}
 
 .btn-pay {color: white;}
-.tilde-success {background-image: url("/img/tilde3.png");
-    background-color: rgb(119 178 85);
+
+.mp-show {
+	border-top: 1px solid #b4dabe;
+}
+
+.center-h {
+    justify-content: center;
+    display: inline-grid;
+}
+.center-v {
+    align-items: center;
+}
+
+.tilde-success {
+
     background-size: contain;
     height: 297px;
     width: 340px;
     margin-left: 42px;
     margin-top: 15px;}
 /*.tilde-img {background-image: url(/img/tilde-success.jpg);}*/
-.success-mp {text-align: left;
+.success-mp {
+	text-align: center;
 	margin-top: 34px;
 	font-size: 32px;
-	width: 250px;
+	width: 437px;
 
-	color: whitesmoke;
+	color: black;
 	font-variant-caps: small-caps;}
 
+.succ-cont {color: black;
+border-bottom-width: 20px;
+margin-top: -33px;
+margin-left: 95px;
+font-size: 16px;
+position: absolute;}
+
+.btn-disab {
+pointer-events: none;
+}
+
 .breadcrumb-item:hover {color: black; text-decoration: none}
-.linklr a {color: unset;); text-decoration: none}
+.linklr a {color: unset;); text-decoration: none;}
 .linklr a:hover {color: black;); text-decoration: none;}
 
 .text-primary {color: #000!important;}
@@ -170,8 +195,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 
 .quantity span {color: #7c7c7c; font-weight: 300;}
 .quantity .form-control-lg{ font-size: 15px;padding: 1.3rem 1.4rem;line-height: 1.5; text-align: center;}
-.addtocart {background-color: black; color: #fff; text-transform: uppercase; font-size: 15px;padding: .7rem 1.4rem; margin-top: 21px;line-height: 1.5;border-radius: 0.3rem;}
+
+.addtocart {background-color: black; color: #fff; text-transform: uppercase; font-size: 15px;padding: .7rem 1.4rem; margin-top: 21px;line-height: 1.5;border-radius: 0.3rem; border-color: cornsilk;}
 .addtocart:hover {color: #fff; background-color: #be1d7b;}
+
+.addtocart-clicked {background-color: #13e23f; color: azure; text-transform: uppercase; font-size: 15px;padding: .7rem 1.4rem; margin-top: 21px;line-height: 1.5;border-radius: 0.3rem; border-color: cornsilk;}
 
 .btn-whatsapp {border: 1px solid #25d366; text-transform: uppercase; color: #25d366; font-size: 15px; margin-top: 25px; font-weight: 600;padding: .7rem 1.4rem;}
 .btn-whatsapp svg {fill:#25d366; height: 16px;}
@@ -308,7 +336,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 }
 
 .dropdown-menu.show {
-	left: -192px;
+	left: -186px;
 	top: 118%;
 }
 

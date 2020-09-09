@@ -1,36 +1,41 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import {ordersActions, preferenceActions} from "../../store";
 import {Button, Table} from 'react-bootstrap';
 import axios from 'axios'
-import {useHistory} from 'react-router-dom'
 import Preference from "./preference";
-import product from "../product/product";
-import Figure from "react-bootstrap/Figure";
+import Spinner from "react-bootstrap/Spinner";
+
 
 let api = axios.create({
     baseURL: 'http://localhost:8886/api',
     timeout: 10000,
 });
 
-const Order = () => {
+const Order = ({products, changePreference, isReady}) => {
+
+    const [link, setLink] = useState("")
+
+    const [order, setOrder] = useState([])
 
     const dispatch = useDispatch();
 
-    const products = useSelector(state => Object.values(state.order.items));
-
-    const [preferenceIsReady, setPreferenceIsReady] = useState(false)
+    useEffect(() => {changePreference(false)}, [products])
 
     let totalPrice = 0;
 
     products.map((product, index) => {
-
         totalPrice += parseFloat(product.precioUniVta)
     })
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         let details = [];
+
+        if(link !== "" && order === products){
+            changePreference(true)
+            return
+        }
 
         products.map((product, index) => {
 
@@ -45,15 +50,15 @@ const Order = () => {
             details.push(detail)
         })
 
-
-        debugger;
         try {
             const res = await api
                 .post('/cart/preference', details)
                 .then(function (res) {
-                    console.log(res.data);
+                    console.log(res.data)
                     dispatch(preferenceActions.set(res.data));
-                    setPreferenceIsReady(true)
+                    changePreference(true);
+                    setLink(res.data);
+                    setOrder(products)
                 })
                 .catch(function (error) {
                     console.log(error)
@@ -69,7 +74,7 @@ const Order = () => {
 
     return (
 
-        <>  {!preferenceIsReady ?
+        <>  {!isReady ?
             <form onSubmit={handleSubmit}>
                 <Table responsive>
                     <thead>
@@ -118,10 +123,12 @@ const Order = () => {
                         </h2>
                     </div>
                     <div className="mb-3">
-                        <Button variant="dark" type="submit" size="lg" block>Iniciar Compra</Button>
+                        <Button className={`${products.length === 0 ? 'btn-disab' : ''}`} variant="dark"
+                                type={`${products.length === 0 ? '' : 'submit'}`}
+                                size="lg" block>Iniciar Compra</Button>
+                        {/*<Spinner animation="border" variant="light" size="sm"/>*/}
                     </div>
                 </div>
-
             </form>
             :
             <Preference/>}

@@ -1,15 +1,16 @@
-import React from "react";
+import React, {useEffect} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useState} from "react";
-import Order from "../order/order";
-import Detail from "../order/detail";
-import {Button} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {useSelector, shallowEqual} from "react-redux";
+import ModalContent from "./ModalContent";
 
 export default function ModalCart() {
 
+    const products = useSelector(state => Object.values(state.order.items), shallowEqual);
+
     const [show, setShow] = useState(false);
-    const handleModal = () => setShow(!show);
+
+    const handleModal = () => setShow(!show)
 
     return (
 
@@ -37,31 +38,9 @@ export default function ModalCart() {
                  role="dialog"
                  aria-labelledby="myModalLabel2">
                 <div className="modal-dialog" role="document" style={{borderRadius: '4px',}}>
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <button type="button" onClick={handleModal} className="close" data-dismiss="modal"
-                                    aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                            <h4 className="modal-title" id="myModalLabel2">Carrito</h4>
-                            {/*<Detail/>*/}
-                        </div>
-                        <div className="modal-body">
-                            <div>
-                                <Order/>
-                            </div>
-                        </div>
-                        <div className="row mb-2">
-                        </div>
-                        <div className="row mb-2">
-                            <div className="text-center w-100">
-                                <Link href={"#"} onClick={handleModal} className="js-modal-close btn-link">Seguir
-                                    comprando</Link>
-                            </div>
-                        </div>
-                    </div>
+                    <ModalContent products={products} handleModal={handleModal}/>
                 </div>
             </div>
         </>
-
     )
 }
