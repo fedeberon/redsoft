@@ -1,6 +1,7 @@
 package com.ideaas.lared.restController;
 
 import com.ideaas.lared.configuration.JwtTokenUtil;
+import com.ideaas.lared.domain.User;
 import com.ideaas.lared.service.UserService;
 import com.ideaas.lared.utils.JwtRequest;
 import com.ideaas.lared.utils.JwtResponse;

@@ -15,7 +15,6 @@ export default function ModalCart() {
     return (
 
         <>
-
             <button id="mod1" title="Ver carrito" className="carttop" onClick={handleModal}
                     style={{background: "border-box", padding: '5px 35px', width: '152px'}}
                     type="button" data-dismiss="modal">
