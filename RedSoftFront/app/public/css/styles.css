@@ -8,10 +8,43 @@ ul {list-style-type: none; margin: 0px; padding: 0px;}
 h1, h2, h3, h4, h5, h6 {margin: 0px;}
 .btn.focus, .btn:focus {box-shadow: none;}
 
+.qr-code {
+	padding: 1rem;
+	justify-content: center;
+}
+
+.custom-poslr {
+	margin-top: 10px;
+}
+
 .bandmobile {display: none;}
+
 .mobile {display: none;}
 
 .btn-pay {color: white;}
+
+.loadlr {display: none;}
+
+.spinlr {
+	position: absolute;
+	display: block;
+}
+
+.dropdownlrw {
+	position: absolute;
+	display: contents;
+}
+
+.container2 {
+	display: grid;
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	height: 100px;
+	justify-content: center;
+}
 
 .mp-show {
 	border-top: 1px solid #b4dabe;
@@ -26,12 +59,11 @@ h1, h2, h3, h4, h5, h6 {margin: 0px;}
 }
 
 .tilde-success {
-
     background-size: contain;
-    height: 297px;
+    height: 260px;
     width: 340px;
     margin-left: 42px;
-    margin-top: 15px;}
+    margin-top: 10px;}
 /*.tilde-img {background-image: url(/img/tilde-success.jpg);}*/
 .success-mp {
 	text-align: center;
@@ -47,7 +79,9 @@ border-bottom-width: 20px;
 margin-top: -33px;
 margin-left: 95px;
 font-size: 16px;
-position: absolute;}
+position: absolute;
+display: table;
+text-align-last: center;}
 
 .btn-disab {
 pointer-events: none;
@@ -64,8 +98,8 @@ pointer-events: none;
 
 .btn-light {background-color: #f4f4f4; border-color: #f4f4f4; font-weight: 600; font-size: 15px;}
 
-.band1 {background-color: #fff;}
-.datos {display: flex; color: #515151; float: left; font-family: 'Work Sans', sans-serif; font-weight: 400; font-size: 13px; color: #515151; margin-top: 6px;}
+.band1 {background-color: #fff; height: 33px; padding-left: 180px;}
+.datos {display: -webkit-inline-box; color: #515151; float: left; font-family: 'Work Sans', sans-serif; font-weight: 400; font-size: 13px; margin-top: 6px;}
 .datos li {padding-right: 15px; margin-right: 15px; border-right:1px solid #eaeaea;}
 .datos li:last-child {border:0px; }
 .datos svg {height: 15px; vertical-align: middle;fill:#515151;}
@@ -76,7 +110,8 @@ pointer-events: none;
 .band3 {background-color: #fff; border-bottom: 1px solid #eaeaea;}
 .navbar {padding-left: 0px; padding-right: 0px;}
 .navbar-expand-lg .navbar-nav { color: black; text-transform: uppercase; font-size: 15px; font-weight: 600; padding-right: 1rem;padding-left: 1rem;}
-.logotop svg {height: 90px;}
+.logotop svg {height: 90px;
+padding-right: 300px;}
 
 .searchtop {margin-top: 20px;}
 .searchtop-input {border: 0px;}
@@ -196,10 +231,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 .quantity span {color: #7c7c7c; font-weight: 300;}
 .quantity .form-control-lg{ font-size: 15px;padding: 1.3rem 1.4rem;line-height: 1.5; text-align: center;}
 
-.addtocart {background-color: black; color: #fff; text-transform: uppercase; font-size: 15px;padding: .7rem 1.4rem; margin-top: 21px;line-height: 1.5;border-radius: 0.3rem; border-color: cornsilk;}
+.addtocart {background-color: black; width: 100%; color: #fff; text-transform: uppercase; font-size: 15px;padding: .7rem 1.4rem; margin-top: 21px;line-height: 1.5;border-radius: 0.3rem; border-color: cornsilk;}
 .addtocart:hover {color: #fff; background-color: #be1d7b;}
 
-.addtocart-clicked {background-color: #13e23f; color: azure; text-transform: uppercase; font-size: 15px;padding: .7rem 1.4rem; margin-top: 21px;line-height: 1.5;border-radius: 0.3rem; border-color: cornsilk;}
+.addtocart-clicked {background-color: #54c147; color: azure; text-transform: uppercase; font-size: 15px;padding: .7rem 1.4rem; margin-top: 21px;line-height: 1.5;border-radius: 0.3rem; border-color: cornsilk;}
 
 .btn-whatsapp {border: 1px solid #25d366; text-transform: uppercase; color: #25d366; font-size: 15px; margin-top: 25px; font-weight: 600;padding: .7rem 1.4rem;}
 .btn-whatsapp svg {fill:#25d366; height: 16px;}
@@ -271,7 +306,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 	}
         
 /*Right*/
-	.modal.righ.fade.show .modal-dialog {
+	.modal.right.fade.show .modal-dialog {
 		right: -320px;
 		-webkit-transition: opacity 6.3s linear, right 0.3s ease-out;
 		   -moz-transition: opacity 6.3s linear, right 0.3s ease-out;
@@ -340,9 +375,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 	top: 118%;
 }
 
-/*body.modal-open  {*/
-/*	overflow: hidden;*/
-/*}*/
+body .modal-open  {
+	overflow: hidden;
+}
 
 /*Kill the scroll on the body*/
 .modal-open {
@@ -688,7 +723,7 @@ footer {padding-top: 35px;}
 }
 
 @media screen and (max-width: 767px) {
-.banddesktop {display: none;}
+.banddesktop {display: none; height: 200px}
 .bandmobile {display: inherit;}
 .mobile {display: inherit;}
 .display {display: none;}
@@ -704,7 +739,7 @@ footer {padding-top: 35px;}
 .modal.left .modal-dialog,.modal.right .modal-dialog {width:100%;height: 100%;}
 
 /* Home */
-.bannershome {padding-top: 20px; padding-bottom: 0px;}
+.bannershome {padding-top: 20px; padding-bottom: 0;}
 .bannershome img {margin-bottom: 20px;}
 
 /* Category */
@@ -722,7 +757,6 @@ footer {padding-top: 35px;}
 .infoProduct {padding-left: 15px;}
 
 .description {margin-top: 30px;}
-.addtocart {width: 100%;}
 .btn-whatsapp {width: 100%;}
 
 /* Page */
@@ -750,7 +784,7 @@ footer .line {background-color: #efefef; height: 1px; margin-top: 20px; margin-b
 
 
 /* Zurbrand */
-.cont-logo-zurbrand {text-align: center; clear: both; background-color: #efefef; padding-left: 0px; padding: 0px; margin-top: 20px;}
+.cont-logo-zurbrand {text-align: center; clear: both; background-color: #efefef; padding: 0; margin-top: 20px;}
 .link-zurbrand {padding-top: 25px; padding-bottom: 25px; display: block;}
 .logo-zurbrand {height: 15px;}
 

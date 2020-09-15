@@ -4,7 +4,7 @@ class CarouselComponent extends Component {
 
     render (){
         return (
-            <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+            <div className="carousel slide custom-poslr" data-ride="carousel">
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         <img src="img/slider-desktop-01.jpg" alt="img1" className="d-block w-100"/>

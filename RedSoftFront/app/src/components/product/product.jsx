@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import api from '../../axios'
 import Spinner from 'react-bootstrap/Spinner'
-import { useAuth0 } from '@auth0/auth0-react';
 
 class Products extends Component {
 
@@ -45,39 +44,10 @@ class Products extends Component {
         )
     }
 
-    getToken() {
-        (async () => {
-            const {getAccessTokenSilently} = useAuth0();
-            try {
-                const token = await getAccessTokenSilently({
-                    audience: 'http://localhost:8887/api',
-                    scope: 'read:products',
-                });
-                console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Token: " + token);
-            } catch (e) {
-                console.error(e);
-            }
-        })();
-    }
-
     findAll = async () => {
-
-        this.setState({products: [], isLoading: true});
-        try {
-            const token = await this.getToken()
-            let data = await fetch('http://localhost:8887/api/product/list', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            this.setState({products: data, isLoading: false})
-        } catch (e) {
-            console.error(e);
-            // this.setState({products: [], isLoading: false})
-        }
-
-        // let data = await api.get('/api/product/list').then(({data}) => data);
-
+        this.setState({products: [], isLoading: true})
+        let data = await api.get('/api/product/list').then(({data}) => data);
+        this.setState({products: data, isLoading: false})
     }
 }
 

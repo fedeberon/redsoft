@@ -6,7 +6,7 @@ class FooterComponent extends React.Component {
         return (
             <footer>
                 <div className="footerbanda" style={{paddingTop: '20px',paddingBottom: '20px'}}>
-                    <div className="container" style={{marginLeft: '100px'}}>
+                    <div className="container">
 
                     <div className="row justify-content-md-center">
                         <div className="col-md-6 col-lg-5 col-xs-4">
@@ -29,7 +29,7 @@ class FooterComponent extends React.Component {
                 </div>
             </div>
 
-                <div className="container" style={{marginTop: '20px', marginLeft: '100px'}}>
+                <div className="container" style={{marginTop: '20px'}}>
                         <div className="row">
                             <div className="col-4 col-md-3 logofooter display">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427 363"><title>logo-02</title>
@@ -89,17 +89,17 @@ class FooterComponent extends React.Component {
                             </div>
                             <div className="col-6 col-md-3">
                                 <ul className="menufooter">
-                                    <li><a href="index.php">Inicio</a></li>
-                                    <li><a href="servicios.php">Servicios</a></li>
-                                    <li><a href="productos.php">Productos</a></li>
-                                    <li><a href="nosotros.php">Sobre La Red</a></li>
-                                    <li><a href="contacto.php">Contacto</a></li>
+                                    <li><a href="/">Inicio</a></li>
+                                    <li><a href="/services">Servicios</a></li>
+                                    <li><a href="/products">Productos</a></li>
+                                    <li><a href="/aboutus">Sobre La Red</a></li>
+                                    <li><a href="/contact">Contacto</a></li>
                                 </ul>
                             </div>
                             <div className="col-6 col-md-3">
                                 <div className="social socialfooter">
                                     <h5>Seguinos en</h5>
-                                    <a href="" className="social-icon">
+                                    <a href="https://www.facebook.com/lared.wifi" target="_blank" className="social-icon">
                                         <svg viewBox="0 0 320 512">
                                             <path
                                                 d="M279.1 288l14.3-92.7h-89v-60c0-25.4 12.5-50.2 52.3-50.2H297V6.4S260.4 0 225.4 0C152 0 104.3 44.4 104.3 124.7v70.6H22.9V288h81.4v224h100.2V288z"/>

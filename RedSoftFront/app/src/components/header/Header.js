@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import ModalCart from "./ModalCart";
 import NavBarReact from "../NavBarReact";
 import SearchBarComponent from "../SearchBarComponent";
@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import Wrapper from "../auth0/Wrapper";
 import Profile from "../auth0/Profile";
 import LogoutButton from "../auth0/Logout";
+import {Dropdown, DropdownButton} from "react-bootstrap";
 
 
 class Header extends React.Component {
@@ -14,8 +15,11 @@ class Header extends React.Component {
         super(props);
         this.state = {
             textSearch: '',
+            show: (props),
+            setShow: (props)
         }
     }
+
 
     render() {
 
@@ -81,7 +85,21 @@ class Header extends React.Component {
 
                     <div className="bandmobile">
                         <div className="band">
-                            <button className="menu-btn"><span>&#9776;</span> Menu</button>
+                            {/*<button className="menu-btn dropdown"><span>&#9776;</span> Menu</button>*/}
+                            <Dropdown className="menu-btn dropdownlrw">
+                                <Dropdown.Toggle variant="light" id="dropdown-basic">
+                                    <span>&#9776;</span> Menu
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <Dropdown.Item className="linklr"><Link to={"/"}>Inicio</Link></Dropdown.Item>
+                                    <Dropdown.Item className="linklr"><Link to={"/services"}>Servicios</Link></Dropdown.Item>
+                                    <Dropdown.Item className="linklr"><Link to={"/products"}>Productos</Link></Dropdown.Item>
+                                    <Dropdown.Item className="linklr"><Link to={"/"}>Acceso Clientes</Link></Dropdown.Item>
+                                    <Dropdown.Item className="linklr"><Link to={"/contact"}>Contacto</Link></Dropdown.Item>
+
+                                </Dropdown.Menu>
+                            </Dropdown>
                             <a href="#" className="icontop" >
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>search</title>
                                     <path
@@ -90,7 +108,7 @@ class Header extends React.Component {
                                         d="M38.523,40.507a1.985,1.985,0,0,1-1.393-.574L26.785,29.584a15.745,15.745,0,1,1,2.8-2.8L39.926,37.123a1.983,1.983,0,0,1-1.4,3.384ZM17.19,5.456A11.735,11.735,0,1,0,28.923,17.19,11.746,11.746,0,0,0,17.19,5.456Z"/>
                                 </svg>
                             </a>
-                            <a href="#" title="modal" target="#modalCart"
+                            <Link to={""} title="modal" target="#modalCart"
                                className="icontop">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>cart</title>
                                     <path
@@ -103,7 +121,7 @@ class Header extends React.Component {
                                         d="M1.041,3.394H5.293A2.828,2.828,0,0,1,8.1,5.791l3.367,21.267a4.216,4.216,0,0,0,4.183,3.573h20.81a.7.7,0,0,0,0-1.395H15.649a2.829,2.829,0,0,1-2.806-2.4l-.572-3.615H33.584a4.239,4.239,0,0,0,4-2.849L41.54,8.963a.7.7,0,0,0-.659-.926H9.867l-.39-2.464A4.216,4.216,0,0,0,5.293,2H1.041a.7.7,0,1,0,0,1.394ZM39.9,9.432,36.268,19.919a2.842,2.842,0,0,1-2.684,1.91H12.05l-1.963-12.4Z"
                                         fill="#161814"/>
                                 </svg>
-                            </a>
+                            </Link>
                             <div className="spacer"></div>
                         </div>
                         <div className="logotop"><a href="index.php">
@@ -111,8 +129,8 @@ class Header extends React.Component {
                         </a></div>
                     </div>
 
-                    <div className="banddesktop" style={{height: '200px'}}>
-                        <div className="band1" style={{height: '33px'}}>
+                    <div className="banddesktop">
+                        <div className="band1">
                             <div className="container">
                                 <ul className="datos">
                                     <li>
@@ -149,15 +167,15 @@ class Header extends React.Component {
                                         </svg>
                                         &nbsp;info@laredwifi.com.ar
                                     </li>
-                                    <Profile/>
-                                    <LogoutButton/>
+                                    <li><Profile/></li>
+                                    <li><LogoutButton/></li>
                                     <Wrapper/>
                                 </ul>
                                 <div className="spacer"></div>
                             </div>
                         </div>
                         <div className="band2" style={{height: '155px'}}>
-                            <div className="container" style={{height: '100px'}}>
+                            <div className="container2">
                                 <div className="row" >
                                     <div className="col">
                                         <div className="logotop"><Link to={"/"}>

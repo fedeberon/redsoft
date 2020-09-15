@@ -12,23 +12,29 @@ let api = axios.create({
     timeout: 10000,
 });
 
-const Order = ({products, changePreference, isReady}) => {
+const Order = ({products, changePreference, isReady, setSpinLoad}) => {
 
     const [link, setLink] = useState("")
 
     const [order, setOrder] = useState([])
 
+    const [isLoading, setIsLoading] = useState(false)
+
     const dispatch = useDispatch();
 
     useEffect(() => {changePreference(false)}, [products])
 
+    useEffect(() => {setIsLoading(false)},[setSpinLoad])
+
     let totalPrice = 0;
 
     products.map((product, index) => {
-        totalPrice += parseFloat(product.precioUniVta)
+        totalPrice += parseFloat(product.precioUniVta) * product.quantity
     })
 
     const handleSubmit = async (event) => {
+
+        setIsLoading(true)
         event.preventDefault();
         let details = [];
 
@@ -45,7 +51,7 @@ const Order = ({products, changePreference, isReady}) => {
                     name: product.description,
                     price: product.precioUniVta,
                 },
-                quantity: 1
+                quantity: product.quantity
             }
             details.push(detail)
         })
@@ -55,10 +61,11 @@ const Order = ({products, changePreference, isReady}) => {
                 .post('/cart/preference', details)
                 .then(function (res) {
                     console.log(res.data)
+                    setIsLoading(false);
                     dispatch(preferenceActions.set(res.data));
                     changePreference(true);
                     setLink(res.data);
-                    setOrder(products)
+                    setOrder(products);
                 })
                 .catch(function (error) {
                     console.log(error)
@@ -70,6 +77,12 @@ const Order = ({products, changePreference, isReady}) => {
 
     const removeProduct = (product) => {
         dispatch(ordersActions.remove(product));
+        setValueButton();
+    }
+
+    function setValueButton (){
+            let details = document.getElementById("buttonAdd");
+            details.className = "addtocart";
     }
 
     return (
@@ -79,9 +92,10 @@ const Order = ({products, changePreference, isReady}) => {
                 <Table responsive>
                     <thead>
                     <tr>
-                        <th>Code</th>
-                        <th>Description</th>
-                        <th>Price</th>
+                        {/*<th>Cod</th>*/}
+                        <th>Cant.</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -89,15 +103,16 @@ const Order = ({products, changePreference, isReady}) => {
 
                         products.map((product, index) => (
                             <tr key={index}>
-                                <td>{product.code}</td>
+                                {/*<td id="idcode">{product.code}</td>*/}
+                                <td>{product.quantity}</td>
                                 <td>{product.description}</td>
                                 <td>${product.precioUniVta}</td>
 
                                 <td>
-                                    <Button variant="light" onClick={() => removeProduct(product)}>
+                                    <Button id="btnRemove" variant="light" onClick={() => removeProduct(product)}>
                                         <a className="deletecart">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427 427">
-                                                <title>delete</title>
+                                                <title>Eliminar producto</title>
                                                 <path
                                                     d="M272.4,154.7a10,10,0,0,0-10,10v189a10,10,0,0,0,20,0v-189A10,10,0,0,0,272.4,154.7Z"/>
                                                 <path
@@ -119,14 +134,16 @@ const Order = ({products, changePreference, isReady}) => {
                     <div className="cart-total">
                         <h2 className="row text-primary mb-0">
                             <span className="col">Total:</span>
-                            <span className="col text-right">${totalPrice}</span>
+                            <span className="col text-right">${totalPrice.toFixed(2)}</span>
                         </h2>
                     </div>
                     <div className="mb-3">
-                        <Button className={`${products.length === 0 ? 'btn-disab' : ''}`} variant="dark"
+                        <Button variant="dark" className={`${products.length === 0 ? 'btn-disab' : ''}`}
                                 type={`${products.length === 0 ? '' : 'submit'}`}
-                                size="lg" block>Iniciar Compra</Button>
-                        {/*<Spinner animation="border" variant="light" size="sm"/>*/}
+                                size="lg" block><Spinner style={{display: isLoading ? 'block' : 'none',
+                                position: 'absolute'}} animation="border" variant="light"
+                                />{isLoading ? 'Obteniendo link...' : 'Iniciar Comppra'}</Button>
+
                     </div>
                 </div>
             </form>

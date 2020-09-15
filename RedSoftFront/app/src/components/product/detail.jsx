@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {ordersActions} from "../../store/order";
 import 'bootstrap';
@@ -12,6 +12,7 @@ const Detail = (props) => {
     const dispatch = useDispatch();
 
     const addToOrder = (product) => {
+        product = {...product, quantity: quantity}
         dispatch(ordersActions.addOrder(product));
     }
     const emptyProduct = {description: "", precioUniVta: ""}
@@ -21,53 +22,64 @@ const Detail = (props) => {
 
     const [btnClicked, setBtnClicked] = useState(false)
 
+    /*Listener para habilitar button AddToCart desde removeProduct en Order.jsx*/
+    const elem = document.getElementById('btnRemove');
+    if(elem){
+        elem.addEventListener('click', function (){
+            setBtnClicked(false)
+            document.getElementById("buttonAdd").innerHTML = "Agregar producto";
+        })
+    }
+
+    const [quantity, setQuantity] = useState(1)
+    console.log(quantity)
+
     function callFunctions() {
         addToOrder(product);
+        document.getElementById("buttonAdd").innerHTML = "producto agregado";
+        setBtnClicked(true);
         showAlert();
     }
 
     function showAlert() {
         setShow(true);
-        setBtnClicked(true);
-        hideAlert();
-    }
-
-    function hideAlert() {
         setTimeout(
             () => setShow(false),
             3000
         );
     }
 
-
-
     return (
 
         <div>
-
             <div className="info">
                 <a>Computación</a>
                 <div className="name detalle">{product.description}</div>
                 <div className="price detalle"><span className="offer">$15.000</span> U$S {product.precioUniVta}
                 </div>
             </div>
-
             <form>
                 <div className="row">
                     <div className="col-3 col-sm-2 quantity">
                         <span>Cantidad</span>
-                        <input className="form-control form-control-lg" type="text"
-                               placeholder="1"/>
+                        <input style={{width: '81px'}} id="inputQuantity" className="form-control form-control-lg"
+                               type="number" min="1" max="10" placeholder="1"
+                               onChange={(event) => setQuantity(event.target.value)}
+                        />
                     </div>
-                    <div className="col-5">
-                        <button
-                            type="button" className={`${btnClicked === true ? 'addtocart-clicked btn-disab' : 'addtocart'}`} onClick={callFunctions}>Agregar al
-                            Carrito
+                    <div className="col-5" style={{paddingRight: 0}}>
+                        <button id="buttonAdd"
+                            type="button" className={`${btnClicked ? 'addtocart-clicked btn-disab' : 'addtocart'}`}
+                                onClick={callFunctions} >Agregar al Carrito
                         </button>
                     </div>
-                    <div className="col-3">
+                    <div className="col-3" style={{padding: '1rem'}}>
                         <Alert variant='light' show={show}>
-                            <img style={{height: '60px'}} src="https://pcic.gov.ph/wp-content/uploads/2019/07/CHECK-ICON.png" alt="check"/>
+                            <img style={{height: '25px'}} src="https://e7.pngegg.com/pngimages/194/825/png-clipart-computer-icons-check-mark-graphics-camellot-academy-accepting-applications-soon-blue-angle-thumbnail.png" alt="check"/>
+                            {/*<svg style={{height: '25px'}} focusable="false" viewBox="0 0 24 24" aria-hidden="true">*/}
+                            {/*    <path*/}
+                            {/*        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>*/}
+                            {/*</svg>*/}
                         </Alert>
                     </div>
                 </div>

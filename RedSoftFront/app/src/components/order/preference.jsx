@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {useSelector} from 'react-redux'
 import {Link} from "react-router-dom";
 import {Button} from "react-bootstrap";
-
+import QRCode from "qrcode.react"
 const Preference = () => {
 
     const id = useSelector(state => state.preference.id);
@@ -26,9 +26,15 @@ const Preference = () => {
                 </div>
                 <div className="succ-cont">
                     Hacé click debajo para continuar
+                       ó escanea el código QR
                 </div>
-                <Button style={{marginBottom: '-55px', marginLeft: '139px'}} variant="primary">
+                <div>
+                <Button style={{marginLeft: '139px', marginTop: '20px'}} variant="primary">
                     <a className="btn-pay" href={id}>Completar pago</a></Button>
+                </div>
+                <div className="row qr-code">
+                    <QRCode value={id}/>
+                </div>
             </div>
         </>
     )

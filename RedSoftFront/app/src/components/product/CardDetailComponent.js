@@ -14,8 +14,16 @@ class CardDetailComponent extends Component {
         this.state = {
             products: [],
             currentPage: 1,
+            btnExpand: false
         }
     }
+
+    handleClick = () => {
+        this.setState({btnExpand: !this.state.btnExpand})
+        console.log(this.state.btnExpand)
+
+    }
+
 
     componentDidMount() {
         this.findAll()
@@ -23,7 +31,7 @@ class CardDetailComponent extends Component {
 
     findAll = async () => {
         this.setState({products: [], isLoading: true})
-        let data = await api.get('/product/list').then(({data}) => data);
+        let data = await api.get('/api/product/list').then(({data}) => data);
         this.setState({products: data, isLoading: false})
     }
 
@@ -112,18 +120,20 @@ class CardDetailComponent extends Component {
                                     <div className="card">
                                         <div className="card-header" id="headingOne">
                                             <h5 className="mb-0">
-                                                <button className="btn btn-link expand" data-toggle="collapse"
+                                                <button onClick={this.handleClick} className="btn btn-link expand" data-toggle="collapse"
                                                         data-target="#collapseOne" aria-expanded="true"
                                                         aria-controls="collapseOne">
                                                     MEDIOS DE PAGO <span>+</span>
                                                 </button>
                                             </h5>
                                         </div>
-                                        <div id="collapseOne" className="collapse" aria-labelledby="headingOne"
+                                        <div id="collapseOne" className={`collapse ${this.state.btnExpand ? 'show' : ''}`} aria-labelledby="headingOne"
                                              data-parent="#accordion">
                                             <div className="card-body">
                                                 Informacion medios de pago.
-                                                <div className="row"><Preference/></div>
+                                                <div className="row">
+                                                    <img style={{height: '70px'}} src="https://www.mercadopago.com/org-img/Manual/ManualMP/imgs/isologoVertical.png"></img>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -10,7 +10,24 @@ export default function ModalCart() {
 
     const [show, setShow] = useState(false);
 
-    const handleModal = () => setShow(!show)
+    function BodyHidden () {
+        let bg = document.body;
+        bg.style.overflow = show === true ? "" : "hidden"
+    }
+
+    const handleModal = () => {
+        setShow(!show)
+        BodyHidden()
+    }
+
+    /*Listener para cerrar modalcart desde ModalContent*/
+    const setMod = document.getElementById('btnConti');
+    if(setMod){
+        setMod.addEventListener('click', function (){
+            handleModal()
+        }
+        )
+    }
 
     return (
 
@@ -33,7 +50,8 @@ export default function ModalCart() {
             </button>
 
             <div className={`modal right fade ${show ? "show" : ""}`}
-                 style={{display: show ? 'block' : 'none', paddingRight: '15px',}} id="modalCart" tabIndex="-1"
+                 style={{display: show ? 'block' : 'none', paddingRight: '15px',
+                     backgroundColor: 'rgba(0,0,0,0.5)'}} id="modalCart" tabIndex="-1"
                  role="dialog"
                  aria-labelledby="myModalLabel2">
                 <div className="modal-dialog" role="document" style={{borderRadius: '4px',}}>

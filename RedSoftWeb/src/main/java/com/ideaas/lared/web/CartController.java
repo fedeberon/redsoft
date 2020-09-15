@@ -3,6 +3,7 @@ package com.ideaas.lared.web;
 import com.ideaas.lared.domain.Order;
 import com.ideaas.lared.domain.PaymentResponse;
 import com.ideaas.lared.service.interfaces.MercadoPagoService;
+import com.ideaas.lared.service.interfaces.PaymentResponseService;
 import com.mercadopago.exceptions.MPException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CartController {
 
     private MercadoPagoService mercadoPagoService;
+
+    @Autowired
+    private PaymentResponseService paymentResponseService;
 
     @Autowired
     public CartController(MercadoPagoService mercadoPagoService) {
@@ -46,6 +50,8 @@ public class CartController {
                 , externalReference, paymentType, merchantOrderId, preferenceId, siteId
                 , processingMode, merchantAccountId);
 
+        paymentResponseService.save(paymentResponse);
+
         return "order-detail";
     }
 
@@ -64,6 +70,8 @@ public class CartController {
                 , externalReference, paymentType, merchantOrderId, preferenceId, siteId
                 , processingMode, merchantAccountId);
 
+        paymentResponseService.save(paymentResponse);
+
         return "order-detail";
     }
 
@@ -81,6 +89,8 @@ public class CartController {
         PaymentResponse paymentResponse = new PaymentResponse(collectionId, collectionStatus
                 , externalReference, paymentType, merchantOrderId, preferenceId, siteId
                 , processingMode, merchantAccountId);
+
+        paymentResponseService.save(paymentResponse);
 
         return "order-detail";
     }
