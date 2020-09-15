@@ -15,7 +15,6 @@ const Detail = (props) => {
     const product = props.product ? props.product : emptyProduct;
 
 
-
     return (
 
         <div>

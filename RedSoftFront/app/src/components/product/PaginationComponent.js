@@ -3,9 +3,12 @@ import api from "../../axios";
 import Button from "react-bootstrap/Button";
 import CardDetailComponent from "./CardDetailComponent";
 import {Link} from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import { Auth0Context } from '@auth0/auth0-react';
 
 class PaginationComponent extends React.Component {
+
+    static contextType = Auth0Context;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -31,44 +34,14 @@ class PaginationComponent extends React.Component {
         this.setPrevAndNextBtnClass = this.setPrevAndNextBtnClass.bind(this);
     }
 
-    componentDidMount() {
-        this.findAll()
+    async componentDidMount() {
+        await this.findAll()
     }
 
-    getToken() {
-        (async () => {
-            const {getAccessTokenSilently} = useAuth0();
-            try {
-                const token = await getAccessTokenSilently({
-                    audience: 'http://localhost:8887/api',
-                    scope: 'read:products',
-                });
-                console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Token: " + token);
-            } catch (e) {
-                console.error(e);
-            }
-        })();
-    }
-
-    findAll = async () => {
-        // this.setState({products: [], productsBackup: [], isLoading: true})
-
-        // let data = await api.get('/api/product/list').then(({data}) => data);
-        // this.setState({products: data, productsBackup: data, isLoading: false})
-
-        this.setState({products: [], isLoading: true});
-        try {
-            const token = await this.getToken()
-            const data = await fetch('http://localhost:8887/api/product/list', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            this.setState({products: data, isLoading: false})
-        } catch (e) {
-            console.error(e);
-            // this.setState({products: [], isLoading: false})
-        }
+    async findAll() {
+        this.setState({products: [], productsBackup: [], isLoading: true})
+        let data = await api.get('/api/product/list').then(({data}) => data);
+        this.setState({products: data, productsBackup: data, isLoading: false})
 
         if (this.props.search && this.props.search != ""){
             const text = this.props.search;
