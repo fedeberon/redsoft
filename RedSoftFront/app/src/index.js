@@ -9,6 +9,8 @@ ReactDOM.render(
     <Auth0Provider
         domain="dev-jvz7xn8q.us.auth0.com"
         clientId="obyw5eEvi7x4QL8IpNxpG7WkRLdUphzT"
+        audience="http://localhost:8886/api"
+        scope={'read:products'}
         redirectUri={window.location.origin}
     >
     <App />,

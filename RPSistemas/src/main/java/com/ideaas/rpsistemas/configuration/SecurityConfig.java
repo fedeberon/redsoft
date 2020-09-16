@@ -17,8 +17,7 @@ public class SecurityConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/api/product/**").permitAll()//.access("#oauth2.hasScope('read:products')")
-                .mvcMatchers("/api/**").authenticated()
+                .antMatchers("/api/product/**").permitAll()
                 .anyRequest().permitAll();
     }
 

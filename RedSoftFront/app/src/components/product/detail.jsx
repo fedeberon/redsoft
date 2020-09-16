@@ -52,13 +52,14 @@ const Detail = (props) => {
     return (
 
         <div>
+
             <div className="info">
                 <a>Computación</a>
                 <div className="name detalle">{product.description}</div>
                 <div className="price detalle"><span className="offer">$15.000</span> U$S {product.precioUniVta}
                 </div>
             </div>
-            <form>
+                <form>
                 <div className="row">
                     <div className="col-3 col-sm-2 quantity">
                         <span>Cantidad</span>

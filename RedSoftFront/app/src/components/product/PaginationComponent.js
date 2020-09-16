@@ -3,8 +3,12 @@ import api from "../../axios";
 import Button from "react-bootstrap/Button";
 import CardDetailComponent from "./CardDetailComponent";
 import {Link} from "react-router-dom";
+import { Auth0Context } from '@auth0/auth0-react';
 
 class PaginationComponent extends React.Component {
+
+    static contextType = Auth0Context;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -30,11 +34,11 @@ class PaginationComponent extends React.Component {
         this.setPrevAndNextBtnClass = this.setPrevAndNextBtnClass.bind(this);
     }
 
-    componentDidMount() {
-        this.findAll()
+    async componentDidMount() {
+        await this.findAll()
     }
 
-    findAll = async () => {
+    async findAll() {
         this.setState({products: [], productsBackup: [], isLoading: true})
         let data = await api.get('/api/product/list').then(({data}) => data);
         this.setState({products: data, productsBackup: data, isLoading: false})
