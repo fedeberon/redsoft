@@ -43,7 +43,7 @@ class PaginationComponent extends React.Component {
         let data = await api.get('/api/product/list').then(({data}) => data);
         this.setState({products: data, productsBackup: data, isLoading: false})
 
-        if (this.props.search && this.props.search != ""){
+        if (this.props.search && this.props.search !== ""){
             const text = this.props.search;
             const data = this.state.productsBackup
 

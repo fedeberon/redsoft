@@ -38,8 +38,21 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
         event.preventDefault();
         let details = [];
 
-        if(link !== "" && order === products){
+        let isEqual = true
+
+        for(let i = 0 ; i < order.length; i++) {
+
+            if (order.length === products.length && order[i].quantity === products[i].quantity) {
+                order.map((element, index) => isEqual = isEqual && element.code === products[index].code)
+            } else {
+                isEqual = false
+            }
+        }
+        console.log(isEqual)
+
+        if(link !== "" && isEqual){
             changePreference(true)
+            setIsLoading(false);
             return
         }
 
@@ -77,12 +90,6 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
 
     const removeProduct = (product) => {
         dispatch(ordersActions.remove(product));
-        setValueButton();
-    }
-
-    function setValueButton (){
-            let details = document.getElementById("buttonAdd");
-            details.className = "addtocart";
     }
 
     return (
@@ -92,7 +99,7 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
                 <Table responsive>
                     <thead>
                     <tr>
-                        {/*<th>Cod</th>*/}
+                        <th>Cod</th>
                         <th>Cant.</th>
                         <th>Descripcion</th>
                         <th>Precio</th>
@@ -103,7 +110,7 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
 
                         products.map((product, index) => (
                             <tr key={index}>
-                                {/*<td id="idcode">{product.code}</td>*/}
+                                <td id="idcode">{product.code}</td>
                                 <td>{product.quantity}</td>
                                 <td>{product.description}</td>
                                 <td>${product.precioUniVta}</td>
@@ -142,7 +149,7 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
                                 type={`${products.length === 0 ? '' : 'submit'}`}
                                 size="lg" block><Spinner style={{display: isLoading ? 'block' : 'none',
                                 position: 'absolute'}} animation="border" variant="light"
-                                />{isLoading ? 'Obteniendo link...' : 'Iniciar Comppra'}</Button>
+                                />{isLoading ? 'Obteniendo link...' : 'INICIAR COMPRA'}</Button>
 
                     </div>
                 </div>

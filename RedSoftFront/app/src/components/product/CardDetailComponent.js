@@ -37,7 +37,7 @@ class CardDetailComponent extends Component {
 
     render() {
 
-        let product = this.state.products.find ( (e) => e.code == this.props.match.params.id)
+        let product = this.state.products.find ( (e) => e.code === this.props.match.params.id)
 
         return (
 

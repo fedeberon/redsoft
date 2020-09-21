@@ -15,6 +15,7 @@ const Detail = (props) => {
         product = {...product, quantity: quantity}
         dispatch(ordersActions.addOrder(product));
     }
+
     const emptyProduct = {description: "", precioUniVta: ""}
     const product = props.product ? props.product : emptyProduct;
 
@@ -27,16 +28,13 @@ const Detail = (props) => {
     if(elem){
         elem.addEventListener('click', function (){
             setBtnClicked(false)
-            document.getElementById("buttonAdd").innerHTML = "Agregar producto";
         })
     }
 
     const [quantity, setQuantity] = useState(1)
-    console.log(quantity)
 
     function callFunctions() {
         addToOrder(product);
-        document.getElementById("buttonAdd").innerHTML = "producto agregado";
         setBtnClicked(true);
         showAlert();
     }
@@ -71,7 +69,7 @@ const Detail = (props) => {
                     <div className="col-5" style={{paddingRight: 0}}>
                         <button id="buttonAdd"
                             type="button" className={`${btnClicked ? 'addtocart-clicked btn-disab' : 'addtocart'}`}
-                                onClick={callFunctions} >Agregar al Carrito
+                                onClick={callFunctions}>{btnClicked ? 'Producto Agregado' : 'Agregar al Carrito'}
                         </button>
                     </div>
                     <div className="col-3" style={{padding: '1rem'}}>
