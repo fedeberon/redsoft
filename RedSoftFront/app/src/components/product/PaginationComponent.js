@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import CardDetailComponent from "./CardDetailComponent";
 import {Link} from "react-router-dom";
 import { Auth0Context } from '@auth0/auth0-react';
+import ImageProduct from "./ImageProduct";
 
 class PaginationComponent extends React.Component {
 
@@ -153,7 +154,6 @@ class PaginationComponent extends React.Component {
             isPrevBtnActive, isNextBtnActive,
         } = this.state;
 
-
         // Logica para mostrar todos los productos
         const indexOfLastTodo = currentPage * todosPerPage;
         const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
@@ -163,10 +163,13 @@ class PaginationComponent extends React.Component {
             return <div className="col-6 col-sm-4"> {!this.state.details ?
                 <div className="item animate">
                     <Link to={`/details/${product.code}`}>
-                        <figure><img src="/img/producto-03.jpg" className="foto"/></figure>
+                        <figure><ImageProduct
+                            products={product}
+                            setHeight={255}
+                            setWidth={255}
+                        /></figure>
                         <div className="info">
                             <div className="productName"><h5>{product.description}</h5></div>
-                            <div className="codigo">{product.code}</div>
                             <div className="price">U$S {product.precioUniVta}</div>
                             <button className="btn btn-sm" onClick={() => {
                                 this.handleDetail(product.code)

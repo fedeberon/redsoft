@@ -8,6 +8,17 @@ ul {list-style-type: none; margin: 0px; padding: 0px;}
 h1, h2, h3, h4, h5, h6 {margin: 0px;}
 .btn.focus, .btn:focus {box-shadow: none;}
 
+.col-description {
+	text-align: center;
+	font: inherit;
+	width: 155px;
+	height: 115px;
+}
+.col-price {
+	width: 82px;
+	height: 115px;
+}
+
 .qr-code {
 	padding: 1rem;
 	justify-content: center;
@@ -93,6 +104,8 @@ pointer-events: none;
 
 .text-primary {color: #000!important;}
 .btn-primary {color: #fff;background-color: #000;border-color: #000;}
+.btn-ini {color: #fff;background-color: #000;border-color: #000;}
+.btn-dark:hover {color: #fff;background-color: #be1d7b;border-color: #be1d7b;}
 .btn-primary:hover {color: #fff;background-color: #be1d7b;border-color: #be1d7b;}
 .btn-link {font-weight: 400;color: #000;text-decoration: none;}
 
@@ -252,7 +265,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 /* Cart */
 #modalCart .modal-header {display: block;}
 #modalCart .modal-footer {padding-top: 40px; padding-bottom: 40px;}
-.item.cart {margin-bottom: 10px;}
+.item.cart {margin-bottom: 10px; height: 110px;}
 .item.cart .info {padding-bottom: 12px;}
 .item.cart .name, .item.cart .price  {text-align: left; padding-top: 17px; padding-bottom: 10px;}
 .deletecart { float: right; display: table; padding: 10px; padding-top: 5px; line-height: 12px;}
@@ -527,9 +540,8 @@ body .modal-open  {
 
 	.modal-header {
 		border-bottom-color: #EEEEEE;
-
+		background-color: #FAFAFA;
 	}
-
 
 
 /* ----- v CAN BE DELETED v ----- */

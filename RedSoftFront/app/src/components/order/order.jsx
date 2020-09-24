@@ -95,26 +95,14 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
     return (
 
         <>  {!isReady ?
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} style={{paddingTop: '15px'}}>
                 <Table responsive>
-                    <thead>
-                    <tr>
-                        <th>Cod</th>
-                        <th>Cant.</th>
-                        <th>Descripcion</th>
-                        <th>Precio</th>
-                    </tr>
-                    </thead>
                     <tbody>
-                    {
-
-                        products.map((product, index) => (
-                            <tr key={index}>
-                                <td id="idcode">{product.code}</td>
-                                <td>{product.quantity}</td>
-                                <td>{product.description}</td>
-                                <td>${product.precioUniVta}</td>
-
+                        {products.map((product, index) => (
+                            <div key={index} className="item cart animate" style={{marginBottom: '10px'}}>
+                                <td><img src={`http://164.68.101.162:8093/img/${product.code}.jpg`} style={{width: '90px'}}/></td>
+                                <td className="col-description">{product.description} x {product.quantity}</td>
+                                <td className="col-price">${product.precioUniVta}</td>
                                 <td>
                                     <Button id="btnRemove" variant="light" onClick={() => removeProduct(product)}>
                                         <a className="deletecart">
@@ -132,7 +120,7 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
                                         </a>
                                     </Button>
                                 </td>
-                            </tr>
+                            </div>
                         ))
                     }
                     </tbody>
@@ -150,7 +138,6 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
                                 size="lg" block><Spinner style={{display: isLoading ? 'block' : 'none',
                                 position: 'absolute'}} animation="border" variant="light"
                                 />{isLoading ? 'Obteniendo link...' : 'INICIAR COMPRA'}</Button>
-
                     </div>
                 </div>
             </form>

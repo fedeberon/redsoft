@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import 'bootstrap';
 import ReactImageZoom from 'react-image-zoom';
-import Preference from "../order/preference";
 import ProductDetail from "./detail";
-import {useDispatch} from 'react-redux';
 import api from "../../axios";
 import {Link} from "react-router-dom";
 
@@ -24,7 +22,6 @@ class CardDetailComponent extends Component {
 
     }
 
-
     componentDidMount() {
         this.findAll()
     }
@@ -38,6 +35,7 @@ class CardDetailComponent extends Component {
     render() {
 
         let product = this.state.products.find ( (e) => e.code === this.props.match.params.id)
+        let code = this.props.match.params.id
 
         return (
 
@@ -61,25 +59,25 @@ class CardDetailComponent extends Component {
                                         <div className="label">20%</div>
                                         <img className="zoom-icon" src="/img/zoom-in.svg"/>
                                         <div className="carousel-item active">
-                                            <span className="zoom" id="ex1"><ReactImageZoom width={600} height={600}
-                                                                                            zoomWidth={700}
-                                                                                            img={"/img/producto-01.jpg"}
-                                                                                            zoomPosition={"original"}
-                                                                                            className="d-block w-100"/>
-                                            </span>
-                                        </div>
-                                        <div className="carousel-item">
-                                            <span className="zoom" id="ex2"><ReactImageZoom width={600} height={600}
-                                                                                            zoomWidth={700}
-                                                                                            img={"/img/producto-02.jpg"}
-                                                                                            zoomPosition={"original"}
-                                                                                            className="d-block w-100"/>
-                                            </span>
-                                        </div>
-                                        <div className="carousel-item">
-                                            <span className="zoom" id="ex3"><ReactImageZoom width={500} height={500}
+                                            <span className="zoom" id="ex1"><ReactImageZoom width={538} height={508}
                                                                                             zoomWidth={600}
-                                                                                            img={"/img/producto-03.jpg"}
+                                                                                            img={`http://164.68.101.162:8093/img/${code}.jpg`}
+                                                                                            zoomPosition={"original"}
+                                                                                            className="d-block w-100"/>
+                                            </span>
+                                        </div>
+                                        <div className="carousel-item">
+                                            <span className="zoom" id="ex2"><ReactImageZoom width={538} height={508}
+                                                                                            zoomWidth={600}
+                                                                                            img={`http://164.68.101.162:8093/img/${code}1.jpg`}
+                                                                                            zoomPosition={"original"}
+                                                                                            className="d-block w-100"/>
+                                            </span>
+                                        </div>
+                                        <div className="carousel-item">
+                                            <span className="zoom" id="ex3"><ReactImageZoom width={538} height={508}
+                                                                                            zoomWidth={600}
+                                                                                            img={`http://164.68.101.162:8093/img/${code}2.jpg`}
                                                                                             zoomPosition={"original"}
                                                                                             className="d-block w-100"/>
                                             </span>
@@ -99,13 +97,15 @@ class CardDetailComponent extends Component {
                                     </a>
                                     <ol className="carousel-indicators">
                                         <li data-target="#carouselProduct" data-slide-to="0" className="active"><img
-                                            src="/img/producto-01.jpg" className="d-block w-100"/></li>
+                                            src={`http://164.68.101.162:8093/img/${code}.jpg`}
+                                            className="d-block w-100"/>
+                                        </li>
                                         <li data-target="#carouselProduct" data-slide-to="1"><img
-                                            src="/img/producto-02.jpg"
+                                            src={`http://164.68.101.162:8093/img/${code}1.jpg`}
                                             className="d-block w-100"/>
                                         </li>
                                         <li data-target="#carouselProduct" data-slide-to="2"><img
-                                            src="/img/producto-03.jpg"
+                                            src={`http://164.68.101.162:8093/img/${code}2.jpg`}
                                             className="d-block w-100"/>
                                         </li>
                                     </ol>
