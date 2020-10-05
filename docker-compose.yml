@@ -3,13 +3,21 @@ version: "3.3"
 services:
 
   sistemasapp:
-    image: sistemasweb:latest
+    image: pablogivi/sistemasweb:1.0
     ports:
       - "8887:8887"
 
   frontapp:
-    image: frontweb:1.0
+    image: pablogivi/frontweb:1.1
     ports:
       - "5000:80" 
+    depends_on:
+      - sistemasapp
+      - backapp
+
+  backapp:
+    image: pablogivi/backweb:1.0
+    ports: 
+      - "8886:8886"
     depends_on:
       - sistemasapp
