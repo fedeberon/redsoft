@@ -3,7 +3,7 @@ import api from "../../axios";
 import Button from "react-bootstrap/Button";
 import CardDetailComponent from "./CardDetailComponent";
 import {Link} from "react-router-dom";
-import { Auth0Context } from '@auth0/auth0-react';
+import {Auth0Context} from '@auth0/auth0-react';
 import ImageProduct from "./ImageProduct";
 
 class PaginationComponent extends React.Component {
@@ -271,10 +271,5 @@ class PaginationComponent extends React.Component {
             </div>
         );
     }
-
-
-
-    v
 }
-
 export default PaginationComponent;

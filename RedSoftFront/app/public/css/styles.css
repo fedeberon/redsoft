@@ -8,6 +8,31 @@ ul {list-style-type: none; margin: 0px; padding: 0px;}
 h1, h2, h3, h4, h5, h6 {margin: 0px;}
 .btn.focus, .btn:focus {box-shadow: none;}
 
+.btn-consulta {
+	background-color: #000;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 15px;
+	padding: .7rem 1.4rem;
+	margin-top: 21px;
+	line-height: 1.5;
+	border-radius: 0.3rem;
+	border-color: cornsilk;
+}
+.btn-consulta:hover {
+	color: #fff;
+	background-color: #be1d7b;
+}
+
+.item-action {
+	padding-left: 1px;
+}
+
+.row01 {
+	height: 195px;
+	width: 1125px;
+}
+
 .col-description {
 	text-align: center;
 	font: inherit;
@@ -99,8 +124,8 @@ pointer-events: none;
 }
 
 .breadcrumb-item:hover {color: black; text-decoration: none}
-.linklr a {color: unset;); text-decoration: none;}
-.linklr a:hover {color: black;); text-decoration: none;}
+.linklr a {color: unset; text-decoration: none;}
+.linklr a:hover {color: black; text-decoration: none;}
 
 .text-primary {color: #000!important;}
 .btn-primary {color: #fff;background-color: #000;border-color: #000;}
@@ -265,7 +290,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 /* Cart */
 #modalCart .modal-header {display: block;}
 #modalCart .modal-footer {padding-top: 40px; padding-bottom: 40px;}
-.item.cart {margin-bottom: 10px; height: 110px;}
+.item.cart {margin-bottom: 10px; height: 120px;}
 .item.cart .info {padding-bottom: 12px;}
 .item.cart .name, .item.cart .price  {text-align: left; padding-top: 17px; padding-bottom: 10px;}
 .deletecart { float: right; display: table; padding: 10px; padding-top: 5px; line-height: 12px;}
@@ -386,6 +411,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 .dropdown-menu.show {
 	left: -186px;
 	top: 118%;
+	padding: 10px;
 }
 
 body .modal-open  {

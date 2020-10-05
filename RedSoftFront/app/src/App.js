@@ -23,7 +23,7 @@ function App() {
     <Provider store={store}>
         <Router>
             <Header/>
-            <Switch>
+            <Switch style={{paddingLeft: 0}}>
                 <Route exact path="/" component={HomeContainer} />
                 <Route exact path="/order/details" component={Order}/>
                 <Route exact path="/order/preference" component={Preference}/>
@@ -33,6 +33,7 @@ function App() {
                 <Route exact path="/details/:id" component={CardDetailComponent}/>
                 <Route exact path="/products" component={ProductsList}/>
                 <Route exact path="/products/search=:search" component={ProductsList}/>
+                {/*<Route exact path="/products/categories/:name" component={ProductsList}/>*/}
             </Switch>
         </Router>
         <FooterComponent/>

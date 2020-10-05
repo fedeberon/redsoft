@@ -3,10 +3,32 @@ import Iframe from 'react-iframe';
 
 class Contact extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            email: '',
+            phone: '',
+            msg: ''
+        }
+    }
+
+    handleChange = (e) => {
+        const {name, value} = e.target
+        this.setState({[name]: value})
+        console.log(this.state)
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        alert("alert")
+        }
+
     render() {
+
+        const {name, email, phone, msg} = this.state;
+
         return (
-
-
             <div className="page Contacto">
                 <div className="container">
                     <div className="row">
@@ -48,24 +70,28 @@ class Contact extends React.Component {
                             <p className="intro">También podés realizarnos una consulta a través de
                                 nuestro
                                 formulario online.</p>
-                            <form>
+                            <form onSubmit={this.handleSubmit}>
                                 <div className="form-group">
-                                    <input type="email" className="form-control" id="nombre"
-                                           aria-describedby="emailHelp" placeholder="Nombre"/>
+                                    <input type="text" value={name} className="form-control" id="nombre"
+                                           aria-describedby="emailHelp" placeholder="Nombre" maxLength={20}
+                                           onChange={this.handleChange} name="name"/>
                                 </div>
                                 <div className="form-group">
-                                    <input type="password" className="form-control" id="email"
-                                           placeholder="Email"/>
+                                    <input type="email" value={email} className="form-control" id="email"
+                                           placeholder="Email"
+                                           onChange={this.handleChange} name="email"/>
                                 </div>
                                 <div className="form-group">
-                                    <input type="password" className="form-control" id="telefono"
-                                           placeholder="Telefono"/>
+                                    <input type="text" className="form-control" id="telefono"
+                                           placeholder="Telefono" value={phone}
+                                           onChange={this.handleChange} name="phone"/>
                                 </div>
                                 <div className="form-group">
-                                            <textarea className="form-control" id="mensaje" placeholder="Mensaje"
-                                                      rows="5"/>
+                                            <textarea className="form-control" id="mensaje"
+                                                      placeholder="Mensaje" rows="5" value={msg}
+                                                       onChange={this.handleChange} name="msg"/>
                                 </div>
-                                <button type="submit" className="btn btn-primary" style={{color: '#fff', backgroundColor: '#000', borderColor: '#000'}}>Consultar</button>
+                                <button type="submit" className="btn-consulta" >Consultar</button>
                             </form>
                         </div>
                     </div>
