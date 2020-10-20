@@ -5,7 +5,7 @@ RUN npm -v
 RUN node -v
 
 WORKDIR /app
-COPY package.json yarn.lock ./
+COPY package.json ./
 RUN yarn
 COPY . ./
 RUN yarn build
@@ -15,7 +15,7 @@ FROM node:11
 RUN yarn global add serve
 WORKDIR /app
 COPY --from=builder /app/build .
-CMD ["serve", "-p", "80", "-s", "."]
+CMD ["serve", "-p", "8885", "-s", "."]
 
 
 

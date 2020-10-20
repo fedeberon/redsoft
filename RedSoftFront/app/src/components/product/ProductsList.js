@@ -35,9 +35,9 @@ class ProductsList extends React.Component {
                         </ol>
                     </nav>
                     <h1 className="titcategory">Productos</h1>
-                    <div className="row" style={{width: '1110px', marginRight: 0, marginLeft: 0}}>
-                        <div className="col-sm-3 sidebar display" style={{top: '6px'}}>
-                            <h4>Categorias</h4>
+                    <div className="row">
+                        <div className="col-sm-3 sidebar display" style={{top: '43px'}}>
+                            <h5>Categorias</h5>
                             <div className="list-group list-group-flush">
 
                                 <button type="button" onClick={this.handleClick}
@@ -63,7 +63,7 @@ class ProductsList extends React.Component {
                             </div>
                         </div>
                         <div className="col-sm-9">
-                            <div className="row">
+                            <div className="row"  style={{justifyContent: 'center'}}>
                                 <PaginationComponent search={this.props.match.params.search}
                                 />
                             </div>

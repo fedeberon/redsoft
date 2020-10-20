@@ -171,11 +171,13 @@ class Header extends React.Component {
                                     <li><LogoutButton/></li>
                                     <Wrapper/>
                                 </ul>
+                                <a href="" className="clientes">Acceso a clientes
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><title>arrow-right-circle</title><path d="M7,13.635A6.635,6.635,0,1,0,.365,7,6.642,6.642,0,0,0,7,13.635ZM7,1.028A5.972,5.972,0,1,1,1.028,7,5.979,5.979,0,0,1,7,1.028Z" /><path d="M4.118,7.333H9.081l-1.3,1.3a.332.332,0,0,0,.471.468l1.864-1.865a.33.33,0,0,0,0-.468L8.253,4.9a.331.331,0,0,0-.468.468l1.3,1.3H4.118a.332.332,0,1,0,0,.663Z" /></svg></a>
                                 <div className="spacer"></div>
                             </div>
                         </div>
-                        <div className="band2" style={{height: '155px'}}>
-                            <div className="container2">
+                        <div className="band2">
+                            <div className="container">
                                 <div className="row" >
                                     <div className="col">
                                         <div className="logotop"><Link to={"/"}>
@@ -199,14 +201,20 @@ class Header extends React.Component {
                                     </div>
                                     <SearchBarComponent/>
                                     {/*===MODAL===*/}
-                                    <div className="col-sm-2" style={{width: '230px', paddingRight: '0px',paddingLeft: '23px',}}>
+                                    <div className="col-sm-2">
                                         <ModalCart/>
                                     </div>
                                 </div>
                             </div >
-                            {/*//NAVBARREACT*/}
-                            <div style={{height: '53px', backgroundColor: '#fff'}}>
-                                <NavBarReact/>
+                        </div>
+                        {/*//NAVBARREACT*/}
+                        <div className="band3">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-12">
+                                        <NavBarReact/>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

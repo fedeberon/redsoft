@@ -29,7 +29,7 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
     let totalPrice = 0;
 
     products.map((product, index) => {
-        totalPrice += parseFloat(product.precioUniVta) * product.quantity
+        totalPrice += parseFloat(product.precioUni) * product.quantity
     })
 
     const handleSubmit = async (event) => {
@@ -62,7 +62,7 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
                 product: {
                     code: product.code,
                     name: product.description,
-                    price: product.precioUniVta,
+                    price: product.precioUni,
                 },
                 quantity: product.quantity
             }
@@ -102,7 +102,7 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
                             <div key={index} className="item cart animate">
                                 <td><img src={`http://164.68.101.162:8093/img/${product.code}.jpg`} style={{width: '90px'}}/></td>
                                 <td className="col-description">{product.description} <br></br><strong>x {product.quantity}</strong></td>
-                                <td className="col-price">${product.precioUniVta}</td>
+                                <td className="col-price">${product.precioUni}</td>
                                 <td>
                                     <Button id="btnRemove" variant="light" onClick={() => removeProduct(product)}>
                                         <a className="deletecart">

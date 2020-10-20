@@ -33,11 +33,9 @@ const ModalContent = ({products, handleModal}) => {
             </div>
         </div>
         <div className="row mb-2">
-        </div>
-        <div className="row mb-2">
             <div className="text-center w-100">
                 <Button id="btnConti" variant="light" onClick={() => handleClick(false)}
-                        className={`js-modal-close linklr ${products.length === 0 ? 'btn-disab' : ''}`}
+                        className={`js-modal-close linklr btn-continuar ${products.length === 0 ? 'btn-disab' : ''}`}
                         >Seguir comprando</Button>
             </div>
         </div>

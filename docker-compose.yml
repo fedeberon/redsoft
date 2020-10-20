@@ -10,7 +10,7 @@ services:
   frontapp:
     image: pablogivi/frontweb:1.1
     ports:
-      - "5000:80" 
+      - "5000:8885" 
     depends_on:
       - sistemasapp
       - backapp

@@ -5,6 +5,7 @@ import CardDetailComponent from "./CardDetailComponent";
 import {Link} from "react-router-dom";
 import {Auth0Context} from '@auth0/auth0-react';
 import ImageProduct from "./ImageProduct";
+import { Spinner } from 'react-bootstrap';
 
 class PaginationComponent extends React.Component {
 
@@ -161,7 +162,7 @@ class PaginationComponent extends React.Component {
         const renderTodos = currentTodos.map((product) => {
 
             return <div className="col-6 col-sm-4"> {!this.state.details ?
-                <div className="item animate">
+                <div className="item animate" style={{height: '377px'}}>
                     <Link to={`/details/${product.code}`}>
                         <figure><ImageProduct
                             products={product}
@@ -169,8 +170,8 @@ class PaginationComponent extends React.Component {
                             setWidth={255}
                         /></figure>
                         <div className="info">
-                            <div className="productName"><h5>{product.description}</h5></div>
-                            <div className="price">U$S {product.precioUniVta}</div>
+                            <div className="name"><h5>{product.description}</h5></div>
+                            <div className="price">$ {product.precioUni}</div>
                             <button className="btn btn-sm" onClick={() => {
                                 this.handleDetail(product.code)
                             }}>Ver Detalle
@@ -193,16 +194,16 @@ class PaginationComponent extends React.Component {
         const renderPageNumbers = pageNumbers.map(number => {
             if (number === 1 && currentPage === 1) {
                 return (
-                    <Button variant="info">
-                        <li key={number} className='active'
+                    <Button className="btn-info-active" variant="info">
+                        <li key={number} className='page-item active'
                             id={number}><a id={number}
                                            onClick={this.handleClick}>{number}</a></li>
                     </Button>
                 )
             } else if ((number < upperPageBound + 1) && number > lowerPageBound) {
                 return (
-                    <Button variant={number == currentPage ? 'info' : "light"}>
-                        <li className={number == currentPage ? 'active' : ""}
+                    <Button className={number == currentPage ? 'btn-info-active' : ""} variant={number == currentPage ? 'info' : "light"}>
+                        <li className={number == currentPage ? 'page-item active' : ""}
                             key={number} id={number}><a id={number}
                                                         onClick={this.handleClick}>{number}</a>
                         </li>
@@ -246,7 +247,7 @@ class PaginationComponent extends React.Component {
             <div>
                 <div className="row-filter">
                     <input className="form-control col-sm-4 pl-0" type="text" style={{
-                        left: '570px',
+                        display:`${this.state.isLoading ? 'none' : 'block'}`,
                         marginBottom: '10px', backgroundColor: 'ghostwhite', border: '1px solid #ced4da',
                         fontFamily: 'unset', fontSize: 'medium', paddingTop: '0px', paddingBottom: '0px',
                         height: '32px', width: '262px'
@@ -257,10 +258,14 @@ class PaginationComponent extends React.Component {
                            onChange={(text) => this.filter(text)}/>
                 </div>
                 <div className="row">
+                    <div className="row" style={{display:`${this.state.isLoading ? 'block' : 'none'}`}}>
+                        <Spinner animation="border"/>
+                    </div>
                     {renderTodos}
                 </div>
-                <div className="row" style={{paddingLeft: '248px'}}>
-                    <ul className="pagination">
+                <div className="row">
+                    <ul className="pagination" style={{marginLeft: 'auto', marginRight: 'auto',
+                        display:`${this.state.isLoading ? 'none' : 'block'}`}}>
                         {renderPrevBtn}
                         {pageDecrementBtn}
                         {renderPageNumbers}

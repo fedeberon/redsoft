@@ -16,7 +16,7 @@ const Detail = (props) => {
         dispatch(ordersActions.addOrder(product));
     }
 
-    const emptyProduct = {description: "", precioUniVta: ""}
+    const emptyProduct = {description: "", precioUni: ""}
     const product = props.product ? props.product : emptyProduct;
 
     const [show, setShow] = useState(false);
@@ -54,7 +54,7 @@ const Detail = (props) => {
             <div className="info">
                 <a>Computación</a>
                 <div className="name detalle">{product.description}</div>
-                <div className="price detalle"><span className="offer">$15.000</span> U$S {product.precioUniVta}
+                <div className="price detalle">${product.precioUni}
                 </div>
             </div>
                 <form>

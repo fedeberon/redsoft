@@ -50,18 +50,21 @@ class FeaturedProductsComponent extends React.Component {
 
                         <div className="col-sm-3">
                             <div className="item animate">
-                                <Link to={"/details/81AW00004AR"}>
-                                    <figure><img src="img/producto-04.jpg" alt="Producto Destacado 4" className="foto"/></figure>
+                                <a href={"/details/AA"}>
+                                    <figure><img src="http://164.68.101.162:8093/img/AA.jpg" alt="Producto Destacado 4" className="foto"/></figure>
                                     <div className="info">
-                                        <div className="name">Notebook Lenovo V330-15ISK I3</div>
-                                        <div className="price">$200.000,00</div>
+                                        <div className="name">Gigabyte Radeon RX 570 8GB Gaming</div>
+                                        <div className="price">$340.00000</div>
                                     </div>
-                                </Link>
+                                </a>
                             </div>
                         </div>
                     </div>
                     <div className="text-center">
-                        <Link to={"/products"} className="btn btn-lg btn-light" role="button" aria-pressed="true">Ver todo</Link>
+                        {/*<Link to={"/products"} className="btn btn-lg btn-light"*/}
+                        {/*      role="button" aria-pressed="true">Ver todo</Link>*/}
+                        <a href="/products" className="btn btn-lg btn-light btn-all" role="button" name="productos">
+                            VER TODO</a>
                     </div>
                 </div>
             </div>

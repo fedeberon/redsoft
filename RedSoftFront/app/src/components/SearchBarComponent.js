@@ -21,7 +21,7 @@ class SearchBarComponent extends React.Component {
                        onKeyPress={(e) => e.key === 'Enter' ? window.location.href = `/products/search=${this.state.textSearch}` : ""}
                        value={this.state.textSearch}
                        onChange={(event) => this.setState({textSearch: event.target.value})}/>
-                <div className="input-group-text searchtop-icon" id="basic-text1" style={{backgroundColor: '#fff'}}>
+                <div className="input-group-text searchtop-icon" id="basic-text1">
                     <Link id="asd" to={`/products/search=${this.state.textSearch}`} style={{
                         pointerEvents: `${textSearch.length === 0 ? 'none' : "auto"}`,
                         cursor: `${textSearch.length === 0 ? 'default' : 'pointer'}`
