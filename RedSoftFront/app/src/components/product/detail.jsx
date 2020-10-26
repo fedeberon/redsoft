@@ -4,6 +4,7 @@ import {ordersActions} from "../../store/order";
 import 'bootstrap';
 import Alert from "react-bootstrap/Alert";
 import Order from "../order/order";
+import Spinner from "react-bootstrap/Spinner";
 
 
 
@@ -18,6 +19,7 @@ const Detail = (props) => {
 
     const emptyProduct = {description: "", precioUni: ""}
     const product = props.product ? props.product : emptyProduct;
+    const awaitDetail = props.awaitDetail;
 
     const [show, setShow] = useState(false);
 
@@ -50,11 +52,16 @@ const Detail = (props) => {
     return (
 
         <div>
-
             <div className="info">
-                <a>Computación</a>
-                <div className="name detalle">{product.description}</div>
-                <div className="price detalle">${product.precioUni}
+                <a className="categoria detalle">Computación</a>
+                <Spinner animation="border" variant="info" size='sm'
+                         style={{display: `${awaitDetail ? 'flex' : 'none'} `,
+                             margin: '0 auto'}}/>
+                <div id="infoProducts" className="name detalle">
+                    <h4>{product.description}</h4>
+                </div>
+                <div className="price detalle" style={{display: awaitDetail ? 'none' : 'block'}}>
+                    $ {parseFloat(product.precioUni).toFixed(2)}
                 </div>
             </div>
                 <form>
@@ -68,7 +75,7 @@ const Detail = (props) => {
                     </div>
                     <div className="col-5" style={{paddingRight: 0}}>
                         <button id="buttonAdd"
-                            type="button" className={`${btnClicked ? 'addtocart-clicked btn-disab' : 'addtocart'}`}
+                            type="button" className={`${awaitDetail ? 'btn-disab' : ''} ${btnClicked ? 'addtocart-clicked btn-disab' : 'addtocart'}`}
                                 onClick={callFunctions}>{btnClicked ? 'Producto Agregado' : 'Agregar al Carrito'}
                         </button>
                     </div>
@@ -83,7 +90,7 @@ const Detail = (props) => {
                     </div>
                 </div>
             </form>
-            <a href="productos.php" className="btn btn-whatsapp" role="button"
+            <a href="productos.php" className="btn btn-lg btn-whatsapp" role="button"
                aria-pressed="true">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><title>WhatsApp</title>
                     <path

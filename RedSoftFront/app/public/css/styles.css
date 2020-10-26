@@ -56,6 +56,12 @@ h5 {
 	font: inherit;
 	width: 155px;
 	height: 115px;
+	font-size: 15px;
+	line-height: 21px;
+	text-transform: lowercase;
+}
+.col-description:first-line {
+	text-transform: capitalize !important;
 }
 .col-price {
 	width: 82px;
@@ -125,13 +131,12 @@ h5 {
 	font-variant-caps: small-caps;}
 
 .succ-cont {color: black;
-border-bottom-width: 20px;
-margin-top: -33px;
-margin-left: 95px;
-font-size: 16px;
-position: absolute;
-display: table;
-text-align-last: center;}
+    border-bottom-width: 20px;
+    font-size: 16px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
 
 .btn-disab {
 pointer-events: none;
@@ -139,6 +144,9 @@ pointer-events: none;
 .btn-continuar {
 	border: 0px !important;
 	font-size: 15px !important;
+}
+.btn-continuar:hover {
+	color: #be1d7b !important;
 }
 
 .breadcrumb-item:hover {color: black; text-decoration: none}
@@ -329,7 +337,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 
 .infoProduct {padding-left: 40px;}
 .categoria.detalle {font-size: 12px; color: #999999; text-transform: uppercase; font-family: 'Barlow', Arial, sans-serif; margin-bottom: 25px;}
-.name.detalle {font-size: 21px; line-height: 27px;  font-weight: 400; color: #000; margin-bottom: 10px;}
+.name.detalle {font-size: 21px; line-height: 27px;  font-weight: 400; color: #000; margin-bottom: 10px;
+                text-transform: lowercase !important;}
+    .name.detalle:first-line {
+                text-transform: capitalize !important;
+                font-size: 21px;}
 .price.detalle {color: #be1d7b;font-weight: 500; font-size: 20px; margin-bottom: 30px;}
 .price.detalle .offer {font-weight: 300; color: #7a7a7a; text-decoration: line-through; margin-right: 8px;}
 
@@ -341,9 +353,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 
 .addtocart-clicked {background-color: #54c147; color: azure; text-transform: uppercase; font-size: 15px;padding: .7rem 1.4rem; margin-top: 21px;line-height: 1.5;border-radius: 0.3rem; border-color: cornsilk;}
 
-.btn-whatsapp {border: 1px solid #25d366; text-transform: uppercase; color: #25d366; font-size: 15px; margin-top: 25px; font-weight: 600;padding: .7rem 1.4rem;}
+.btn-whatsapp {border: 1px solid #25d366 !important; text-transform: uppercase; color: #25d366 !important; font-size: 15px !important; margin-top: 25px; font-weight: 600 !important ;padding: .7rem 1.4rem !important;}
 .btn-whatsapp svg {fill:#25d366; height: 16px;}
-.btn-whatsapp:hover {background-color:#25d366; color: #fff; }
+.btn-whatsapp:hover {background-color:#25d366; color: #fff !important; }
 .btn-whatsapp:hover svg {fill: #fff; }
 
 .accordionProduct {margin-top: 30px;}
@@ -360,9 +372,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 	font-size: 16px !important;
 	font-weight: 400 !important;
 }
-.name h5:first-letter {
-	text-transform: uppercase !important;
+.name h5:first-line {
+	text-transform: capitalize !important;
 }
+
 #modalCart .modal-header {display: block;}
 #modalCart .modal-footer {padding-top: 40px; padding-bottom: 40px;}
 .item.cart {margin-bottom: 10px; height: 120px;}
@@ -370,6 +383,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 .item.cart .name, .item.cart .price  {text-align: left; padding-top: 17px; padding-bottom: 10px;}
 .deletecart { float: right; display: table; padding: 10px; padding-top: 5px; line-height: 12px;}
 .deletecart svg {height: 15px;}
+
+/*.item.cart.animate > td {*/
+/*	width: 114px;*/
+/*	height: 115px;*/
+/*}*/
 
 .cart-total {margin-bottom: 30px; margin-top: 40px;}
 .cart-total h2 {font-size: 23px; font-weight: 600;}
@@ -394,8 +412,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 	.modal.left .modal-content,
 	.modal.right .modal-content {
 		height: 100%;
-		/*overflow-y: auto;*/
-
+		overflow-y: auto;
+		overflow-x: hidden;
 	}
 	
 	.modal.left .modal-body,
@@ -777,7 +795,7 @@ footer {padding-top: 35px;}
 #carouselProduct {margin-bottom: 25px;}
 #carouselProduct .carousel-indicators {display: none;}
 #carouselProduct .zoom-icon {display: none;}
-.infoProduct {padding-left: 15px;}
+.infoProduct {padding-left: 40px;}
 
 .description {margin-top: 30px;}
 .btn-whatsapp {width: 100%;}

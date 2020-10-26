@@ -15,7 +15,7 @@ const ModalContent = ({products, handleModal}) => {
 
     return (
 
-    <div className="modal-content" style={{display: 'inline-table'}}>
+    <div className="modal-content">
         <div className="modal-header">
             <button id="btnCloseModal" onClick={handleModal} type="button" className="close" data-dismiss="modal"
                     aria-label="Close"><span

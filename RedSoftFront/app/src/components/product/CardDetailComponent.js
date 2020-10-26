@@ -14,7 +14,7 @@ class CardDetailComponent extends Component {
         this.state = {
             products: [],
             currentPage: 1,
-            btnExpand: false
+            btnExpand: false,
         }
     }
 
@@ -124,9 +124,8 @@ class CardDetailComponent extends Component {
                                 </div>
 
                                 {/*// <!-- info -->*/}
-                                <div className="col infoProduct">
-                                    <ProductDetail product={product}/>
-
+                                <div className="col infoProduct" style={{paddingLeft: '40px'}}>
+                                    <ProductDetail product={product} awaitDetail={this.state.isLoading}/>
                                     <div id="accordion" className="accordionProduct">
                                         <div className="card">
                                             <div className="card-header" id="headingOne">

@@ -171,7 +171,7 @@ class PaginationComponent extends React.Component {
                         /></figure>
                         <div className="info">
                             <div className="name"><h5>{product.description}</h5></div>
-                            <div className="price">$ {product.precioUni}</div>
+                            <div className="price">$ {parseFloat(product.precioUni).toFixed(2)}</div>
                             <button className="btn btn-sm" onClick={() => {
                                 this.handleDetail(product.code)
                             }}>Ver Detalle

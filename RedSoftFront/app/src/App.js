@@ -15,6 +15,7 @@ import AboutUs from "./components/navbar/AboutUs";
 import Services from "./components/navbar/Services";
 import CardDetailComponent from "./components/product/CardDetailComponent";
 import ProductsList from "./components/product/ProductsList";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
   return (
     <Provider store={store}>
         <Router>
+            <ScrollToTop/>
             <Header/>
             <Switch style={{paddingLeft: 0}}>
                 <Route exact path="/" component={HomeContainer} />

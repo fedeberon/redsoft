@@ -100,9 +100,9 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
                     <tbody>
                         {products.map((product, index) => (
                             <div key={index} className="item cart animate">
-                                <td><img src={`http://164.68.101.162:8093/img/${product.code}.jpg`} style={{width: '90px'}}/></td>
+                                <td style={{width: '114px', heigth: '115px'}}><img src={`http://164.68.101.162:8093/img/${product.code}.jpg`} style={{width: '90px'}}/></td>
                                 <td className="col-description">{product.description} <br></br><strong>x {product.quantity}</strong></td>
-                                <td className="col-price">${product.precioUni}</td>
+                                <td className="col-price">${parseFloat(product.precioUni).toFixed(2)}</td>
                                 <td>
                                     <Button id="btnRemove" variant="light" onClick={() => removeProduct(product)}>
                                         <a className="deletecart">
