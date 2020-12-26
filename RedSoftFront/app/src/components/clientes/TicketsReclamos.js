@@ -12,10 +12,10 @@ const TicketsReclamos = ({newOption}) => {
 
     return (
         <>
-            <h1>Tickets reclamos</h1>
+            <h1 className="titlesh1">Tickets reclamos</h1>
 
 
-            <h2>Abrir ticket</h2>
+            <h2 className="titlesh2">Abrir ticket</h2>
             <div className="container-fluid box">
                 <div className="row">
                     <div className="col-12 col-sm">

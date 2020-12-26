@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PaginationComponent from "./PaginationComponent";
 import Header from "../header/Header";
 import FooterComponent from "../home/FooterComponent";
@@ -38,7 +38,7 @@ class ProductsList extends React.Component {
                     </nav>
                     <h1 className="titcategory">Productos</h1>
                     <div className="row">
-                        <div className="col-sm-3 sidebar display" style={{top: '43px'}}>
+                        <div className="col-sm-3 sidebar display">
                             <h5>Categorias</h5>
                             <div className="list-group list-group-flush">
 

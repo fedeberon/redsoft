@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import 'bootstrap';
 import ReactImageZoom from 'react-image-zoom';
 import ProductDetail from "./detail";
@@ -67,7 +67,7 @@ class CardDetailComponent extends Component {
                                     <div id="carouselProduct" className="carousel slide" data-ride="carousel">
                                         <div className="carousel-inner">
                                             <div className="label">20%</div>
-                                            <img className="zoom-icon" src="/img/zoom-in.svg"/>
+                                            <img className="zoom-icon" alt="" src="/img/zoom-in.svg"/>
                                             <div className="carousel-item active">
                                             <span className="zoom" id="ex1"><ReactImageZoom width={538} height={508}
                                                                                             zoomWidth={600}
@@ -95,27 +95,27 @@ class CardDetailComponent extends Component {
                                         </div>
                                         <a className="carousel-control-prev" href="#carouselProduct" role="button"
                                            data-slide="prev">
-                                    <span className="carousel-control-prev-icon" aria-hidden="true"><img
+                                    <span className="carousel-control-prev-icon" aria-hidden="true"><img alt="" 
                                         src="/img/arrow-car-left.svg"/></span>
                                             <span className="sr-only">Previous</span>
                                         </a>
                                         <a className="carousel-control-next" href="#carouselProduct" role="button"
                                            data-slide="next">
-                                    <span className="carousel-control-next-icon" aria-hidden="true"><img
+                                    <span className="carousel-control-next-icon" aria-hidden="true"><img alt="" 
                                         src="/img/arrow-car-right.svg"/></span>
                                             <span className="sr-only">Next</span>
                                         </a>
 
                                         <ol className="carousel-indicators">
-                                            <li data-target="#carouselProduct" data-slide-to="0" className="active"><img
+                                            <li data-target="#carouselProduct" data-slide-to="0" className="active"><img alt="" 
                                                 src={`http://164.68.101.162:8093/img/${code}.jpg`}
                                                 className="d-block w-100"/>
                                             </li>
-                                            <li data-target="#carouselProduct" data-slide-to="1"><img
+                                            <li data-target="#carouselProduct" data-slide-to="1"><img alt="" 
                                                 src={`http://164.68.101.162:8093/img/${code}1.jpg`}
                                                 className="d-block w-100"/>
                                             </li>
-                                            <li data-target="#carouselProduct" data-slide-to="2"><img
+                                            <li data-target="#carouselProduct" data-slide-to="2"><img alt="" 
                                                 src={`http://164.68.101.162:8093/img/${code}2.jpg`}
                                                 className="d-block w-100"/>
                                             </li>
@@ -145,7 +145,7 @@ class CardDetailComponent extends Component {
                                                 <div className="card-body">
                                                     Informacion medios de pago.
                                                     <div className="row">
-                                                        <img style={{height: '70px'}}
+                                                        <img  alt="" style={{height: '70px'}}
                                                              src="https://www.mercadopago.com/org-img/Manual/ManualMP/imgs/isologoVertical.png"></img>
                                                     </div>
                                                 </div>

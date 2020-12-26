@@ -4,10 +4,10 @@ const NuevosReclamos = () => {
 
     return (
         <>
-            <h1>Tickets reclamos</h1>
+            <h1 className="titlesh1">Tickets reclamos</h1>
 
 
-            <h2>Nuevo Ticket</h2>
+            <h2 className="titlesh2">Nuevo Ticket</h2>
             <div className="container-fluid box">
                 <div className="row">
                     <div className="col-sm">

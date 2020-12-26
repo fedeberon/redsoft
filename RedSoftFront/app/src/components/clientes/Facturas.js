@@ -5,10 +5,10 @@ const Facturas = () => {
 
     return (
         <div>            
-            <h1>Mis facturas</h1>
+            <h1 className="titlesh1">Mis facturas</h1>
 
 
-            <h2>Saldo de tu cuenta</h2>
+            <h2 className="titlesh2">Saldo de tu cuenta</h2>
             <div className="container-fluid box">
             <div className="row">
                 <div className="col-12 col-sm">

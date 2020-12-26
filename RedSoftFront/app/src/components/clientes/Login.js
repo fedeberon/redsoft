@@ -18,13 +18,13 @@ const Login = () => {
             <div class="container welcome">
                 <div class="row">
                     <div class="col-sm">
-                        <h1>Hola,<br/>
+                        <h1 className="titlesh1">Hola,<br/>
                         Bienvenido a <br/>
                         La Red</h1>
 			        </div>
                     <div class="col-sm">
                         <form>
-                            <h2>Acceso a clientes</h2>
+                            <h2 className="titlesh2">Acceso a clientes</h2>
 
                             <label for="">Usuario / Email</label>
                             <input type="text" class="form-control"/>

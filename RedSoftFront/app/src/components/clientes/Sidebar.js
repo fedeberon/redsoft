@@ -5,7 +5,7 @@ const Sidebar = () => {
     return (    
             
         <div className="d-flex" id="wrapper">            
-            <div className="sidebar" id="sidebar-wrapper">
+                <div className="sidebar-customer" id="sidebar-wrapper">
                 <div className="sidebar-heading">
                     <div className="logotop d-none d-sm-block">
                         <a href="index.php">

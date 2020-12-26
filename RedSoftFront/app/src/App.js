@@ -9,7 +9,7 @@ import Preference from "./components/order/preference"
 import FooterComponent from "./components/home/FooterComponent";
 import Contact from "./components/navbar/Contact";
 import Switch from "react-bootstrap/Switch";
-import Route from "react-router-dom/es/Route";
+import {Route} from "react-router-dom";
 import HomeContainer from "./components/HomeContainer";
 import AboutUs from "./components/navbar/AboutUs";
 import Services from "./components/navbar/Services";

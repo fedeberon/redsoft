@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import TicketsReclamos from './TicketsReclamos';
 import Facturas from './Facturas';
 import Estado from './Estado';
@@ -79,7 +79,7 @@ const Home = () => {
                         <span className="d-sm-none">Menu</span>
                         </button>
 
-                    <a href="" className="bt-exit">Salir 
+                    <a className="bt-exit">Salir 
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><title>arrow-right-circle</title><path d="M7,13.635A6.635,6.635,0,1,0,.365,7,6.642,6.642,0,0,0,7,13.635ZM7,1.028A5.972,5.972,0,1,1,1.028,7,5.979,5.979,0,0,1,7,1.028Z" /><path d="M4.118,7.333H9.081l-1.3,1.3a.332.332,0,0,0,.471.468l1.864-1.865a.33.33,0,0,0,0-.468L8.253,4.9a.331.331,0,0,0-.468.468l1.3,1.3H4.118a.332.332,0,1,0,0,.663Z" /></svg>
                     </a>
                     <div className="user d-none d-sm-block">

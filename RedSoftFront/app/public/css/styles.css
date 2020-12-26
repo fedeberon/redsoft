@@ -857,23 +857,23 @@ footer .line {background-color: #efefef; height: 1px; margin-top: 20px; margin-b
 		.login form {background-color: #F7F7F7; padding: 30px; border-radius: 6px;}
 		.login .btn {margin-bottom: 20px;}
 
-		h1 {
+		.titlesh1 {
 			color: #BE1D7B !important; 
 			font-size: 19px !important;  
 			font-weight: 600 !important; ; 
 			margin-bottom: 60px !important;
 		}
-		h2 {
+		.titlesh2 {
 			color: #000 !important; 
 			font-size: 16px !important;  
 			font-weight: 400 !important; ; 
 			margin-bottom: 15px !important; 
 		}
 
-		.sidebar{background: rgb(86,196,207);
-		background: linear-gradient(180deg, rgba(86,196,207,0.6) 0%, rgba(86,196,207,0.1) 100%);}
+		.sidebar-customer {background: rgb(86,196,207);
+		background: linear-gradient(180deg, rgba(86,196,207,0.6) 0%, rgba(86,196,207,0.1) 100%) !important;}
 		.sidebar .list-group { margin: auto;}
-		.sidebar .list-group .list-group-item {border-radius: 4px ; border: 0px ; width: 85% ; margin: auto; margin-bottom: 5px; background-color: #fff !important;}
+		.sidebars .list-groups .list-group-item {border-radius: 4px ; border: 0px ; width: 85% ; margin: auto; margin-bottom: 5px; background-color: #fff !important;}
 		.sidebar .list-group .list-group-item.active {color: #BE1D7B;}
 		.sidebar .list-group .list-group-item.active svg {fill: #BE1D7B;}
 		.sidebar .list-group .list-group-item svg {width: 12px; margin-right: 10px;}
@@ -901,9 +901,9 @@ footer .line {background-color: #efefef; height: 1px; margin-top: 20px; margin-b
 		.user {float: right;padding: 9px 18px; font-size: 14px;}
 		.user svg {height: 15px; vertical-align: text-top; fill:#000; margin-right: 5px;}
 
-		.bt-exit {float: right; background-color: #000; color: #fff; display: table; padding: 9px 18px; font-size: 14px; line-height: 14px;}
+		.bt-exit {float: right; background-color: #000; color: #fff !important; display: table; padding: 9px 18px; font-size: 14px; line-height: 14px;}
 		.bt-exit svg {height: 15px; vertical-align: middle; fill:#fff; margin-left: 60px;}
-		.bt-exit:hover {text-decoration: none; color: #BE1D7B;}
+		.bt-exit:hover {text-decoration: none; color: #BE1D7B !important; cursor: pointer !important;}
 		.bt-exit:hover svg {fill: #BE1D7B;}
 
 		.box {background-color: #F7F7F7; margin-bottom: 30px;}
@@ -945,7 +945,8 @@ footer .line {background-color: #efefef; height: 1px; margin-top: 20px; margin-b
 			-moz-transition: margin .25s ease-out;
 			-o-transition: margin .25s ease-out;
 			transition: margin .25s ease-out;
-			width: 240px
+			width: 240px;
+			background: linear-gradient(180deg, rgba(86,196,207,0.6) 0%, rgba(86,196,207,0.1) 100%) !important;
 		}
 
 		a {color: #000;}

@@ -4,13 +4,11 @@ const Estado = () => {
 
     return (
         <>
-            <h1>Estado del servicio</h1>
+            <h1 className="titlesh1">Estado del servicio</h1>
 
-
-            <h2>Aquí podrás verificar el estado del servicio</h2>
+            <h2 className="titlesh2">Aquí podrás verificar el estado del servicio</h2>
             <p>De esta forma podrás verificar si el inconveniente técnico es general, zonal o particular.</p>
 
-            
             {/* Estados:
             s1 - Rojo
             s2 - Verde
