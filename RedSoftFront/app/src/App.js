@@ -16,15 +16,17 @@ import Services from "./components/navbar/Services";
 import CardDetailComponent from "./components/product/CardDetailComponent";
 import ProductsList from "./components/product/ProductsList";
 import ScrollToTop from "./components/ScrollToTop";
-
+import Login from "./components/clientes/Login";
+import Home from "./components/clientes/Home";
 
 function App() {
    
   return (
+    <>
     <Provider store={store}>
         <Router>
             <ScrollToTop/>
-            <Header/>
+            {/* <Header/> */}
             <Switch style={{paddingLeft: 0}}>
                 <Route exact path="/" component={HomeContainer} />
                 <Route exact path="/order/details" component={Order}/>
@@ -34,12 +36,16 @@ function App() {
                 <Route exact path="/services" component={Services}/>
                 <Route exact path="/details/:id" component={CardDetailComponent}/>
                 <Route exact path="/products" component={ProductsList}/>
-                <Route exact path="/products/search=:search" component={ProductsList}/>
+                <Route exact path="/products/search=:search" component={ProductsList}/>  
+                <Route exact path="/clientes/login" component={Login}/>  
+                <Route exact path="/clientes/:section" component={Home}/>
                 {/*<Route exact path="/products/categories/:name" component={ProductsList}/>*/}
-            </Switch>
+            </Switch>            
         </Router>
-        <FooterComponent/>
-    </Provider>
+        {/* <FooterComponent/>         */}
+    </Provider>     
+          
+    </>
   );
 }
 

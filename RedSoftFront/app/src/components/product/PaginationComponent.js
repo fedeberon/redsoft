@@ -202,8 +202,8 @@ class PaginationComponent extends React.Component {
                 )
             } else if ((number < upperPageBound + 1) && number > lowerPageBound) {
                 return (
-                    <Button className={number == currentPage ? 'btn-info-active' : ""} variant={number == currentPage ? 'info' : "light"}>
-                        <li className={number == currentPage ? 'page-item active' : ""}
+                    <Button className={number === currentPage ? 'btn-info-active' : ""} variant={number === currentPage ? 'info' : "light"}>
+                        <li className={number === currentPage ? 'page-item active' : ""}
                             key={number} id={number}><a id={number}
                                                         onClick={this.handleClick}>{number}</a>
                         </li>

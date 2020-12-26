@@ -84,7 +84,7 @@ class NavBarReact extends React.Component {
                             </NavDropdown>
                             <Nav.Link className="linklr" href="/aboutus"><Link to={"/aboutus"}>SOBRE
                                 LA RED</Link></Nav.Link>
-                            <Nav.Link className="linklr"><Link to={"#"}>ACCESO A
+                            <Nav.Link className="linklr"><Link to={"/clientes/login"}>ACCESO A
                                 CLIENTES</Link></Nav.Link>
                             <Nav.Link className="linklr" href="/contact"><Link
                                 to={"/contact"}>CONTACTO</Link></Nav.Link>

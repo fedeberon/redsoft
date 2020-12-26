@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import PaginationComponent from "./PaginationComponent";
-import ListGroup from "react-bootstrap/ListGroup";
+import Header from "../header/Header";
+import FooterComponent from "../home/FooterComponent";
 import {Link} from "react-router-dom";
 
 class ProductsList extends React.Component {
@@ -25,7 +26,8 @@ class ProductsList extends React.Component {
 
 
         return (
-
+            <>
+            <Header/>
             <div className="categoria">
                 <div className="container">
                     <nav aria-label="breadcrumb">
@@ -71,6 +73,8 @@ class ProductsList extends React.Component {
                     </div>
                 </div>
             </div>
+            <FooterComponent/>
+            </>
         );
     }
 }

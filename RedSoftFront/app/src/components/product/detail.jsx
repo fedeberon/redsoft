@@ -1,11 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {ordersActions} from "../../store/order";
 import 'bootstrap';
 import Alert from "react-bootstrap/Alert";
-import Order from "../order/order";
 import Spinner from "react-bootstrap/Spinner";
-
 
 
 const Detail = (props) => {
@@ -50,7 +48,7 @@ const Detail = (props) => {
     }
 
     return (
-
+    
         <div>
             <div className="info">
                 <a className="categoria detalle">Computación</a>
@@ -101,7 +99,7 @@ const Detail = (props) => {
                 </svg>
                 &nbsp;Consultar</a>
         </div>
-
+    
     )
 }
 

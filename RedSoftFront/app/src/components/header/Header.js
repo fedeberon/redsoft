@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import ModalCart from "./ModalCart";
 import NavBarReact from "../NavBarReact";
 import SearchBarComponent from "../SearchBarComponent";
@@ -108,7 +108,7 @@ class Header extends React.Component {
                                         d="M38.523,40.507a1.985,1.985,0,0,1-1.393-.574L26.785,29.584a15.745,15.745,0,1,1,2.8-2.8L39.926,37.123a1.983,1.983,0,0,1-1.4,3.384ZM17.19,5.456A11.735,11.735,0,1,0,28.923,17.19,11.746,11.746,0,0,0,17.19,5.456Z"/>
                                 </svg>
                             </a>
-                            <Link to={""} title="modal" target="#modalCart"
+                            <Link to={""} title="modal" target="#modalCart" 
                                className="icontop">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>cart</title>
                                     <path
@@ -171,7 +171,7 @@ class Header extends React.Component {
                                     <li><LogoutButton/></li>
                                     <Wrapper/>
                                 </ul>
-                                <a href="" className="clientes">Acceso a clientes
+                                <a href="/clientes/login" className="clientes">Acceso a clientes
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><title>arrow-right-circle</title><path d="M7,13.635A6.635,6.635,0,1,0,.365,7,6.642,6.642,0,0,0,7,13.635ZM7,1.028A5.972,5.972,0,1,1,1.028,7,5.979,5.979,0,0,1,7,1.028Z" /><path d="M4.118,7.333H9.081l-1.3,1.3a.332.332,0,0,0,.471.468l1.864-1.865a.33.33,0,0,0,0-.468L8.253,4.9a.331.331,0,0,0-.468.468l1.3,1.3H4.118a.332.332,0,1,0,0,.663Z" /></svg></a>
                                 <div className="spacer"></div>
                             </div>

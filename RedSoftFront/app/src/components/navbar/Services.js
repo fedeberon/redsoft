@@ -1,9 +1,13 @@
 import React from 'react';
+import Header from "../header/Header";
+import FooterComponent from "../home/FooterComponent";
 
 class Services extends React.Component {
 
     render() {
         return (
+            <>
+            <Header/>
             <div className="page servicios">
                 <div className="container">
                     <div className="row">
@@ -33,6 +37,8 @@ class Services extends React.Component {
                     </div>
                 </div>
             </div>
+            <FooterComponent/>
+            </>
     );
     }
 }
