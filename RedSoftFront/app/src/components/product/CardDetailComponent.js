@@ -6,6 +6,8 @@ import api from "../../axios";
 import {Link} from "react-router-dom";
 import ModalFileUploader from "./ModalFileUploader";
 import {Button} from "react-bootstrap";
+import Header from "../header/Header";
+import FooterComponent from "../home/FooterComponent";
 
 class CardDetailComponent extends Component {
 
@@ -47,7 +49,9 @@ class CardDetailComponent extends Component {
 
         return (
 
-            <div>
+            <>
+                <Header/>
+                <div>                
                     <div className="categoria">
                         <div className="container">
                             <nav aria-label="breadcrumb">
@@ -232,6 +236,8 @@ class CardDetailComponent extends Component {
                         </div>
                     </div>
                 </div>
+                <FooterComponent/>
+            </>
         );
     }
 }

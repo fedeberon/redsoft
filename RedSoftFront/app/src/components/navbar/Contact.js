@@ -1,5 +1,7 @@
 import React from 'react';
 import Iframe from 'react-iframe';
+import Header from "../header/Header";
+import FooterComponent from "../home/FooterComponent";
 
 class Contact extends React.Component {
 
@@ -29,6 +31,9 @@ class Contact extends React.Component {
         const {name, email, phone, msg} = this.state;
 
         return (
+
+            <>
+            <Header/> 
             <div className="page Contacto">
                 <div className="container">
                     <div className="row">
@@ -97,7 +102,8 @@ class Contact extends React.Component {
                     </div>
                 </div>
             </div>
-
+            <FooterComponent/>
+            </>
         );
     }
 }

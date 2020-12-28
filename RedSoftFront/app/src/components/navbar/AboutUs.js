@@ -1,11 +1,14 @@
 import React from 'react';
+import Header from "../header/Header";
+import FooterComponent from "../home/FooterComponent";
 
 class AboutUs extends React.Component {
 
     render() {
         return (
 
-
+            <>
+            <Header/>            
             <div className="page nosotros">
                 <div className="container">
                     <div className="row justify-content-md-center">
@@ -61,6 +64,8 @@ class AboutUs extends React.Component {
                     </div>
                 </div>
             </div>
+            <FooterComponent/>
+            </>
         );
     }
 }
