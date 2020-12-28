@@ -30,7 +30,7 @@ const NuevosReclamos = () => {
                                 <div className="col">
                                     <label for="">Mensaje</label>
                                     <textarea className="form-control" id="" rows="5"></textarea>
-                                    <button type="submit" className="btn btn-primary">Enviar</button>
+                                    <button type="submit" className="btn-clientes btn btn-primary">Enviar</button>
                                 </div>
                             </div>
                         </form>

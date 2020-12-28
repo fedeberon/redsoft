@@ -869,13 +869,19 @@ footer .line {background-color: #efefef; height: 1px; margin-top: 20px; margin-b
 			font-weight: 400 !important; ; 
 			margin-bottom: 15px !important; 
 		}
-
+		
 		.sidebar-customer {background: rgb(86,196,207);
 		background: linear-gradient(180deg, rgba(86,196,207,0.6) 0%, rgba(86,196,207,0.1) 100%) !important;}
 		.sidebar .list-group { margin: auto;}
-		.sidebars .list-groups .list-group-item {border-radius: 4px ; border: 0px ; width: 85% ; margin: auto; margin-bottom: 5px; background-color: #fff !important;}
-		.sidebar .list-group .list-group-item.active {color: #BE1D7B;}
-		.sidebar .list-group .list-group-item.active svg {fill: #BE1D7B;}
+		/* .sidebars .list-groups .list-group-item {
+			border-radius: 4px ; 
+			border: 0px ; 
+			width: 85% ;
+			background-color: #fff !important;
+		} */
+		.sidebar .list-group .list-group-item.activecus {color: #BE1D7B;}
+		.list-group-item.active-customer {background-color: white !important;}
+		.sidebar .list-group .list-group-item.activecus svg {fill: #BE1D7B;}
 		.sidebar .list-group .list-group-item svg {width: 12px; margin-right: 10px;}
 		.sidebar .list-group .list-group-item:hover {background-color: #EFF9F9;}
 		.sidebar-heading {padding: 0.875rem 1.25rem !important;
@@ -901,7 +907,15 @@ footer .line {background-color: #efefef; height: 1px; margin-top: 20px; margin-b
 		.user {float: right;padding: 9px 18px; font-size: 14px;}
 		.user svg {height: 15px; vertical-align: text-top; fill:#000; margin-right: 5px;}
 
-		.bt-exit {float: right; background-color: #000; color: #fff !important; display: table; padding: 9px 18px; font-size: 14px; line-height: 14px;}
+		.bt-exit {
+			float: right; 
+			background-color: #000; 
+			color: #fff !important; 
+			display: table; 
+			padding: 9px 18px; 
+			font-size: 14px; 
+			line-height: 14px;
+		}
 		.bt-exit svg {height: 15px; vertical-align: middle; fill:#fff; margin-left: 60px;}
 		.bt-exit:hover {text-decoration: none; color: #BE1D7B !important; cursor: pointer !important;}
 		.bt-exit:hover svg {fill: #BE1D7B;}
@@ -961,6 +975,18 @@ footer .line {background-color: #efefef; height: 1px; margin-top: 20px; margin-b
 			border-color: #007bff;
 		}
 
+		.sideclass {
+			border-radius: 4px !important;
+			border: 0px !important;
+			width: 85% !important;
+			margin: auto;
+			margin-bottom: 5px;
+			background-color: #fff !important;
+		}
+		.sideclass:hover {
+			background-color: #f8f9fa!important;
+		}
+
 @media screen and (min-width: 768px) {
 	#sidebar-wrapper {
 		margin-left: 0;
@@ -969,9 +995,9 @@ footer .line {background-color: #efefef; height: 1px; margin-top: 20px; margin-b
 
 @media screen and (max-width: 767px) {
 
-	#sidebar-wrapper {
+	/* #sidebar-wrapper {
 		margin-left: -15rem !important;
-	}
+	} */
 
 	.login .logo {text-align: center;}
 	.login h1 {display: none;}
@@ -983,7 +1009,7 @@ footer .line {background-color: #efefef; height: 1px; margin-top: 20px; margin-b
 	.bandmobile svg {height: 100px; text-align: center; margin-top: -30px;z-index: 2;}
 	
 	.navbar {background-color: #fff; margin-bottom: 0px; z-index: 1;}
-	.bt-exit {color: #000; background-color: #fff;}
+	.bt-exit {color: #000 !important; background-color: #fff;}
 	.bt-exit svg {fill:#000; margin-left: 10px; }
 	
 	h1 {margin-bottom: 20px;}

@@ -1,5 +1,5 @@
 # Stage 1 - the build process
-FROM node:11 as builder
+FROM node:14 as builder
 # Versions
 RUN npm -v
 RUN node -v

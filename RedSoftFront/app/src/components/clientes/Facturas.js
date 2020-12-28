@@ -30,7 +30,7 @@ const Facturas = () => {
             </div>
 
                 
-            <h2>Historial de facturas</h2>
+            <h2 className="titlesh2" >Historial de facturas</h2>
             <table className="table table-striped table-responsive-sm">
             <thead>
                 <tr>

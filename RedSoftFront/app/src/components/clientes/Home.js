@@ -51,24 +51,24 @@ const Home = () => {
                     </div>
                     <div className="list-group list-group-flush">
                     <Link to={"/clientes/facturacion"} onClick={() => setOption('facturas')}
-                    className="list-items-sidebar list-group-item list-group-item-action bg-light active">
+                    className={`sideclass ${option === 'facturas' ? 'activecus' : ''} list-items-sidebar list-group-item list-group-item-action`}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.63 13.57"><title>facturas</title><path d="M12.83,8.19H7.17A.22.22,0,0,0,7,8.42a.22.22,0,0,0,.22.22h5.66a.22.22,0,0,0,.22-.22A.22.22,0,0,0,12.83,8.19Z" transform="translate(-4.68 -3.21)"/><path d="M7.17,6.83H9.43a.23.23,0,1,0,0-.45H7.17A.22.22,0,0,0,7,6.61.22.22,0,0,0,7.17,6.83Z" transform="translate(-4.68 -3.21)"/><path d="M12.83,10H7.17a.22.22,0,0,0-.22.23.22.22,0,0,0,.22.22h5.66a.22.22,0,0,0,.22-.22A.22.22,0,0,0,12.83,10Z" transform="translate(-4.68 -3.21)"/><path d="M12.83,11.81H7.17A.22.22,0,0,0,7,12a.22.22,0,0,0,.22.22h5.66a.22.22,0,0,0,.22-.22A.22.22,0,0,0,12.83,11.81Z" transform="translate(-4.68 -3.21)"/><path d="M12.83,13.62H7.17a.22.22,0,0,0-.22.23.22.22,0,0,0,.22.22h5.66a.22.22,0,0,0,.22-.22A.22.22,0,0,0,12.83,13.62Z" transform="translate(-4.68 -3.21)"/><path d="M12,3.21H4.68V16.79H15.32V6.51Zm.13.78,2.39,2.39H12.15Zm-7,12.34V3.67H11.7V6.83h3.16v9.5Z" transform="translate(-4.68 -3.21)"/></svg>
                         Mis facturas
                     </Link>
                     <Link to={"/clientes/reclamos"} onClick={() => setOption('reclamos')}
-                    className="list-items-sidebar list-group-item list-group-item-action bg-light">
+                    className={`sideclass ${option === 'reclamos' || option === 'nuevoReclamo' ? 'activecus' : ''} list-items-sidebar list-group-item list-group-item-action`}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 12.6"><title>tickets</title><path d="M14.9,3.7H5.1A2.1,2.1,0,0,0,3,5.8v6.07A2.1,2.1,0,0,0,5.1,14h.65l-.41,2a.23.23,0,0,0,.09.23.23.23,0,0,0,.25,0L10.06,14H14.9a2.1,2.1,0,0,0,2.1-2.1V5.8A2.1,2.1,0,0,0,14.9,3.7Zm1.63,8.17A1.63,1.63,0,0,1,14.9,13.5H10a.2.2,0,0,0-.11,0l-4,2.1.37-1.85a.19.19,0,0,0,0-.19A.21.21,0,0,0,6,13.5H5.1a1.63,1.63,0,0,1-1.63-1.63V5.8A1.63,1.63,0,0,1,5.1,4.17h9.8A1.63,1.63,0,0,1,16.53,5.8Z" transform="translate(-3 -3.7)"/></svg> 
                         Tickets Reclamos
                     </Link>
                     <Link to={"/clientes/estado"} onClick={() => setOption('estado')}
-                    className="list-items-sidebar list-group-item list-group-item-action bg-light">
+                    className={`sideclass ${option === 'estado' ? 'activecus' : ''} list-items-sidebar list-group-item list-group-item-action`}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.5 17.03"><title>estado</title><path d="M15.23,1.48a2,2,0,0,0-2,2,1.93,1.93,0,0,0,.25,1l-1.8,1.8a2.67,2.67,0,0,0-3.3,0L6.27,4.19a1.31,1.31,0,0,0,.19-.68A1.35,1.35,0,1,0,5.11,4.86a1.41,1.41,0,0,0,.68-.19L7.87,6.75a2.67,2.67,0,0,0,0,3.3L6.13,11.79a2,2,0,1,0,.67,1.5,2,2,0,0,0-.25-1l1.8-1.79a2.64,2.64,0,0,0,1.31.54V14.5a2,2,0,1,0,.68,0V11.07a2.64,2.64,0,0,0,1.31-.54l1.24,1.23a1.35,1.35,0,1,0,1.16-.66,1.31,1.31,0,0,0-.68.19l-1.24-1.24a2.67,2.67,0,0,0,0-3.3L13.87,5a2,2,0,0,0,1.36.53,2,2,0,0,0,0-4.05Zm-10.79,2a.67.67,0,1,1,1.34,0,.67.67,0,1,1-1.34,0Zm.33,11.13a1.35,1.35,0,1,1,1.35-1.35A1.36,1.36,0,0,1,4.77,14.64Zm6.58,1.85A1.35,1.35,0,1,1,10,15.14,1.35,1.35,0,0,1,11.35,16.49ZM10,10.42a2,2,0,1,1,2-2A2,2,0,0,1,10,10.42Zm4.72,2a.68.68,0,1,1-.67-.67A.67.67,0,0,1,14.72,12.44Zm.51-7.58a1.35,1.35,0,1,1,1.35-1.35A1.35,1.35,0,0,1,15.23,4.86Z" transform="translate(-2.75 -1.48)"/></svg>
                         Estado del servicio
                     </Link>  
                 </div>               
                 <div className="user d-block d-sm-none">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 19"><title>Bienvenido</title><path d="M19.5,10A9.5,9.5,0,1,0,3.58,17h0l.31.26.06,0q.26.21.51.39l.17.12a5.5,5.5,0,0,0,.57.36l.12.08L6,18.6l0,0a9.8,9.8,0,0,0,2.3.73h.06c.25,0,.51.08.76.1h.1c.25,0,.51,0,.77,0s.51,0,.77,0h.09c.26,0,.51-.06.76-.1h.06A9.82,9.82,0,0,0,14,18.64l.08,0,.62-.32.15-.09.55-.34.19-.14c.15-.11.3-.22.44-.34l.1-.07L16.4,17h0A9.45,9.45,0,0,0,19.5,10ZM1.19,10a8.81,8.81,0,1,1,14.65,6.59,2,2,0,0,0-.31-.19l-2.92-1.46a.78.78,0,0,1-.43-.69v-1L12.4,13a7.37,7.37,0,0,0,.9-1.77A1.26,1.26,0,0,0,14,10V8.81A1.22,1.22,0,0,0,13.71,8V6.38a2.72,2.72,0,0,0-.65-2A3.86,3.86,0,0,0,10,3.26a3.86,3.86,0,0,0-3.06,1.1,2.72,2.72,0,0,0-.65,2V8A1.2,1.2,0,0,0,6,8.81V10a1.25,1.25,0,0,0,.46,1,6.51,6.51,0,0,0,1.07,2.21v1a.78.78,0,0,1-.4.68L4.38,16.39a1.4,1.4,0,0,0-.26.16A8.76,8.76,0,0,1,1.19,10Zm14,7.13-.37.25-.17.11-.5.29-.11.06a9.13,9.13,0,0,1-1.21.51h0c-.22.07-.44.14-.66.19h0c-.23.06-.45.1-.68.14h0c-.21,0-.43.06-.65.08h-.11c-.22,0-.43,0-.65,0s-.44,0-.65,0H9.23c-.22,0-.43,0-.65-.08h0a8.48,8.48,0,0,1-1.34-.34h0l-.65-.25h0l-.59-.28-.08,0-.52-.3-.15-.1-.46-.32,0,0,0,0L7.44,15.5a1.44,1.44,0,0,0,.76-1.28V13l-.08-.1a5.77,5.77,0,0,1-1-2.15l0-.13-.11-.08A.57.57,0,0,1,6.67,10V8.81a.57.57,0,0,1,.19-.42L7,8.29v-2a2.1,2.1,0,0,1,.49-1.51A3.24,3.24,0,0,1,10,4a3.26,3.26,0,0,1,2.54.86A2.14,2.14,0,0,1,13,6.32v2l.12.1a.57.57,0,0,1,.19.42V10a.57.57,0,0,1-.41.54l-.17.06-.06.17a6.28,6.28,0,0,1-.86,1.74l-.25.32-.09.1v1.28a1.45,1.45,0,0,0,.81,1.31L15.22,17l.06,0Z" transform="translate(-0.5 -0.5)"/></svg>
-                    <strong>Dario Izurdiaga</strong>
+                    <strong>Pablo Iriarte</strong>
                  </div>
                 <div className="list-group list-group-flush"></div>
             </div>
@@ -77,7 +77,7 @@ const Home = () => {
                     <button onClick={toggleMenu}
                     className="btn" id="menu-toggle"><span>&#9776;</span>
                         <span className="d-sm-none">Menu</span>
-                        </button>
+                    </button>
 
                     <a className="bt-exit">Salir 
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><title>arrow-right-circle</title><path d="M7,13.635A6.635,6.635,0,1,0,.365,7,6.642,6.642,0,0,0,7,13.635ZM7,1.028A5.972,5.972,0,1,1,1.028,7,5.979,5.979,0,0,1,7,1.028Z" /><path d="M4.118,7.333H9.081l-1.3,1.3a.332.332,0,0,0,.471.468l1.864-1.865a.33.33,0,0,0,0-.468L8.253,4.9a.331.331,0,0,0-.468.468l1.3,1.3H4.118a.332.332,0,1,0,0,.663Z" /></svg>
@@ -87,7 +87,9 @@ const Home = () => {
                         Hola, <strong>Pablo Iriarte</strong>
                     </div>
                 </nav>
-                <div className="bandmobile d-block d-sm-none"></div>
+                <div className="bandmobile d-block d-sm-none">
+
+                </div>
                 <div className="container-fluid">
                     <SectionCustomer/>
                 </div>

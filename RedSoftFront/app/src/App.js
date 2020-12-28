@@ -2,14 +2,11 @@ import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Provider} from 'react-redux'
 import Order from './components/order/order';
-import OrderDetail from './components/order/detail'
 import store from './store';
-import Header from "./components/header/Header";
-import Preference from "./components/order/preference"
-import FooterComponent from "./components/home/FooterComponent";
+import Preference from "./components/order/preference";
 import Contact from "./components/navbar/Contact";
 import Switch from "react-bootstrap/Switch";
-import {Route} from "react-router-dom";
+import {Route, PrivateRoute} from "react-router-dom";
 import HomeContainer from "./components/HomeContainer";
 import AboutUs from "./components/navbar/AboutUs";
 import Services from "./components/navbar/Services";
@@ -37,7 +34,7 @@ function App() {
                 <Route exact path="/details/:id" component={CardDetailComponent}/>
                 <Route exact path="/products" component={ProductsList}/>
                 <Route exact path="/products/search=:search" component={ProductsList}/>  
-                <Route exact path="/clientes/login" component={Login}/>  
+                <Route exact path="/login" component={Login}/>  
                 <Route exact path="/clientes/:section" component={Home}/>
                 {/*<Route exact path="/products/categories/:name" component={ProductsList}/>*/}
             </Switch>            

@@ -1,8 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
+
 const Login = () => {
+
+    const [username, setUserName] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleChange = () => {
+
+    }
+
+    const handleSubmit = () => {
+
+    }
 
     return (
 
@@ -27,13 +39,24 @@ const Login = () => {
                             <h2 className="titlesh2">Acceso a clientes</h2>
 
                             <label for="">Usuario / Email</label>
-                            <input type="text" class="form-control"/>
+                            <input 
+                                type="text" 
+                                class="form-control"
+                                value={username}
+                                onChange={(e) => setUserName(e.target.value)}
+                            />
 
                             <label for="">Contraseña</label>
-                            <input type="text" class="form-control"/>
+                            <input 
+                                type="text" 
+                                class="form-control"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
 
-                            <Button type="submit" className="btn-clientes">
-                                <Link id="login-clientes" to={"/clientes/facturas"}>Ingresar</Link>
+                            <Button disabled={true} type="submit" className="btn-clientes">
+                                <Link id="login-clientes" to={"/clientes/facturas"}
+                                >Ingresar</Link>
                             </Button>
 
                             <p>Olvidaste tu contraseña? <a style={{color: 'black'}}href="#">Click aquí.</a></p>
