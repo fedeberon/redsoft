@@ -1,10 +1,9 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Container from 'react-bootstrap/Container';
 import {Link} from "react-router-dom";
 
 
@@ -12,17 +11,16 @@ class NavBarReact extends React.Component {
 
     render() {
         return (
-            <div>
-                <Navbar variant="light" expand="xl" className="navbar"
-                        style={{backgroundColor: "#fff", fontWeight: '600', fontSize: '15px'}}>
+            <Fragment>
+                <Navbar expand="lg" className="navbar">
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link className="linklr"><Link
-                                to={"/"}>INICIO</Link></Nav.Link>
-                            <Nav.Link className="linklr"><Link
-                                to={"/services"}>SERVICIOS</Link></Nav.Link>
-                            <NavDropdown className="linklr" title="PRODUCTOS">
+                            <Nav className="linklr"><Link
+                                to={"/"}>INICIO</Link></Nav>
+                            <Nav className="linklr"><Link
+                                to={"/services"}>SERVICIOS</Link></Nav>
+                            <NavDropdown style={{marginTop: "-1px", padding: 0}} className="linklr navbar-nav" title="PRODUCTOS">
                                 <Row className="row01">
                                     <Col xs={2} md={3} style={{flex: '20%', maxWidth: '25%'}}>
 
@@ -82,12 +80,12 @@ class NavBarReact extends React.Component {
                                     </Col>
                                 </Row>
                             </NavDropdown>
-                            <Nav.Link className="linklr" href="/aboutus"><Link to={"/aboutus"}>SOBRE
-                                LA RED</Link></Nav.Link>
-                            <Nav.Link className="linklr"><Link to={"/login"}>ACCESO A
-                                CLIENTES</Link></Nav.Link>
-                            <Nav.Link className="linklr" href="/contact"><Link
-                                to={"/contact"}>CONTACTO</Link></Nav.Link>
+                            <Nav className="linklr" href="/aboutus"><Link to={"/aboutus"}>SOBRE
+                                LA RED</Link></Nav>
+                            <Nav className="linklr"><Link to={"/login"}>ACCESO A
+                                CLIENTES</Link></Nav>
+                            <Nav className="linklr" href="/contact"><Link
+                                to={"/contact"}>CONTACTO</Link></Nav>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
@@ -108,7 +106,7 @@ class NavBarReact extends React.Component {
                         </a>
                     </div>
                 </div>
-            </div>
+            </Fragment>
         );
     }
 }

@@ -167,14 +167,23 @@ pointer-events: none;
 
 .band2 {background-color: rgba(86,196,207,0.3); padding-top: 12px; padding-bottom: 12px;}
 .band3 {background-color: #fff; border-bottom: 1px solid #eaeaea;}
-.navbar {padding-left: 0 !important; padding-right: 0px;}
+.navbar {padding-left: 0 !important; padding-right: 0px; padding: 8px 0px !important;}
 .navbar-expand-lg .navbar-nav {
 	color: black;
 	text-transform: uppercase;
 	font-size: 15px;
 	font-weight: 600;
 	padding-right: 1rem;
-	padding-left: 1rem;}
+	padding-left: 1rem;
+	padding-top: 7px;
+}
+.dropdown-toggle {
+	padding-left: 16px !important;
+	padding-right: 16px !important;
+}
+.mr-auto {
+	padding: 0 !important;
+}
 .logotop svg {height: 90px;}
 
 .login .bandtop {background-color: rgba(86,196,207,0.3); height: 34px;}

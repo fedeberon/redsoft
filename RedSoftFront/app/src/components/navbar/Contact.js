@@ -42,7 +42,7 @@ class Contact extends React.Component {
                             <div className="recuadro" style={{backgroundColor: '#f8f9fa', padding: '30px'}}>
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <img src="/img/iso.svg" className="iso"
+                                        <img alt="" src="/img/iso.svg" className="iso"
                                              style={{width: '30px', height: '40px'}}/>
                                         <ul style={{display: 'inline-table',verticalAlign: 'top',
                                             fontSize: '14px', paddingLeft: '25px',
@@ -66,7 +66,7 @@ class Contact extends React.Component {
                                             tabIndex="0"/>
                                     </div>
                                     <div className="col-12">
-                                        <img src="/img/contacto.jpg"/>
+                                        <img alt="" src="/img/contacto.jpg"/>
                                     </div>
                                 </div>
                             </div>

@@ -1,8 +1,6 @@
 import React from 'react'
-import {Link} from "react-router-dom";
-import axios from "axios";
 
-const url = "http://164.68.101.162:8093/img/"
+// const url = "http://164.68.101.162:8093/img/"
 
 class FileUploader extends React.Component {
 
@@ -15,9 +13,9 @@ class FileUploader extends React.Component {
         }
     }
 
-    handleChange(event) {
-        const value = event.target.value
-    }
+    // handleChange(event) {
+    //     const value = event.target.value
+    // }
 
     handleSubmit = async (event) => {
         event.preventDefault()

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import TicketsReclamos from './TicketsReclamos';
 import Facturas from './Facturas';
 import Estado from './Estado';

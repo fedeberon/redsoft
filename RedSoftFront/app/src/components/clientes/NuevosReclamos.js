@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 
 const NuevosReclamos = () => {
@@ -89,7 +89,8 @@ const NuevosReclamos = () => {
                                     id="" 
                                     rows="5"></textarea>
                                     <button 
-                                    // onClick={(e) => onSubmit(e)} 
+                                    disabled
+                                    onClick={(e) => onSubmit(e)} 
                                     disabled={!mensaje && !asunto && area}
                                     type="submit" 
                                     className="btn-clientes btn btn-primary"
