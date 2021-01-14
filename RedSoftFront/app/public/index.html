@@ -49,6 +49,7 @@
 
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/scss/_modal.scss"/>
 
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>
 <!--<body style="font-family: Overpass,serif; font-size: 15px;">-->
@@ -57,6 +58,22 @@
   You need to enable JavaScript to run this app.
 </noscript>
 <div id="root"></div >
+
+  <script type="text/javascript" crossorigin="anonymous">
+    function onSubmit (token) {
+      let variable1 = document.getElementById("recaptcha-token").value
+      console.log('variable1: ' + variable1);
+      let secret = "6LcFviAaAAAAAAqlIWndS__cKAua6FkeT-wkCAm3";
+
+      const response = fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${variable1}`, {
+        method: 'POST',
+        dataType: 'jsonp',
+        headers: {'Content-Type': 'application/jsonp; chartset=utf-8',
+                  'Access-Control-Allow-Origin': '*'}
+      }).then(response => response.json())
+      .then(data => console.log(data))
+    }
+  </script>
 
 <!-- MegaMenu -->
 <script type="text/javascript">

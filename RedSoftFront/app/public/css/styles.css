@@ -935,7 +935,7 @@ footer .line {background-color: #efefef; height: 1px; margin-top: 20px; margin-b
 		}
 
 		.estado {padding: 25px 20px; text-align: center; color: #fff; border-radius: 6px 6px 0px 0px;}
-		.estado h5 {font-size: 12px; font-weight: 300; margin-bottom: 5px;}
+		.estado h5 {font-size: 12px !important; font-weight: 300; margin-bottom: 5px;}
 		.estado h4 {font-size: 19px; font-weight: 800;}
 		.estado.s1 {background-color: #ED2E2E;}
 		.estado.s2 {background-color: #31AF31;}

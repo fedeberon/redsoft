@@ -19,8 +19,24 @@ class ProductsList extends React.Component {
 
     handleClick (e) {
         this.setState({stepper: (e.target.innerHTML.toLowerCase())})
+       
+       return 
     }
-
+    
+    componentDidUpdate() {
+        
+        if(this.state.stepper === 'notebooks'){
+            return <Link to={`/products/search=notebook`}></Link>
+        } else if (this.state.stepper === 'accesorios'){
+            window.location.href = `/products/search=adap`
+        } else if (this.state.stepper === 'perifericos') {
+            window.location.href = `/products/search=tecla`
+        } else if (this.state.stepper === 'monitores') {
+            window.location.href = `/products/search=monitor`
+        } else if (this.state.stepper === 'gaming') {
+            window.location.href = `/products/search=gaming`
+        }
+    }
 
     render() {
 
@@ -42,7 +58,7 @@ class ProductsList extends React.Component {
                             <h5>Categorias</h5>
                             <div className="list-group list-group-flush">
 
-                                <button type="button" onClick={this.handleClick}
+                                <button type="button" onClick={this.handleClick}         
                                         className={"list-group-item list-group-item-action " + (this.state.stepper === 'notebooks' ? 'active' : '')}
 
                                 >Notebooks</button>

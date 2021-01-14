@@ -246,7 +246,7 @@ class PaginationComponent extends React.Component {
         return (
             <div>
                 <div className="row-filter">
-                    <input className="form-control col-sm-4 pl-0" type="text" style={{
+                    {/* <input className="form-control col-sm-4 pl-0" type="text" style={{
                         display:`${this.state.isLoading ? 'none' : 'block'}`,
                         marginBottom: '10px', backgroundColor: 'ghostwhite', border: '1px solid #ced4da',
                         fontFamily: 'unset', fontSize: 'medium', paddingTop: '0px', paddingBottom: '0px',
@@ -255,7 +255,7 @@ class PaginationComponent extends React.Component {
                            placeholder="Filtrar por nombre..." aria-label="Search"
                            value={this.state.text}
                            // defaultValue={this.props.search}
-                           onChange={(text) => this.filter(text)}/>
+                           onChange={(text) => this.filter(text)}/> */}
                 </div>
                 <div className="row">
                     <div className="row" style={{display:`${this.state.isLoading ? 'block' : 'none'}`}}>

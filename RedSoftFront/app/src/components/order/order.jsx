@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {ordersActions, preferenceActions} from "../../store";
 import {Button, Table} from 'react-bootstrap';
 import axios from 'axios'
@@ -100,7 +100,7 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
                     <tbody>
                         {products.map((product, index) => (
                             <div key={index} className="item cart animate">
-                                <td style={{width: '114px', heigth: '115px'}}><img src={`http://164.68.101.162:8093/img/${product.code}.jpg`} style={{width: '90px'}}/></td>
+                                <td style={{width: '114px', heigth: '115px'}}><img alt="" src={`http://164.68.101.162:8093/img/${product.code}.jpg`} style={{width: '90px'}}/></td>
                                 <td className="col-description">{product.description} <br></br><strong>x {product.quantity}</strong></td>
                                 <td className="col-price">${parseFloat(product.precioUni).toFixed(2)}</td>
                                 <td>
