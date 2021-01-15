@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import api from "../../axios";
 import Button from "react-bootstrap/Button";
 import CardDetailComponent from "./CardDetailComponent";
@@ -159,15 +159,15 @@ class PaginationComponent extends React.Component {
         const indexOfLastTodo = currentPage * todosPerPage;
         const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
         const currentTodos = products.slice(indexOfFirstTodo, indexOfLastTodo);
-        const renderTodos = currentTodos.map((product) => {
+        const renderTodos = currentTodos.map((product, index) => {
 
-            return <div className="col-6 col-sm-4"> {!this.state.details ?
-                <div className="item animate" style={{height: '377px'}}>
+            return <div key={index} className="col-6 col-sm-4"> {!this.state.details ?
+                <div className="item animate" style={{height: '378px'}}>
                     <Link to={`/details/${product.code}`}>
-                        <figure><ImageProduct
+                        <figure style={{height: '210px'}}><ImageProduct
                             products={product}
-                            setHeight={255}
-                            setWidth={255}
+                            setHeight={210}
+                            setWidth={210}
                         /></figure>
                         <div className="info">
                             <div className="name"><h5>{product.description}</h5></div>
@@ -194,7 +194,7 @@ class PaginationComponent extends React.Component {
         const renderPageNumbers = pageNumbers.map(number => {
             if (number === 1 && currentPage === 1) {
                 return (
-                    <Button className="btn-info-active" variant="info">
+                    <Button key={number} className="btn-info-active" variant="info">
                         <li key={number} className='page-item active'
                             id={number}><a id={number}
                                            onClick={this.handleClick}>{number}</a></li>
@@ -202,7 +202,7 @@ class PaginationComponent extends React.Component {
                 )
             } else if ((number < upperPageBound + 1) && number > lowerPageBound) {
                 return (
-                    <Button className={number === currentPage ? 'btn-info-active' : ""} variant={number === currentPage ? 'info' : "light"}>
+                    <Button key={number} className={number === currentPage ? 'btn-info-active' : ""} variant={number === currentPage ? 'info' : "light"}>
                         <li className={number === currentPage ? 'page-item active' : ""}
                             key={number} id={number}><a id={number}
                                                         onClick={this.handleClick}>{number}</a>
@@ -244,8 +244,8 @@ class PaginationComponent extends React.Component {
             </Button>
         }
         return (
-            <div>
-                <div className="row-filter">
+            <Fragment>
+                {/* <div className="row-filter"> */}
                     {/* <input className="form-control col-sm-4 pl-0" type="text" style={{
                         display:`${this.state.isLoading ? 'none' : 'block'}`,
                         marginBottom: '10px', backgroundColor: 'ghostwhite', border: '1px solid #ced4da',
@@ -256,13 +256,15 @@ class PaginationComponent extends React.Component {
                            value={this.state.text}
                            // defaultValue={this.props.search}
                            onChange={(text) => this.filter(text)}/> */}
-                </div>
-                <div className="row">
-                    <div className="row" style={{display:`${this.state.isLoading ? 'block' : 'none'}`}}>
-                        <Spinner animation="border"/>
-                    </div>
+                {/* </div> */}
+                
+                <div style={{justifyContent: 'center', width: '100%',
+                    display:`${this.state.isLoading ? 'flex' : 'none'}`}}>
+                    <Spinner animation="border"/>
+                </div>                    
+                <div style={{display: 'contents'}}>
                     {renderTodos}
-                </div>
+                </div>                
                 <div className="row">
                     <ul className="pagination" style={{marginLeft: 'auto', marginRight: 'auto',
                         display:`${this.state.isLoading ? 'none' : 'block'}`}}>
@@ -273,7 +275,7 @@ class PaginationComponent extends React.Component {
                         {renderNextBtn}
                     </ul>
                 </div>
-            </div>
+            </Fragment>
         );
     }
 }

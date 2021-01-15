@@ -71,13 +71,13 @@ const Detail = (props) => {
                                onChange={(event) => setQuantity(event.target.value)}
                         />
                     </div>
-                    <div className="col-5" style={{paddingRight: 0}}>
+                    <div className="col-9 col-sm-6">
                         <button id="buttonAdd"
                             type="button" className={`${awaitDetail ? 'btn-disab' : ''} ${btnClicked ? 'addtocart-clicked btn-disab' : 'addtocart'}`}
                                 onClick={callFunctions}>{btnClicked ? 'Producto Agregado' : 'Agregar al Carrito'}
                         </button>
                     </div>
-                    <div className="col-3" style={{padding: '1rem'}}>
+                    <div className="col-3" style={{display: `${window.innerWidth < 767 ? 'none' : ''}`, padding: '1rem'}}>
                         <Alert variant='light' show={show}>
                             <img style={{height: '25px'}} src="https://e7.pngegg.com/pngimages/194/825/png-clipart-computer-icons-check-mark-graphics-camellot-academy-accepting-applications-soon-blue-angle-thumbnail.png" alt="check"/>
                             {/*<svg style={{height: '25px'}} focusable="false" viewBox="0 0 24 24" aria-hidden="true">*/}
@@ -88,7 +88,7 @@ const Detail = (props) => {
                     </div>
                 </div>
             </form>
-            <a href="productos.php" className="btn btn-lg btn-whatsapp" role="button"
+            <a href="#" className="btn btn-lg btn-whatsapp" role="button"
                aria-pressed="true">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><title>WhatsApp</title>
                     <path

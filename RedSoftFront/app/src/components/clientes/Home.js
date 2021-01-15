@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import TicketsReclamos from './TicketsReclamos';
 import Facturas from './Facturas';
 import Estado from './Estado';
@@ -11,6 +11,11 @@ const Home = () => {
     const [showMenu, setShowMenu] = useState(false);
     const [option, setOption] = useState('facturas');
     const user = useSelector((state) => state.loginispcube.user);
+
+    useEffect(()=> {
+        if(window.innerWidth < 767)
+            setShowMenu(true);
+    },[]);
 
     function setOptionNew (object) {
         setOption(object);        

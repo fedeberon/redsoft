@@ -81,7 +81,7 @@ class ProductsList extends React.Component {
                             </div>
                         </div>
                         <div className="col-sm-9">
-                            <div className="row"  style={{justifyContent: 'center'}}>
+                            <div className="row">
                                 <PaginationComponent search={this.props.match.params.search}
                                 />
                             </div>

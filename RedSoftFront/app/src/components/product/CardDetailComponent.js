@@ -59,9 +59,9 @@ class CardDetailComponent extends Component {
                                     <Link className="breadcrumb-item linklr" to={"/"}>Home</Link>
                                     <Link className="breadcrumb-item linklr" to={"/products"}>Productos</Link>
                                     <li className="breadcrumb-item active" aria-current="page">Detalles</li>
-                                    <div>
+                                    {/* <div>
                                         <ModalFileUploader/>
-                                    </div>
+                                    </div> */}
                                 </ol>
                             </nav>
                             <div className="row">
@@ -128,7 +128,7 @@ class CardDetailComponent extends Component {
                                 </div>
 
                                 {/*// <!-- info -->*/}
-                                <div className="col infoProduct" style={{paddingLeft: '40px'}}>
+                                <div className="col infoProduct" style={{paddingLeft: '15px'}}>
                                     <ProductDetail product={product} awaitDetail={this.state.isLoading}/>
                                     <div id="accordion" className="accordionProduct">
                                         <div className="card">

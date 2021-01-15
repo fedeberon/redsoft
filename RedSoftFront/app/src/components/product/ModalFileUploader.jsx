@@ -24,7 +24,7 @@ export default function ModalFileUploader() {
     return (
         <>
 
-            <Link className="btn-sm"  style={{marginLeft: '750px'}} onClick={handleShow}>
+            <Link className="btn-sm"  style={{marginLeft: window.innerWidth > 767 ? '750px' : "0px"}} onClick={handleShow}>
                 Subir Imagen
             </Link>
             <Modal show={show} onHide={handleClose} animation={false} centered>

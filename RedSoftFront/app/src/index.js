@@ -7,16 +7,16 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 ReactDOM.render(
-    <Auth0Provider 
-        domain="dev-jvz7xn8q.us.auth0.com"
-        clientId="obyw5eEvi7x4QL8IpNxpG7WkRLdUphzT"
-        audience="http://localhost:8886/api"
-        scope={'read:products'}
-        redirectUri={window.location.origin}
-    >
+    // <Auth0Provider 
+    //     domain="dev-jvz7xn8q.us.auth0.com"
+    //     clientId="obyw5eEvi7x4QL8IpNxpG7WkRLdUphzT"
+    //     audience="http://localhost:8886/api"
+    //     scope={'read:products'}
+    //     redirectUri={window.location.origin}
+    // >
         <Provider store={store}>
             <App/>
-        </Provider>    
-    </Auth0Provider>,
+        </Provider>  ,  
+    // </Auth0Provider>,
     document.getElementById('root')
 );

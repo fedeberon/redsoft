@@ -275,8 +275,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 box-shadow: 0px 0px 27px 0px rgba(0,0,0,0.08);
 }
 .item a {text-decoration: none;}
-.item figure {overflow: hidden; position: relative;width: 253px;
-	height: 253px;}
+.item figure {
+	overflow: hidden; 
+	position: relative;
+	/* width: 253px;
+	height: 253px; */
+}
 .item figure .label {position: absolute; right: 15px; top: 15px; padding: 8px 14px; border-radius: 4px; background-color:rgba(190,29,123,0.9); text-align: center; color: #fff; font-size: 18px; line-height: 18px; font-family: 'Barlow', Arial, sans-serif; font-weight: 700;}
 .item figure .foto { width: 100%;}
 .item .info {text-align: center;font-family: 'Barlow', Arial, sans-serif; padding-left: 20px; padding-right: 20px; padding-bottom: 25px;}
@@ -321,7 +325,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 .description .tit {margin-bottom: 15px; font-size: 16px; text-transform: uppercase; font-weight: 700;font-family: 'Overpass', Arial, sans-serif; }
 
 #carouselProduct {border: 1px solid #eaeaea; margin-bottom: 170px; position: relative;}
-#carouselProduct .label {z-index: 2; position: absolute; right: 15px; top: 15px; padding: 8px 14px; border-radius: 4px; background-color:rgba(190,29,123,0.9); text-align: center; color: #fff; font-size: 18px; line-height: 18px; font-family: 'Barlow', Arial, sans-serif; font-weight: 700;}
+#carouselProduct .label {z-index: 1; position: absolute; right: 15px; top: 15px; padding: 8px 14px; border-radius: 4px; background-color:rgba(190,29,123,0.9); text-align: center; color: #fff; font-size: 18px; line-height: 18px; font-family: 'Barlow', Arial, sans-serif; font-weight: 700;}
 #carouselProduct .zoom-icon {z-index: 2; position: absolute; left: 15px; bottom: 15px; width: 20px; opacity: .5;}
 #carouselProduct .carousel-indicators {bottom: -120px;}
 #carouselProduct .carousel-indicators li {width: 60px; height: auto; border: 1px solid #eaeaea; padding: 5px;}
@@ -362,7 +366,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 .quantity span {color: #7c7c7c; font-weight: 300;}
 .quantity .form-control-lg{ font-size: 15px;padding: 1.3rem 1.4rem;line-height: 1.5; text-align: center;}
 
-.addtocart {background-color: black; width: 100%; color: #fff; text-transform: uppercase; font-size: 15px;padding: .7rem 1.4rem; margin-top: 21px;line-height: 1.5;border-radius: 0.3rem; border-color: cornsilk;}
+.addtocart {background-color: black; width: 100%; color: #fff; text-transform: uppercase; font-size: 15px;padding: .7rem 1.4rem; margin-top: 19px;line-height: 1.5;border-radius: 0.3rem; border-color: cornsilk;}
 .addtocart:hover {color: #fff; background-color: #be1d7b;}
 
 .addtocart-clicked {background-color: #54c147; color: azure; text-transform: uppercase; font-size: 15px;padding: .7rem 1.4rem; margin-top: 21px;line-height: 1.5;border-radius: 0.3rem; border-color: cornsilk;}
