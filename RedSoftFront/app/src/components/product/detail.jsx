@@ -59,14 +59,14 @@ const Detail = (props) => {
                     <h4>{product.description}</h4>
                 </div>
                 <div className="price detalle" style={{display: awaitDetail ? 'none' : 'block'}}>
-                    $ {parseFloat(product.precioUni).toFixed(2)}
+                    $ {parseFloat(product.precioUniVta).toFixed(2)}
                 </div>
             </div>
                 <form>
                 <div className="row">
                     <div className="col-3 col-sm-2 quantity">
                         <span>Cantidad</span>
-                        <input style={{width: '81px'}} id="inputQuantity" className="form-control form-control-lg"
+                        <input style={{width: '71px'}} id="inputQuantity" className="form-control form-control-lg"
                                type="number" min="1" max="10" placeholder="1"
                                onChange={(event) => setQuantity(event.target.value)}
                         />

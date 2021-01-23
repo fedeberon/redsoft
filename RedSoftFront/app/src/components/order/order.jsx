@@ -5,22 +5,23 @@ import {Button, Table} from 'react-bootstrap';
 import axios from 'axios'
 import Preference from "./preference";
 import Spinner from "react-bootstrap/Spinner";
+import { sessionActions } from "../../store";
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 let api = axios.create({
     baseURL: 'http://localhost:8886/api',
-    timeout: 10000,
+    timeout: 30000,
 });
 
 const Order = ({products, changePreference, isReady, setSpinLoad}) => {
 
-    const [link, setLink] = useState("")
-
-    const [order, setOrder] = useState([])
-
-    const [isLoading, setIsLoading] = useState(false)
-
+    const [link, setLink] = useState('');
+    const [order, setOrder] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [orderObject, setOrderObject] = useState([]);
     const dispatch = useDispatch();
+    const date = new Date();
 
     useEffect(() => {changePreference(false)}, [products])
 
@@ -29,8 +30,12 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
     let totalPrice = 0;
 
     products.map((product, index) => {
-        totalPrice += parseFloat(product.precioUni) * product.quantity
+        totalPrice += parseFloat(product.precioUniVta) * product.quantity
     })
+
+    const {
+        user,
+    } = useAuth0();
 
     const handleSubmit = async (event) => {
 
@@ -62,16 +67,26 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
                 product: {
                     code: product.code,
                     name: product.description,
-                    price: product.precioUni,
+                    price: product.precioUniVta,
                 },
                 quantity: product.quantity
             }
-            details.push(detail)
+            details.push(detail);
+           
         })
 
+        details.map(detail => {
+            console.log(detail);
+            orderObject.push({
+                ...detail,
+                userid: user,
+                date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()}hs`
+            });
+        })
+        
         try {
             const res = await api
-                .post('/cart/preference', details)
+                .post(`/cart/preference?user=${user.email}`, details)
                 .then(function (res) {
                     console.log(res.data)
                     setIsLoading(false);
@@ -79,6 +94,7 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
                     changePreference(true);
                     setLink(res.data);
                     setOrder(products);
+                    dispatch(sessionActions.setOrder(orderObject));
                 })
                 .catch(function (error) {
                     console.log(error)
@@ -102,7 +118,7 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
                             <div key={index} className="item cart animate">
                                 <td style={{width: '114px', heigth: '115px'}}><img alt="" src={`http://164.68.101.162:8093/img/${product.code}.jpg`} style={{width: '90px'}}/></td>
                                 <td className="col-description">{product.description} <br></br><strong>x {product.quantity}</strong></td>
-                                <td className="col-price">${parseFloat(product.precioUni).toFixed(2)}</td>
+                                <td className="col-price">${parseFloat(product.precioUniVta).toFixed(2)}</td>
                                 <td>
                                     <Button id="btnRemove" variant="light" onClick={() => removeProduct(product)}>
                                         <a className="deletecart">

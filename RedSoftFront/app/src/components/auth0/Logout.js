@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import Profile from './Profile';
 
 const LogoutButton = () => {
     const {
@@ -8,7 +9,12 @@ const LogoutButton = () => {
     } = useAuth0();
 
     return isAuthenticated && (
-        <button className="btn-light" style={{display: 'contents'}} onClick={() => {
+        <button className="btn-light" 
+        style={{
+            display: window.innerWidth < 767 ? 'block' : 'contents',
+            padding: window.innerWidth < 767 ? '15px 5px' : '',
+        }} 
+        onClick={() => {
             logout({ returnTo: window.location.origin });
         }}>Log out</button>
     );

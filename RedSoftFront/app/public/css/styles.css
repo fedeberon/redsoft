@@ -108,20 +108,12 @@ h5 {
 .center-v {
     align-items: center;
 }
-
-.tilde-success {
-    background-size: contain;
-    height: 260px;
-    width: 340px;
-    margin-left: 42px;
-    margin-top: 10px;}
 /*.tilde-img {background-image: url(/img/tilde-success.jpg);}*/
 .success-mp {
 	text-align: center;
 	margin-top: 34px;
 	font-size: 32px;
-	width: 437px;
-
+	padding-right: 15px;
 	color: black;
 	font-variant-caps: small-caps;}
 
@@ -383,6 +375,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 .accordionProduct .card-header .btn {padding:20px  5px; border: 0px; display: block; width: 100%; font-size: 13px; text-align: left; color: #000; }
 .accordionProduct .card-header .btn:hover {text-decoration: none;}
 .accordionProduct .card-header .btn span {float: right;}
+
+#dropdown-profile-button {
+	color: darkslategrey;
+	background-color: transparent;
+	border-color: white;
+	padding: 0;
+	font-size: 13px;
+}
+#dropdown-profile-button:hover {
+	background-color: #e6e6e6;
+}
 
 /* Cart */
 .name h5 {
@@ -780,70 +783,95 @@ footer {padding-top: 35px;}
 }
 
 @media screen and (max-width: 767px) {
-.banddesktop {display: none; height: 200px}
-.bandmobile {display: inherit;}
-.mobile {display: inherit;}
-.display {display: none;}
 
-.bandmobile .band {background-color: #fff;}
-.menu-btn {border: 0px; background-color: transparent;padding: 8px 15px; text-transform: uppercase; font-size: 16px;}
-.menu-btn span {padding-right: 3px;}
-.icontop {display: table; padding: 8px 15px; float: right;}
-.icontop svg {height: 24px; }
-.bandmobile .logotop {background-color: rgba(86,196,207,0.3); padding-top: 10px; padding-bottom: 10px; text-align: center;}
-.bandmobile .logotop svg {height: 78px;}
+	#contained-modal-title-vcenter {
+		font-size: 18px;
+	}
+	.show-grid {
+		padding: 0px 6px !important;
+	}
+	#completar-pago {
+		width: 100%;
+		margin-left: 0px;
+		margin-top: 20px;
+	}
+	.checkPay-button {
+		width: 90%;
+		display: flex;
+		justify-content: center;
+		margin-bottom: 28px;
+	}
+	.success-mp {
+		margin-top: 5px;
+	}
+	.succ-cont {
+		text-align: center;
+	}
 
-.modal.left .modal-dialog,.modal.right .modal-dialog {width:100%;height: 100%;}
+	.banddesktop {display: none; height: 200px}
+	.bandmobile {display: inherit;}
+	.mobile {display: inherit;}
+	.display {display: none;}
 
-/* Home */
-.bannershome {padding-top: 20px; padding-bottom: 0;}
-.bannershome img {margin-bottom: 20px;}
+	.bandmobile .band {background-color: #fff;}
+	.menu-btn {border: 0px; background-color: transparent;padding: 8px 15px; text-transform: uppercase; font-size: 16px;}
+	.menu-btn span {padding-right: 3px;}
+	.icontop {display: table; padding: 8px 15px; float: right;}
+	.icontop svg {height: 24px; }
+	.bandmobile .logotop {background-color: rgba(86,196,207,0.3); padding-top: 10px; padding-bottom: 10px; text-align: center;}
+	.bandmobile .logotop svg {height: 78px;}
 
-/* Category */
-.breadcrumb {text-align: center; display: table; margin: auto;}
-.breadcrumb-item {display: inline-table;}
-.titcategory {margin-bottom: 20px;}
+	.modal.left .modal-dialog,.modal.right .modal-dialog {width:100%;height: 100%;}
 
-.item .info {padding-left: 5px; padding-right: 5px; padding-bottom: 15px;}
-.item .info .price {font-size: 15px; margin-top: 10px;}
+	/* Home */
+	.bannershome {padding-top: 20px; padding-bottom: 0;}
+	.bannershome img {margin-bottom: 20px;}
 
-/* Product */
-#carouselProduct {margin-bottom: 25px;}
-#carouselProduct .carousel-indicators {display: none;}
-#carouselProduct .zoom-icon {display: none;}
-.infoProduct {padding-left: 40px;}
+	/* Category */
+	.breadcrumb {text-align: center; display: table; margin: auto;}
+	.breadcrumb-item {display: inline-table;}
+	.titcategory {margin-bottom: 20px;}
 
-.description {margin-top: 30px;}
-.btn-whatsapp {width: 100%;}
+	.item .info {padding-left: 5px; padding-right: 5px; padding-bottom: 15px;}
+	.item .info .price {font-size: 15px; margin-top: 10px;}
 
-/* Page */
-.page {padding-top: 35px;}
-.titpage {margin-bottom: 25px; font-size: 16px;}
-.servicios .recuadro {margin-bottom: 30px;}
+	/* Product */
+	#carouselProduct {margin-bottom: 25px;}
+	#carouselProduct .carousel-indicators {display: none;}
+	#carouselProduct .zoom-icon {display: none;}
+	.infoProduct {padding-left: 40px;}
 
-.nosotros .recuadro {padding: 35px 15px;}
-.nosotros h1 {font-size: 17px; margin-top: 15px; margin-bottom: 10px;}
-.nosotros h2 {font-size: 22px;line-height: 29px;}
-.nosotros p {font-size: 16px;}
+	.description {margin-top: 30px;}
+	.btn-whatsapp {width: 100%;}
 
-/* Contact */
-.contacto .recuadro {padding: 15px; padding-top: 25px;}
-.mapa iframe {margin-top: 30px;}
-.contacto .info {padding-left: 30px; padding-right: 30px; padding-top: 35px;}
+	/* Page */
+	.page {padding-top: 35px;}
+	.titpage {margin-bottom: 25px; font-size: 16px;}
+	.servicios .recuadro {margin-bottom: 30px;}
 
-/* Footer */
-.footerbanda {padding-bottom: 30px;}
-.footerbanda .col-md-6 {margin-bottom: 20px;}
+	.nosotros .recuadro {padding: 35px 15px;}
+	.nosotros h1 {font-size: 17px; margin-top: 15px; margin-bottom: 10px;}
+	.nosotros h2 {font-size: 22px;line-height: 29px;}
+	.nosotros p {font-size: 16px;}
 
-.datosfooter {position: relative;}
-.datosfooter .iso {height: 60px; position: absolute; right: 15px;}
-footer .line {background-color: #efefef; height: 1px; margin-top: 20px; margin-bottom: 20px; width: 100%;}
+	/* Contact */
+	.contacto .recuadro {padding: 15px; padding-top: 25px;}
+	.mapa iframe {margin-top: 30px;}
+	.contacto .info {padding-left: 30px; padding-right: 30px; padding-top: 35px;}
+
+	/* Footer */
+	.footerbanda {padding-bottom: 30px;}
+	.footerbanda .col-md-6 {margin-bottom: 20px;}
+
+	.datosfooter {position: relative;}
+	.datosfooter .iso {height: 60px; position: absolute; right: 15px;}
+	footer .line {background-color: #efefef; height: 1px; margin-top: 20px; margin-bottom: 20px; width: 100%;}
 
 
-/* Zurbrand */
-.cont-logo-zurbrand {text-align: center; clear: both; background-color: #efefef; padding: 0; margin-top: 20px;}
-.link-zurbrand {padding-top: 25px; padding-bottom: 25px; display: block;}
-.logo-zurbrand {height: 15px;}
+	/* Zurbrand */
+	.cont-logo-zurbrand {text-align: center; clear: both; background-color: #efefef; padding: 0; margin-top: 20px;}
+	.link-zurbrand {padding-top: 25px; padding-bottom: 25px; display: block;}
+	.logo-zurbrand {height: 15px;}
 
 
 }
@@ -997,8 +1025,31 @@ footer .line {background-color: #efefef; height: 1px; margin-top: 20px; margin-b
 		}
 
 @media screen and (min-width: 768px) {
+	.login-option-list {
+		padding: 0.25rem 0.5rem !important;
+	}
+
 	#sidebar-wrapper {
 		margin-left: 0;
+	}
+	#completar-pago {
+		display: flex;
+		margin: 0 auto;
+	}
+	.succ-cont {
+		margin-bottom: 20px;
+	}
+	.tilde-success {
+		background-size: contain;
+		height: 260px;
+		margin-left: 42px;
+		margin-top: 10px;
+	}
+	.checkPay-button {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+
 	}
 }
 

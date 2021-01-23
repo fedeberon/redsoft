@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import ModalCart from "./ModalCart";
 import NavBarReact from "../NavBarReact";
 import SearchBarComponent from "../SearchBarComponent";
@@ -6,6 +6,16 @@ import {Link} from "react-router-dom";
 import Wrapper from "../auth0/Wrapper";
 import Profile from "../auth0/Profile";
 import LogoutButton from "../auth0/Logout";
+import Modal from 'react-bootstrap/Modal';
+import ModalHeader from 'react-bootstrap/ModalHeader';
+import ModalTitle from 'react-bootstrap/ModalTitle'
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
+import { useAuth0 } from "@auth0/auth0-react";
+import { useSelector } from 'react-redux';
+
 
 const Header = () => {
 
@@ -13,12 +23,28 @@ const Header = () => {
     const [productmenustate, setProductmenustate] = useState(false);
     const [categorystate1, setCategorystate1] = useState(false);
     const [categorystate2, setCategorystate2] = useState(false);
+    const [profilemenustate, setProfilemenustate] = useState(false);
+    const [stepper, setStepper] = useState('');
+    const [modalShow, setModalShow] = useState(false);
+    const userid = useSelector(state => state.session.userid);
+    const authen = useSelector(state => state.session.authenticated);
+    const order = useSelector(state => state.session.order);
 
     const openMobileMenu = () => {
         if(window.innerWidth < 767) {
             elementBody.className = "pushy-open-left"
         }
     }
+
+    const handleChangeStepper = param => {
+        setStepper(param);
+        closeMobileMenu();
+    }
+
+    useEffect(() => {
+        if(stepper)
+        window.location.href = `/products/search=${stepper}`
+    },[stepper])
 
     const closeMobileMenu = () => {
         if(window.innerWidth < 767) {
@@ -37,9 +63,59 @@ const Header = () => {
         const element = document.getElementById("overlay");
         element.classList.remove("show");
         element.style.display = "none";
-      }
+    }
+
+    function MydModalWithGrid(props) {
+        return (
+          <Modal size="lg" {...props} aria-labelledby="contained-modal-title-vcenter">
+            <ModalHeader closeButton>
+              <ModalTitle id="contained-modal-title-vcenter">
+                Tu historial de compras
+              </ModalTitle>
+            </ModalHeader>
+            <Modal.Body className="show-grid">
+              
+              <Table responsive="sm" striped bordered hover size="sm">
+                    <thead>
+                        <tr >
+                        <th>Fecha</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>                        
+                        {/* <th>Forma de Pago</th> */}
+                        <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {order && order.map((order, index) => (
+                        <tr key={index}>
+                        <td>{order.date}</td>
+                        <td>{Object.entries(order.product).map(([key, value])=> {
+                            if(key === 'name'){
+                                return value;
+                            }
+                        })}
+                        </td>
+                        <td style={{textAlign: 'center'}}>{order.quantity}</td>                        
+                        {/* <td>Tarjeta de Crédito</td> */}
+                        <td>{Object.entries(order.product).map(([key, value])=> {
+                            if(key === 'price'){
+                                return `$${(value * order.quantity).toFixed(2)}`;
+                            }
+                        })}
+                        </td>
+                        </tr>
+                        ))}
+                        
+                    </tbody>
+                </Table>            
+            </Modal.Body>
+          </Modal>
+        );
+    }
+      
 
         return (
+           
                 <div id="myOverlay">
                     <div id="overlay" className="overlay fade searchfull">
                         <span className="closebtn" onClick={() => closeSearch()} title="Close Overlay">×</span>
@@ -66,26 +142,40 @@ const Header = () => {
                                     <button onClick={() => setProductmenustate(!productmenustate)} id="first-link">Productos</button>
                                     <ul>
                                         <li className={`pushy-submenu pushy-submenu-${categorystate1 ? 'open' : 'closed'}`}>
-                                            <button onClick={() => setCategorystate1(!categorystate1)}>Categoria 1</button>
+                                            <button onClick={() => setCategorystate1(!categorystate1)}>Hardware</button>
                                             <ul>
-                                                <li className="pushy-link"><Link onClick={closeMobileMenu} to="/">Item 1</Link></li>
-                                                <li className="pushy-link"><Link onClick={closeMobileMenu} to="/">Item 2</Link></li>
+                                                <li className="pushy-link"><Link onClick={() => handleChangeStepper('impresora')} >Impresoras</Link></li>
+                                                <li className="pushy-link"><Link onClick={() => handleChangeStepper('mother')} >Placas Madres</Link></li>
+                                                <li className="pushy-link"><Link onClick={() => handleChangeStepper('monitor')} >Monitores</Link></li>
                                             </ul>
                                         </li>
                                         <li className={`pushy-submenu pushy-submenu-${categorystate2 ? 'open' : 'closed'}`}>
-                                            <button onClick={() => setCategorystate2(!categorystate2)}>Categoria 2</button>
+                                            <button onClick={() => setCategorystate2(!categorystate2)}>Periféricos</button>
                                             <ul>
-                                                <li className="pushy-link"><Link onClick={closeMobileMenu} to="/">Item 1</Link></li>
-                                                <li className="pushy-link"><Link onClick={closeMobileMenu} to="/">Item 2</Link></li>
+                                                <li className="pushy-link"><Link onClick={() => handleChangeStepper('mouse')}>Mouses</Link></li>
+                                                <li className="pushy-link"><Link onClick={() => handleChangeStepper('teclado')}>Teclados</Link></li>
+                                                <li className="pushy-link"><Link onClick={() => handleChangeStepper('auris')}>Auriculares</Link></li>
                                             </ul>
                                         </li>
-                                        <li className="pushy-link"><Link onClick={closeMobileMenu} to="/">Categoria 4</Link></li>
-                                        <li className="pushy-link"><Link onClick={closeMobileMenu} to="/">Categoria 5</Link></li>
+                                        <li className="pushy-link"><Link onClick={() => handleChangeStepper('gaming')}>Gaming</Link></li>
+                                        <li className="pushy-link"><Link onClick={() => handleChangeStepper('notebook')}>Notebooks</Link></li>
+                                        <li className="pushy-link"><Link onClick={() => handleChangeStepper('adap')}>Accesorios</Link></li>
                                     </ul>
                                 </li>
                                 <li className="pushy-link"><Link onClick={closeMobileMenu} to="/aboutus">Sobre La Red</Link></li>
                                 <li className="pushy-link"><Link onClick={closeMobileMenu} to="/login">Acceso a clientes</Link></li>
                                 <li className="pushy-link"><Link onClick={closeMobileMenu} to="/contact">Contacto</Link></li>
+                                
+                                <li className={`pushy-submenu pushy-submenu-${profilemenustate ? 'open' : 'closed'}`}>
+                                <button onClick={() => setProfilemenustate(!profilemenustate)} ><Profile/></button>
+                                <ul>
+                                    <li onClick={() => setModalShow(true)} className="pushy-link">
+                                        <Link onClick={closeMobileMenu}>Mis compras</Link></li>                                    
+                                    <MydModalWithGrid show={modalShow} onHide={() => setModalShow(false)} />
+                                    <li><LogoutButton/></li>
+                                </ul>
+                                </li> 
+                                                                                            
                             </ul>
                         </div>
                     </nav>
@@ -151,8 +241,12 @@ const Header = () => {
                                         </svg>
                                         &nbsp;info@laredwifi.com.ar
                                     </li>
-                                    <li><Profile/></li>
-                                    <li><LogoutButton/></li>
+                                    
+                                    <li style={{position: 'absolute', left: '50%', top: '3px'}}>
+                                        <DropdownButton id="dropdown-profile-button" title={<Profile/>}>
+                                            <Dropdown.Item className="login-option-list" onClick={() => setModalShow(true)}>Mis compras</Dropdown.Item>
+                                            <Dropdown.Item className="login-option-list">{<LogoutButton/>}</Dropdown.Item>                                        
+                                        </DropdownButton></li>                                
                                     <Wrapper/>
                                 </ul>
                                 <a href="/login"

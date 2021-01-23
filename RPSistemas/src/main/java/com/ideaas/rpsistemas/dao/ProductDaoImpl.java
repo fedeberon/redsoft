@@ -2,7 +2,7 @@ package com.ideaas.rpsistemas.dao;
 
 import com.ideaas.rpsistemas.dao.interfaces.ProductDao;
 import com.ideaas.rpsistemas.domain.Product;
-import com.rpsistemas.configuration.CloseableSession;
+import com.ideaas.rpsistemas.configuration.CloseableSession;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;

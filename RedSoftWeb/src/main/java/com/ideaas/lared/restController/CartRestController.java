@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
+@RequestMapping("/api")
 public class CartRestController {
 
     private MercadoPagoService mercadoPagoService;
@@ -23,10 +26,11 @@ public class CartRestController {
         this.mercadoPagoService = mercadoPagoService;
     }
 
-    @PostMapping(value = "api/cart/preference", consumes = "application/json")
-    private String preparePay(@RequestBody List<Detail> details){
+    @PostMapping(value = "/cart/preference", consumes = "application/json")
+    private String preparePay(@RequestBody List<Detail> details, @RequestParam String user){
         try {
             Order order = new Order().withDetails(details);
+            order.setUserEmail(user);
             return mercadoPagoService.createPreference(order);
         } catch (MPException e) {
             e.printStackTrace();

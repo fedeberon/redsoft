@@ -26,7 +26,7 @@ class ProductsList extends React.Component {
     componentDidUpdate() {
         
         if(this.state.stepper === 'notebooks'){
-            return <Link to={`/products/search=notebook`}></Link>
+            window.location.href = `/products/search=notebook`
         } else if (this.state.stepper === 'accesorios'){
             window.location.href = `/products/search=adap`
         } else if (this.state.stepper === 'perifericos') {
