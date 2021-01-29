@@ -18,7 +18,9 @@ const {reducer, actions} = createSlice({
             if (!state.items.includes(action.payload))
                 state.items.push(action.payload)
         },
-
+        setOrder(state, action){
+            state.items = action.payload;
+        },
         remove(state, action) {
             let product = null;
             state.items.map((object, index) => object.code === action.payload.code ? product = object : '');

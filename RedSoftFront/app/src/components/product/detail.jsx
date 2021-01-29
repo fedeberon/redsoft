@@ -4,24 +4,25 @@ import {ordersActions} from "../../store/order";
 import 'bootstrap';
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
-
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Detail = (props) => {
 
     const dispatch = useDispatch();
-
     const addToOrder = (product) => {
-        product = {...product, quantity: quantity}
-        dispatch(ordersActions.addOrder(product));
+        product = {
+            ...product, 
+            quantity: quantity
+        }
+        dispatch(ordersActions.addOrder(product));           
     }
 
     const emptyProduct = {description: "", precioUni: ""}
     const product = props.product ? props.product : emptyProduct;
     const awaitDetail = props.awaitDetail;
-
+    const {user, loginWithRedirect, loginWithPopup} = useAuth0();
     const [show, setShow] = useState(false);
-
-    const [btnClicked, setBtnClicked] = useState(false)
+    const [btnClicked, setBtnClicked] = useState(false);
 
     /*Listener para habilitar button AddToCart desde removeProduct en Order.jsx*/
     const elem = document.getElementById('btnRemove');
@@ -45,6 +46,18 @@ const Detail = (props) => {
             () => setShow(false),
             3000
         );
+    }
+
+    const sessionValidate = () => {
+        if(user){
+            callFunctions();
+        } else {
+            if(window.innerWidth < 767){
+                loginWithRedirect();
+            } else {
+                loginWithPopup();
+            }
+        }
     }
 
     return (
@@ -74,7 +87,8 @@ const Detail = (props) => {
                     <div className="col-9 col-sm-6">
                         <button id="buttonAdd"
                             type="button" className={`${awaitDetail ? 'btn-disab' : ''} ${btnClicked ? 'addtocart-clicked btn-disab' : 'addtocart'}`}
-                                onClick={callFunctions}>{btnClicked ? 'Producto Agregado' : 'Agregar al Carrito'}
+                                onClick={sessionValidate}
+                                >{btnClicked ? 'Producto Agregado' : 'Agregar al Carrito'}
                         </button>
                     </div>
                     <div className="col-3" style={{display: `${window.innerWidth < 767 ? 'none' : ''}`, padding: '1rem'}}>

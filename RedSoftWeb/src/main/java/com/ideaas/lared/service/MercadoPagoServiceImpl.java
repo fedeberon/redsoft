@@ -57,7 +57,7 @@ public class MercadoPagoServiceImpl implements MercadoPagoService {
             preference.appendItem(item);
             products.add(detail.getProduct());
         });
-        //producService.save(products);
+        producService.save(products);
         preference.setPayer(payer);
         Preference result = preference.save();
         order.withPreferenceId(result.getId());

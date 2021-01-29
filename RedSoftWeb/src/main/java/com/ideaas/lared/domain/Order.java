@@ -1,6 +1,10 @@
 package com.ideaas.lared.domain;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import java.util.List;
 import java.util.Date;
 
@@ -13,7 +17,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    @Cascade({CascadeType.PERSIST, CascadeType.MERGE, CascadeType.SAVE_UPDATE})
     private List<Detail> details;
 
     @Column(name = "ORD_PREFERENCE")
@@ -25,8 +30,8 @@ public class Order {
     @Column(name = "ORD_CREATION_DATE")
     private Date creationDate = new Date();
 
-    @Column(name = "ORD_STATE")
-    private String state = "CREATED";
+    @Column(name = "ORD_PAYED_STATE")
+    private Boolean paystate = false;
 
     @Column(name = "ORD_LAST_UPDATED")
     private Date lastUpdated;
@@ -52,12 +57,12 @@ public class Order {
         this.creationDate = creationDate;
     }
 
-    public String getState(){
-        return state;
+    public Boolean getPaystate(){
+        return paystate;
     }
 
-    public void setState(String state){
-        this.state = state;
+    public void setPaystate(Boolean paystate){
+        this.paystate = paystate;
     }
 
     public Date getLastUpdate(){
@@ -66,11 +71,7 @@ public class Order {
 
     public void setLastUpdate(Date lastUpdated){
         this.lastUpdated = lastUpdated;
-    }
-
-    public List<Detail> getDetails() {
-        return details;
-    }
+    }    
 
     public String getUserEmail(){
         return userEmail;
@@ -78,6 +79,10 @@ public class Order {
 
     public void setUserEmail(String userEmail){
         this.userEmail = userEmail;
+    }
+
+    public List<Detail> getDetails() {
+        return details;
     }
 
     public void setDetails(List<Detail> details) {

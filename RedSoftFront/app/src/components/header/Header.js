@@ -10,11 +10,12 @@ import Modal from 'react-bootstrap/Modal';
 import ModalHeader from 'react-bootstrap/ModalHeader';
 import ModalTitle from 'react-bootstrap/ModalTitle'
 import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector } from 'react-redux';
+import Card from 'react-bootstrap/Card';
+import Accordion from 'react-bootstrap/Accordion';
 
 
 const Header = () => {
@@ -28,7 +29,10 @@ const Header = () => {
     const [modalShow, setModalShow] = useState(false);
     const userid = useSelector(state => state.session.userid);
     const authen = useSelector(state => state.session.authenticated);
-    const order = useSelector(state => state.session.order);
+    const preferenceId = useSelector(state => state.preference.id);
+    const [orders, setOrders] = useState([]);
+
+    const {user} = useAuth0();
 
     const openMobileMenu = () => {
         if(window.innerWidth < 767) {
@@ -39,6 +43,25 @@ const Header = () => {
     const handleChangeStepper = param => {
         setStepper(param);
         closeMobileMenu();
+    }
+
+    const getHistory = async () => {
+
+        await fetch(`http://localhost:8886/api/orders?userEmail=${user.email}`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json',
+                    'Accept': '*/*'},
+        }).then(response => response.json())
+        .then(data => {
+            setOrders(data);
+        })
+    }
+
+    const handleShowModal = () => {
+        setModalShow(true);
+        if(user){
+            getHistory();
+        }
     }
 
     useEffect(() => {
@@ -65,6 +88,34 @@ const Header = () => {
         element.style.display = "none";
     }
 
+    function FormatDate(date) {
+        let newdate = new Date(date);
+        return `${newdate.getDate()}/${newdate.getMonth()+1 < 10 ? `0${newdate.getMonth()+1}` : `${newdate.getMonth()+1}`}/${newdate.getFullYear()}
+        a las ${newdate.getHours()}:${newdate.getMinutes() < 10 ? `0${newdate.getMinutes()}` : `${newdate.getMinutes()}`}hs`
+    }
+
+    let totalPrice = 0;
+
+    function TotalPrice(values, index) {
+        if(index === 1){
+            totalPrice = 0;
+        }
+        totalPrice = totalPrice + values;
+        return values;
+    }    
+
+    const handleChangeOpacity = (index) => {
+        let elem = document.getElementsByClassName("cards");
+         
+        for(let i=0; i<elem.length; i++){
+            if(!(elem[i].getAttribute('id') === `history-${index}`)){
+                elem[i].style = "opacity: 0.3";
+            } else {
+                elem[i].style = "opacity: 1";
+            } 
+        }
+    }
+
     function MydModalWithGrid(props) {
         return (
           <Modal size="lg" {...props} aria-labelledby="contained-modal-title-vcenter">
@@ -75,47 +126,66 @@ const Header = () => {
             </ModalHeader>
             <Modal.Body className="show-grid">
               
-              <Table responsive="sm" striped bordered hover size="sm">
-                    <thead>
-                        <tr >
-                        <th>Fecha</th>
-                        <th>Producto</th>
-                        <th>Cantidad</th>                        
-                        {/* <th>Forma de Pago</th> */}
-                        <th>Total</th>
-                        </tr>
+            <Accordion defaultActiveKey="">
+                {orders && orders.map((order, index) => (
+                <Card className="cards" id={`history-${index+1}`} key={index+1} onClick={() => handleChangeOpacity(index+1)}>
+                    <Accordion.Toggle as={Card.Header} style={{padding: 0}} eventKey={index+1}>
+                    <Table responsive="sm" id="table-history-header" striped bordered hover size="sm">
+                        <thead>
+                    <tr style={{display: 'table-row', cursor: 'pointer'}}>
+                        <th>#{index+1}</th>
+                        <th>Estado: <span style={{color: order.state ? 'green' : 'orange'}}>{order.state ? 'Pagado' : 'Pendiente'}</span></th>
+                        <th>Fecha: {order.state ? FormatDate(order.lastUpdate) : FormatDate(order.date)}</th>
+                        <th>Ver Productos</th>
+                    </tr>
                     </thead>
-                    <tbody>
-                        {order && order.map((order, index) => (
-                        <tr key={index}>
-                        <td>{order.date}</td>
-                        <td>{Object.entries(order.product).map(([key, value])=> {
-                            if(key === 'name'){
-                                return value;
-                            }
-                        })}
-                        </td>
-                        <td style={{textAlign: 'center'}}>{order.quantity}</td>                        
-                        {/* <td>Tarjeta de Crédito</td> */}
-                        <td>{Object.entries(order.product).map(([key, value])=> {
-                            if(key === 'price'){
-                                return `$${(value * order.quantity).toFixed(2)}`;
-                            }
-                        })}
-                        </td>
-                        </tr>
-                        ))}
-                        
-                    </tbody>
-                </Table>            
+                    </Table>
+                    </Accordion.Toggle>
+                    <Accordion.Collapse  eventKey={index+1}>
+                        <Card.Body style={{padding: 0, marginBottom: '20px'}}>
+                        <Table style={{marginBottom: 0}} responsive="sm" striped bordered hover size="sm">
+                                <thead>
+                                    <tr>   
+                                    <th>Producto</th>
+                                    <th>Cant.</th>
+                                    <th>Subtotal</th>
+                                    <th>{order.state ? 'Total Pagado' : 'Total a Pagar'}</th>
+                                    </tr>
+                                </thead>
+                               <tbody>
+                                    {(order.details).map((detail, index) =>  (
+                                        <tr key={detail.id}>
+                                            <td>{detail.product?.name}</td>
+                                            <td>{detail.quantity}</td>  
+                                            <td>${TotalPrice(detail.product?.price * detail.quantity, index+1)}</td>
+                                            <td><strong>{index === (order.details).length -1 ? `$${totalPrice.toFixed(2)}` : ""}</strong></td>
+                                        </tr>
+                                    ))}
+                                </tbody> 
+                            </Table> 
+                            <button style={{width: '100%', justifyContent: 'center', display: order.state ? 'none' : 'block'}}
+                                            onClick={() => window.location.href=`https://sandbox.mercadopago.com.ar/checkout/v1/redirect?preference-id=${order.preferenceId}`} 
+                                            type="button" 
+                                            className="btn btn-sm btn-success"
+                                            >
+                                            Finalizar compra
+                            </button> 
+                        </Card.Body>
+                    </Accordion.Collapse>
+                </Card>
+                ))}
+            </Accordion>          
             </Modal.Body>
           </Modal>
         );
     }
-      
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        alert('ok');
+    }
+      
         return (
-           
                 <div id="myOverlay">
                     <div id="overlay" className="overlay fade searchfull">
                         <span className="closebtn" onClick={() => closeSearch()} title="Close Overlay">×</span>
@@ -169,7 +239,7 @@ const Header = () => {
                                 <li className={`pushy-submenu pushy-submenu-${profilemenustate ? 'open' : 'closed'}`}>
                                 <button onClick={() => setProfilemenustate(!profilemenustate)} ><Profile/></button>
                                 <ul>
-                                    <li onClick={() => setModalShow(true)} className="pushy-link">
+                                    <li onClick={handleShowModal} className="pushy-link">
                                         <Link onClick={closeMobileMenu}>Mis compras</Link></li>                                    
                                     <MydModalWithGrid show={modalShow} onHide={() => setModalShow(false)} />
                                     <li><LogoutButton/></li>
@@ -242,9 +312,10 @@ const Header = () => {
                                         &nbsp;info@laredwifi.com.ar
                                     </li>
                                     
-                                    <li style={{position: 'absolute', left: '50%', top: '3px'}}>
+                                    <li style={{position: 'absolute', left: '50%', top: '3px', display: user ? 'flex' : 'none'}}>
                                         <DropdownButton id="dropdown-profile-button" title={<Profile/>}>
-                                            <Dropdown.Item className="login-option-list" onClick={() => setModalShow(true)}>Mis compras</Dropdown.Item>
+                                            <Dropdown.Item className="login-option-list" onClick={handleShowModal}>
+                                                {`Mis compras`}</Dropdown.Item>
                                             <Dropdown.Item className="login-option-list">{<LogoutButton/>}</Dropdown.Item>                                        
                                         </DropdownButton></li>                                
                                     <Wrapper/>

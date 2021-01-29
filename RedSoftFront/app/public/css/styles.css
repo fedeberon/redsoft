@@ -47,8 +47,12 @@ h5 {
 }
 
 .row01 {
-	height: 195px;
+	height: auto;
 	width: 1125px;
+}
+
+.dropdownmenu-desktop {
+	margin: 10px 0px;
 }
 
 .col-description {
@@ -298,7 +302,7 @@ box-shadow: 0px 0px 27px 0px rgba(0,0,0,0.08);
 .list-group-item {padding: .4rem .1rem; padding-left: 0 !important;}
 .list-group-item.active {background-color: transparent !important; font-weight: 700; color: #be1d7b !important; border-bottom: 1px solid rgba(0,0,0,.125);}
 
-.pagination {margin-top: 30px; margin-bottom: 30px;}
+.pagination {margin: 30px 30px;}
 .pagination-lg .page-link {padding: 0.6rem 1.3rem;}
 .page-link {color: #000;border: 1px solid #eaeaea;}
 .page-link:hover {color: #be1d7b;}
@@ -1025,6 +1029,24 @@ footer {padding-top: 35px;}
 		}
 
 @media screen and (min-width: 768px) {
+
+	.pagination-desktop {
+		width: 100%;
+		justify-content: center;
+	}
+
+	.destacados {
+		height: 371px !important;
+	}
+
+	.destacados-figure {
+		height: 253px !important;
+	}
+
+	#table-history-header {
+		margin-bottom: 5px !important;
+	}
+
 	.login-option-list {
 		padding: 0.25rem 0.5rem !important;
 	}
@@ -1058,6 +1080,10 @@ footer {padding-top: 35px;}
 	/* #sidebar-wrapper {
 		margin-left: -15rem !important;
 	} */
+
+	#table-history-header {
+		margin-bottom: 5px !important;
+	}
 
 	.login .logo {text-align: center;}
 	.login h1 {display: none;}

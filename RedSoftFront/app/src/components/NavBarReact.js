@@ -26,12 +26,12 @@ class NavBarReact extends React.Component {
 
                                         <span><h5>Mouses y Teclados</h5></span>
                                         <NavDropdown.Divider/>
-                                        <NavDropdown.Item><Link className="linklr"
-                                                                to={"/products/categories/inalambricos"}>Inalambricos</Link></NavDropdown.Item>
-                                        <NavDropdown.Item><Link className="linklr"
-                                                                to={"/products/categories/mouses"}>Mouses</Link></NavDropdown.Item>
-                                        <NavDropdown.Item><Link className="linklr"
-                                                                to={"/products/categories/teclados"}>Teclados</Link></NavDropdown.Item>
+                                        <li className="dropdownmenu-desktop"><Link className="linklr" to={"/products/categories/inalambricos"}>
+                                            Inalambricos</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link className="linklr"
+                                                                to={"/products/categories/mouses"}>Mouses</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link className="linklr"
+                                                                to={"/products/categories/teclados"}>Teclados</Link></li>
 
 
                                     </Col>
@@ -39,44 +39,29 @@ class NavBarReact extends React.Component {
 
                                         <span><h5>Computadoras</h5></span>
                                         <NavDropdown.Divider/>
-                                        <NavDropdown.Item><Link className="linklr"
-                                                                to={"/products/categories/notebooks"}>Notebooks</Link></NavDropdown.Item>
-                                        <NavDropdown.Item><Link className="linklr"
-                                                                to={"/products/categories/cpus"}>CPU's</Link></NavDropdown.Item>
-                                        <NavDropdown.Item><Link className="linklr"
-                                                                to={"/products/categories/monitores"}>Monitores</Link></NavDropdown.Item>
-                                        <NavDropdown.Item><Link className="linklr"
-                                                                to={"/products/categories/mothers"}>Mothers</Link></NavDropdown.Item>
-                                        <NavDropdown.Item><Link className="linklr" to={"/products/categories/memorias"}>Memorias
-                                            RAM</Link></NavDropdown.Item>
-
+                                        <ul>
+                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=notebook"}>Notebooks</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=cpu"}>CPU's</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=monitor"}>Monitores</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=mother"}>Mothers</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=memoria"}>Memorias RAM</Link></li>
+                                        </ul>
                                     </Col>
                                     <Col xs={2} md={3} style={{flex: '20%', maxWidth: '25%'}}>
 
                                         <span><h5>Accesorios e Impresion</h5></span>
                                         <NavDropdown.Divider/>
-                                        <NavDropdown.Item><Link className="linklr"
-                                                                to={"/products/categories/impresoras"}>Impresoras</Link></NavDropdown.Item>
-                                        <NavDropdown.Item><Link className="linklr"
-                                                                to={"/products/categories/adaptadores"}>Adaptadores</Link></NavDropdown.Item>
-                                        <NavDropdown.Item><Link className="linklr"
-                                                                to={"/products/categories/accesorios"}>Accesorios
-                                            pc</Link></NavDropdown.Item>
-                                        <NavDropdown.Item><Link className="linklr"
-                                                                to={"/products/categories/cables"}>Cables</Link></NavDropdown.Item>
+                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=impresora"}>Impresoras</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=adap"}>Adaptadores</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=cable"}>Cables</Link></li>
 
                                     </Col>
                                     <Col xs={2} md={3} style={{flex: '20%', maxWidth: '25%'}}>
 
                                         <span><h5>Audio y Gaming</h5></span>
                                         <NavDropdown.Divider/>
-                                        <NavDropdown.Item><Link className="linklr"
-                                                                to={"/products/categories/auriculares"}>Auriculares</Link></NavDropdown.Item>
-                                        <NavDropdown.Item><Link className="linklr"
-                                                                to={"/products/categories/pads"}>Pad's</Link></NavDropdown.Item>
-                                        <NavDropdown.Item><Link className="linklr" to={"/products/categories/kits"}>Kits
-                                            Gaming</Link></NavDropdown.Item>
-
+                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=auricular"}>Auriculares</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=gaming"}>Gaming</Link></li>
                                     </Col>
                                 </Row>
                             </NavDropdown>

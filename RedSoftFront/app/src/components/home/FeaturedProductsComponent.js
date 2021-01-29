@@ -11,50 +11,55 @@ class FeaturedProductsComponent extends React.Component {
                     <div className="row">
 
                         <div className="col-sm-3">
-                            <div className="item animate">
-                                <Link to={"/details/D6948391225609D"}>
-                                    <figure><img src="img/producto-01.jpg" alt="Producto Destacado 1" className="foto"/></figure>
+                            <div className="item animate destacados">
+                                <Link to={"/details/ADAPBLUE"}>
+                                    <figure className="destacados-figure">
+                                        <img src="http://164.68.101.162:8093/img/ADAPBLUE.jpg" alt="Producto Destacado 1" className="foto"/></figure>
                                     <div className="info">
-                                        <div className="name">Mouse HP M270 Gaming Negro Óptico</div>
-                                        <div className="price">$13.000,00</div>
+                                        <div className="name">Adaptador nisuta calbe divisor pwm para 2 cooler de 3 pines</div>
+                                        <div className="price">$6.28</div>
                                     </div>
                                 </Link>
                             </div>
                         </div>
 
                         <div className="col-sm-3">
-                            <div className="item animate">
-                                <Link to={"/details/E091163255673E"}>
-                                    <figure>
-                                        <div className="label">20%</div>
-                                        <img src="img/producto-02.jpg" alt="Producto Destacado 2"className="foto"/></figure>
+                            <div className="item animate destacados">
+                                <Link to={"/details/D7798137715821D"}>
+                                    <figure className="destacados-figure">
+                                        {/* <div className="label">20%</div> */}
+                                        <img src="http://164.68.101.162:8093/img/D7798137715821D.jpg" alt="Producto Destacado 2"className="foto"/></figure>
                                     <div className="info">
-                                        <div className="name">Auriculares con Micrófono Genius HS-610 - Rojo</div>
-                                        <div className="price"><span className="offer">$7000,00</span>$5650,00</div>
+                                        <div className="name">Adaptador bt headset doble usb adaptador para play</div>
+                                        <div className="price">
+                                            {/* <span className="offer">$21.05</span> */}
+                                            $21.05</div>
                                     </div>
                                 </Link>
                             </div>
                         </div>
 
                         <div className="col-sm-3">
-                            <div className="item animate">
-                                <Link to={"/details/HP4645"}>
-                                    <figure><img src="img/producto-03.jpg" alt="Producto Destacado 3" className="foto"/></figure>
+                            <div className="item animate destacados">
+                                <Link to={"/details/NSADDV1"}>
+                                    <figure className="destacados-figure">
+                                        <img src="http://164.68.101.162:8093/img/NSADDV1.jpg" alt="Producto Destacado 3" className="foto"/></figure>
                                     <div className="info">
-                                        <div className="name">Impresora HP Deskjet Ink 2145</div>
-                                        <div className="price">$69.650,00</div>
+                                        <div className="name">Adaptador dvi/vga int.co 0909022a</div>
+                                        <div className="price">$3.84</div>
                                     </div>
                                 </Link>
                             </div>
                         </div>
 
                         <div className="col-sm-3">
-                            <div className="item animate">
+                            <div className="item animate destacados">
                                 <Link to={"/details/AA"}>
-                                    <figure><img src="http://164.68.101.162:8093/img/AA.jpg" alt="Producto Destacado 4" className="foto"/></figure>
+                                    <figure className="destacados-figure">
+                                        <img src="http://164.68.101.162:8093/img/AA.jpg" alt="Producto Destacado 4" className="foto"/></figure>
                                     <div className="info">
                                         <div className="name">Gigabyte Radeon RX 570 8GB Gaming</div>
-                                        <div className="price">$340.00</div>
+                                        <div className="price">$596.53</div>
                                     </div>
                                 </Link>
                             </div>

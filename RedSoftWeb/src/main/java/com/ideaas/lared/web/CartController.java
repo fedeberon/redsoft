@@ -11,18 +11,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ideaas.lared.service.interfaces.OrderService;
+
 @Controller
 @RequestMapping("cart")
 public class CartController {
 
     private MercadoPagoService mercadoPagoService;
+    
+    private OrderService orderService;
 
     @Autowired
     private PaymentResponseService paymentResponseService;
 
     @Autowired
-    public CartController(MercadoPagoService mercadoPagoService) {
+    public CartController(MercadoPagoService mercadoPagoService, OrderService orderService) {
         this.mercadoPagoService = mercadoPagoService;
+        this.orderService = orderService;
     }
 
     @RequestMapping("payment")
@@ -51,6 +56,8 @@ public class CartController {
                 , processingMode, merchantAccountId);
 
         paymentResponseService.save(paymentResponse);
+
+        orderService.updateOrder(preferenceId);
 
         return "order-detail";
     }

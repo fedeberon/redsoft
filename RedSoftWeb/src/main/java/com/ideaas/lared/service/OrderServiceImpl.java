@@ -6,6 +6,7 @@ import com.ideaas.lared.service.interfaces.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Date;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -35,6 +36,22 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order save(Order order) {
         return dao.save(order);
+    }
+
+    @Override
+    public Order updateOrder(String preferenceId) {
+
+        Order order = dao.findByPreferenceId(preferenceId);
+
+        if(order.getPreferenceId() != null){
+        
+            order.setPaystate(true);
+            order.setLastUpdate(new Date());
+
+           return dao.save(order);
+        } else {
+           return null;
+        }
     }
 
 }

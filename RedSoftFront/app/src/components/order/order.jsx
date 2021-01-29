@@ -5,7 +5,6 @@ import {Button, Table} from 'react-bootstrap';
 import axios from 'axios'
 import Preference from "./preference";
 import Spinner from "react-bootstrap/Spinner";
-import { sessionActions } from "../../store";
 import { useAuth0 } from '@auth0/auth0-react';
 
 
@@ -19,9 +18,7 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
     const [link, setLink] = useState('');
     const [order, setOrder] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [orderObject, setOrderObject] = useState([]);
     const dispatch = useDispatch();
-    const date = new Date();
 
     useEffect(() => {changePreference(false)}, [products])
 
@@ -75,15 +72,6 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
            
         })
 
-        details.map(detail => {
-            console.log(detail);
-            orderObject.push({
-                ...detail,
-                userid: user,
-                date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()}hs`
-            });
-        })
-        
         try {
             const res = await api
                 .post(`/cart/preference?user=${user.email}`, details)
@@ -94,7 +82,7 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
                     changePreference(true);
                     setLink(res.data);
                     setOrder(products);
-                    dispatch(sessionActions.setOrder(orderObject));
+                    localStorage.removeItem('cartlared');
                 })
                 .catch(function (error) {
                     console.log(error)
@@ -105,6 +93,9 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
     }
 
     const removeProduct = (product) => {
+        if(products.length === 1){
+            localStorage.removeItem('cartlared');
+        }
         dispatch(ordersActions.remove(product));
     }
 
@@ -115,7 +106,7 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
                 <Table responsive>
                     <tbody>
                         {products.map((product, index) => (
-                            <div key={index} className="item cart animate">
+                            <tr key={index} className="item cart animate">
                                 <td style={{width: '114px', heigth: '115px'}}><img alt="" src={`http://164.68.101.162:8093/img/${product.code}.jpg`} style={{width: '90px'}}/></td>
                                 <td className="col-description">{product.description} <br></br><strong>x {product.quantity}</strong></td>
                                 <td className="col-price">${parseFloat(product.precioUniVta).toFixed(2)}</td>
@@ -136,7 +127,7 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
                                         </a>
                                     </Button>
                                 </td>
-                            </div>
+                             </tr>
                         ))
                     }
                     </tbody>

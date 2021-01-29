@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import {useSelector, shallowEqual} from "react-redux";
 import Order from './components/order/order';
 import Preference from "./components/order/preference";
 import Contact from "./components/navbar/Contact";
@@ -15,10 +15,36 @@ import ScrollToTop from "./components/ScrollToTop";
 import Login from "./components/clientes/Login";
 import Home from "./components/clientes/Home";
 import PrivateRoute from "./components/PrivateRoute";
+import {useDispatch} from 'react-redux';
+import {ordersActions} from "./store/order";
 
 const App = () => {
 
+  const dispatch = useDispatch();
   const authenticated = useSelector(state => state.loginispcube.authenticated);
+  let products = useSelector(state => Object.values(state.order.items), shallowEqual);
+
+  useEffect(()=> {
+    if(!(products.length === 0)){
+      localStorage.setItem('cartlared', JSON.stringify(products));
+    } else {
+      if(localStorage.cartlared){
+        localStorage.setItem('cartlared', localStorage.cartlared);
+        let cartRecovery = JSON.parse(localStorage.cartlared);
+        cartRecovery.map(data => {
+          let product = {
+            cantiStock: null,
+            code: data.code,
+            description: data.description,
+            precioUni: data.precioUni,
+            precioUniVta: data.precioUniVta,
+            quantity: data.quantity,
+          }
+          dispatch(ordersActions.addOrder(product)); 
+        })
+      }
+    }
+  },[products])
 
   return (
     <>      

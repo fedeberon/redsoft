@@ -265,9 +265,8 @@ class PaginationComponent extends React.Component {
                 <div style={{display: 'contents'}}>
                     {renderTodos}
                 </div>                
-                <div className="row">
-                    <ul className="pagination" style={{marginLeft: 'auto', marginRight: 'auto',
-                        display:`${this.state.isLoading ? 'none' : 'block'}`}}>
+                <div className="pagination-desktop row">
+                    <ul className="pagination" style={{display:`${this.state.isLoading ? 'none' : 'block'}`}}>
                         {renderPrevBtn}
                         {pageDecrementBtn}
                         {renderPageNumbers}

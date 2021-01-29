@@ -8,13 +8,10 @@ const Estado = () => {
         switch (state) {
             case "s1":
                 return <h4>SERVICIO INTERRUMPIDO</h4>
-                break;
             case "s2":
                 return <h4>SERVICIO SIN INCONVENIENTES</h4>
-                break;
             case "s3":
                 return <h4>CON ALGUNOS INCONVENIENTES</h4>
-                break;
             default:
                 break;
         }

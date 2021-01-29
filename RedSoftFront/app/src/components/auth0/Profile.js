@@ -10,8 +10,10 @@ const Profile = () => {
     if (isLoading) {
         return <div>Loading ...</div>;
     } else {
+        if(user){
         dispatch(sessionActions.authenticated(true));
         dispatch(sessionActions.setUserid(user.email));
+        }
     }
 
     return (
