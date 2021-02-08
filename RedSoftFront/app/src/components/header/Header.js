@@ -27,6 +27,7 @@ const Header = () => {
     const [profilemenustate, setProfilemenustate] = useState(false);
     const [stepper, setStepper] = useState('');
     const [modalShow, setModalShow] = useState(false);
+    const [textMobileSearch, setTextMobileSearch] = useState('');
     const userid = useSelector(state => state.session.userid);
     const authen = useSelector(state => state.session.authenticated);
     const preferenceId = useSelector(state => state.preference.id);
@@ -184,18 +185,38 @@ const Header = () => {
         e.preventDefault();
         alert('ok');
     }
+
+    const formatTextSearch = () => {
+        let newText;
+        if(textMobileSearch.endsWith('es') && textMobileSearch !== 'cables' && textMobileSearch !== 'mouses' ){
+            newText = textMobileSearch.slice(0, -2);
+            setTextMobileSearch(newText);
+            window.location.href=`/products/search=${newText}`
+        } else if(textMobileSearch.charAt(textMobileSearch.length -1) === 's'){
+            newText = textMobileSearch.slice(0, -1);
+            setTextMobileSearch(newText);
+            window.location.href=`/products/search=${newText}`
+        } else {
+            window.location.href=`/products/search=${textMobileSearch}`
+        }
+    }    
       
         return (
                 <div id="myOverlay">
                     <div id="overlay" className="overlay fade searchfull">
                         <span className="closebtn" onClick={() => closeSearch()} title="Close Overlay">×</span>
                         <div className="overlay-content">
-                            <form action="/products">
-                                <input type="text" placeholder="Buscar producto" name="search" />
-                                <button type="submit">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>search</title><path d="M39.063,37.986,27.935,26.858a14.549,14.549,0,1,0-1.078,1.077L37.985,39.063a.762.762,0,1,0,1.078-1.077ZM17.19,30.143A12.953,12.953,0,1,1,30.143,17.19,12.968,12.968,0,0,1,17.19,30.143Z"></path><path d="M38.523,40.507a1.985,1.985,0,0,1-1.393-.574L26.785,29.584a15.745,15.745,0,1,1,2.8-2.8L39.926,37.123a1.983,1.983,0,0,1-1.4,3.384ZM17.19,5.456A11.735,11.735,0,1,0,28.923,17.19,11.746,11.746,0,0,0,17.19,5.456Z"></path></svg>
-                                </button>
-                            </form>
+                            <input 
+                            type="text" 
+                            placeholder="Buscar producto" 
+                            name="search"
+                            value={textMobileSearch} 
+                            onChange={(e) => setTextMobileSearch(e.target.value)}
+                            onKeyPress={(e) => e.key === 'Enter' ? formatTextSearch() : ""}
+                            />
+                            <button onClick={() => formatTextSearch()}>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>search</title><path d="M39.063,37.986,27.935,26.858a14.549,14.549,0,1,0-1.078,1.077L37.985,39.063a.762.762,0,1,0,1.078-1.077ZM17.19,30.143A12.953,12.953,0,1,1,30.143,17.19,12.968,12.968,0,0,1,17.19,30.143Z"></path><path d="M38.523,40.507a1.985,1.985,0,0,1-1.393-.574L26.785,29.584a15.745,15.745,0,1,1,2.8-2.8L39.926,37.123a1.983,1.983,0,0,1-1.4,3.384ZM17.19,5.456A11.735,11.735,0,1,0,28.923,17.19,11.746,11.746,0,0,0,17.19,5.456Z"></path></svg>
+                            </button>
                         </div>
                     </div>
 

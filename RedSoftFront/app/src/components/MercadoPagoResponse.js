@@ -62,7 +62,7 @@ const MercadoPagoResponse = () => {
                     </Row>
                     <Row>
                         <Col className="mp-response-title">Forma de Pago</Col>
-                        <Col className="mp-response-text">{orderResume.paymentType === 'credit_card' ? 'Tarjeta de Crédito' : ''}</Col>
+                        <Col className="mp-response-text">{orderResume.paymentType === 'credit_card' ? 'Tarjeta de Crédito' : 'Efectivo'}</Col>
                     </Row>
                     <Row>
                         <Col className="mp-response-title">Id de Preferencia</Col>
