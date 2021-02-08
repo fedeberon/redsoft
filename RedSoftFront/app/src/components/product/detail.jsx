@@ -102,7 +102,7 @@ const Detail = (props) => {
                     </div>
                 </div>
             </form>
-            <a href="#" className="btn btn-lg btn-whatsapp" role="button"
+            <a href="#" className="btn btn-lg btn-whatsapp" id="btn-details"role="button"
                aria-pressed="true">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><title>WhatsApp</title>
                     <path

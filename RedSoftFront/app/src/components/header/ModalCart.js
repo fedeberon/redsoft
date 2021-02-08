@@ -13,7 +13,6 @@ export default function ModalCart({setShowMobile}) {
 
     const [show, setShow] = useState(false);
     const [showDialog, setShowDialog] = useState(false);
-    const [showOverlay, setShowOverlay] = useState(false);
     const {user} = useAuth0();
 
     function BodyHidden() {
@@ -37,44 +36,11 @@ export default function ModalCart({setShowMobile}) {
         )
     }
 
-    // useLayoutEffect(() => {
-
-    //     if(user){
-    //         if(localStorage.cartlared){
-    //             setTimeout(()=> {
-    //                 setShowOverlay(true);
-    //             },5000)
-            
-    //             setTimeout(()=> {
-    //                 setShowOverlay(false);
-    //             },15000)
-    //         }
-    //     }
-    // },[])
-
     return (
 
         <>
                                     
             {window.innerWidth > 767 ?
-            <>
-            <OverlayTrigger
-            // show={showOverlay}
-            trigger="click"
-            key="left"
-            placement="left"
-            overlay={
-                <Popover id={`popover-positioned-left`}>
-                <Popover.Title as="h2">{`Hola ${user && user.given_name}!`}</Popover.Title>
-                <Popover.Content>
-                    <strong style={{color: 'orange'}}>
-                        {`Tenés ${products.length} ${products.length > 1 ? 'productos': 'producto'} en el carrito!`}
-                    </strong><br/>
-                    <span>¿Querés terminar con la compra?</span>
-                </Popover.Content>
-                </Popover>
-            }
-            >
                 <button id="mod1" title="Ver carrito" className="carttop" onClick={handleModal}
                         type="button" data-dismiss="modal">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>cart</title>
@@ -90,8 +56,6 @@ export default function ModalCart({setShowMobile}) {
                     </svg>
                     &nbsp;Carrito
                 </button> 
-            </OverlayTrigger>
-            </>
             : 
             <a onClick={handleModal} title="modal" data-target="#modalCart" 
             className="icontop">

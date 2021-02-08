@@ -11,6 +11,34 @@ body {font-family: Overpass,serif !important;
 	background-repeat: no-repeat;
 }
 
+.mpcomponent-head {
+	text-align: center;
+	margin-top: 35px;
+	margin-bottom: 20px;
+}
+
+.mp-response-title {
+	background-color: #e051a5;
+    border-radius: 17px;
+    margin: 9px 5px;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    font-weight: 900;
+	font-size: 15px;
+}
+
+.mp-response-text {
+    border-radius: 17px;
+	text-transform: capitalize;
+    margin: 9px 5px;
+    padding: 10px;
+    text-align: center;
+    color: rgb(2, 2, 2);
+	font-size: 15px;
+    background-color: #ccedf1;
+    font-weight: 600;
+}
 .animate{-moz-transition: all 0.3s ease-out;  /*FF3.7+*/ -o-transition: all 0.3s ease-out;  /*Opera 10.5*/ -webkit-transition: all 0.6s ease-out;  /*Saf3.2+, Chrome*/ transition: all 0.6s ease-out;}
 .spacer {clear: both;}
 ul {list-style-type: none; margin: 0px; padding: 0px;}
@@ -19,6 +47,15 @@ h1, h2, h3, h4, h5, h6 {margin: 0px;}
 
 h5 {
 	font-size: 17px !important;
+}
+
+.service {
+	border: 1px solid #000 !important;
+	color:rgba(0, 0, 0, 0.85) !important;
+}
+
+.service:hover {
+	color:rgba(0, 0, 0, 0.85) !important;
 }
 
 .btn-consulta {
@@ -88,6 +125,14 @@ h5 {
 .spinlr {
 	position: absolute;
 	display: block;
+}
+#btn-details {
+	color: #25d366 !important;
+	border: 1px solid #25d366 !important;
+}
+
+#btn-details:hover {
+	color:white !important;
 }
 
 .container2 {
@@ -367,9 +412,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 
 .addtocart-clicked {background-color: #54c147; color: azure; text-transform: uppercase; font-size: 15px;padding: .7rem 1.4rem; margin-top: 21px;line-height: 1.5;border-radius: 0.3rem; border-color: cornsilk;}
 
-.btn-whatsapp {border: 1px solid #25d366 !important; text-transform: uppercase; color: #25d366 !important; font-size: 15px !important; margin-top: 25px; font-weight: 600 !important ;padding: .7rem 1.4rem !important;}
+.btn-whatsapp {border: 1px solid #25d366; text-transform: uppercase; color: #25d366; font-size: 15px !important; margin-top: 25px; font-weight: 600 !important ;padding: .7rem 1.4rem !important;}
 .btn-whatsapp svg {fill:#25d366; height: 16px;}
-.btn-whatsapp:hover {background-color:#25d366; color: #fff !important; }
+.btn-whatsapp:hover {background-color:#25d366; color: #fff}
 .btn-whatsapp:hover svg {fill: #fff; }
 
 .accordionProduct {margin-top: 30px;}

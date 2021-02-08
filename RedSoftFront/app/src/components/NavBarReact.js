@@ -26,12 +26,12 @@ class NavBarReact extends React.Component {
 
                                         <span><h5>Mouses y Teclados</h5></span>
                                         <NavDropdown.Divider/>
-                                        <li className="dropdownmenu-desktop"><Link className="linklr" to={"/products/categories/inalambricos"}>
+                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=inalambricos"}>
                                             Inalambricos</Link></li>
                                         <li className="dropdownmenu-desktop"><Link className="linklr"
-                                                                to={"/products/categories/mouses"}>Mouses</Link></li>
+                                                                onClick={() => window.location.href="/products/search=mouses"}>Mouses</Link></li>
                                         <li className="dropdownmenu-desktop"><Link className="linklr"
-                                                                to={"/products/categories/teclados"}>Teclados</Link></li>
+                                                                onClick={() => window.location.href="/products/search=teclados"}>Teclados</Link></li>
 
 
                                     </Col>

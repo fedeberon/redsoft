@@ -16,4 +16,9 @@ public class PaymentResponseServiceImpl implements PaymentResponseService {
     public PaymentResponse save(PaymentResponse paymentResponse) {
         return dao.save(paymentResponse);
     }
+
+    @Override
+    public PaymentResponse getByPreferenceId(String preferenceId) {
+        return dao.findByPreferenceId(preferenceId);
+    }
 }

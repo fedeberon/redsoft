@@ -15,6 +15,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Login from "./components/clientes/Login";
 import Home from "./components/clientes/Home";
 import PrivateRoute from "./components/PrivateRoute";
+import MercadoPagoResponse from "./components/MercadoPagoResponse";
 import {useDispatch} from 'react-redux';
 import {ordersActions} from "./store/order";
 
@@ -59,7 +60,8 @@ const App = () => {
             <Route exact path="/services" component={Services}/>
             <Route exact path="/details/:id" component={CardDetailComponent}/>
             <Route exact path="/products" component={ProductsList}/>
-            <Route exact path="/products/search=:search" component={ProductsList}/>  
+            <Route exact path="/products/search=:search" component={ProductsList}/>
+            <Route exact path="/mercadopago/operation/:id" component={MercadoPagoResponse}/>
             <Route exact path="/login" component={Login}/>                          
             <PrivateRoute 
             exact path="/clientes/:section"                

@@ -40,19 +40,63 @@ class PaginationComponent extends React.Component {
         await this.findAll()
     }
 
+    // filter(event) {
+
+    //     const text = event.target.value;
+    //     const data = this.state.productsBackup
+    //     const newData = data.filter(function (item) {
+    //         let containsText = false;
+    //         const itemData = item.description.toUpperCase().split(' ');
+    //         const textData = text.toUpperCase().split(' ');
+    //         textData.map((e) => itemData.map((i) => i.indexOf(e) > -1 ? containsText = true : "" ))
+    //         // return itemData.indexOf(textData) > -1
+    //         return containsText
+    //     })
+    //     this.setState({
+    //         products: newData,
+    //         textSearch: text,
+    //     })
+    // }
+
     async findAll() {
+        let newData = [];
+
         this.setState({products: [], productsBackup: [], isLoading: true})
         let data = await api.get('/api/product/list').then(({data}) => data);
         this.setState({products: data, productsBackup: data, isLoading: false})
-
+        let newSearch;
         if (this.props.search && this.props.search !== ""){
-            const text = this.props.search;
-            const data = this.state.productsBackup
+            const regex = / [yYoO] /g;
+            newSearch = this.props.search.replace(regex, ' ');  
+        } 
+        if(newSearch){
+            const text = newSearch.split(' ');
 
-            const newData = data.filter(function (item) {
-                const itemData = item.description.toUpperCase()
-                const textData = text.toUpperCase()
-                return itemData.indexOf(textData) > -1
+            text.map(elem => {
+                    if(elem.endsWith('es') && elem !== 'mouses' && elem !== 'cables'){
+                        let newElem = elem.slice(0, -2);
+                        data.filter(function (item) {
+                            const itemData = item.description.toUpperCase();
+                            if(itemData.includes(newElem.toUpperCase())){
+                                return newData.push(item);
+                            }
+                        })
+                    }else if(elem.endsWith('s')){
+                        let newElem = elem.slice(0, -1);
+                        data.filter(function (item) {
+                            const itemData = item.description.toUpperCase();
+                            if(itemData.includes(newElem.toUpperCase())){
+                                return newData.push(item);
+                            }
+                        })
+                    } else {
+                        data.filter(function (item) {
+                            const itemData = item.description.toUpperCase()
+                            if(itemData.includes(elem.toUpperCase())){
+                                return newData.push(item);
+                            }
+                        })
+                    }                
             })
             this.setState({
                 products: newData,
@@ -129,24 +173,6 @@ class PaginationComponent extends React.Component {
             selected: productCode != null ? product : null
         })
 
-    }
-
-    filter(event) {
-
-        const text = event.target.value;
-        const data = this.state.productsBackup
-        const newData = data.filter(function (item) {
-            let containsText = false;
-            const itemData = item.description.toUpperCase().split(' ');
-            const textData = text.toUpperCase().split(' ');
-            textData.map((e) => itemData.map((i) => i.indexOf(e) > -1 ? containsText = true : "" ))
-            // return itemData.indexOf(textData) > -1
-            return containsText
-        })
-        this.setState({
-            products: newData,
-            textSearch: text,
-        })
     }
 
     render() {

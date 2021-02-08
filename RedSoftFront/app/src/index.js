@@ -8,8 +8,10 @@ import store from './store';
 
 ReactDOM.render(
     <Auth0Provider 
-        domain="dev-jvz7xn8q.us.auth0.com"
+        domain="dev-jvz7xn8q.us.auth0.com" // credenciales from DI
         clientId="obyw5eEvi7x4QL8IpNxpG7WkRLdUphzT"
+        // domain="dev-e481s0hc.us.auth0.com"
+        // clientId="B51EPQJ50HDq7CsqJFEoA1B8169bF5gf"
         audience="http://localhost:8886/api"
         scope={'read:products'}
         redirectUri={window.location.origin}

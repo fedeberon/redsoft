@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PaymentResponseDao extends JpaRepository<PaymentResponse, Integer> {
+
+    PaymentResponse findByPreferenceId(String preferenceId);
 }

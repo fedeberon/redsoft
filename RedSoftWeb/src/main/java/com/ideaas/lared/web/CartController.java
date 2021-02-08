@@ -40,6 +40,11 @@ public class CartController {
         }
     }
 
+    @RequestMapping(value = "/redirect")
+    public String redirectFront(String preferenceId) {
+    return "redirect:" + "http://localhost:3000/mercadopago/operation/" + preferenceId;
+    }
+
     @RequestMapping("success")
     public String success(@RequestParam("collection_id") String collectionId,
                           @RequestParam("collection_status") String collectionStatus,
@@ -59,7 +64,7 @@ public class CartController {
 
         orderService.updateOrder(preferenceId);
 
-        return "order-detail";
+        return redirectFront(preferenceId);
     }
 
     @RequestMapping("pending")
@@ -79,7 +84,7 @@ public class CartController {
 
         paymentResponseService.save(paymentResponse);
 
-        return "order-detail";
+        return redirectFront(preferenceId);
     }
 
     @RequestMapping("failure")
@@ -99,7 +104,7 @@ public class CartController {
 
         paymentResponseService.save(paymentResponse);
 
-        return "order-detail";
+        return redirectFront(preferenceId);
     }
 
 }

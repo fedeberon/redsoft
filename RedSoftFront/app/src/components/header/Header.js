@@ -101,7 +101,7 @@ const Header = () => {
             totalPrice = 0;
         }
         totalPrice = totalPrice + values;
-        return values;
+        return values.toFixed(2);
     }    
 
     const handleChangeOpacity = (index) => {
@@ -134,8 +134,8 @@ const Header = () => {
                         <thead>
                     <tr style={{display: 'table-row', cursor: 'pointer'}}>
                         <th>#{index+1}</th>
-                        <th>Estado: <span style={{color: order.state ? 'green' : 'orange'}}>{order.state ? 'Pagado' : 'Pendiente'}</span></th>
-                        <th>Fecha: {order.state ? FormatDate(order.lastUpdate) : FormatDate(order.date)}</th>
+                        <th>Estado: <span style={{color: order.paystate ? 'green' : 'orange'}}>{order.paystate ? 'Pagado' : 'Pendiente'}</span></th>
+                        <th>Fecha: {order.paystate ? FormatDate(order.lastUpdate) : FormatDate(order.date)}</th>
                         <th>Ver Productos</th>
                     </tr>
                     </thead>
@@ -149,7 +149,7 @@ const Header = () => {
                                     <th>Producto</th>
                                     <th>Cant.</th>
                                     <th>Subtotal</th>
-                                    <th>{order.state ? 'Total Pagado' : 'Total a Pagar'}</th>
+                                    <th>{order.paystate ? 'Total Pagado' : 'Total a Pagar'}</th>
                                     </tr>
                                 </thead>
                                <tbody>
@@ -163,7 +163,7 @@ const Header = () => {
                                     ))}
                                 </tbody> 
                             </Table> 
-                            <button style={{width: '100%', justifyContent: 'center', display: order.state ? 'none' : 'block'}}
+                            <button style={{width: '100%', justifyContent: 'center', display: order.paystate ? 'none' : 'block'}}
                                             onClick={() => window.location.href=`https://sandbox.mercadopago.com.ar/checkout/v1/redirect?preference-id=${order.preferenceId}`} 
                                             type="button" 
                                             className="btn btn-sm btn-success"
@@ -320,10 +320,11 @@ const Header = () => {
                                         </DropdownButton></li>                                
                                     <Wrapper/>
                                 </ul>
-                                <a href="/login"
+                                <Link to={"/login"}
                                  className="clientes">
                                      Acceso a clientes
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><title>arrow-right-circle</title><path d="M7,13.635A6.635,6.635,0,1,0,.365,7,6.642,6.642,0,0,0,7,13.635ZM7,1.028A5.972,5.972,0,1,1,1.028,7,5.979,5.979,0,0,1,7,1.028Z" /><path d="M4.118,7.333H9.081l-1.3,1.3a.332.332,0,0,0,.471.468l1.864-1.865a.33.33,0,0,0,0-.468L8.253,4.9a.331.331,0,0,0-.468.468l1.3,1.3H4.118a.332.332,0,1,0,0,.663Z" /></svg></a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><title>arrow-right-circle</title><path d="M7,13.635A6.635,6.635,0,1,0,.365,7,6.642,6.642,0,0,0,7,13.635ZM7,1.028A5.972,5.972,0,1,1,1.028,7,5.979,5.979,0,0,1,7,1.028Z" /><path d="M4.118,7.333H9.081l-1.3,1.3a.332.332,0,0,0,.471.468l1.864-1.865a.33.33,0,0,0,0-.468L8.253,4.9a.331.331,0,0,0-.468.468l1.3,1.3H4.118a.332.332,0,1,0,0,.663Z" /></svg>
+                                    </Link>
                                 <div className="spacer"></div>
                             </div>
                         </div>
