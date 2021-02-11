@@ -2,6 +2,7 @@ import React from 'react';
 import Iframe from 'react-iframe';
 import Header from "../header/Header";
 import FooterComponent from "../home/FooterComponent";
+import Alert from 'react-bootstrap/Alert';
 
 class Contact extends React.Component {
 
@@ -11,24 +12,52 @@ class Contact extends React.Component {
             name: '',
             email: '',
             phone: '',
-            msg: ''
+            message: '',
+            showAlert: false,
+            alertMessage: false,
         }
     }
 
     handleChange = (e) => {
         const {name, value} = e.target
         this.setState({[name]: value})
-        console.log(this.state)
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = async (e) => {
         e.preventDefault()
-        alert("alert")
-        }
+        let details = {};
+        details.name = this.state.name;
+        details.email = this.state.email;
+        details.phone = this.state.phone;
+        details.message = this.state.message;
+        console.log(details);
+        const res = await fetch(`http://localhost:8886/sendEmail`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': '*/*'},
+            body: JSON.stringify(details),
+            }).then(response => {
+                if(response.status === 200){
+                    this.setState({alertMessage: true})
+                    this.setState({showAlert: true});
+                    this.setState({
+                        name: '',
+                        email: '',
+                        phone: '',
+                        message: ''
+                    })
+                }
+            })
+            setTimeout(()=> {
+                this.setState({showAlert: false});
+                this.setState({alertMessage: false})
+            },5000)
+    } 
 
     render() {
 
-        const {name, email, phone, msg} = this.state;
+        const {name, email, phone, message} = this.state;
 
         return (
 
@@ -93,12 +122,25 @@ class Contact extends React.Component {
                                 </div>
                                 <div className="form-group">
                                             <textarea className="form-control" id="mensaje"
-                                                      placeholder="Mensaje" rows="5" value={msg}
-                                                       onChange={this.handleChange} name="msg"/>
+                                                      placeholder="Mensaje" rows="5" value={message}
+                                                       onChange={this.handleChange} name="message"/>
                                 </div>
-                                <button type="submit" className="btn-consulta" >Consultar</button>
+                                <button 
+                                type="submit" 
+                                className="btn-consulta"
+                                disabled={!this.state.name || !this.state.email || 
+                                    !this.state.phone || !this.state.message}
+                                >
+                                Consultar
+                                </button>
                             </form>
                         </div>
+                        <Alert
+                        style={{margin: '0 auto', width: '25%', textAlign: 'center'}} 
+                        show={this.state.showAlert} 
+                        variant={this.state.alertMessage ? 'success' : 'danger'}>
+                            {this.state.alertMessage ? `Mensaje enviado con éxito!` : `Envío de mensaje falló!`}
+                        </Alert>
                     </div>
                 </div>
             </div>
@@ -109,6 +151,3 @@ class Contact extends React.Component {
 }
 
 export default Contact;
-
-
-

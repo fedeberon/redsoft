@@ -4,18 +4,36 @@ import { useSelector } from 'react-redux';
 const NuevosReclamos = () => {
 
     const user = useSelector((state) => state.loginispcube.user);
-    const [asunto, setAsunto] = useState('');
-    const [area, setArea] = useState('');
+    const [subject, setSubject] = useState('');
+    const [category, setCategory] = useState(0);
+    const [priority, setPriority] = useState(0);
     const [mensaje, setMensaje] = useState('');
     const [msgSent, setMsgSent] = useState(false);
+
+    const categories = {
+        102: 'Cambio de domicilio. (MUDANZA)',
+        105: 'Reclamos por problema de conectividad/otros (especifique)',
+        108: 'Problema con el Ancho de Banda',
+        109: 'Cambio de RJ 45',
+        110: 'Cambio de instalación',
+        111: 'Cableado averiado',
+        112: 'Problemas con el Router',
+        116: 'Ampliación de red interna (conectar play o televisores por cable)',
+        117: 'Colocación de router secundario',
+        118: 'Antena caída',
+        121: 'Cambio de contraseña de Wifi',
+    }
 
     const onSubmit = async (e) => {
         e.preventDefault();
         let object = document.getElementById('infomsg');
         let json = {};
         json.idcustomer = user.idcustomer;
-        json.details = `Asunto: ${asunto} >> Mensaje: ${mensaje}`;
-        json.idcategory = area;
+        json.details = `Asunto: ${subject} >> Mensaje: ${mensaje}`;
+        json.idcategory = category;
+        json.idpriority = priority;
+
+        console.log(JSON.stringify(json));
 
         let response = await fetch(`http://online3.ispcube.com:8080/index.php/tickets`, {
             method: 'POST',
@@ -28,21 +46,21 @@ const NuevosReclamos = () => {
         }).then(response => response)
         .then(data => console.log(data))
 
-        if(response.ok) {
-            object.innerHTML = "Mensaje enviado exitosamente!";
-            object.style.color = "green";
-            setMsgSent(true)
-            setTimeout(()=> {
-                setMsgSent(false)
-            },10000);
-        } else {
-            object.innerHTML = "Error al enviar. Completá todos los campos";
-            object.style.color = "red";
-            setMsgSent(true)
-            setTimeout(()=> {
-                setMsgSent(false)
-            },10000);
-        }
+        // if(response.ok) {
+        //     object.innerHTML = "Mensaje enviado exitosamente!";
+        //     object.style.color = "green";
+        //     setMsgSent(true)
+        //     setTimeout(()=> {
+        //         setMsgSent(false)
+        //     },10000);
+        // } else {
+        //     object.innerHTML = "Error al enviar. Completá todos los campos";
+        //     object.style.color = "red";
+        //     setMsgSent(true)
+        //     setTimeout(()=> {
+        //         setMsgSent(false)
+        //     },10000);
+        // }
     }
 
     return (
@@ -59,23 +77,38 @@ const NuevosReclamos = () => {
                                 <div className="col-sm-6">
                                     <label htmlFor="">Asunto</label>
                                     <input 
-                                    value={asunto} 
+                                    value={subject} 
                                     type="text" 
                                     className="form-control"
-                                    onChange={(e) => setAsunto(e.target.value)}
+                                    onChange={(e) => setSubject(e.target.value)}
                                     />
                                 </div>
                                 <div className="col-sm-6">
-                                    <label htmlFor="">Area</label>
+                                    <label htmlFor="">Categoría</label>
                                     <select 
-                                    value={area} 
+                                    value={category} 
                                     className="form-control" 
                                     id=""
-                                    onChange={(e) => setArea(e.target.value)}
+                                    onChange={(e) => setCategory(e.target.value)}
                                     >
-                                    <option value="soporte">Soporte técnico</option>
-                                    <option value="cobranzas">Cobranzas</option>
-                                    <option value="admin">Administración</option>
+                                            <option key='none' value={0}>Seleccionar Categoría</option>
+                                        {Object.entries(categories).map(([key, value]) => (
+                                            <option key={key} value={key}>{value}</option>
+                                        ))}
+                                    </select>
+                                </div><br/>
+                                <div className="col-sm-6">
+                                    <label htmlFor="">Prioridad</label>
+                                    <select 
+                                    value={priority} 
+                                    className="form-control" 
+                                    id=""
+                                    onChange={(e) => setPriority(e.target.value)}
+                                    >
+                                            <option key='none' value={0}>Seleccionar Prioridad</option>
+                                            <option key={1} value={1}>Baja</option>
+                                            <option key={2} value={2}>Alta</option>
+                                            <option key={3} value={3}>Normal</option>
                                     </select>
                                 </div>
                                 </div>
@@ -91,7 +124,7 @@ const NuevosReclamos = () => {
                                     <button 
                                     disabled
                                     onClick={(e) => onSubmit(e)} 
-                                    disabled={!mensaje && !asunto && area}
+                                    disabled={!mensaje || !subject || category < 1 || priority < 1}
                                     type="submit" 
                                     className="btn-clientes btn btn-primary"
                                     >

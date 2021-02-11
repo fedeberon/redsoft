@@ -17,47 +17,34 @@ class AboutUs extends React.Component {
                             <div className="row recuadro">
                                 <div className="col-sm-12">
                                     <h1>Sobre La Red</h1>
-                                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum viverra
-                                        in orci in
-                                        laoreet. Morbi quam nibh, aliquam vel tincidunt ac, interdum ac nisi</h2>
+                                    <h3>Historia</h3>
                                 </div>
                                 <div className="col-sm-6">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum viverra
-                                        in orci in
-                                        laoreet. Morbi quam nibh, aliquam vel tincidunt ac, interdum ac nisi.
-                                        Interdum et
-                                        malesuada fames ac ante ipsum primis in faucibus. Aenean sit amet massa et
-                                        augue
-                                        tincidunt luctus. In maximus metus a nunc sodales, a egestas turpis
-                                        facilisis. Maecenas
-                                        augue erat, pretium eu semper sit amet, consequat vel sapien. Vestibulum
-                                        pharetra semper
-                                        velit, a vulputate urna rhoncus ac. Fusce ultricies ullamcorper
-                                        pellentesque. Cras in
-                                        est hendrerit, maximus risus et, dapibus velit. In hac habitasse platea
-                                        dictumst. Ut
-                                        porta libero et tortor venenatis dictum a eget ligula. In vestibulum ac
-                                        tortor id
-                                        volutpat.</p>
+                                    <p>
+                                        La Red es un emprendimiento local que nace en el año 2003, como cibercafé y 
+                                        venta de hardware, apuntando a un segmento en crecimiento con un concepto innovador
+                                        y excelente calidad de servicio, por un período de ocho años.<br/>
+                                        Paralelamente a partir del año 2006, comenzamos a desarrollar nuestra red propia,
+                                        incorporando tecnología actual para la época e incorporando desarrollos propios con
+                                        la finalidad de prestar servicio de internet al hogar. Eran nuestro primeros pasos.
+                                        En el año 2011, dimos por cerrada la etapa de cibercafé y nos abocamos de lleno a la 
+                                        venta de hardware e insumos y a seguir desarrollando nuestra red que estaba en pleno
+                                        crecimiento, incorporando nuevas tecnologías como la fibra óptica para nuestro enlace
+                                        principal. 
+                                    </p>
                                 </div>
                                 <div className="col-sm-6">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum viverra
-                                        in orci in
-                                        laoreet. Morbi quam nibh, aliquam vel tincidunt ac, interdum ac nisi.
-                                        Interdum et
-                                        malesuada fames ac ante ipsum primis in faucibus. Aenean sit amet massa et
-                                        augue
-                                        tincidunt luctus. In maximus metus a nunc sodales, a egestas turpis
-                                        facilisis. Maecenas
-                                        augue erat, pretium eu semper sit amet, consequat vel sapien. Vestibulum
-                                        pharetra semper
-                                        velit, a vulputate urna rhoncus ac. Fusce ultricies ullamcorper
-                                        pellentesque. Cras in
-                                        est hendrerit, maximus risus et, dapibus velit. In hac habitasse platea
-                                        dictumst. Ut
-                                        porta libero et tortor venenatis dictum a eget ligula. In vestibulum ac
-                                        tortor id
-                                        volutpat.</p>
+                                    <p>
+                                        En el año 2017 luego de mucho esperar obtuvimos nuestra licencia expedida por la ENACOM
+                                        para poder ser ISP registrado, y en ese mismo período obtuvimos nuestro ASN (sistema 
+                                        autónomo) que nos definía como red propia frente a internet.<br/>
+                                        En la actualidad seguimos trabajando e invirtiendo capital con la finalidad de mantener
+                                        nuestra calidad de servicio, en épocas donde la demanda de conectividad se ha acrecentado
+                                        exponencialmente.<br/><br/>
+                                        <strong>Compromiso y calidad de servicio, como estandárte de nuestra empresa, siempre al 
+                                            lado de nuestros clientes atentos a sus demandas con vocación de servicio.
+                                        </strong>
+                                    </p>
                                 </div>
                             </div>
                         </div>

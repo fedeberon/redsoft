@@ -22,6 +22,7 @@ const Login = () => {
     const [showSpinner, setShowSpinner] = useState(false);
     let elem = document.getElementById('inputusername');
 
+
     
     const handleChange = (e) => {
         setUsername(e.target.value)
@@ -69,8 +70,10 @@ const Login = () => {
                         Object.entries(data).map(([key, value]) => {
                             if(key === 'data'){
                                 dispatch(loginispcubeActions.setData(value));                                
-                                // setDataFull(value);
+                                let dataFull = [];
                                 value.map((customer) => {
+                                    // dataFull.push(customer?.id) //actualizar lista de ids
+                                    // console.log(JSON.stringify(dataFull)) //actualizar lista de ids
                                     object = Object.entries(customer).find(([key, value]) => value===password)
                                     if(object){
                                         dispatch(loginispcubeActions.authenticated(true));
@@ -79,12 +82,12 @@ const Login = () => {
                                             history.push('/clientes/facturas');
                                         },1500)
                                     }
-                                })                            
-                            }})                    
-                        }                        
+                                })
+                            }})
+                        }
                     setShowSpinner(false);     
-                    bg.style.opacity = "";                                              
-                });  
+                    bg.style.opacity = "";
+                });
         }
     }
 

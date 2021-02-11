@@ -1,5 +1,7 @@
 package com.ideaas.lared.configuration;
 
+import java.util.Properties;
+
 import com.ideaas.lared.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,6 +11,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -66,6 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/cart/**").permitAll()
                 .antMatchers("/api/orders/**").permitAll()
                 .antMatchers("/cart/**").permitAll()
+                .antMatchers("/sendEmail").permitAll()
                 .antMatchers("/authenticate/**").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**" ).permitAll()
                 .antMatchers(HttpMethod.GET, "/index*", "/static/**", "/*.js", "/*.json", "/*.ico").permitAll()
@@ -134,4 +139,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return this.authenticationManager();
     }
 
+    @Bean
+    public JavaMailSender getJavaMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("ail.laredwifi.com.ar");
+        mailSender.setPort(587);
+    
+        mailSender.setUsername("gestiones@laredwifi.com.ar");
+        mailSender.setPassword("Sirius2021paz");
+
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.debug", "true");
+        //props.put("mail.smtps.ssl.checkserveridentity", "true");
+        //props.put("mail.smtps.ssl.trust", "*");
+
+        return mailSender;
+    }
 }
