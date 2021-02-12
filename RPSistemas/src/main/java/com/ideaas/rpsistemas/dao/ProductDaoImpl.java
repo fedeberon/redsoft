@@ -39,6 +39,10 @@ public class ProductDaoImpl implements ProductDao {
             List<Tuple> result = query.getResultList();
             result.forEach(row -> products.add(new Product()
                     .withCode(String.valueOf(row.get("cod_articulo")))
+                    .withCantiStock((BigDecimal)(row.get("canti_stock")))
+                    .withWebLink(String.valueOf(row.get("web_link")))
+                    .withPorcenDescuento((BigDecimal)(row.get("porcen_descuen")))
+                    .withDescAdicional(String.valueOf(row.get("desc_adicional")))
                     .withPriceUni(String.valueOf(row.get("precio_uni")))
                     .withPriceUniVta((BigDecimal)(row.get("precio_uni_vta")))
                     .withDescription(String.valueOf(row.get("descrip_arti")))));

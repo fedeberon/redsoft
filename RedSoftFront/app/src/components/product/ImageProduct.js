@@ -7,9 +7,9 @@ const ImageProduct = ({products, setHeight, setWidth}) => {
 
     return (
         <Fragment>
-            <img src={`http://164.68.101.162:8093/img/${products.code}.jpg`}
+            <img src={`${products.webLink}`}
                  className="asd"
-                 alt={`/img/${products.code}.jpg`}
+                 alt={`${products.description}`}
                  style={{height: `${imgHeight}px`, width: `${imgWidth}px`}}
             />
         </Fragment>

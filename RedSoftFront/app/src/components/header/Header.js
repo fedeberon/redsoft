@@ -181,11 +181,6 @@ const Header = () => {
         );
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        alert('ok');
-    }
-
     const formatTextSearch = () => {
         let newText;
         if(textMobileSearch.endsWith('es') && textMobileSearch !== 'cables' && textMobileSearch !== 'mouses' ){
@@ -335,7 +330,7 @@ const Header = () => {
                                     
                                     <li style={{position: 'absolute', left: '50%', top: '3px', display: user ? 'flex' : 'none'}}>
                                         <DropdownButton id="dropdown-profile-button" title={<Profile/>}>
-                                            <Dropdown.Item className="login-option-list" onClick={handleShowModal}>
+                                            <Dropdown.Item  className="login-option-list" onClick={handleShowModal}>
                                                 {`Mis compras`}</Dropdown.Item>
                                             <Dropdown.Item className="login-option-list">{<LogoutButton/>}</Dropdown.Item>                                        
                                         </DropdownButton></li>                                

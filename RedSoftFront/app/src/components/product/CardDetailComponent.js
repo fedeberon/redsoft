@@ -182,34 +182,15 @@ class CardDetailComponent extends Component {
                                 <div className="col">
                                     <div className="description">
                                         <div className="row">
-                                            <h4 className="tit">Descripción del producto
-                                                <Button onClick={() => this.setState({show_desc: true}) } variant="light" style={{
-                                                    paddingRight: '6px',
-                                                    paddingLeft: '6px',
-                                                    paddingTop: 0,
-                                                    backgroundColor: 'rgba(247,247,247,1)'
-                                                }}>
-                                                    <img style={{height: '20px'}} title="Editar"
-                                                         src="https://image.flaticon.com/icons/png/512/126/126794.png"
-                                                         alt="edit icon"/>
-                                                </Button>
-                                            </h4>
+                                            <h3 className="tit">Descripción del producto                                                
+                                            </h3>
                                         </div>
-                                        <div className="form-group" style={{display: show_desc ? 'block' : 'none'}}>
-                                            <textarea className="form-control" id="mensaje"
-                                                      rows="6" value={product_description}
-                                                      name="product_description" onChange={this.handleChange}
-                                            onKeyPress={(e) => e.key === 'Enter' ? this.setState({show_desc: false}) : ''}/>
-                                        </div>
+                                    <p style={{paddingRight: '300px', fontSize: '18px'}}>
+                                            {product && product.descAdicional !== '' 
+                                        ? product.descAdicional : 'Sin información disponible'}
+                                    </p>
 
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-                                        <strong>CARACTERÍSTICAS
+                                        {/* <strong>CARACTERÍSTICAS
                                             <Button variant="light" style={{
                                                 paddingRight: '6px',
                                                 paddingLeft: '6px',
@@ -220,16 +201,16 @@ class CardDetailComponent extends Component {
                                                      src="https://image.flaticon.com/icons/png/512/126/126794.png"
                                                      alt="edit icon"/>
                                             </Button>
-                                        </strong>
+                                        </strong> */}
 
-                                        <ul>
+                                        {/* <ul>
                                             - Gaming mouse óptico de alta calidad
                                             <li>- Cableado con conexión USB</li>
                                             <li>- 6 Botones</li>
                                             <li>- Retroiluminado</li>
                                             <li>- Rueda scroll con textura antideslizante</li>
                                             <li>- Diseño ergonómico</li>
-                                        </ul>
+                                        </ul> */}
                                     </div>
                                 </div>
                             </div>

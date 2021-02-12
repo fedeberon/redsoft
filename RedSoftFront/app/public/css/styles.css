@@ -15,6 +15,22 @@ body {font-family: Overpass,serif !important;
 	background-color: #e8eaea;
 }
 
+.label-featured {
+	z-index: 1;
+    position: absolute;
+    right: 30px;
+    top: 15px;
+    padding: 8px 14px;
+    border-radius: 4px;
+    background-color: rgba(190,29,123,0.9);
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    line-height: 18px;
+    font-family: 'Barlow', Arial, sans-serif;
+    font-weight: 700;
+}
+
 .mpcomponent-head {
 	text-align: center;
 	margin-top: 35px;

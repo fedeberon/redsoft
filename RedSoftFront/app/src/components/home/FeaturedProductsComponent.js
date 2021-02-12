@@ -12,6 +12,7 @@ class FeaturedProductsComponent extends React.Component {
 
                         <div className="col-sm-3">
                             <div className="item animate destacados">
+                            <div title="En oferta!" className="label-featured">20%</div>
                                 <Link to={"/details/ADAPBLUE"}>
                                     <figure className="destacados-figure">
                                         <img src="http://164.68.101.162:8093/img/ADAPBLUE.jpg" alt="Producto Destacado 1" className="foto"/></figure>
@@ -25,6 +26,7 @@ class FeaturedProductsComponent extends React.Component {
 
                         <div className="col-sm-3">
                             <div className="item animate destacados">
+                            <div title="En oferta!" className="label-featured">15%</div>
                                 <Link to={"/details/D7798137715821D"}>
                                     <figure className="destacados-figure">
                                         {/* <div className="label">20%</div> */}
@@ -41,6 +43,7 @@ class FeaturedProductsComponent extends React.Component {
 
                         <div className="col-sm-3">
                             <div className="item animate destacados">
+                            <div title="En oferta!" className="label-featured">8%</div>
                                 <Link to={"/details/NSADDV1"}>
                                     <figure className="destacados-figure">
                                         <img src="http://164.68.101.162:8093/img/NSADDV1.jpg" alt="Producto Destacado 3" className="foto"/></figure>
@@ -54,6 +57,7 @@ class FeaturedProductsComponent extends React.Component {
 
                         <div className="col-sm-3">
                             <div className="item animate destacados">
+                            <div title="En oferta!" className="label-featured">15%</div>
                                 <Link to={"/details/AA"}>
                                     <figure className="destacados-figure">
                                         <img src="http://164.68.101.162:8093/img/AA.jpg" alt="Producto Destacado 4" className="foto"/></figure>
