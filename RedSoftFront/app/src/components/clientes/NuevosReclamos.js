@@ -8,7 +8,6 @@ const NuevosReclamos = () => {
     const [category, setCategory] = useState(0);
     const [priority, setPriority] = useState(0);
     const [mensaje, setMensaje] = useState('');
-    const [msgSent, setMsgSent] = useState(false);
 
     const categories = {
         102: 'Cambio de domicilio. (MUDANZA)',
@@ -26,7 +25,6 @@ const NuevosReclamos = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        let object = document.getElementById('infomsg');
         let json = {};
         json.idcustomer = user.idcustomer;
         json.details = `Asunto: ${subject} >> Mensaje: ${mensaje}`;
@@ -35,7 +33,7 @@ const NuevosReclamos = () => {
 
         console.log(JSON.stringify(json));
 
-        let response = await fetch(`http://online3.ispcube.com:8080/index.php/tickets`, {
+        await fetch(`http://online3.ispcube.com:8080/index.php/tickets`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -130,9 +128,6 @@ const NuevosReclamos = () => {
                                     >
                                         Enviar
                                     </button>
-                                    <p id="infomsg" style={{marginLeft: '25px', color: 'green', display: msgSent ? 'inline' : 'none'}}>
-                                        Mensaje enviado exitosamente!
-                                    </p>
                                 </div>
                             </div>
                         </form>

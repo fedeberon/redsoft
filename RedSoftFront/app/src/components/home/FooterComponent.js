@@ -99,7 +99,7 @@ class FooterComponent extends React.Component {
                             <div className="col-6 col-md-3">
                                 <div className="social socialfooter">
                                     <h5>Seguinos en</h5>
-                                    <a href="https://wa.me/542314404320" target="_blank" className="social-icon">
+                                    <a href="https://wa.me/542314404320" rel="noopener noreferrer" target="_blank" className="social-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14">
                                             <title>Chateá con nosotros!</title>
                                             <path

@@ -24,21 +24,27 @@ export default function ModalFileUploader() {
     return (
         <>
 
-            <Link className="btn-sm"  style={{marginLeft: window.innerWidth > 767 ? '750px' : "0px"}} onClick={handleShow}>
+            <a onClick={handleShow}>
                 Subir Imagen
-            </Link>
+            </a>
             <Modal show={show} onHide={handleClose} animation={false} centered>
                 <Modal.Header closeButton style={{backgroundColor: '#f5e8e8'}}>
                     <Modal.Title>Cargar imagen de producto</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <FileUploader/>
+                        <form id="form" enctype="multipart/form-data" method="post" >
+                            <input type="file" id="fileupload" name="file" required/><br/>
+                            <div class="preview-image">
+                                <img id="image"/>
+                            </div>
+                            <input type="submit" value="Cargar"/>
+                        </form>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="light" onClick={handleClose}>
                         Volver
                     </Button>
-                    <Button type="submit" variant="success" onClick={handleClose} formenctype="multipart/form-data">
+                    <Button type="submit" variant="success" onClick={handleClose}>
                         Subir imagen
                     </Button>
                 </Modal.Footer>

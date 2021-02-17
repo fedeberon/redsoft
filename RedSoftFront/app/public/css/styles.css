@@ -590,7 +590,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 
 .dropdown-menu.show {
 	left: -186px;
-	top: 118%;
+	top: 48px;
 	padding: 10px;
 }
 

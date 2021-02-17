@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 const BannersHomeComponent = () => {
 
     const {
-        isAuthenticated,
         loginWithRedirect,
     } = useAuth0();
 
@@ -13,7 +12,7 @@ const BannersHomeComponent = () => {
         <div className="bannershome">
             <div className="container">
                 <div className="row">
-                    <div className="col-md-6" onClick={() => loginWithRedirect()}><a href=""><img src="img/banner-home-clientes.jpg"/></a></div>
+                    <div className="col-md-6" onClick={() => loginWithRedirect()}><a href=""><img alt="" src="img/banner-home-clientes.jpg"/></a></div>
                     <div className="col-md-6"><Link to={"/services"}><img src="img/banner-home-servicios.jpg"/></Link></div>
                 </div>
             </div>

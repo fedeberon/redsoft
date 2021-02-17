@@ -4,8 +4,6 @@ import ReactImageZoom from 'react-image-zoom';
 import ProductDetail from "./detail";
 import api from "../../axios";
 import {Link} from "react-router-dom";
-import ModalFileUploader from "./ModalFileUploader";
-import {Button} from "react-bootstrap";
 import Header from "../header/Header";
 import FooterComponent from "../home/FooterComponent";
 
@@ -45,7 +43,6 @@ class CardDetailComponent extends Component {
 
         let product = this.state.products.find((e) => e.code === this.props.match.params.id)
         let code = this.props.match.params.id
-        const {product_description, show_desc} = this.state
 
         return (
 
@@ -59,43 +56,41 @@ class CardDetailComponent extends Component {
                                     <Link className="breadcrumb-item linklr" to={"/"}>Home</Link>
                                     <Link className="breadcrumb-item linklr" to={"/products"}>Productos</Link>
                                     <li className="breadcrumb-item active" aria-current="page">Detalles</li>
-                                    {/* <div>
-                                        <ModalFileUploader/>
-                                    </div> */}
                                 </ol>
                             </nav>
-                            <div className="row">
-
+                            <div className="row" style={{height: '600px'}}>
                                 {/*// <!-- galeria -->*/}
                                 <div className="col-sm-6">
                                     <div id="carouselProduct" className="carousel slide" data-ride="carousel">
                                         <div className="carousel-inner">
-                                            <div className="label">20%</div>
+                                            {/* <div className="label">20%</div> */}
                                             <img className="zoom-icon" alt="" src="/img/zoom-in.svg"/>
                                             <div className="carousel-item active">
                                             <span className="zoom" id="ex1"><ReactImageZoom width={538} height={508}
                                                                                             zoomWidth={600}
-                                                                                            img={`http://164.68.101.162:8093/img/${code}.jpg`}
+                                                                                            img={`${product && product.webLink}`}
                                                                                             zoomPosition={"original"}
                                                                                             className="d-block w-100"/>
                                             </span>
                                             </div>
-                                            <div className="carousel-item">
+                                          
+                                            {/* <div className="carousel-item">
                                             <span className="zoom" id="ex2"><ReactImageZoom width={538} height={508}
                                                                                             zoomWidth={600}
                                                                                             img={`http://164.68.101.162:8093/img/${code}1.jpg`}
                                                                                             zoomPosition={"original"}
                                                                                             className="d-block w-100"/>
                                             </span>
-                                            </div>
-                                            <div className="carousel-item">
+                                            </div> 
+                                             */}
+                                            {/* <div className="carousel-item">
                                             <span className="zoom" id="ex3"><ReactImageZoom width={538} height={508}
                                                                                             zoomWidth={600}
                                                                                             img={`http://164.68.101.162:8093/img/${code}2.jpg`}
                                                                                             zoomPosition={"original"}
                                                                                             className="d-block w-100"/>
                                             </span>
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <a className="carousel-control-prev" href="#carouselProduct" role="button"
                                            data-slide="prev">
@@ -110,7 +105,7 @@ class CardDetailComponent extends Component {
                                             <span className="sr-only">Next</span>
                                         </a>
 
-                                        <ol className="carousel-indicators">
+                                        {/* <ol className="carousel-indicators">
                                             <li data-target="#carouselProduct" data-slide-to="0" className="active"><img alt="" 
                                                 src={`http://164.68.101.162:8093/img/${code}.jpg`}
                                                 className="d-block w-100"/>
@@ -123,7 +118,7 @@ class CardDetailComponent extends Component {
                                                 src={`http://164.68.101.162:8093/img/${code}2.jpg`}
                                                 className="d-block w-100"/>
                                             </li>
-                                        </ol>
+                                        </ol> */}
                                     </div>
                                 </div>
 

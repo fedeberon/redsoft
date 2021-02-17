@@ -1,11 +1,8 @@
-import React, { useLayoutEffect } from "react";
+import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useState} from "react";
 import {useSelector, shallowEqual} from "react-redux";
 import ModalContent from "./ModalContent";
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
-import { useAuth0 } from "@auth0/auth0-react";
 
 export default function ModalCart({setShowMobile}) {
 
@@ -13,7 +10,6 @@ export default function ModalCart({setShowMobile}) {
 
     const [show, setShow] = useState(false);
     const [showDialog, setShowDialog] = useState(false);
-    const {user} = useAuth0();
 
     function BodyHidden() {
         let bg = document.body;

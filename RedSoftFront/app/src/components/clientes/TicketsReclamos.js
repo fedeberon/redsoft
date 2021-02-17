@@ -15,13 +15,12 @@ const TicketsReclamos = ({newOption}) => {
     const [modalShow, setModalShow] = React.useState(false);
     const [ticketHistory, setTicketHistory] = useState([]);
 
-    const asd = () => {
+    const getOption = () => {
         newOption(option);
     }    
 
     const getTickets = async () => {
 
-        let response = 
         await fetch(`http://online3.ispcube.com:8080/index.php/tickets?limit=50&q=${user.id}`, {
             method: 'GET',
             headers: {
@@ -107,7 +106,7 @@ const TicketsReclamos = ({newOption}) => {
                     Necesitas ayuda o información? generá un nuevo ticket.
                     </div>
                     <div className="col-12 col-sm">
-                    <Button  onClick={asd}
+                    <Button  onClick={getOption}
                     className="btn btn-primary btn-clientes">
                        <Link id="nuevoticket" to={"/clientes/nuevo-reclamo"}>Iniciar Ticket</Link></Button>
                     </div>

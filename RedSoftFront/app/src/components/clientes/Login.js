@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Spinner from 'react-bootstrap/Spinner';
-import Recaptcha from 'react-google-invisible-recaptcha';
+// import Recaptcha from 'react-google-invisible-recaptcha';
 import dataIds from "./customersIds.json";
 import dataPass from "./customersPass.json";
 import { loginispcubeActions } from "../../store";
@@ -12,13 +12,13 @@ import { loginispcubeActions } from "../../store";
 const Login = () => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const recaptchaRef = React.createRef();
+    // const recaptchaRef = React.createRef();
     let bg = document.body;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [checkLogin, setCheckLogin] = useState(true);
     const [userChecked, setUserChecked] = useState(false);
-    const [recap, setRecap] = useState('');
+    // const [recap, setRecap] = useState('');
     const [showSpinner, setShowSpinner] = useState(false);
     let elem = document.getElementById('inputusername');
 
@@ -30,8 +30,10 @@ const Login = () => {
 
     useEffect(() => {
         if(dataIds.customerId.includes(username)){
-            elem.style = 'border: 2px solid #9fec7e !important;'
-            elem.style = 'box-shadow: 0 0 0 0.2rem #60ea7b !important;'
+            if(elem){
+                elem.style = 'border: 2px solid #9fec7e !important;'
+                elem.style = 'box-shadow: 0 0 0 0.2rem #60ea7b !important;'
+            }
             setUserChecked(true);
         } else {
             if(elem){
@@ -56,7 +58,7 @@ const Login = () => {
         } else {
             setShowSpinner(true);        
             bg.style.opacity = 0.5;              
-            const customers = await fetch('http://online3.ispcube.com:8080/index.php/customers?limit=1500',{
+            await fetch('http://online3.ispcube.com:8080/index.php/customers?limit=1500',{
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,7 +72,7 @@ const Login = () => {
                         Object.entries(data).map(([key, value]) => {
                             if(key === 'data'){
                                 dispatch(loginispcubeActions.setData(value));                                
-                                let dataFull = [];
+                                // let dataFull = [];
                                 value.map((customer) => {
                                     // dataFull.push(customer?.id) //actualizar lista de ids
                                     // console.log(JSON.stringify(dataFull)) //actualizar lista de ids

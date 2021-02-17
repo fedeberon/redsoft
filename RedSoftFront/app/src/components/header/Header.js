@@ -13,10 +13,9 @@ import Table from 'react-bootstrap/Table';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useAuth0 } from "@auth0/auth0-react";
-import { useSelector } from 'react-redux';
 import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion';
-
+import ModalFileUploader from "../product/ModalFileUploader";
 
 const Header = () => {
 
@@ -28,9 +27,9 @@ const Header = () => {
     const [stepper, setStepper] = useState('');
     const [modalShow, setModalShow] = useState(false);
     const [textMobileSearch, setTextMobileSearch] = useState('');
-    const userid = useSelector(state => state.session.userid);
-    const authen = useSelector(state => state.session.authenticated);
-    const preferenceId = useSelector(state => state.preference.id);
+    // const userid = useSelector(state => state.session.userid);
+    // const authen = useSelector(state => state.session.authenticated);
+    // const preferenceId = useSelector(state => state.preference.id);
     const [orders, setOrders] = useState([]);
 
     const {user} = useAuth0();
@@ -331,8 +330,15 @@ const Header = () => {
                                     <li style={{position: 'absolute', left: '50%', top: '3px', display: user ? 'flex' : 'none'}}>
                                         <DropdownButton id="dropdown-profile-button" title={<Profile/>}>
                                             <Dropdown.Item  className="login-option-list" onClick={handleShowModal}>
-                                                {`Mis compras`}</Dropdown.Item>
-                                            <Dropdown.Item className="login-option-list">{<LogoutButton/>}</Dropdown.Item>                                        
+                                                {`Mis compras`}
+                                            </Dropdown.Item>
+                                            <Dropdown.Item className="login-option-list">
+                                                {<ModalFileUploader/>}
+                                            </Dropdown.Item> 
+                                            <Dropdown.Item className="login-option-list">
+                                                {<LogoutButton/>}
+                                            </Dropdown.Item>    
+                                                                               
                                         </DropdownButton></li>                                
                                     <Wrapper/>
                                 </ul>

@@ -76,7 +76,7 @@ class NavBarReact extends React.Component {
                 </Navbar>
                 <div>
                     <div className="social top">
-                        <a href="https://wa.me/542314404320" target="_blank" className="social-icon">
+                        <a href="https://wa.me/542314404320" rel="noopener noreferrer" target="_blank" className="social-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14">
                                 <title>Chateá con nosotros!</title>
                                 <path
@@ -86,7 +86,7 @@ class NavBarReact extends React.Component {
                                     fillRule="evenodd"/>
                             </svg>
                         </a>
-                        <a href="https://www.facebook.com/LaRedBolivar/" target="_blank"
+                        <a href="https://www.facebook.com/LaRedBolivar/" rel="noopener noreferrer" target="_blank"
                            className="social-icon">
                             <svg viewBox="0 0 320 512">
                                 <title>Nuestro Facebook!</title>
@@ -94,7 +94,7 @@ class NavBarReact extends React.Component {
                                     d="M279.1 288l14.3-92.7h-89v-60c0-25.4 12.5-50.2 52.3-50.2H297V6.4S260.4 0 225.4 0C152 0 104.3 44.4 104.3 124.7v70.6H22.9V288h81.4v224h100.2V288z"/>
                             </svg>
                         </a>
-                        <a href="https://www.instagram.com/laredbolivar/" target="_blank" className="social-icon">
+                        <a href="https://www.instagram.com/laredbolivar/" rel="noopener noreferrer" target="_blank" className="social-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                                 <title>Nuestro Instagram!</title>
                                 <path
