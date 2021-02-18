@@ -15,7 +15,6 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { useAuth0 } from "@auth0/auth0-react";
 import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion';
-import ModalFileUploader from "../product/ModalFileUploader";
 
 const Header = () => {
 
@@ -332,9 +331,12 @@ const Header = () => {
                                             <Dropdown.Item  className="login-option-list" onClick={handleShowModal}>
                                                 {`Mis compras`}
                                             </Dropdown.Item>
-                                            <Dropdown.Item className="login-option-list">
-                                                {<ModalFileUploader/>}
-                                            </Dropdown.Item> 
+                                            {user && user.email === "pablo.psir@gmail.com" ? 
+                                            <Dropdown.Item href="/fileupload"
+                                            className="login-option-list">
+                                                Subir Imagenes
+                                            </Dropdown.Item> : '' }
+
                                             <Dropdown.Item className="login-option-list">
                                                 {<LogoutButton/>}
                                             </Dropdown.Item>    

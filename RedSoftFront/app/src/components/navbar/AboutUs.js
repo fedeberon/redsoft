@@ -2,11 +2,9 @@ import React from 'react';
 import Header from "../header/Header";
 import FooterComponent from "../home/FooterComponent";
 
-class AboutUs extends React.Component {
+const AboutUs = () => {
 
-    render() {
         return (
-
             <>
             <Header/>            
             <div className="page nosotros">
@@ -14,7 +12,7 @@ class AboutUs extends React.Component {
                     <div className="row justify-content-md-center">
                         <div className="col-md-10">
                             <img src="img/nosotros.jpg" alt="Nuestra empresa" className="foto"/>
-                            <div className="row recuadro">
+                            file                 <div className="row recuadro">
                                 <div className="col-sm-12">
                                     <h1>Sobre La Red</h1>
                                     <h3>Historia</h3>
@@ -54,7 +52,6 @@ class AboutUs extends React.Component {
             <FooterComponent/>
             </>
         );
-    }
 }
 
 export default AboutUs;

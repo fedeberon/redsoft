@@ -594,6 +594,27 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 	padding: 10px;
 }
 
+#button-upload-file {
+	display: flex;
+    justify-content: center;
+    width: 29%;
+    margin: 0 auto;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+#link-url {
+	text-align: center;
+	margin-top: 30px;
+    width: 50%;
+}
+
+#image-form {
+	text-align: center;
+    font-size: 17px;
+	margin-top: 50px;
+}
+
 #modalCustomer{
 	transform: scaleY(0.01) scaleX(0);
 	animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;

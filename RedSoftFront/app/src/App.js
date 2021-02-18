@@ -18,9 +18,11 @@ import PrivateRoute from "./components/PrivateRoute";
 import MercadoPagoResponse from "./components/MercadoPagoResponse";
 import {useDispatch} from 'react-redux';
 import {ordersActions} from "./store/order";
+import { useAuth0 } from "@auth0/auth0-react";
+import FileUploader from './components/product/FileUploader';
 
 const App = () => {
-
+  const {user, isAuthenticated} = useAuth0();
   const dispatch = useDispatch();
   const authenticated = useSelector(state => state.loginispcube.authenticated);
   let products = useSelector(state => Object.values(state.order.items), shallowEqual);
@@ -41,7 +43,7 @@ const App = () => {
             precioUniVta: data.precioUniVta,
             quantity: data.quantity,
           }
-          dispatch(ordersActions.addOrder(product)); 
+          dispatch(ordersActions.addOrder(product));
         })
       }
     }
@@ -61,6 +63,11 @@ const App = () => {
             <Route exact path="/details/:id" component={CardDetailComponent}/>
             <Route exact path="/products" component={ProductsList}/>
             <Route exact path="/products/search=:search" component={ProductsList}/>
+            <Route 
+            exact path="/fileupload" 
+            component={isAuthenticated && user.email === 'pablo.psir@gmail.com' ? FileUploader : HomeContainer}
+            isAuthenticated={isAuthenticated}
+            />
             <Route exact path="/mercadopago/operation/:id" component={MercadoPagoResponse}/>
             <Route exact path="/login" component={Login}/>                          
             <PrivateRoute 
