@@ -12,7 +12,7 @@ const AboutUs = () => {
                     <div className="row justify-content-md-center">
                         <div className="col-md-10">
                             <img src="img/nosotros.jpg" alt="Nuestra empresa" className="foto"/>
-                            file                 <div className="row recuadro">
+                            <div className="row recuadro">
                                 <div className="col-sm-12">
                                     <h1>Sobre La Red</h1>
                                     <h3>Historia</h3>

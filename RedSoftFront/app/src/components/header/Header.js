@@ -22,20 +22,29 @@ const Header = () => {
     const [productmenustate, setProductmenustate] = useState(false);
     const [categorystate1, setCategorystate1] = useState(false);
     const [categorystate2, setCategorystate2] = useState(false);
+    const [categorystate3, setCategorystate3] = useState(false);
+    const [categorystate4, setCategorystate4] = useState(false);
+    const [categorystate5, setCategorystate5] = useState(false);
+    const [categorystate6, setCategorystate6] = useState(false);
     const [profilemenustate, setProfilemenustate] = useState(false);
     const [stepper, setStepper] = useState('');
     const [modalShow, setModalShow] = useState(false);
     const [textMobileSearch, setTextMobileSearch] = useState('');
-    // const userid = useSelector(state => state.session.userid);
-    // const authen = useSelector(state => state.session.authenticated);
-    // const preferenceId = useSelector(state => state.preference.id);
     const [orders, setOrders] = useState([]);
 
     const {user} = useAuth0();
 
     const openMobileMenu = () => {
         if(window.innerWidth < 767) {
-            elementBody.className = "pushy-open-left"
+            elementBody.className = "pushy-open-left";
+            elementBody.style.overflowY = 'hidden';
+        }
+    }
+
+    const closeMobileMenu = () => {
+        if(window.innerWidth < 767) {
+            elementBody.className = ""
+            elementBody.style.overflowY = '';
         }
     }
 
@@ -46,7 +55,7 @@ const Header = () => {
 
     const getHistory = async () => {
 
-        await fetch(`http://localhost:8886/api/orders?userEmail=${user.email}`, {
+        await fetch(`https://laredintercomp.com.ar:8886/api/orders?userEmail=${user.email}`, {
             method: 'GET',
             headers: {'Content-Type': 'application/json',
                     'Accept': '*/*'},
@@ -67,12 +76,6 @@ const Header = () => {
         if(stepper)
         window.location.href = `/products/search=${stepper}`
     },[stepper])
-
-    const closeMobileMenu = () => {
-        if(window.innerWidth < 767) {
-            elementBody.className = ""
-        }
-    }
     
     function openSearch(e) {
         e.preventDefault();
@@ -89,7 +92,7 @@ const Header = () => {
 
     function FormatDate(date) {
         let newdate = new Date(date);
-        return `${newdate.getDate()}/${newdate.getMonth()+1 < 10 ? `0${newdate.getMonth()+1}` : `${newdate.getMonth()+1}`}/${newdate.getFullYear()}
+        return `${newdate.getDate() < 10 ? `0${newdate.getDate()}` : `${newdate.getDate()}`}/${newdate.getMonth()+1 < 10 ? `0${newdate.getMonth()+1}` : `${newdate.getMonth()+1}`}/${newdate.getFullYear()}
         a las ${newdate.getHours()}:${newdate.getMinutes() < 10 ? `0${newdate.getMinutes()}` : `${newdate.getMinutes()}`}hs`
     }
 
@@ -147,6 +150,7 @@ const Header = () => {
                                     <tr>   
                                     <th>Producto</th>
                                     <th>Cant.</th>
+                                    <th>Precio Un.</th>
                                     <th>Subtotal</th>
                                     <th>{order.paystate ? 'Total Pagado' : 'Total a Pagar'}</th>
                                     </tr>
@@ -155,20 +159,24 @@ const Header = () => {
                                     {(order.details).map((detail, index) =>  (
                                         <tr key={detail.id}>
                                             <td>{detail.product?.name}</td>
-                                            <td>{detail.quantity}</td>  
+                                            <td>{detail.quantity}</td>
+                                            <td>${detail.product?.price}</td>
                                             <td>${TotalPrice(detail.product?.price * detail.quantity, index+1)}</td>
                                             <td><strong>{index === (order.details).length -1 ? `$${totalPrice.toFixed(2)}` : ""}</strong></td>
                                         </tr>
                                     ))}
                                 </tbody> 
                             </Table> 
+                            {/* <div style={{display: 'inline-flex', width: '100%'}}> */}
                             <button style={{width: '100%', justifyContent: 'center', display: order.paystate ? 'none' : 'block'}}
-                                            onClick={() => window.location.href=`https://sandbox.mercadopago.com.ar/checkout/v1/redirect?preference-id=${order.preferenceId}`} 
+                                            onClick={() => window.location.href=`https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${order.preferenceId}`} 
                                             type="button" 
                                             className="btn btn-sm btn-success"
                                             >
                                             Finalizar compra
-                            </button> 
+                            </button>
+                            {/* <button onClick={() => orderRemove(order)}className="btn btn-sm btn-danger">Cancelar orden</button>
+                            </div> */}
                         </Card.Body>
                     </Accordion.Collapse>
                 </Card>
@@ -178,6 +186,14 @@ const Header = () => {
           </Modal>
         );
     }
+
+    // const orderRemove = async (order) => {
+    //     await fetch(`https://laredintercomp.com.ar/orders/remove`, {
+    //         method: 'POST',
+    //         headers: {'Content-Type': 'application/json'},
+    //         body: JSON.stringify(order)
+    //     }).then(response => response.status);
+    // }
 
     const formatTextSearch = () => {
         let newText;
@@ -214,7 +230,7 @@ const Header = () => {
                     </div>
 
                     <nav className="pushy pushy-left" data-focus="#first-link">
-                        <a onClick={() => closeMobileMenu()} className="close-pushy">&times;</a>
+                        <a href="" onClick={() => closeMobileMenu()} className="close-pushy">&times;</a>
                         <div className="logo-pushy">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 258 90"><title>logo</title><path d="M7.037,61.112,25.493,67.98,27.9,88.666l5.42-17.3,12.934,4.89a6.24,6.24,0,0,0,7.936-4.093L68.352,27.606l-7.906-3.06,2.46-7.439L26.448,2.273C22.316.685,19.529.523,16.509,6.555L2.56,49.805l7.663,3Z" fill="#be1d7b" fillRule="evenodd"/><path d="M38.938,42.016c5.019,2.272,8.318,7.991,7.784,14.361l4.238.37A19.54,19.54,0,0,0,43.6,39.4a19.385,19.385,0,0,0,10.144-15.82l-4.239-.37c-.5,6.021-4.288,10.875-9.2,12.544a6.551,6.551,0,0,1,.261,2.477,6.366,6.366,0,0,1-1.628,3.788ZM35.59,33.267a4.314,4.314,0,0,1,3.652,4.846,4.279,4.279,0,0,1-4.407,4.142,4.316,4.316,0,0,1-3.653-4.847,4.279,4.279,0,0,1,4.408-4.141Zm-4.982,1.477a14.47,14.47,0,0,1-6.644-13.769l-4.238-.37a19.54,19.54,0,0,0,7.36,17.35,19.387,19.387,0,0,0-10.144,15.82l4.239.371c.524-6.239,4.566-11.225,9.735-12.713a6.387,6.387,0,0,1-1.057-4.14,6.529,6.529,0,0,1,.749-2.549ZM26.835,61.812l-4.158-.363.769-9.16c.872-5.779,4.6-8.843,8.561-9.666a4.92,4.92,0,0,0,5.794.343c3.723,1.3,6.991,4.968,6.954,11.71l-.724,8.639-4.144-.363.753-9.041a6.422,6.422,0,0,0-5.951-6.766,6.34,6.34,0,0,0-7.141,5.991l-.713,8.676ZM30.813,14.4l-.743,8.674A6.561,6.561,0,0,0,43.1,24.582l.764-9.041,4.143.362-.725,8.639C46.32,30.435,43.2,33.5,39.8,34.562a5.226,5.226,0,0,0-4.088-2.771,5.144,5.144,0,0,0-4.3,1.8C28.246,31.817,25.8,28.356,25.887,23.2l.768-9.16Z" fill="#fff" fillRule="evenodd"/><path d="M91.263,49.847l.078-24.633,5.152-.022-.073,23.08,21.956-.095c2.837-.068,3.975,1.98,3.785,5.753l-27.7.12.013-4.217-3.206.014Zm94.92-16.87.007-2.4-20.607.089-.073,23.08-5.152.023.023-7.213.023-7.212.022-7.213q.008-2.036.013-4.072c.006-1.766,1.152-3.138,3.508-3.156L188,24.8l-.01,3.5,3.364-.014-.025,8.036-9.826,6.37,9.771,10.94-7.3.031L170.5,38.5l7.23-.031,8.458-5.49ZM192.4,53.626l.077-24.236,4.493-.02.015-4.613,26.418-.115-.019,5.77-25.759.112-.018,5.77,20.607-.09-.017,5.77-20.608.089-.019,5.771,25.76-.112c.09,2.874-.78,5.032-3.54,5.785l-27.39.119Zm32.045-.139.055-17.31,2.345-.01-.01,3.224,2.806-.012-.026,8.316,20.607-.09L250.28,30.3l-21.9.094-3.864.017.018-5.769,28.336-.123,2.566,2.874-.067,21.234q-.177,4.539-4.222,4.748l-26.7.116ZM141.7,25l12.5,28.8-5.727.025-9.658-22.239-8.959,20.41c-.5,1.152-.931,2.069-2.883,1.922l-3.684.016L134.063,29.4l4.227-.019.014-4.366Z" fill="#161814" fillRule="evenodd"/><path d="M255.44,74.167l-1.173,0-.01-5.323-4.691.01.011,5.323-1.172,0-.015-6.655,7.036-.014Zm-9.384-1.311-.008-3.993-4.69.01.008,3.993ZM240.2,74.2l-.014-6.654,7.035-.015.014,6.654Zm-2.36-6.649,1.173,0,.014,6.655-1.173,0Zm-8.208.017,7.036-.015,0,1.331-5.863.012.008,3.993,5.863-.012,0,1.33-7.036.016Zm-4.039.009,2.881,6.648-1.3,0-2.225-5.135-2.2,5.144-1.3,0,2.853-6.661Zm-9.432,6.674-.01-5.324-2.932.007,0-1.331,7.036-.015,0,1.331-2.931.007.011,5.322Zm-4.118-6.645.014,6.654-7.035.015L205,67.62l1.173,0,.012,5.323,4.69-.01-.012-5.323Zm-14.065,3.024,4.691-.01,0-1.664-4.69.01ZM196.8,67.637l7.036-.015.009,4.325-5.863.012,0,2.33-1.172,0Zm-1.159,6.657-1.172,0-.01-4.565-2.679,3.906h-.489l-2.7-3.893.009,4.565-1.172,0-.014-6.654,1.221,0,2.891,4.171,2.874-4.183,1.222,0Zm-10.556-1.309-.009-3.992-4.69.009L180.391,73Zm-5.86,1.344-.014-6.655,7.036-.015.014,6.654ZM171,67.692l7.036-.015,0,1.331-5.863.012.008,3.992L178.047,73l0,1.331-7.035.015Zm-9.966.021,1.759,0,0,2-1.759,0Zm.01,4.658,1.758,0,.005,2-1.759,0ZM158.1,67.719l1.759,0,0,2-1.759,0Zm.01,4.658,1.759,0,0,2-1.758,0ZM145.8,74.4l-.012-5.324-2.931.006,0-1.331,7.036-.015,0,1.331-2.932.006.012,5.324Zm-11.139.023-.015-6.654,7.036-.015,0,1.331-5.862.012,0,1.331,4.69-.01,0,1.331-4.691.01,0,1.331,5.863-.013,0,1.331Zm-1.173,0-1.173,0-.011-5.323-4.69.01.011,5.323-1.173,0-.014-6.653,7.035-.016ZM124.1,69.676v-.554l-4.691.01.012,5.324-1.173,0q0-.832,0-1.663t0-1.664q0-.833,0-1.664c0-.554,0-1.109,0-1.663l7.036-.016,0,2.662-2.228,1.464,2.237,2.529-1.661,0-3.086-3.505,1.646,0Zm-14.061,4.8-.014-6.654,7.035-.015,0,1.331-5.863.012,0,1.331,4.69-.01,0,1.331-4.691.01,0,1.331,5.863-.012,0,1.33Zm-5.277.012-.011-5.324-2.932.006,0-1.33,7.035-.016,0,1.332-2.931,0,.011,5.324Zm-4.1.008-1.172,0-.012-5.323-4.69.009.011,5.324-1.172,0-.015-6.654,7.036-.015Zm-9.395-6.634,1.173,0,.015,6.653-1.173,0Z" fill="#161814"/></svg>
                         </div>
@@ -226,35 +242,80 @@ const Header = () => {
                                     <button onClick={() => setProductmenustate(!productmenustate)} id="first-link">Productos</button>
                                     <ul>
                                         <li className={`pushy-submenu pushy-submenu-${categorystate1 ? 'open' : 'closed'}`}>
-                                            <button onClick={() => setCategorystate1(!categorystate1)}>Hardware</button>
+                                            <button onClick={() => setCategorystate1(!categorystate1)}>PC e Impresión</button>
                                             <ul>
-                                                <li className="pushy-link"><Link onClick={() => handleChangeStepper('impresora')} >Impresoras</Link></li>
-                                                <li className="pushy-link"><Link onClick={() => handleChangeStepper('mother')} >Placas Madres</Link></li>
-                                                <li className="pushy-link"><Link onClick={() => handleChangeStepper('monitor')} >Monitores</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('impresora')} >Impresoras</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('notebook')}>Notebooks</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('mother')} >Placas Madres</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('monitor')} >Monitores</Link></li>
+                                            </ul>
+                                        </li>                                        
+                                        <li className={`pushy-submenu pushy-submenu-${categorystate3 ? 'open' : 'closed'}`}>
+                                            <button onClick={() => setCategorystate3(!categorystate3)}>Componentes de PC</button>
+                                            <ul>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('mother')} >Mothers</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('disco')} >Discos Rígidos</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('procesador')} >Procesadores</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('fuente')} >Fuentes</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('ram')} >Memorias RAM</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('gabinete')} >Gabinetes</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('lector')} >Lectoras</Link></li>                                                
                                             </ul>
                                         </li>
+                                        <li className={`pushy-submenu pushy-submenu-${categorystate4 ? 'open' : 'closed'}`}>
+                                            <button onClick={() => setCategorystate4(!categorystate4)}>Periféricos</button>
+                                            <ul>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('teclado')} >Teclados</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('mouses')} >Mouse's</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('pad')} >Pads</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('auricular')} >Auriculares</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('kit')} >Kit's</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('adap')} >Accesorios</Link></li>
+                                            </ul>
+                                        </li>
+                                        <li className={`pushy-submenu pushy-submenu-${categorystate5 ? 'open' : 'closed'}`}>
+                                            <button onClick={() => setCategorystate5(!categorystate5)}>Audio y Video</button>
+                                            <ul>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('sonido')} >Placas de sonido</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('video')} >Placas de video</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('parlante')} >Parlantes</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('monitor')} >Monitores</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('microfono')} >Micrófonos</Link></li>
+                                            </ul>
+                                        </li>
+                                        <li className={`pushy-submenu pushy-submenu-${categorystate6 ? 'open' : 'closed'}`}>
+                                            <button onClick={() => setCategorystate6(!categorystate6)}>Conectividad</button>
+                                            <ul>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('router')} >Routers</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('switch')} >Switch</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('wireless')} >Wireless</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('cables')} >Cables</Link></li>
+                                            </ul>
+                                        </li> 
                                         <li className={`pushy-submenu pushy-submenu-${categorystate2 ? 'open' : 'closed'}`}>
-                                            <button onClick={() => setCategorystate2(!categorystate2)}>Periféricos</button>
+                                            <button onClick={() => setCategorystate2(!categorystate2)}>Varios</button>
                                             <ul>
-                                                <li className="pushy-link"><Link onClick={() => handleChangeStepper('mouse')}>Mouses</Link></li>
-                                                <li className="pushy-link"><Link onClick={() => handleChangeStepper('teclado')}>Teclados</Link></li>
-                                                <li className="pushy-link"><Link onClick={() => handleChangeStepper('auris')}>Auriculares</Link></li>
+                                            <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('consola')}>Consolas</Link></li>
+                                            <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('pendrive')}>PenDrives</Link></li>
+                                            <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('estabilizador')}>Estabilizadores</Link></li>
+                                            <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('sd')}>Memorias SD</Link></li>
+                                            <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('celulares')}>Celulares</Link></li>
+                                            <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('mouse')}>Mouses</Link></li>
+                                            <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('cartucho%20toner%20tinta')}>Cartuchos / Toners / Tinta</Link></li>
+                                            <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('estuche%20funda%20soport%20silla')}>Otros</Link></li>
                                             </ul>
-                                        </li>
-                                        <li className="pushy-link"><Link onClick={() => handleChangeStepper('gaming')}>Gaming</Link></li>
-                                        <li className="pushy-link"><Link onClick={() => handleChangeStepper('notebook')}>Notebooks</Link></li>
-                                        <li className="pushy-link"><Link onClick={() => handleChangeStepper('adap')}>Accesorios</Link></li>
+                                        </li>                                       
                                     </ul>
                                 </li>
                                 <li className="pushy-link"><Link onClick={closeMobileMenu} to="/aboutus">Sobre La Red</Link></li>
                                 <li className="pushy-link"><Link onClick={closeMobileMenu} to="/login">Acceso a clientes</Link></li>
                                 <li className="pushy-link"><Link onClick={closeMobileMenu} to="/contact">Contacto</Link></li>
                                 
-                                <li className={`pushy-submenu pushy-submenu-${profilemenustate ? 'open' : 'closed'}`}>
+                                <li style={{display: !user ? 'none' : 'block'}}className={`pushy-submenu pushy-submenu-${profilemenustate ? 'open' : 'closed'}`}>
                                 <button onClick={() => setProfilemenustate(!profilemenustate)} ><Profile/></button>
                                 <ul>
                                     <li onClick={handleShowModal} className="pushy-link">
-                                        <Link onClick={closeMobileMenu}>Mis compras</Link></li>                                    
+                                        <Link to={""} onClick={closeMobileMenu}>Mis compras</Link></li>                                    
                                     <MydModalWithGrid show={modalShow} onHide={() => setModalShow(false)} />
                                     <li><LogoutButton/></li>
                                 </ul>
@@ -269,7 +330,9 @@ const Header = () => {
 
                     <div className="bandmobile">
                         <div className="band">
-                            <button onClick={() => openMobileMenu()} className="menu-btn dropdown"><span>&#9776;</span> Menu</button>                            
+                            <button onClick={() => openMobileMenu()} className="menu-btn dropdown"><span>&#9776;</span> Menu</button>
+                                <img alt="" style={{display: !user ? 'none' : 'inline-flex', margin: '8px 15px', float: 'right', height: '25px', 
+                                    }} src={user && user.picture}/>
                             <a href="" onClick={(e) => openSearch(e)} className="icontop" >
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>search</title>
                                     <path
@@ -323,18 +386,24 @@ const Header = () => {
                                             <path
                                                 d="M464 64H48a48 48 0 0 0-48 48v288a48 48 0 0 0 48 48h416a48 48 0 0 0 48-48V112a48 48 0 0 0-48-48zM48 96h416a16 16 0 0 1 16 16v41.4c-21.9 18.5-53.2 44-150.6 121.3-16.9 13.4-50.2 45.7-73.4 45.3-23.2.4-56.6-31.9-73.4-45.3A6862.8 6862.8 0 0 1 32 153.4V112a16 16 0 0 1 16-16zm416 320H48a16 16 0 0 1-16-16V195a11843 11843 0 0 0 130.7 104.7c20.5 16.4 56.7 52.5 93.3 52.3 36.4.3 72.3-35.5 93.3-52.3A11843 11843 0 0 0 480 195v205a16 16 0 0 1-16 16z"/>
                                         </svg>
-                                        &nbsp;info@laredwifi.com.ar
+                                        &nbsp;gestiones@laredwifi.com.ar
                                     </li>
                                     
-                                    <li style={{position: 'absolute', left: '50%', top: '3px', display: user ? 'flex' : 'none'}}>
+                                    <li style={{position: 'absolute', left: '53%', top: '3px', display: user ? 'flex' : 'none'}}>
                                         <DropdownButton id="dropdown-profile-button" title={<Profile/>}>
                                             <Dropdown.Item  className="login-option-list" onClick={handleShowModal}>
                                                 {`Mis compras`}
                                             </Dropdown.Item>
-                                            {user && user.email === "pablo.psir@gmail.com" ? 
-                                            <Dropdown.Item href="/fileupload"
+                                            {user && 
+                                            (user.email === "agustin.sosa.n2015@gmail.com" || 
+                                            user.email === "laredwificomputacion@gmail.com" ||
+                                            user.email === "pablo.psir@gmail.com") ? 
+                                            <Dropdown.Item
                                             className="login-option-list">
-                                                Subir Imagenes
+                                                <Link 
+                                                style={{color: 'black',
+                                                    textDecoration: 'none'}}
+                                                to={"/fileupload"}>Subir Imágenes</Link>
                                             </Dropdown.Item> : '' }
 
                                             <Dropdown.Item className="login-option-list">

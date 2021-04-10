@@ -62,7 +62,6 @@ const Login = () => {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': '*/*',
                     'api-key': 'P2MvAryA0zqvoH4ZsKkEHVgYkFZCMmh7gE058gj5zRLAnfwDV4401Am',
                     'api-token': 'dkC0iHHHQwjfIiEyLo3RVeUDQo1SZKgv'},
                 }).then(response => response.json())
@@ -70,7 +69,7 @@ const Login = () => {
                     if(data){
                         let object = false;
                         Object.entries(data).map(([key, value]) => {
-                            if(key === 'data'){
+                            if(key === 'rows'){
                                 dispatch(loginispcubeActions.setData(value));                                
                                 // let dataFull = [];
                                 value.map((customer) => {
@@ -163,7 +162,9 @@ const Login = () => {
 
                             <Button 
                             disabled={!userChecked && !password}
-                            className="btn-clientes" onClick={handleLogin}>
+                            className="btn-clientes" 
+                            //onClick={handleLogin}
+                            >
                                 Ingreso
                             </Button><br/>  
 

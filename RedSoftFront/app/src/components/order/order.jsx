@@ -9,7 +9,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 
 let api = axios.create({
-    baseURL: 'http://localhost:8886/api',
+    baseURL: 'https://laredintercomp.com.ar:8886/api',
     timeout: 30000,
 });
 
@@ -19,6 +19,7 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
     const [order, setOrder] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
+    let cotizValue = sessionStorage.getItem('dolarToday');
 
     useEffect(() => {changePreference(false)}, [products])
 
@@ -27,7 +28,7 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
     let totalPrice = 0;
 
     products.map((product, index) => {
-        totalPrice += parseFloat(product.precioUniVta) * product.quantity
+        totalPrice += (parseFloat(product.precioUniVta) * cotizValue) * product.quantity;
     })
 
     const {
@@ -59,21 +60,24 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
         }
 
         products.map((product, index) => {
-
+            let totalTopay = (product.precioUniVta * sessionStorage.getItem('dolarToday')).toFixed(2);
             let detail = {
                 product: {
                     code: product.code,
                     name: product.description,
-                    price: product.precioUniVta,
+                    price: Number(totalTopay),
+                    image: product.webLink,
                 },
                 quantity: product.quantity
             }
             details.push(detail);
-           
+            console.log(totalTopay)
         })
+        
+        console.log(details);
 
         try {
-            const res = await api
+            await api
                 .post(`/cart/preference?user=${user.email}`, details)
                 .then(function (res) {
                     console.log(res.data)
@@ -107,9 +111,9 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
                     <tbody>
                         {products.map((product, index) => (
                             <tr key={index} className="item cart animate">
-                                <td style={{width: '114px', heigth: '115px'}}><img alt="" src={`http://164.68.101.162:8093/img/${product.code}.jpg`} style={{width: '90px'}}/></td>
+                                <td style={{width: '114px', heigth: '115px'}}><img alt={product.description} src={product && product.webLink} style={{width: '90px'}}/></td>
                                 <td className="col-description">{product.description} <br></br><strong>x {product.quantity}</strong></td>
-                                <td className="col-price">${parseFloat(product.precioUniVta).toFixed(2)}</td>
+                                <td className="col-price">${Intl.NumberFormat("de-DE").format((parseFloat(product.precioUniVta).toFixed(2) * sessionStorage.getItem('dolarToday')).toFixed(2))}</td>
                                 <td>
                                     <Button id="btnRemove" variant="light" onClick={() => removeProduct(product)}>
                                         <a className="deletecart">
@@ -136,12 +140,12 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
                     <div className="cart-total">
                         <h2 className="row text-primary mb-0">
                             <span className="col">Total:</span>
-                            <span className="col text-right">${totalPrice.toFixed(2)}</span>
+                            <span className="col text-right">${Intl.NumberFormat("de-DE").format(totalPrice.toFixed(2))}</span>
                         </h2>
                     </div>
                     <div className="mb-3">
-                        <Button variant="dark" className={`${products.length === 0 ? 'btn-disab' : ''}`}
-                                type={`${products.length === 0 ? '' : 'submit'}`}
+                        <Button variant="dark" className={`${(products.length === 0) || (products.lenght > 0 && totalPrice === 0) ? 'btn-disab' : ''}`}
+                                type={`${(products.length === 0) || (products.lenght > 0 && totalPrice === 0) ? '' : 'submit'}`}
                                 size="lg" block><Spinner style={{display: isLoading ? 'block' : 'none',
                                 position: 'absolute'}} animation="border" variant="light"
                                 />{isLoading ? 'Obteniendo link...' : 'INICIAR COMPRA'}</Button>

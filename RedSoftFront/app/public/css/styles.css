@@ -48,6 +48,11 @@ body {font-family: Overpass,serif !important;
 	font-size: 15px;
 }
 
+.text-center {
+	width: 100%;
+	justify-content: center;
+}
+
 .mp-response-text {
     border-radius: 17px;
 	text-transform: capitalize;
@@ -207,7 +212,7 @@ pointer-events: none;
 
 .breadcrumb-item:hover {color: black; text-decoration: none}
 .linklr a {color: #161814 !important; text-decoration: none;}
-.linklr a:hover {color: black; text-decoration: none;}
+.linklr a:hover {color: #88aed0 !important; text-decoration: none;}
 
 .text-primary {color: #000!important;}
 .btn-primary {color: #fff;background-color: #000;border-color: #000;}
@@ -508,7 +513,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 	
 	.modal.left .modal-body,
 	.modal.right .modal-body {
-		padding: 15px 15px 0px;
+		padding: 15px 11px 0px;
 	}
 
 /*Right*/
@@ -850,6 +855,10 @@ footer {padding-top: 35px;}
 }
 
 .searchfull button svg {height: 21px;}
+
+.pushy-submenu-open > ul {
+	max-height: 2300px !important;
+}
 
 .pushy {background-color: #fff; padding: 20px; padding-top: 10px;}
 .pushy-open-left .pushy {width: 90%;}

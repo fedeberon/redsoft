@@ -63,7 +63,7 @@ public class MercadoPagoServiceImpl implements MercadoPagoService {
         order.withPreferenceId(result.getId());
         orderService.save(order);
 
-        return result.getSandboxInitPoint();
+        return result.getInitPoint();
     }
 
 

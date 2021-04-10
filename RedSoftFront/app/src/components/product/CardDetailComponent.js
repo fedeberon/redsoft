@@ -14,17 +14,16 @@ class CardDetailComponent extends Component {
         this.state = {
             products: [],
             currentPage: 1,
-            btnExpand: false,
+            btnExpand: false
         }
     }
 
     handleClick = () => {
         this.setState({btnExpand: !this.state.btnExpand})
-        console.log(this.state.btnExpand)
     }
 
     componentDidMount() {
-        this.findAll()
+        this.findAll();
     }
 
     findAll = async () => {
@@ -33,16 +32,10 @@ class CardDetailComponent extends Component {
         this.setState({products: data, isLoading: false})
     }
 
-    handleChange = (e) => {
-        const {name, value} = e.target
-        this.setState({[name]: value})
-        console.log(this.state)
-    }
-
     render() {
 
         let product = this.state.products.find((e) => e.code === this.props.match.params.id)
-        let code = this.props.match.params.id
+        let code = this.props.match.params.id;
 
         return (
 
@@ -58,7 +51,7 @@ class CardDetailComponent extends Component {
                                     <li className="breadcrumb-item active" aria-current="page">Detalles</li>
                                 </ol>
                             </nav>
-                            <div className="row" style={{height: '600px'}}>
+                            <div className="row">
                                 {/*// <!-- galeria -->*/}
                                 <div className="col-sm-6">
                                     <div id="carouselProduct" className="carousel slide" data-ride="carousel">
@@ -66,14 +59,14 @@ class CardDetailComponent extends Component {
                                             {/* <div className="label">20%</div> */}
                                             <img className="zoom-icon" alt="" src="/img/zoom-in.svg"/>
                                             <div className="carousel-item active">
-                                            <span className="zoom" id="ex1"><ReactImageZoom width={538} height={508}
-                                                                                            zoomWidth={600}
+                                            <span className="zoom" id="ex1"><ReactImageZoom width={window.innerWidth < 767 ? 338 : 538 } 
+                                                                                            height={window.innerWidth < 767 ? 308 : 508}
+                                                                                            zoomWidth={550}
                                                                                             img={`${product && product.webLink}`}
                                                                                             zoomPosition={"original"}
                                                                                             className="d-block w-100"/>
                                             </span>
-                                            </div>
-                                          
+                                            </div>                                          
                                             {/* <div className="carousel-item">
                                             <span className="zoom" id="ex2"><ReactImageZoom width={538} height={508}
                                                                                             zoomWidth={600}
@@ -82,15 +75,7 @@ class CardDetailComponent extends Component {
                                                                                             className="d-block w-100"/>
                                             </span>
                                             </div> 
-                                             */}
-                                            {/* <div className="carousel-item">
-                                            <span className="zoom" id="ex3"><ReactImageZoom width={538} height={508}
-                                                                                            zoomWidth={600}
-                                                                                            img={`http://164.68.101.162:8093/img/${code}2.jpg`}
-                                                                                            zoomPosition={"original"}
-                                                                                            className="d-block w-100"/>
-                                            </span>
-                                            </div> */}
+                                             */}                                            
                                         </div>
                                         <a className="carousel-control-prev" href="#carouselProduct" role="button"
                                            data-slide="prev">
@@ -105,20 +90,20 @@ class CardDetailComponent extends Component {
                                             <span className="sr-only">Next</span>
                                         </a>
 
-                                        {/* <ol className="carousel-indicators">
+                                        <ol className="carousel-indicators">
                                             <li data-target="#carouselProduct" data-slide-to="0" className="active"><img alt="" 
-                                                src={`http://164.68.101.162:8093/img/${code}.jpg`}
+                                                src={product && product.webLink}
                                                 className="d-block w-100"/>
                                             </li>
-                                            <li data-target="#carouselProduct" data-slide-to="1"><img alt="" 
+                                            {/* <li data-target="#carouselProduct" data-slide-to="1"><img alt="" 
                                                 src={`http://164.68.101.162:8093/img/${code}1.jpg`}
                                                 className="d-block w-100"/>
                                             </li>
                                             <li data-target="#carouselProduct" data-slide-to="2"><img alt="" 
                                                 src={`http://164.68.101.162:8093/img/${code}2.jpg`}
                                                 className="d-block w-100"/>
-                                            </li>
-                                        </ol> */}
+                                            </li> */}
+                                        </ol> 
                                     </div>
                                 </div>
 
@@ -180,7 +165,7 @@ class CardDetailComponent extends Component {
                                             <h3 className="tit">Descripción del producto                                                
                                             </h3>
                                         </div>
-                                    <p style={{paddingRight: '300px', fontSize: '18px'}}>
+                                    <p style={{fontSize: '18px'}}>
                                             {product && product.descAdicional !== '' 
                                         ? product.descAdicional : 'Sin información disponible'}
                                     </p>

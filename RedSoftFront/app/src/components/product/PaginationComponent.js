@@ -25,7 +25,9 @@ class PaginationComponent extends React.Component {
             details: false,
             selected: null,
             textSearch: '',
-            productsBackup: []
+            productsBackup: [],
+            cotizacionDolar: 0,
+            dataUsdValue: []
         };
         this.handleClick = this.handleClick.bind(this);
         this.btnDecrementClick = this.btnDecrementClick.bind(this);
@@ -37,26 +39,27 @@ class PaginationComponent extends React.Component {
     }
 
     async componentDidMount() {
-        await this.findAll()
+        await this.getUsdValue()
     }
 
-    // filter(event) {
-
-    //     const text = event.target.value;
-    //     const data = this.state.productsBackup
-    //     const newData = data.filter(function (item) {
-    //         let containsText = false;
-    //         const itemData = item.description.toUpperCase().split(' ');
-    //         const textData = text.toUpperCase().split(' ');
-    //         textData.map((e) => itemData.map((i) => i.indexOf(e) > -1 ? containsText = true : "" ))
-    //         // return itemData.indexOf(textData) > -1
-    //         return containsText
-    //     })
-    //     this.setState({
-    //         products: newData,
-    //         textSearch: text,
-    //     })
-    // }
+    async getUsdValue() {
+        await fetch('https://www.dolarsi.com/api/api.php?type=cotizador', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': '*/*'},
+        }).then(res => res.json())
+        .then(data => {
+                this.setState({dataUsdValue: data});
+                this.state.dataUsdValue.map(elem => {
+                    if(elem.casa?.agencia === "302"){
+                        this.setState({cotizacionDolar: Math.round(elem.casa?.venta.replace(',', '.'))});
+                        sessionStorage.setItem('dolarToday', Number(this.state.cotizacionDolar).toFixed(2));
+                    }
+                })                
+                this.findAll();
+        })
+    }
 
     async findAll() {
         let newData = [];
@@ -178,7 +181,7 @@ class PaginationComponent extends React.Component {
     render() {
         let {
             products, currentPage, todosPerPage, upperPageBound, lowerPageBound,
-            isPrevBtnActive, isNextBtnActive,
+            isPrevBtnActive, isNextBtnActive, dataUsdValue, cotizacionDolar,
         } = this.state;
 
         // Logica para mostrar todos los productos
@@ -190,14 +193,15 @@ class PaginationComponent extends React.Component {
             return <div key={index} className="col-6 col-sm-4"> {!this.state.details ?
                 <div className="item animate" style={{height: '378px'}}>
                     <Link to={`/details/${product.code}`}>
-                        <figure style={{height: '210px'}}><ImageProduct
+                        <figure style={{height: '210px', textAlign: 'center'}}><ImageProduct
                             products={product}
                             setHeight={210}
                             setWidth={210}
                         /></figure>
                         <div className="info">
                             <div className="name"><h5>{product.description}</h5></div>
-                            <div className="price">$ {parseFloat(product.precioUniVta).toFixed(2)}</div>
+                            <div className="price">
+                                $ {Intl.NumberFormat("de-DE").format(((parseFloat(product.precioUniVta).toFixed(2) * Number(cotizacionDolar)).toFixed(2)))}</div>
                             <button className="btn btn-sm" onClick={() => {
                                 this.handleDetail(product.code)
                             }}>Ver Detalle

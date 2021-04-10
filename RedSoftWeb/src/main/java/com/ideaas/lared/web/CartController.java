@@ -42,7 +42,7 @@ public class CartController {
 
     @RequestMapping(value = "/redirect")
     public String redirectFront(String preferenceId) {
-    return "redirect:" + "http://localhost:3000/mercadopago/operation/" + preferenceId;
+    return "redirect:" + "https://laredintercomp.com.ar/mercadopago/operation/" + preferenceId;
     }
 
     @RequestMapping("success")

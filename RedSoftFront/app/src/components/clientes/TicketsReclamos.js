@@ -81,11 +81,13 @@ const TicketsReclamos = ({newOption}) => {
                 Historial
               </Modal.Title>
             </Modal.Header>
-            {ticketHistory.map(ticket => (
-                <Modal.Body>    
+            <Modal.Body style={{overflowY: 'scroll', height: '150px'}}>
+                {ticketHistory.map(ticket => (
+                
                     <p style={{fontSize: '17px'}}>{ticket.content}</p>
-                </Modal.Body>
-            ))}
+            
+                    ))}
+            </Modal.Body>
             <Modal.Footer>
               <Button onClick={props.onHide}>Cerrar</Button>
             </Modal.Footer>

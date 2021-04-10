@@ -5,11 +5,13 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {Link} from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
+const NavBarReact = () => {
+
+    const history = useHistory();
 
 
-class NavBarReact extends React.Component {
-
-    render() {
         return (
             <Fragment>
                 <Navbar expand="lg" className="navbar">
@@ -24,44 +26,73 @@ class NavBarReact extends React.Component {
                                 <Row className="row01">
                                     <Col xs={2} md={3} style={{flex: '20%', maxWidth: '25%'}}>
 
-                                        <span><h5>Mouses y Teclados</h5></span>
+                                        <span><h5>PC e Impresión</h5></span>
                                         <NavDropdown.Divider/>
-                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=inalambricos"}>
-                                            Inalambricos</Link></li>
-                                        <li className="dropdownmenu-desktop"><Link className="linklr"
-                                                                onClick={() => window.location.href="/products/search=mouses"}>Mouses</Link></li>
-                                        <li className="dropdownmenu-desktop"><Link className="linklr"
-                                                                onClick={() => window.location.href="/products/search=teclados"}>Teclados</Link></li>
-
-
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=impresora"}>
+                                            Impresoras</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=notebook"}>Notebooks</Link></li><br/>
+                                        
+                                        <span><h5>Conectividad</h5></span>
+                                        <NavDropdown.Divider/>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=cables"}>Cables</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=router"}>Router</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=switch"}>Switch</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=wireless"}>Wireless</Link></li>
+                                        
                                     </Col>
                                     <Col xs={2} md={3} style={{flex: '20%', maxWidth: '25%'}}>
 
-                                        <span><h5>Computadoras</h5></span>
+                                        <span><h5>Componentes de PC</h5></span>
                                         <NavDropdown.Divider/>
                                         <ul>
-                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=notebook"}>Notebooks</Link></li>
-                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=cpu"}>CPU's</Link></li>
-                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=monitor"}>Monitores</Link></li>
-                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=mother"}>Mothers</Link></li>
-                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=memoria"}>Memorias RAM</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=procesador"}>Procesadores</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=disco"}>Discos</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=monitor"}>Monitores</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=mother"}>Mothers</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=ddr%20ram"}>Memorias RAM</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=fuente"}>Fuentes</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=gabinete"}>Gabinetes</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=lector"}>Lectoras</Link></li>
+                                        {/* <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=refrig"}>Refrigeración</Link></li> */}
                                         </ul>
                                     </Col>
                                     <Col xs={2} md={3} style={{flex: '20%', maxWidth: '25%'}}>
 
-                                        <span><h5>Accesorios e Impresion</h5></span>
+                                        <span><h5>Periféricos</h5></span>
                                         <NavDropdown.Divider/>
-                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=impresora"}>Impresoras</Link></li>
-                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=adap"}>Adaptadores</Link></li>
-                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=cable"}>Cables</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=teclados"}>Teclados</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=pad"}>Pads</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=mouse"}>Mouse's</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=auricular"}>Auriculares</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=adaptador"}>Adaptadores</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=kit"}>Kit's</Link></li>
+                                        
 
                                     </Col>
                                     <Col xs={2} md={3} style={{flex: '20%', maxWidth: '25%'}}>
 
-                                        <span><h5>Audio y Gaming</h5></span>
+                                        <span><h5>Audio y Video</h5></span>
                                         <NavDropdown.Divider/>
-                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=auricular"}>Auriculares</Link></li>
-                                        <li className="dropdownmenu-desktop"><Link className="linklr" onClick={() => window.location.href="/products/search=gaming"}>Gaming</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=parlante"}>Parlantes</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=monitor"}>Monitores</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=video"}>Placas de Video</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=sonido"}>Placas de Sonido</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=microfono"}>Micrófonos</Link></li>
+                                    </Col>
+
+                                    <Col xs={2} md={3} style={{flex: '20%', maxWidth: '25%'}}>
+
+                                    <span><h5>Varios</h5></span>
+                                        <NavDropdown.Divider/>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=consola"}>Consolas</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=estabilizador"}>Estabilizadores</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=pendrive"}>PenDrives</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=sd"}>Memorias SD</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=celular"}>Accesorios Celulares</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=cartuchos%20toner"}>Cartuchos / Toners</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=tinta"}>Tinta</Link></li>
+                                        <li className="dropdownmenu-desktop"><Link to={""} className="linklr" onClick={() => window.location.href="/products/search=estuche%20funda%20soporte%20silla"}>Otros</Link></li>
+                                        
                                     </Col>
                                 </Row>
                             </NavDropdown>
@@ -101,11 +132,18 @@ class NavBarReact extends React.Component {
                                     d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
                             </svg>
                         </a>
+                        <a href="https://telegram.me/542314404320" className="social-icon">
+                            <svg style={{width: '25px'}} xmlns="http://www.w3.org/2000/svg" version="1.0" width="240.000000pt" height="240.000000pt" viewBox="0 0 240.000000 240.000000" preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,240.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+                                <path d="M1075 2394 c-232 -34 -404 -100 -570 -219 -249 -177 -416 -436 -482 -745 -24 -117 -24 -343 0 -460 104 -487 460 -843 947 -947 117 -24 343 -24 460 0 487 104 843 460 947 947 12 60 18 128 18 230 0 102 -6 170 -18 230 -103 485 -462 845 -942 945 -78 16 -299 28 -360 19z m289 -209 c543 -95 914 -614 821 -1149 -95 -543 -614 -914 -1149 -821 -543 95 -914 614 -821 1149 95 543 614 914 1149 821z"/>
+                                <path d="M1135 1489 c-308 -115 -566 -216 -573 -223 -23 -23 -5 -53 41 -70 23 -8 89 -30 146 -48 l105 -33 55 -165 c31 -91 60 -171 64 -178 18 -26 52 -10 133 64 55 50 88 73 96 68 7 -5 73 -52 147 -106 74 -54 144 -98 156 -98 12 0 29 8 38 18 10 11 51 190 113 484 101 488 102 499 55 497 -9 0 -268 -95 -576 -210z m395 27 c0 -7 -114 -116 -252 -241 l-253 -228 -9 -79 c-5 -43 -12 -78 -15 -78 -6 0 -76 227 -76 247 0 10 587 393 601 393 2 0 4 -6 4 -14z"/>
+                                </g>
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </Fragment>
         );
-    }
 }
 
 export default NavBarReact;

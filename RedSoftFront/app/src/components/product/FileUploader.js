@@ -15,13 +15,13 @@ const FileUploader = () =>  {
         let formData = new FormData();
         formData.append("file", file[0]);
 
-        setImageUrl(`http://179.43.120.136:8080/products/images/${file[0].name}`);
+        
 
         console.log(imageUrl);
         if(imageUrl.endsWith(file[0].name)){
             alert('Archivo subido recientemente')
         } else {
-        await fetch(`http://localhost:8886/file/uploadFile`, {
+        await fetch(`https://laredintercomp.com.ar:8886/file/uploadFile`, {
             method: 'POST',
             headers: {
                 'Accept': '*/*'},
@@ -32,7 +32,8 @@ const FileUploader = () =>  {
                     setShowingMessage(true);
                     setTimeout(() => {
                         setShowingMessage(false)
-                    },10000)
+                    },10000);
+                    setImageUrl(`https://laredwifi.gleeze.com:8094/images/${file[0].name}`);
                 } else {
                     setMessage('Ocurrió un error al cargar el archivo');
                     setShowingMessage(true);

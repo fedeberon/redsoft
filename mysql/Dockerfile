@@ -1,7 +1,7 @@
 # Derived from official mysql image (our base image)
 FROM mysql
 # Add a database
-ENV MYSQL_DATABASE alertacomunitaria
+ENV MYSQL_DATABASE laredwifi
 ENV MYSQL_ROOT_PASSWORD root!
 ENV MYSQL_USER root
 ENV MYSQL_PASSWORD root!

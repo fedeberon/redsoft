@@ -42,6 +42,7 @@ const App = () => {
             precioUni: data.precioUni,
             precioUniVta: data.precioUniVta,
             quantity: data.quantity,
+            webLink: data.webLink,
           }
           dispatch(ordersActions.addOrder(product));
         })
@@ -65,8 +66,11 @@ const App = () => {
             <Route exact path="/products/search=:search" component={ProductsList}/>
             <Route 
             exact path="/fileupload" 
-            component={isAuthenticated && user.email === 'pablo.psir@gmail.com' ? FileUploader : HomeContainer}
-            isAuthenticated={isAuthenticated}
+            component={isAuthenticated && 
+              (user.email === "agustin.sosa.n2015@gmail.com" || 
+              user.email === "laredwificomputacion@gmail.com" ||
+              user.email === "pablo.psir@gmail.com") 
+              ? FileUploader : HomeContainer}
             />
             <Route exact path="/mercadopago/operation/:id" component={MercadoPagoResponse}/>
             <Route exact path="/login" component={Login}/>                          

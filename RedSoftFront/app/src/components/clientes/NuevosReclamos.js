@@ -33,7 +33,7 @@ const NuevosReclamos = () => {
 
         console.log(JSON.stringify(json));
 
-        await fetch(`http://online3.ispcube.com:8080/index.php/tickets`, {
+        await fetch(`https://online3.ispcube.com:8080/index.php/tickets`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

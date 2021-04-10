@@ -31,7 +31,7 @@ class Contact extends React.Component {
         details.phone = this.state.phone;
         details.message = this.state.message;
         console.log(details);
-        const res = await fetch(`http://localhost:8886/sendEmail`, {
+        const res = await fetch(`https://laredintercomp.com.ar:8886/sendEmail`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ class Contact extends React.Component {
                                             <li style={{marginBottom: '10px'}}>Bolivar, Buenos Aires</li>
                                             <li>Tel: 2314 404320</li>
                                             <li>2314 427308</li>
-                                            <li>info@laredwifi.com.ar</li>
+                                            <li>gestiones@laredwifi.com.ar</li>
                                         </ul>
                                     </div>
                                     <div className="col-md-6 mapa">

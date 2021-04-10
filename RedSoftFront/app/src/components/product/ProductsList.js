@@ -35,6 +35,8 @@ class ProductsList extends React.Component {
             window.location.href = `/products/search=monitor`
         } else if (this.state.stepper === 'gaming') {
             window.location.href = `/products/search=gaming`
+        } else if (this.state.stepper === 'varios') {
+            window.location.href = `/products/search=estuche%20funda%20soport%20silla`
         }
     }
 
@@ -77,6 +79,10 @@ class ProductsList extends React.Component {
                                 <button type="button" onClick={this.handleClick}
                                         className={"list-group-item list-group-item-action "+ (this.state.stepper === 'gaming' ? 'active' : '')}
                                 >Gaming
+                                </button>
+                                <button type="button" onClick={this.handleClick}
+                                        className={"list-group-item list-group-item-action "+ (this.state.stepper === 'varios' ? 'active' : '')}
+                                >Varios
                                 </button>
                             </div>
                         </div>
