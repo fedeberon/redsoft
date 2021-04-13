@@ -15,6 +15,8 @@ public interface OrderService {
 
     Order updateOrder(String preferenceId);
 
+    Order cancelOrder(String preferenceId);
+
     void delete(Order order);
     
 }

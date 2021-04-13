@@ -419,6 +419,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', end
 	background-color: transparent !important;
 }
 
+#alertRemoveOrder {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	width: 50%;
+	top: 25%;
+	right: 30%;
+	color: white !important;
+    background-color: #2ca749 !important;
+}   
+
 .infoProduct {padding-left: 40px;}
 .categoria.detalle {font-size: 12px; color: #999999; text-transform: uppercase; font-family: 'Barlow', Arial, sans-serif; margin-bottom: 25px;}
 .name.detalle {font-size: 21px; line-height: 27px;  font-weight: 400; color: #000; margin-bottom: 10px;

@@ -55,6 +55,20 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Order cancelOrder(String preferenceId) {
+        Order order = dao.findByPreferenceId(preferenceId);
+
+        if(order.getPreferenceId() != null){
+            order.setLastUpdate(new Date());
+            order.setCanceledOrder(true);
+
+            return dao.save(order);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
     public void delete(Order order) {
          dao.delete(order);
     }

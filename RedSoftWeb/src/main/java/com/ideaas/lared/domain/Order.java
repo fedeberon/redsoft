@@ -33,6 +33,9 @@ public class Order {
     @Column(name = "ORD_PAYED_STATE")
     private Boolean paystate = false;
 
+    @Column(name = "ORD_CANCELED_STATE")
+    private Boolean canceledOrder = false;
+
     @Column(name = "ORD_LAST_UPDATED")
     private Date lastUpdated;
 
@@ -63,6 +66,14 @@ public class Order {
 
     public void setPaystate(Boolean paystate){
         this.paystate = paystate;
+    }
+
+    public Boolean getCanceledOrder(){
+        return canceledOrder;
+    }
+
+    public void setCanceledOrder(Boolean canceledOrder){
+        this.canceledOrder = canceledOrder;
     }
 
     public Date getLastUpdate(){

@@ -46,4 +46,13 @@ public class OrderRestController {
         }
     }
 
+    @PostMapping(value = "/orders/cancel", consumes = "application/json")
+    private void cancelOrder(@RequestParam String preferenceId){
+        try {                  
+            orderService.cancelOrder(preferenceId);
+        } catch (Exception e) {
+            e.printStackTrace();            
+        }
+    }
+
 }

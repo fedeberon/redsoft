@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, Fragment} from "react";
 import ModalCart from "./ModalCart";
 import NavBarReact from "../NavBarReact";
 import SearchBarComponent from "../SearchBarComponent";
@@ -6,15 +6,20 @@ import {Link} from "react-router-dom";
 import Wrapper from "../auth0/Wrapper";
 import Profile from "../auth0/Profile";
 import LogoutButton from "../auth0/Logout";
-import Modal from 'react-bootstrap/Modal';
+import ModalTitle from 'react-bootstrap/ModalTitle';
+import ModalBody from 'react-bootstrap/ModalBody';
+import ModalFooter from 'react-bootstrap/ModalFooter';
 import ModalHeader from 'react-bootstrap/ModalHeader';
-import ModalTitle from 'react-bootstrap/ModalTitle'
+import ModalDialog from 'react-bootstrap/ModalDialog';
+import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useAuth0 } from "@auth0/auth0-react";
 import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion';
+import Alert from 'react-bootstrap/Alert'
+import Button from 'react-bootstrap/Button'
 
 const Header = () => {
 
@@ -31,6 +36,9 @@ const Header = () => {
     const [modalShow, setModalShow] = useState(false);
     const [textMobileSearch, setTextMobileSearch] = useState('');
     const [orders, setOrders] = useState([]);
+    const [show, setShow] = useState(false);
+    const [showModalCancelOrder, setShowModalCancelOrder] = useState(false);
+    const [confirmCancelOrder, setConfirmCancelOrder] = useState(false);
 
     const {user} = useAuth0();
 
@@ -53,15 +61,28 @@ const Header = () => {
         closeMobileMenu();
     }
 
-    const getHistory = async () => {
+    const showAlert = () => {
+        setShow(true);
+        setTimeout(
+            () => setShow(false),
+            5000
+        );
+    }
 
+    const getHistory = async () => {
+        let array = [];
         await fetch(`https://laredintercomp.com.ar:8886/api/orders?userEmail=${user.email}`, {
             method: 'GET',
             headers: {'Content-Type': 'application/json',
                     'Accept': '*/*'},
         }).then(response => response.json())
         .then(data => {
-            setOrders(data);
+            data.map(object => {
+                if(!object.canceledOrder){
+                    array.push(object)
+                }
+            })
+            setOrders(array);
         })
     }
 
@@ -168,32 +189,84 @@ const Header = () => {
                                 </tbody> 
                             </Table> 
                             {/* <div style={{display: 'inline-flex', width: '100%'}}> */}
-                            <button style={{width: '100%', justifyContent: 'center', display: order.paystate ? 'none' : 'block'}}
+                            <button style={{width: '80%', margin: "5px 9px" ,justifyContent: 'center', display: order.paystate ? 'none' : 'inline-block'}}
                                             onClick={() => window.location.href=`https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${order.preferenceId}`} 
                                             type="button" 
                                             className="btn btn-sm btn-success"
                                             >
                                             Finalizar compra
-                            </button>
-                            {/* <button onClick={() => orderRemove(order)}className="btn btn-sm btn-danger">Cancelar orden</button>
-                            </div> */}
+                            </button>                           
+                            <button style={{display: order.paystate ? 'none' : 'inline-block', margin: "5px 9px" }}
+                                    onClick={() => orderCancel(order, index)}
+                                    className="btn btn-sm btn-danger"
+                                    >Cancelar orden
+                            </button> 
+
+                            {user &&       (user.email === "agustin.sosa.n2015@gmail.com" || 
+                                            user.email === "laredwificomputacion@gmail.com" ||
+                                            user.email === "pablo.psir@gmail.com") ? 
+                            <div>
+                                <button style={{width: '97%', display: order.paystate ? 'none' : 'block', margin: "5px 9px" }}
+                                    onClick={() => orderRemove(order, index)}
+                                    className="btn btn-sm btn-danger"
+                                    >Borrar orden <strong>(Sólo administradores)</strong>
+                                </button>
+                            </div> : <></> }
+                            
+                           
                         </Card.Body>
                     </Accordion.Collapse>
                 </Card>
                 ))}
             </Accordion>          
             </Modal.Body>
+            <Fragment >
+                <Alert id="alertRemoveOrder" show={show} variant={"success"}>
+                    Orden de compra cancelada!
+                </Alert>
+            </Fragment>
           </Modal>
         );
     }
 
-    // const orderRemove = async (order) => {
-    //     await fetch(`https://laredintercomp.com.ar/orders/remove`, {
-    //         method: 'POST',
-    //         headers: {'Content-Type': 'application/json'},
-    //         body: JSON.stringify(order)
-    //     }).then(response => response.status);
-    // }
+    const orderCancel = async (order,index) => {
+        let response;
+        let option = window.confirm(`¿Cancelar orden n°${index+1}?`);
+        if(option){
+            response = await fetch(`https://laredintercomp.com.ar:8886/api/orders/cancel?preferenceId=${order.preferenceId}`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+            }).then(response => response);
+        };
+        
+        if(response.status === 200){
+            getHistory();
+            showAlert();
+        }
+        
+    };
+
+    //only admins function
+    const orderRemove = async (order,index) => {
+        let option = window.confirm(`¿Borrar orden n°${index+1}?`);
+        let response;
+        try {            
+            if(option){
+                response = await fetch(`https://laredintercomp.com.ar:8886/api/orders/remove`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(order)
+                }).then(response => response);
+            };   
+        } catch (error) {
+            console.error(error);
+        };
+
+        if(response && response.status === 200){
+            getHistory();
+            showAlert();
+        }
+    };
 
     const formatTextSearch = () => {
         let newText;
@@ -398,7 +471,7 @@ const Header = () => {
                                             (user.email === "agustin.sosa.n2015@gmail.com" || 
                                             user.email === "laredwificomputacion@gmail.com" ||
                                             user.email === "pablo.psir@gmail.com") ? 
-                                            <Dropdown.Item
+                                            <Dropdown.Item 
                                             className="login-option-list">
                                                 <Link 
                                                 style={{color: 'black',
@@ -417,7 +490,7 @@ const Header = () => {
                                  className="clientes">
                                      Acceso a clientes
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><title>arrow-right-circle</title><path d="M7,13.635A6.635,6.635,0,1,0,.365,7,6.642,6.642,0,0,0,7,13.635ZM7,1.028A5.972,5.972,0,1,1,1.028,7,5.979,5.979,0,0,1,7,1.028Z" /><path d="M4.118,7.333H9.081l-1.3,1.3a.332.332,0,0,0,.471.468l1.864-1.865a.33.33,0,0,0,0-.468L8.253,4.9a.331.331,0,0,0-.468.468l1.3,1.3H4.118a.332.332,0,1,0,0,.663Z" /></svg>
-                                    </Link>
+                                </Link>
                                 <div className="spacer"></div>
                             </div>
                         </div>
@@ -462,6 +535,8 @@ const Header = () => {
                                 </div>
                             </div>
                         </div>
+                        
+                                                
                     </div>
                 </div>
 
