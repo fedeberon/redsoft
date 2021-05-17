@@ -8,6 +8,8 @@ const NuevosReclamos = () => {
     const [category, setCategory] = useState(0);
     const [priority, setPriority] = useState(0);
     const [mensaje, setMensaje] = useState('');
+    const [msgSent, setMsgSent] = useState(true);
+    let object = document.getElementById('infomsg');
 
     const categories = {
         102: 'Cambio de domicilio. (MUDANZA)',
@@ -29,11 +31,9 @@ const NuevosReclamos = () => {
         json.idcustomer = user.idcustomer;
         json.details = `Asunto: ${subject} >> Mensaje: ${mensaje}`;
         json.idcategory = category;
-        json.idpriority = priority;
+        json.idpriority = priority;     
 
-        console.log(JSON.stringify(json));
-
-        await fetch(`https://online3.ispcube.com:8080/index.php/tickets`, {
+        await fetch(`https://apilared.ispcube.com/index.php/tickets`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,24 +41,27 @@ const NuevosReclamos = () => {
                 'api-key': 'P2MvAryA0zqvoH4ZsKkEHVgYkFZCMmh7gE058gj5zRLAnfwDV4401Am',
                 'api-token': 'dkC0iHHHQwjfIiEyLo3RVeUDQo1SZKgv'},
             body: JSON.stringify(json)
-        }).then(response => response)
-        .then(data => console.log(data))
-
-        // if(response.ok) {
-        //     object.innerHTML = "Mensaje enviado exitosamente!";
-        //     object.style.color = "green";
-        //     setMsgSent(true)
-        //     setTimeout(()=> {
-        //         setMsgSent(false)
-        //     },10000);
-        // } else {
-        //     object.innerHTML = "Error al enviar. Completá todos los campos";
-        //     object.style.color = "red";
-        //     setMsgSent(true)
-        //     setTimeout(()=> {
-        //         setMsgSent(false)
-        //     },10000);
-        // }
+        }).then(response => {
+            if(response.ok) {
+                object.innerHTML = "Mensaje enviado exitosamente!";
+                object.style.color = "green";
+                setMsgSent(true);
+                setTimeout(()=> {
+                    setMsgSent(false)
+                },10000);
+            } else {
+                object.innerHTML = "Error al enviar. Completá todos los campos";
+                object.style.color = "red";
+                setMsgSent(true)
+                setTimeout(()=> {
+                    setMsgSent(false)
+                },10000);
+            }
+        });
+        setSubject('');
+        setCategory('');
+        setPriority('');
+        setMensaje('');
     }
 
     return (
@@ -128,6 +131,14 @@ const NuevosReclamos = () => {
                                     >
                                         Enviar
                                     </button>
+                                    <p id="infomsg" 
+                                    style={{
+                                        marginLeft: '25px', 
+                                        display: msgSent ? 'inline' : 'none',
+                                        color: msgSent ? 'green' : 'red'
+                                    }}>
+                                        {object}
+                                    </p>
                                 </div>
                             </div>
                         </form>

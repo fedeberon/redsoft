@@ -1,12 +1,55 @@
-import React from 'react';
+import React, {useState} from 'react';
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
 import { useSelector } from 'react-redux';
+import { loginispcubeActions } from "../../store";
+import { useDispatch } from "react-redux";
 
 const Facturas = () => {
 
     const user = useSelector((state) => state.loginispcube.user);
+    const [smShow, setSmShow] = useState(false);
+    const dispatch = useDispatch();
     const date = new Date();
     const mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre",
                 "Noviembre","Diciembre"];
+
+
+    //http://online3.ispcube.com:8080/index.php/mercadopago/button?idcustomer=000009&price=100.20
+    //https://apilared.ispcube.com/index.php/mercadopago/button?idcustomer=000001&price=200
+
+    const getUser = async () => {
+
+        await fetch(`https://apilared.ispcube.com/index.php/customers?page=1&limit=1&q=${user.idcustomer}`,{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'api-key': 'P2MvAryA0zqvoH4ZsKkEHVgYkFZCMmh7gE058gj5zRLAnfwDV4401Am',
+            'api-token': 'dkC0iHHHQwjfIiEyLo3RVeUDQo1SZKgv'},
+        }).then(response => response.json())
+        .then(data => {
+            if(data && data.data.length > 0){
+                dispatch(loginispcubeActions.setUser(data.data[0]));
+            }
+        });
+    };
+
+    const buttonPay = () => {
+        
+        fetch(`https://apilared.ispcube.com/index.php/mercadopago/button?idcustomer=${user.idcustomer}&price=${user.debt}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'api-key': 'P2MvAryA0zqvoH4ZsKkEHVgYkFZCMmh7gE058gj5zRLAnfwDV4401Am',
+                'api-token': 'dkC0iHHHQwjfIiEyLo3RVeUDQo1SZKgv'},
+            }).then(response => response.json())
+            .then(response => {
+                window.open(response,"_blank");
+            });       
+        setSmShow(false);
+        getUser();
+    };
+
 
     return (
         <div>            
@@ -29,8 +72,23 @@ const Facturas = () => {
             <div className="row foot">
                 <div className="col-12 col-sm">Recordá que tus pagos son acreditados a las 48 hs de haber sido realizados.</div>
                 <div className="col-12 col-sm cont-btn">
-                    <button id="pay-button-customers" type="button" 
-                    className="btn btn-primary">Pagar</button>
+                    {Number(user.debt) > 0 ? 
+                         <Button 
+                         id="pay-button-customers"
+                         disabled={!user.debt > 0}
+                         onClick={() => setSmShow(true)} 
+                         type="button" 
+                         className="btn btn-primary"
+                         
+                        >
+                                Pagar
+                        </Button>
+                        :
+                       
+                        <Button className="btn btn-success">
+                            Estás al día
+                        </Button>
+                    }                    
                 </div>
             </div>
             </div>
@@ -48,9 +106,9 @@ const Facturas = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr style={{padding: '10px', fontSize: '15px', position: 'absolute'}}>
+                <p style={{padding: '10px', fontSize: '15px', position: 'absolute'}}>
                    Información no disponible
-                </tr>
+                   </p>
                 {/* <tr>
                 <th scope="row">Julio 2020</th>
                 <td>06/07/2020</td>
@@ -66,6 +124,27 @@ const Facturas = () => {
             
             </tbody>
             </table>
+            <div>            
+                <Modal show={smShow} onHide={() => setSmShow(false)} centered animation={true}>
+                    <Modal.Header closeButton>
+                    <Modal.Title>Pago de Servicio</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body style={{fontSize: '17px'}}>
+                        <p>Podés abonar tu factura mediante Mercado Pago</p>
+                        <p>Total a pagar: ${user.debt}</p>
+
+                        <p>Hacé click en Pagar para abrir tu link de pago!</p>
+                    </Modal.Body>
+                    <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setSmShow(false)}>
+                        Cancelar
+                    </Button>
+                    <Button variant="primary" onClick={() => buttonPay()}>
+                        Pagar
+                    </Button>
+                    </Modal.Footer>
+                </Modal>
+            </div>
         </div>
     );
 }

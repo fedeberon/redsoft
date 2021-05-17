@@ -43,22 +43,11 @@ const Login = () => {
         }
     },[username])
 
-
     const handleLogin = async () => {
 
-        const existUser = dataIds.customerId.includes(username); 
-        const existPass = dataPass.customerPass.includes(password);
-        if(!existUser || !existPass){
-            alert('Usuario o contraseña incorrecta');
-            setCheckLogin(false);
-            if(!existUser){
-                setUsername('');
-            } else {}            
-            setPassword('');               
-        } else {
             setShowSpinner(true);        
             bg.style.opacity = 0.5;              
-            await fetch('http://online3.ispcube.com:8080/index.php/customers?limit=1500',{
+            await fetch(`https://apilared.ispcube.com/index.php/customers?page=1&limit=1&q=${username}`,{
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -66,31 +55,24 @@ const Login = () => {
                     'api-token': 'dkC0iHHHQwjfIiEyLo3RVeUDQo1SZKgv'},
                 }).then(response => response.json())
                 .then(data => {
-                    if(data){
-                        let object = false;
-                        Object.entries(data).map(([key, value]) => {
-                            if(key === 'rows'){
-                                dispatch(loginispcubeActions.setData(value));                                
-                                // let dataFull = [];
-                                value.map((customer) => {
-                                    // dataFull.push(customer?.id) //actualizar lista de ids
-                                    // console.log(JSON.stringify(dataFull)) //actualizar lista de ids
-                                    object = Object.entries(customer).find(([key, value]) => value===password)
-                                    if(object){
-                                        dispatch(loginispcubeActions.authenticated(true));
-                                        dispatch(loginispcubeActions.setUser(customer));                                    
-                                        setTimeout(()=> {
-                                            history.push('/clientes/facturas');
-                                        },1500)
-                                    }
-                                })
-                            }})
-                        }
-                    setShowSpinner(false);     
-                    bg.style.opacity = "";
-                });
-        }
-    }
+                    if(data && data.data.length > 0){
+                        dispatch(loginispcubeActions.authenticated(true));
+                        dispatch(loginispcubeActions.setUser(data.data[0]));
+                        setTimeout(()=> {
+                            history.push('/clientes/facturas');
+                        },1500);
+                        console.log(data.data[0]);
+                    } else {
+                        setCheckLogin(false);
+                        setPassword('');
+                    }
+                })
+
+
+                setShowSpinner(false);     
+                bg.style.opacity = "";   
+
+    };
 
     // const onSubmit = () => {
     //     recaptchaRef.current.execute();
@@ -123,13 +105,14 @@ const Login = () => {
                         <form>
                             <h2 className="titlesh2">Acceso a clientes</h2>
 
-                            <label htmlFor="">DNI / CUIT</label>
+                            <label htmlFor="">DNI/CUIL/CUIT</label>
                             <input 
                                 id="inputusername"
-                                placeholder="DNI/CUIT"
+                                placeholder="DNI/CUIL/CUIT"
                                 required
                                 type="text" 
                                 className="form-control"
+                                autocomplete="off"
                                 value={username}   
                                 style={{borderColor: checkLogin ? "" : "red"}}                             
                                 onChange={handleChange}
@@ -138,7 +121,8 @@ const Login = () => {
                             <input
                                 placeholder="********"
                                 required
-                                type="text" 
+                                type="password" 
+                                autocomplete="off"
                                 className="form-control"
                                 value={password}
                                 style={{borderColor: checkLogin ? "" : "red"}}
@@ -163,7 +147,7 @@ const Login = () => {
                             <Button 
                             disabled={!userChecked && !password}
                             className="btn-clientes" 
-                            //onClick={handleLogin}
+                            onClick={handleLogin}
                             >
                                 Ingreso
                             </Button><br/>  

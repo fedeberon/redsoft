@@ -21,7 +21,7 @@ const TicketsReclamos = ({newOption}) => {
 
     const getTickets = async () => {
 
-        await fetch(`http://online3.ispcube.com:8080/index.php/tickets?limit=50&q=${user.id}`, {
+        await fetch(`https://apilared.ispcube.com/index.php/tickets?limit=50&q=${user.id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const TicketsReclamos = ({newOption}) => {
     }
 
     const getTicketHistory = async (ticketId) => {
-        let response = await fetch(`http://online3.ispcube.com:8080/index.php/tickets/${ticketId}/items`, {
+        let response = await fetch(`https://apilared.ispcube.com/index.php/tickets/${ticketId}/items`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
