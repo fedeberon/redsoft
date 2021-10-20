@@ -12,7 +12,7 @@ class HomeContainer extends React.Component {
         return (
             <div >
                 <Header/>
-                <CarouselComponent/>
+                <CarouselComponent focus={0}/>
                 <BannersHomeComponent/>
                 <CategoriesHomeComponent/>
                 <FeaturedProductsComponent/>

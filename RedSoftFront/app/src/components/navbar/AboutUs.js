@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect}  from 'react';
 import Header from "../header/Header";
 import FooterComponent from "../home/FooterComponent";
 
@@ -6,7 +6,7 @@ const AboutUs = () => {
 
         return (
             <>
-            <Header/>            
+            <Header/> 
             <div className="page nosotros">
                 <div className="container">
                     <div className="row justify-content-md-center">

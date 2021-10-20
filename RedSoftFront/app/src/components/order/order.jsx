@@ -100,10 +100,10 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
         if(products.length === 1){
             localStorage.removeItem('cartlared');
         }
-        dispatch(ordersActions.remove(product));
+        dispatch(ordersActions.remove(product));               
     }
 
-    return (
+    return (    
 
         <>  {!isReady ?
             <form onSubmit={handleSubmit} style={{paddingTop: '15px'}}>

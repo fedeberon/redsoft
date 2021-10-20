@@ -5,12 +5,14 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { useParams } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const MercadoPagoResponse = () => {
 
     const [orderResume, setOrderResume] = useState([]);
     const [orders, setOrders] = useState([]);
     const [details, setDetails] = useState([]);
+    const { user } = useAuth0();
     const {id} = useParams();
 
     const getResume = () => {
@@ -22,21 +24,60 @@ const MercadoPagoResponse = () => {
         }).then(response => response.json())
         .then(data => {
             setOrderResume(data);
-        }) 
+        });
     }
 
-    const getHistory = () => {
+    const getHistory = async() => {
 
-        fetch(`https://laredintercomp.com.ar:8886/api/orders/${id}`, {
+        await fetch(`https://laredintercomp.com.ar:8886/api/orders/${id}`, {
             method: 'GET',
             headers: {'Content-Type': 'application/json',
                     'Accept': '*/*'},
         }).then(response => response.json())
         .then(data => {
+
+            if(data.paystate === true){
+                setTimeout(()=> {
+                    sendEmail(data);
+                },4000)
+            };
+
             setOrders(data);
             setDetails(data.details);
-        })
+        });
     }
+
+    const detailsConstructor = (data) => {
+
+        return (data.map((product) => 
+                    `<div>
+                        <p><strong>Código: </strong><span>${product.product.code}</span></p>
+                        <p><strong>Nombre: </strong><span>${product.product.name}</span></p>
+                        <p><strong>Precio: </strong><span>$${product.product.price}</span></p>
+                        <p><strong>Cantidad: </strong><span>${product.quantity}</span></p>
+                        <p><strong>Total pagado: </strong><span>$${product.product.price * product.quantity}</span></p>
+                        <p> ======================================================= </p>
+                    </div>`
+                ).join(""));             
+    }
+
+    const sendEmail = async (data) => {
+
+        let details = {};
+        details.name = user ? user.name : "";
+        details.email = data.userEmail;
+        details.phone = "000";
+        details.message = detailsConstructor(data.details);
+
+        await fetch(`https://laredintercomp.com.ar:8886/sendEmail`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': '*/*'},
+            body: JSON.stringify(details),
+            }).then(response => response);
+    }
+
     useEffect(()=> {
         getResume();
         getHistory();

@@ -16,6 +16,8 @@ const Preference = () => {
             <div>
                 <div className="row tilde-success">
                     <div className="col-12">
+                        <p style={{border: "1px solid", textAlign: "center", borderColor: "cadetblue"}}>No olvides retornar a la tienda una vez completado tu pago para completar la operación</p>
+
                         <p className="success-mp">Se generó tu link de pago </p>
                     </div>
                     <div className="checkPay-button">
@@ -25,8 +27,7 @@ const Preference = () => {
                     </div>
                 </div>
                 <div className="succ-cont">
-                    Hacé click debajo para continuar
-                       ó escanea el código QR
+                    <p>Hacé click debajo para continuar ó escanea el código QR.</p><br/>
                 </div>
                 <div>
                 <Button id="completar-pago" variant="primary">

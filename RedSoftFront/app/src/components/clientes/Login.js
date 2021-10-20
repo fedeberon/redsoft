@@ -44,34 +44,36 @@ const Login = () => {
     },[username])
 
     const handleLogin = async () => {
-
+            let user = dataIds.customerId.includes(username);
+            let pass = dataPass.customerPass.includes(password);
             setShowSpinner(true);        
-            bg.style.opacity = 0.5;              
-            await fetch(`https://apilared.ispcube.com/index.php/customers?page=1&limit=1&q=${username}`,{
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'api-key': 'P2MvAryA0zqvoH4ZsKkEHVgYkFZCMmh7gE058gj5zRLAnfwDV4401Am',
-                    'api-token': 'dkC0iHHHQwjfIiEyLo3RVeUDQo1SZKgv'},
-                }).then(response => response.json())
-                .then(data => {
-                    if(data && data.data.length > 0){
-                        dispatch(loginispcubeActions.authenticated(true));
-                        dispatch(loginispcubeActions.setUser(data.data[0]));
-                        setTimeout(()=> {
-                            history.push('/clientes/facturas');
-                        },1500);
-                        console.log(data.data[0]);
-                    } else {
-                        setCheckLogin(false);
-                        setPassword('');
-                    }
-                })
-
-
-                setShowSpinner(false);     
-                bg.style.opacity = "";   
-
+            bg.style.opacity = 0.5;  
+            if(user && pass){
+                await fetch(`https://apilared.ispcube.com/index.php/customers?page=1&limit=1&q=${username}`,{
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'api-key': 'P2MvAryA0zqvoH4ZsKkEHVgYkFZCMmh7gE058gj5zRLAnfwDV4401Am',
+                        'api-token': 'dkC0iHHHQwjfIiEyLo3RVeUDQo1SZKgv'},
+                    }).then(response => response.json())
+                    .then(data => {
+                        if(data && data.data.length > 0 && data.data[0].webpass === password){
+                            dispatch(loginispcubeActions.authenticated(true));
+                            dispatch(loginispcubeActions.setUser(data.data[0]));
+                            setTimeout(()=> {
+                                history.push('/clientes/facturas');
+                            },1500);
+                        } else {
+                            setCheckLogin(false);
+                            
+                        }
+                    })
+            } else {
+                setCheckLogin(false);
+                setPassword('');
+            }      
+            setShowSpinner(false);                     
+            bg.style.opacity = "";         
     };
 
     // const onSubmit = () => {
@@ -152,7 +154,9 @@ const Login = () => {
                                 Ingreso
                             </Button><br/>  
 
-                            <p>Olvidaste tu contraseña? <a style={{color: 'black'}}href="#">Click aquí.</a></p>
+                            <p>Olvidaste tu contraseña? <a style={{color: 'black'}} href="https://wa.me/542314404320">
+                                Comunicate con nosotros.</a></p>
+                            
                         </form>
                     </div>
                 </div>

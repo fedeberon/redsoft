@@ -185,16 +185,18 @@ h5 {
 /*.tilde-img {background-image: url(/img/tilde-success.jpg);}*/
 .success-mp {
 	text-align: center;
-	margin-top: 34px;
+	margin-top: 5px;
 	font-size: 32px;
 	padding-right: 15px;
 	color: black;
 	font-variant-caps: small-caps;}
 
-.succ-cont {color: black;
+.succ-cont {
+	color: black;
     border-bottom-width: 20px;
     font-size: 16px;
-    display: flex;
+    display: block;
+	text-align: center;
     width: 100%;
     justify-content: center;
 }
@@ -1165,11 +1167,11 @@ footer {padding-top: 35px;}
 		margin: 0 auto;
 	}
 	.succ-cont {
-		margin-bottom: 20px;
+		margin-top: 20px;
 	}
 	.tilde-success {
 		background-size: contain;
-		height: 260px;
+		height: 225px;
 		margin-left: 42px;
 		margin-top: 10px;
 	}

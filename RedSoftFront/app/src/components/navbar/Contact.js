@@ -53,7 +53,7 @@ class Contact extends React.Component {
                 this.setState({showAlert: false});
                 this.setState({alertMessage: false})
             },5000)
-    } 
+    }
 
     render() {
 
@@ -62,7 +62,7 @@ class Contact extends React.Component {
         return (
 
             <>
-            <Header/> 
+            <Header/>
             <div className="page Contacto">
                 <div className="container">
                     <div className="row">
