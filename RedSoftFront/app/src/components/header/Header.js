@@ -7,10 +7,7 @@ import Wrapper from "../auth0/Wrapper";
 import Profile from "../auth0/Profile";
 import LogoutButton from "../auth0/Logout";
 import ModalTitle from 'react-bootstrap/ModalTitle';
-import ModalBody from 'react-bootstrap/ModalBody';
-import ModalFooter from 'react-bootstrap/ModalFooter';
 import ModalHeader from 'react-bootstrap/ModalHeader';
-import ModalDialog from 'react-bootstrap/ModalDialog';
 import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -19,7 +16,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion';
 import Alert from 'react-bootstrap/Alert'
-import Button from 'react-bootstrap/Button'
 
 const Header = () => {
 
@@ -37,8 +33,6 @@ const Header = () => {
     const [textMobileSearch, setTextMobileSearch] = useState('');
     const [orders, setOrders] = useState([]);
     const [show, setShow] = useState(false);
-    const [showModalCancelOrder, setShowModalCancelOrder] = useState(false);
-    const [confirmCancelOrder, setConfirmCancelOrder] = useState(false);
 
     const {user} = useAuth0();
 

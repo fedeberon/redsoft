@@ -30,8 +30,8 @@ class Contact extends React.Component {
         details.email = this.state.email;
         details.phone = this.state.phone;
         details.message = this.state.message;
-        console.log(details);
-        const res = await fetch(`https://laredintercomp.com.ar:8886/sendEmail`, {
+
+        await fetch(`https://laredintercomp.com.ar:8886/sendEmail`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -122,8 +122,7 @@ const NuevosReclamos = () => {
                                     className="form-control" 
                                     id="" 
                                     rows="5"></textarea>
-                                    <button 
-                                    disabled
+                                    <button
                                     onClick={(e) => onSubmit(e)} 
                                     disabled={!mensaje || !subject || category < 1 || priority < 1}
                                     type="submit" 

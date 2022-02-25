@@ -33,10 +33,12 @@ const FeaturedProductsComponent = () => {
 
     useEffect(()=> {
         getProducts();
+    // eslint-disable-next-line
     },[]);
 
     useEffect(() => {
             gettingProducts();
+    // eslint-disable-next-line
     },[products.length > 0])
 
     const gettingProducts = () => {
