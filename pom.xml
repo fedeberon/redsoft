@@ -6,7 +6,39 @@
 	<groupId>com.ideaas.lared</groupId>
 	<artifactId>redsoft</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>redsoft</name>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.2.7.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>5.2.7.RELEASE</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.mercadopago</groupId>
+			<artifactId>dx-java</artifactId>
+			<version>1.2.1</version>
+			<scope>compile</scope>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.2.7.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot</artifactId>
+			<version>2.3.1.RELEASE</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+    <name>redsoft</name>
 	<packaging>pom</packaging>
 	<description>Demo project for Spring Boot</description>
 

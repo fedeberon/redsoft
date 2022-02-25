@@ -3,6 +3,7 @@ package com.ideaas.lared.web;
 import com.ideaas.lared.domain.Order;
 import com.ideaas.lared.domain.PaymentResponse;
 import com.ideaas.lared.service.interfaces.MercadoPagoService;
+import com.ideaas.lared.service.interfaces.PaymentResponseService;
 import com.mercadopago.exceptions.MPException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,15 +11,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ideaas.lared.service.interfaces.OrderService;
+
 @Controller
 @RequestMapping("cart")
 public class CartController {
 
     private MercadoPagoService mercadoPagoService;
+    
+    private OrderService orderService;
 
     @Autowired
-    public CartController(MercadoPagoService mercadoPagoService) {
+    private PaymentResponseService paymentResponseService;
+
+    @Autowired
+    public CartController(MercadoPagoService mercadoPagoService, OrderService orderService) {
         this.mercadoPagoService = mercadoPagoService;
+        this.orderService = orderService;
     }
 
     @RequestMapping("payment")
@@ -29,6 +38,11 @@ public class CartController {
             e.printStackTrace();
             return "error/pago";
         }
+    }
+
+    @RequestMapping(value = "/redirect")
+    public String redirectFront(String preferenceId) {
+    return "redirect:" + "https://laredintercomp.com.ar/mercadopago/operation/" + preferenceId;
     }
 
     @RequestMapping("success")
@@ -46,7 +60,11 @@ public class CartController {
                 , externalReference, paymentType, merchantOrderId, preferenceId, siteId
                 , processingMode, merchantAccountId);
 
-        return "order-detail";
+        paymentResponseService.save(paymentResponse);
+
+        orderService.updateOrder(preferenceId);
+
+        return redirectFront(preferenceId);
     }
 
     @RequestMapping("pending")
@@ -64,7 +82,9 @@ public class CartController {
                 , externalReference, paymentType, merchantOrderId, preferenceId, siteId
                 , processingMode, merchantAccountId);
 
-        return "order-detail";
+        paymentResponseService.save(paymentResponse);
+
+        return redirectFront(preferenceId);
     }
 
     @RequestMapping("failure")
@@ -82,7 +102,9 @@ public class CartController {
                 , externalReference, paymentType, merchantOrderId, preferenceId, siteId
                 , processingMode, merchantAccountId);
 
-        return "order-detail";
+        paymentResponseService.save(paymentResponse);
+
+        return redirectFront(preferenceId);
     }
 
 }

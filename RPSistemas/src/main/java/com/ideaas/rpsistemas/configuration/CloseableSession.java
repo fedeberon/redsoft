@@ -1,4 +1,4 @@
-package com.rpsistemas.configuration;
+package com.ideaas.rpsistemas.configuration;
 
 import org.hibernate.Session;
 

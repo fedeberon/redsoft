@@ -5,19 +5,21 @@ import com.ideaas.lared.domain.Order;
 import com.ideaas.lared.service.interfaces.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Date;
 
 @Service
 public class OrderServiceImpl implements OrderService {
 
+    @Autowired
     private OrderDao dao;
 
-    @Autowired
     public OrderServiceImpl(OrderDao dao) {
         this.dao = dao;
     }
 
     @Override
-    public Order get(Long id) {
+    public Order getByOrderId(Long id) {
         return dao.findById(id).get();
     }
 
@@ -27,8 +29,48 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> getByUserEmail(String userEmail){    
+        return dao.findByUserEmail(userEmail);
+    }
+
+    @Override
     public Order save(Order order) {
         return dao.save(order);
+    }
+
+    @Override
+    public Order updateOrder(String preferenceId) {
+
+        Order order = dao.findByPreferenceId(preferenceId);
+
+        if(order.getPreferenceId() != null){
+        
+            order.setPaystate(true);
+            order.setLastUpdate(new Date());
+
+           return dao.save(order);
+        } else {
+           return null;
+        }
+    }
+
+    @Override
+    public Order cancelOrder(String preferenceId) {
+        Order order = dao.findByPreferenceId(preferenceId);
+
+        if(order.getPreferenceId() != null){
+            order.setLastUpdate(new Date());
+            order.setCanceledOrder(true);
+
+            return dao.save(order);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public void delete(Order order) {
+         dao.delete(order);
     }
 
 }

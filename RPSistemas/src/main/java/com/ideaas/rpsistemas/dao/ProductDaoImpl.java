@@ -2,7 +2,7 @@ package com.ideaas.rpsistemas.dao;
 
 import com.ideaas.rpsistemas.dao.interfaces.ProductDao;
 import com.ideaas.rpsistemas.domain.Product;
-import com.rpsistemas.configuration.CloseableSession;
+import com.ideaas.rpsistemas.configuration.CloseableSession;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +39,10 @@ public class ProductDaoImpl implements ProductDao {
             List<Tuple> result = query.getResultList();
             result.forEach(row -> products.add(new Product()
                     .withCode(String.valueOf(row.get("cod_articulo")))
+                    .withCantiStock((BigDecimal)(row.get("canti_stock")))
+                    .withWebLink(String.valueOf(row.get("web_link")))
+                    .withPorcenDescuento((BigDecimal)(row.get("porcen_descuen")))
+                    .withDescAdicional(String.valueOf(row.get("desc_adicional")))
                     .withPriceUni(String.valueOf(row.get("precio_uni")))
                     .withPriceUniVta((BigDecimal)(row.get("precio_uni_vta")))
                     .withDescription(String.valueOf(row.get("descrip_arti")))));

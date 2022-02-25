@@ -5,30 +5,32 @@ class FooterComponent extends React.Component {
     render() {
         return (
             <footer>
-            <div className="footerbanda">
-                <div className="container">
+                <div className="footerbanda" style={{paddingTop: '20px',paddingBottom: '20px'}}>
+                    <div className="container">
+
                     <div className="row justify-content-md-center">
                         <div className="col-md-6 col-lg-5 col-xs-4">
-                            <img src="/img/person.svg"/>
+                            <img alt="" src="/img/person.svg"/>
                             <ul>
-                                <li>Av. Alsina 555</li>
-                                <li>Lunes a viernes de 10 a 18 hs</li>
-                                <li>Sábados de 10 a 13 hs</li>
+                                <li>Av. Alsina 555 - Bolivar</li>
+                                <li>Av. Rivadavia 229 - Urdampilleta</li>
+                                <li>Lunes a viernes de 9 a 17 hs</li>
+                                <li>Sábados de 9 a 13 hs</li>
                             </ul>
                         </div>
                         <div className="col-md-6 col-lg-5 col-xs-4">
-                            <img src="/img/chat.svg"/>
+                            <img alt="" src="/img/chat.svg"/>
                             <ul>
-                                <li>Presupuestos: ventas@laredwifi.com.ar</li>
-                                <li>Consultas: contacto@laredwifi.com.ar</li>
-                                <li>Teléfonos: 2314 427308</li>
+                                <li>Presupuestos: gestiones@laredwifi.com.ar</li>
+                                <li>Consultas: gestiones@laredwifi.com.ar</li>
+                                <li>Teléfonos: 2314 404320</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-                    <div className="container">
+                <div className="container" style={{marginTop: '20px'}}>
                         <div className="row">
                             <div className="col-4 col-md-3 logofooter display">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427 363"><title>logo-02</title>
@@ -48,7 +50,7 @@ class FooterComponent extends React.Component {
                             </div>
                             <div className="col-12 col-md-3">
                                 <ul className="datos datosfooter">
-                                    <img src="/img/iso.svg" className="iso mobile"/>
+                                    <img alt="" src="/img/iso.svg" className="iso mobile"/>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14">
                                             <title>whatsapp</title>
@@ -79,7 +81,7 @@ class FooterComponent extends React.Component {
                                             <path
                                                 d="M464 64H48a48 48 0 0 0-48 48v288a48 48 0 0 0 48 48h416a48 48 0 0 0 48-48V112a48 48 0 0 0-48-48zM48 96h416a16 16 0 0 1 16 16v41.4c-21.9 18.5-53.2 44-150.6 121.3-16.9 13.4-50.2 45.7-73.4 45.3-23.2.4-56.6-31.9-73.4-45.3A6862.8 6862.8 0 0 1 32 153.4V112a16 16 0 0 1 16-16zm416 320H48a16 16 0 0 1-16-16V195a11843 11843 0 0 0 130.7 104.7c20.5 16.4 56.7 52.5 93.3 52.3 36.4.3 72.3-35.5 93.3-52.3A11843 11843 0 0 0 480 195v205a16 16 0 0 1-16 16z"/>
                                         </svg>
-                                        &nbsp;info@laredwifi.com.ar
+                                        &nbsp;gestiones@laredwifi.com.ar
                                     </li>
                                 </ul>
                             </div>
@@ -88,30 +90,50 @@ class FooterComponent extends React.Component {
                             </div>
                             <div className="col-6 col-md-3">
                                 <ul className="menufooter">
-                                    <li><a href="index.php">Inicio</a></li>
-                                    <li><a href="servicios.php">Servicios</a></li>
-                                    <li><a href="productos.php">Productos</a></li>
-                                    <li><a href="nosotros.php">Sobre La Red</a></li>
-                                    <li><a href="contacto.php">Contacto</a></li>
+                                    <li><a href="/">Inicio</a></li>
+                                    <li><a href="/services">Servicios</a></li>
+                                    <li><a href="/products">Productos</a></li>
+                                    <li><a href="/aboutus">Sobre La Red</a></li>
+                                    <li><a href="/contact">Contacto</a></li>
                                 </ul>
                             </div>
                             <div className="col-6 col-md-3">
                                 <div className="social socialfooter">
                                     <h5>Seguinos en</h5>
-                                    <a href="" className="social-icon">
+                                    <a href="https://wa.me/542314404320" rel="noopener noreferrer" target="_blank" className="social-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14">
+                                            <title>Chateá con nosotros!</title>
+                                            <path
+                                                d="M.529,13.5l.914-3.338a6.445,6.445,0,1,1,5.584,3.226h0A6.426,6.426,0,0,1,3.945,12.6ZM4.1,11.438l.2.116a5.343,5.343,0,0,0,2.726.746h0A5.355,5.355,0,1,0,2.49,9.791l.127.2L2.076,11.97Z"/>
+                                            <path
+                                                d="M5.417,3.947c-.121-.268-.248-.273-.363-.278-.094,0-.2,0-.308,0a.594.594,0,0,0-.43.2,1.805,1.805,0,0,0-.563,1.342A3.139,3.139,0,0,0,4.41,6.875a6.613,6.613,0,0,0,2.751,2.43c1.36.536,1.637.43,1.932.4a1.63,1.63,0,0,0,1.087-.766,1.334,1.334,0,0,0,.093-.765c-.04-.067-.147-.107-.308-.188s-.953-.47-1.1-.524-.255-.08-.363.081-.415.524-.509.631-.188.121-.349.04a4.371,4.371,0,0,1-1.295-.8,4.812,4.812,0,0,1-.9-1.115c-.094-.161-.01-.248.071-.328s.161-.188.241-.282a1.055,1.055,0,0,0,.161-.269.3.3,0,0,0-.013-.282C5.873,5.062,5.56,4.266,5.417,3.947Z"
+                                                fillRule="evenodd"/>
+                                        </svg>
+                                    </a>
+                                    <a href="https://www.facebook.com/LaRedBolivar/" rel="noopener noreferrer" target="_blank" className="social-icon">
                                         <svg viewBox="0 0 320 512">
+                                            <title>Nuestro Facebook!</title>
                                             <path
                                                 d="M279.1 288l14.3-92.7h-89v-60c0-25.4 12.5-50.2 52.3-50.2H297V6.4S260.4 0 225.4 0C152 0 104.3 44.4 104.3 124.7v70.6H22.9V288h81.4v224h100.2V288z"/>
                                         </svg>
                                     </a>
-                                    <a href="" className="social-icon">
+                                    <a href="https://www.instagram.com/laredbolivar/" className="social-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                            <title>Nuestro Instagram!</title>
                                             <path
                                                 d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
                                         </svg>
                                     </a>
+                                    <a href="https://telegram.me/542314404320" className="social-icon">
+                                        <svg style={{width: '25px'}} xmlns="http://www.w3.org/2000/svg" version="1.0" width="240.000000pt" height="240.000000pt" viewBox="0 0 240.000000 240.000000" preserveAspectRatio="xMidYMid meet">
+                                            <g transform="translate(0.000000,240.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+                                            <path d="M1075 2394 c-232 -34 -404 -100 -570 -219 -249 -177 -416 -436 -482 -745 -24 -117 -24 -343 0 -460 104 -487 460 -843 947 -947 117 -24 343 -24 460 0 487 104 843 460 947 947 12 60 18 128 18 230 0 102 -6 170 -18 230 -103 485 -462 845 -942 945 -78 16 -299 28 -360 19z m289 -209 c543 -95 914 -614 821 -1149 -95 -543 -614 -914 -1149 -821 -543 95 -914 614 -821 1149 95 543 614 914 1149 821z"/>
+                                            <path d="M1135 1489 c-308 -115 -566 -216 -573 -223 -23 -23 -5 -53 41 -70 23 -8 89 -30 146 -48 l105 -33 55 -165 c31 -91 60 -171 64 -178 18 -26 52 -10 133 64 55 50 88 73 96 68 7 -5 73 -52 147 -106 74 -54 144 -98 156 -98 12 0 29 8 38 18 10 11 51 190 113 484 101 488 102 499 55 497 -9 0 -268 -95 -576 -210z m395 27 c0 -7 -114 -116 -252 -241 l-253 -228 -9 -79 c-5 -43 -12 -78 -15 -78 -6 0 -76 227 -76 247 0 10 587 393 601 393 2 0 4 -6 4 -14z"/>
+                                            </g>
+                                        </svg>
+                                    </a>
                                 </div>
-                                <div className="afip"><img src="/img/qr.png"/></div>
+                                <div className="afip"><img alt="" src="/img/qr.png"/></div>
                             </div>
                         </div>
                     </div>
@@ -123,7 +145,7 @@ class FooterComponent extends React.Component {
                                 </div>
                                 <div className="col-md text-md-right cont-logo-zurbrand">
                                     <a href="https://www.zurbrand.com/?utm_source=lared&utm_medium=firma_shop"
-                                       className="link-zurbrand" target="_blank"><img
+                                       className="link-zurbrand" target="_blank" rel="noopener noreferrer"><img
                                         src="https://www.zurbrand.com/firma/logo-zurbrand-v1-01.png" className="logo-zurbrand"
                                         alt="Zurbrand | Diseño y Marketing Digital"
                                         title="Zurbrand | Diseño y Marketing Digital"/></a>
