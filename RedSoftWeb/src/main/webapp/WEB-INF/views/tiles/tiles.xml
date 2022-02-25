@@ -48,9 +48,8 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/editor-form.jsp" />
     </definition>
 
-    <definition name="order/show" extends="template-def">
-        <put-attribute name="title" value="Orden" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/order/show.jsp" />
+    <definition name="order-detail" extends="template-mercado-pago">
+        <put-attribute name="body" value="/WEB-INF/views/pages/order/detail.jsp" />
     </definition>
 
     <!--Login -->

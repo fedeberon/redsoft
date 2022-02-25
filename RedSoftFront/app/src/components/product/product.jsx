@@ -46,7 +46,7 @@ class Products extends Component {
 
     findAll = async () => {
         this.setState({products: [], isLoading: true})
-        let data = await api.get('/product/list').then(({data}) => data);
+        let data = await api.get('/api/product/list').then(({data}) => data);
         this.setState({products: data, isLoading: false})
     }
 }

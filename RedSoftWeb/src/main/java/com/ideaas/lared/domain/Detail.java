@@ -2,6 +2,11 @@ package com.ideaas.lared.domain;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 @Table(name = "DETAILS")
 public class Detail {
@@ -12,15 +17,17 @@ public class Detail {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "DET_ORD_ID")
-    private Order order;
-
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @Cascade({CascadeType.PERSIST})
     @JoinColumn(name = "DET_PRO_ID")
     private Product product;
 
     @Column(name = "DET_QUANTITY")
     private Long quantity;
+
+    @ManyToOne
+    @JoinColumn(name = "DET_ORD_ID")
+    @JsonIgnore
+    private Order order;
 
     public Long getId() {
         return id;

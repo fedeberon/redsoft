@@ -17,10 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
+
 
 @Service
 public class MercadoPagoServiceImpl implements MercadoPagoService {
@@ -41,7 +39,7 @@ public class MercadoPagoServiceImpl implements MercadoPagoService {
     public String createPreference(Order order) throws MPException {
         Preference preference = new Preference();
         Payer payer = new Payer();
-        payer.setEmail("fedeberon@hotmail.com");
+        payer.setEmail(order.getUserEmail());
 
         preference.setBackUrls(
                 new BackUrls()
@@ -59,13 +57,13 @@ public class MercadoPagoServiceImpl implements MercadoPagoService {
             preference.appendItem(item);
             products.add(detail.getProduct());
         });
-        //producService.save(products);
+        producService.save(products);
         preference.setPayer(payer);
         Preference result = preference.save();
         order.withPreferenceId(result.getId());
         orderService.save(order);
 
-        return result.getSandboxInitPoint();
+        return result.getInitPoint();
     }
 
 

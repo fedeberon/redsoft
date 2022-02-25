@@ -1,6 +1,6 @@
 package com.ideaas.lared.configuration;
 
-import com.ideaas.lared.service.UserService;
+import com.ideaas.lared.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
@@ -20,7 +20,7 @@ public class MySimpleUrlAuthenticationSuccessHandler extends SavedRequestAwareAu
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
 
     @Override

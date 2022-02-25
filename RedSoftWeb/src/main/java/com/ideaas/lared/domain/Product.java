@@ -1,15 +1,16 @@
 package com.ideaas.lared.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "PRODUCTS")
 public class Product {
 
     @Id
+    @Column(name = "PRO_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     @Column(name = "PRO_CODE")
     private String code;
 

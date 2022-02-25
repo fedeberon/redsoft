@@ -1,75 +1,393 @@
-import React from "react";
+import React, {useState, useEffect, Fragment} from "react";
 import ModalCart from "./ModalCart";
 import NavBarReact from "../NavBarReact";
-import ModalCustomers from "./ModalCustomers";
 import SearchBarComponent from "../SearchBarComponent";
+import {Link} from "react-router-dom";
+import Wrapper from "../auth0/Wrapper";
+import Profile from "../auth0/Profile";
+import LogoutButton from "../auth0/Logout";
+import ModalTitle from 'react-bootstrap/ModalTitle';
+import ModalHeader from 'react-bootstrap/ModalHeader';
+import Modal from 'react-bootstrap/Modal';
+import Table from 'react-bootstrap/Table';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
+import { useAuth0 } from "@auth0/auth0-react";
+import Card from 'react-bootstrap/Card';
+import Accordion from 'react-bootstrap/Accordion';
+import Alert from 'react-bootstrap/Alert'
 
+const Header = () => {
 
-class Header extends React.Component {
+    let elementBody = document.body;
+    const [productmenustate, setProductmenustate] = useState(false);
+    const [categorystate1, setCategorystate1] = useState(false);
+    const [categorystate2, setCategorystate2] = useState(false);
+    const [categorystate3, setCategorystate3] = useState(false);
+    const [categorystate4, setCategorystate4] = useState(false);
+    const [categorystate5, setCategorystate5] = useState(false);
+    const [categorystate6, setCategorystate6] = useState(false);
+    const [profilemenustate, setProfilemenustate] = useState(false);
+    const [stepper, setStepper] = useState('');
+    const [modalShow, setModalShow] = useState(false);
+    const [textMobileSearch, setTextMobileSearch] = useState('');
+    const [orders, setOrders] = useState([]);
+    const [show, setShow] = useState(false);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            textSearch: '',
+    const {user} = useAuth0();
+
+    const openMobileMenu = () => {
+        if(window.innerWidth < 767) {
+            elementBody.className = "pushy-open-left";
+            elementBody.style.overflowY = 'hidden';
         }
     }
 
-    render() {
+    const closeMobileMenu = () => {
+        if(window.innerWidth < 767) {
+            elementBody.className = ""
+            elementBody.style.overflowY = '';
+        }
+    }
 
+    const handleChangeStepper = param => {
+        setStepper(param);
+        closeMobileMenu();
+    }
+
+    const showAlert = () => {
+        setShow(true);
+        setTimeout(
+            () => setShow(false),
+            5000
+        );
+    }
+
+    const getHistory = async () => {
+        let array = [];
+        await fetch(`https://laredintercomp.com.ar:8886/api/orders?userEmail=${user.email}`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json',
+                    'Accept': '*/*'},
+        }).then(response => response.json())
+        .then(data => {
+            data.map(object => {
+                if(!object.canceledOrder){
+                    array.push(object)
+                }
+            })
+            setOrders(array);
+        })
+    }
+
+    const handleShowModal = () => {
+        setModalShow(true);
+        if(user){
+            getHistory();
+        }
+    }
+
+    useEffect(() => {
+        if(stepper)
+        window.location.href = `/products/search=${stepper}`
+    },[stepper])
+    
+    function openSearch(e) {
+        e.preventDefault();
+        const element = document.getElementById("overlay");
+        element.classList.add("show");
+        element.style.display = "block";
+      }
+    
+    const closeSearch = () => {
+        const element = document.getElementById("overlay");
+        element.classList.remove("show");
+        element.style.display = "none";
+    }
+
+    function FormatDate(date) {
+        let newdate = new Date(date);
+        return `${newdate.getDate() < 10 ? `0${newdate.getDate()}` : `${newdate.getDate()}`}/${newdate.getMonth()+1 < 10 ? `0${newdate.getMonth()+1}` : `${newdate.getMonth()+1}`}/${newdate.getFullYear()}
+        a las ${newdate.getHours()}:${newdate.getMinutes() < 10 ? `0${newdate.getMinutes()}` : `${newdate.getMinutes()}`}hs`
+    }
+
+    let totalPrice = 0;
+
+    function TotalPrice(values, index) {
+        if(index === 1){
+            totalPrice = 0;
+        }
+        totalPrice = totalPrice + values;
+        return values.toFixed(2);
+    }    
+
+    const handleChangeOpacity = (index) => {
+        let elem = document.getElementsByClassName("cards");
+         
+        for(let i=0; i<elem.length; i++){
+            if(!(elem[i].getAttribute('id') === `history-${index}`)){
+                elem[i].style = "opacity: 0.3";
+            } else {
+                elem[i].style = "opacity: 1";
+            } 
+        }
+    }
+
+    function MydModalWithGrid(props) {
         return (
-            console.log(this.textSearch),
-                <div id="myOverlay" style={{height: '200px'}}>
-                    <div id="overlay" className="overlay fade searchfull">
-                        {/*<span className="closebtn" onClick={closeSearch()} title="Close Overlay">×</span>*/}
-                        <span className="closebtn" title="Close Overlay">×</span>
-                        <div className="overlay-content">
-                            <form action="resultados.php">
-                                <input type="text" placeholder="Buscar producto" name="search"/>
-                                <button type="submit">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>search</title>
-                                        <path
-                                            d="M39.063,37.986,27.935,26.858a14.549,14.549,0,1,0-1.078,1.077L37.985,39.063a.762.762,0,1,0,1.078-1.077ZM17.19,30.143A12.953,12.953,0,1,1,30.143,17.19,12.968,12.968,0,0,1,17.19,30.143Z"/>
-                                        <path
-                                            d="M38.523,40.507a1.985,1.985,0,0,1-1.393-.574L26.785,29.584a15.745,15.745,0,1,1,2.8-2.8L39.926,37.123a1.fff983,1.983,0,0,1-1.4,3.384ZM17.19,5.456A11.735,11.735,0,1,0,28.923,17.19,11.746,11.746,0,0,0,17.19,5.456Z"/>
-                                    </svg>
+          <Modal size="lg" {...props} aria-labelledby="contained-modal-title-vcenter">
+            <ModalHeader closeButton>
+              <ModalTitle id="contained-modal-title-vcenter">
+                Tu historial de compras
+              </ModalTitle>
+            </ModalHeader>
+            <Modal.Body className="show-grid">
+              
+            <Accordion defaultActiveKey="">
+                {orders && orders.map((order, index) => (
+                <Card className="cards" id={`history-${index+1}`} key={index+1} onClick={() => handleChangeOpacity(index+1)}>
+                    <Accordion.Toggle as={Card.Header} style={{padding: 0}} eventKey={index+1}>
+                    <Table responsive="sm" id="table-history-header" striped bordered hover size="sm">
+                        <thead>
+                    <tr style={{display: 'table-row', cursor: 'pointer'}}>
+                        <th>#{index+1}</th>
+                        <th>Estado: <span style={{color: order.paystate ? 'green' : 'orange'}}>{order.paystate ? 'Pagado' : 'Pendiente'}</span></th>
+                        <th>Fecha: {order.paystate ? FormatDate(order.lastUpdate) : FormatDate(order.date)}</th>
+                        <th>Ver Productos</th>
+                    </tr>
+                    </thead>
+                    </Table>
+                    </Accordion.Toggle>
+                    <Accordion.Collapse  eventKey={index+1}>
+                        <Card.Body style={{padding: 0, marginBottom: '20px'}}>
+                        <Table style={{marginBottom: 0}} responsive="sm" striped bordered hover size="sm">
+                                <thead>
+                                    <tr>   
+                                    <th>Producto</th>
+                                    <th>Cant.</th>
+                                    <th>Precio Un.</th>
+                                    <th>Subtotal</th>
+                                    <th>{order.paystate ? 'Total Pagado' : 'Total a Pagar'}</th>
+                                    </tr>
+                                </thead>
+                               <tbody>
+                                    {(order.details).map((detail, index) =>  (
+                                        <tr key={detail.id}>
+                                            <td>{detail.product?.name}</td>
+                                            <td>{detail.quantity}</td>
+                                            <td>${detail.product?.price}</td>
+                                            <td>${TotalPrice(detail.product?.price * detail.quantity, index+1)}</td>
+                                            <td><strong>{index === (order.details).length -1 ? `$${totalPrice.toFixed(2)}` : ""}</strong></td>
+                                        </tr>
+                                    ))}
+                                </tbody> 
+                            </Table> 
+                            {/* <div style={{display: 'inline-flex', width: '100%'}}> */}
+                            <button style={{width: '80%', margin: "5px 9px" ,justifyContent: 'center', display: order.paystate ? 'none' : 'inline-block'}}
+                                            onClick={() => window.location.href=`https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=${order.preferenceId}`} 
+                                            type="button" 
+                                            className="btn btn-sm btn-success"
+                                            >
+                                            Finalizar compra
+                            </button>                           
+                            <button style={{display: order.paystate ? 'none' : 'inline-block', margin: "5px 9px" }}
+                                    onClick={() => orderCancel(order, index)}
+                                    className="btn btn-sm btn-danger"
+                                    >Cancelar orden
+                            </button> 
+
+                            {user &&       (user.email === "agustin.sosa.n2015@gmail.com" || 
+                                            user.email === "laredwificomputacion@gmail.com" ||
+                                            user.email === "pablo.psir@gmail.com") ? 
+                            <div>
+                                <button style={{width: '97%', display: order.paystate ? 'none' : 'block', margin: "5px 9px" }}
+                                    onClick={() => orderRemove(order, index)}
+                                    className="btn btn-sm btn-danger"
+                                    >Borrar orden <strong>(Sólo administradores)</strong>
                                 </button>
-                            </form>
+                            </div> : <></> }
+                            
+                           
+                        </Card.Body>
+                    </Accordion.Collapse>
+                </Card>
+                ))}
+            </Accordion>          
+            </Modal.Body>
+            <Fragment >
+                <Alert id="alertRemoveOrder" show={show} variant={"success"}>
+                    Orden de compra cancelada!
+                </Alert>
+            </Fragment>
+          </Modal>
+        );
+    }
+
+    const orderCancel = async (order,index) => {
+        let response;
+        let option = window.confirm(`¿Cancelar orden n°${index+1}?`);
+        if(option){
+            response = await fetch(`https://laredintercomp.com.ar:8886/api/orders/cancel?preferenceId=${order.preferenceId}`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+            }).then(response => response);
+        };
+        
+        if(response.status === 200){
+            getHistory();
+            showAlert();
+        }
+        
+    };
+
+    //only admins function
+    const orderRemove = async (order,index) => {
+        let option = window.confirm(`¿Borrar orden n°${index+1}?`);
+        let response;
+        try {            
+            if(option){
+                response = await fetch(`https://laredintercomp.com.ar:8886/api/orders/remove`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(order)
+                }).then(response => response);
+            };   
+        } catch (error) {
+            console.error(error);
+        };
+
+        if(response && response.status === 200){
+            getHistory();
+            showAlert();
+        }
+    };
+
+    const formatTextSearch = () => {
+        let newText;
+        if(textMobileSearch.endsWith('es') && textMobileSearch !== 'cables' && textMobileSearch !== 'mouses' ){
+            newText = textMobileSearch.slice(0, -2);
+            setTextMobileSearch(newText);
+            window.location.href=`/products/search=${newText}`
+        } else if(textMobileSearch.charAt(textMobileSearch.length -1) === 's'){
+            newText = textMobileSearch.slice(0, -1);
+            setTextMobileSearch(newText);
+            window.location.href=`/products/search=${newText}`
+        } else {
+            window.location.href=`/products/search=${textMobileSearch}`
+        }
+    }    
+      
+        return (
+                <div id="myOverlay">
+                    <div id="overlay" className="overlay fade searchfull">
+                        <span className="closebtn" onClick={() => closeSearch()} title="Close Overlay">×</span>
+                        <div className="overlay-content">
+                            <input 
+                            type="text" 
+                            placeholder="Buscar producto" 
+                            name="search"
+                            value={textMobileSearch} 
+                            onChange={(e) => setTextMobileSearch(e.target.value)}
+                            onKeyPress={(e) => e.key === 'Enter' ? formatTextSearch() : ""}
+                            />
+                            <button onClick={() => formatTextSearch()}>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>search</title><path d="M39.063,37.986,27.935,26.858a14.549,14.549,0,1,0-1.078,1.077L37.985,39.063a.762.762,0,1,0,1.078-1.077ZM17.19,30.143A12.953,12.953,0,1,1,30.143,17.19,12.968,12.968,0,0,1,17.19,30.143Z"></path><path d="M38.523,40.507a1.985,1.985,0,0,1-1.393-.574L26.785,29.584a15.745,15.745,0,1,1,2.8-2.8L39.926,37.123a1.983,1.983,0,0,1-1.4,3.384ZM17.19,5.456A11.735,11.735,0,1,0,28.923,17.19,11.746,11.746,0,0,0,17.19,5.456Z"></path></svg>
+                            </button>
                         </div>
                     </div>
 
                     <nav className="pushy pushy-left" data-focus="#first-link">
-                        <a className="close-pushy">&times;</a>
+                        <a href="" onClick={() => closeMobileMenu()} className="close-pushy">&times;</a>
                         <div className="logo-pushy">
-                            {/*<?php include('svg/logo.php');?>*/}
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 258 90"><title>logo</title><path d="M7.037,61.112,25.493,67.98,27.9,88.666l5.42-17.3,12.934,4.89a6.24,6.24,0,0,0,7.936-4.093L68.352,27.606l-7.906-3.06,2.46-7.439L26.448,2.273C22.316.685,19.529.523,16.509,6.555L2.56,49.805l7.663,3Z" fill="#be1d7b" fillRule="evenodd"/><path d="M38.938,42.016c5.019,2.272,8.318,7.991,7.784,14.361l4.238.37A19.54,19.54,0,0,0,43.6,39.4a19.385,19.385,0,0,0,10.144-15.82l-4.239-.37c-.5,6.021-4.288,10.875-9.2,12.544a6.551,6.551,0,0,1,.261,2.477,6.366,6.366,0,0,1-1.628,3.788ZM35.59,33.267a4.314,4.314,0,0,1,3.652,4.846,4.279,4.279,0,0,1-4.407,4.142,4.316,4.316,0,0,1-3.653-4.847,4.279,4.279,0,0,1,4.408-4.141Zm-4.982,1.477a14.47,14.47,0,0,1-6.644-13.769l-4.238-.37a19.54,19.54,0,0,0,7.36,17.35,19.387,19.387,0,0,0-10.144,15.82l4.239.371c.524-6.239,4.566-11.225,9.735-12.713a6.387,6.387,0,0,1-1.057-4.14,6.529,6.529,0,0,1,.749-2.549ZM26.835,61.812l-4.158-.363.769-9.16c.872-5.779,4.6-8.843,8.561-9.666a4.92,4.92,0,0,0,5.794.343c3.723,1.3,6.991,4.968,6.954,11.71l-.724,8.639-4.144-.363.753-9.041a6.422,6.422,0,0,0-5.951-6.766,6.34,6.34,0,0,0-7.141,5.991l-.713,8.676ZM30.813,14.4l-.743,8.674A6.561,6.561,0,0,0,43.1,24.582l.764-9.041,4.143.362-.725,8.639C46.32,30.435,43.2,33.5,39.8,34.562a5.226,5.226,0,0,0-4.088-2.771,5.144,5.144,0,0,0-4.3,1.8C28.246,31.817,25.8,28.356,25.887,23.2l.768-9.16Z" fill="#fff" fillRule="evenodd"/><path d="M91.263,49.847l.078-24.633,5.152-.022-.073,23.08,21.956-.095c2.837-.068,3.975,1.98,3.785,5.753l-27.7.12.013-4.217-3.206.014Zm94.92-16.87.007-2.4-20.607.089-.073,23.08-5.152.023.023-7.213.023-7.212.022-7.213q.008-2.036.013-4.072c.006-1.766,1.152-3.138,3.508-3.156L188,24.8l-.01,3.5,3.364-.014-.025,8.036-9.826,6.37,9.771,10.94-7.3.031L170.5,38.5l7.23-.031,8.458-5.49ZM192.4,53.626l.077-24.236,4.493-.02.015-4.613,26.418-.115-.019,5.77-25.759.112-.018,5.77,20.607-.09-.017,5.77-20.608.089-.019,5.771,25.76-.112c.09,2.874-.78,5.032-3.54,5.785l-27.39.119Zm32.045-.139.055-17.31,2.345-.01-.01,3.224,2.806-.012-.026,8.316,20.607-.09L250.28,30.3l-21.9.094-3.864.017.018-5.769,28.336-.123,2.566,2.874-.067,21.234q-.177,4.539-4.222,4.748l-26.7.116ZM141.7,25l12.5,28.8-5.727.025-9.658-22.239-8.959,20.41c-.5,1.152-.931,2.069-2.883,1.922l-3.684.016L134.063,29.4l4.227-.019.014-4.366Z" fill="#161814" fillRule="evenodd"/><path d="M255.44,74.167l-1.173,0-.01-5.323-4.691.01.011,5.323-1.172,0-.015-6.655,7.036-.014Zm-9.384-1.311-.008-3.993-4.69.01.008,3.993ZM240.2,74.2l-.014-6.654,7.035-.015.014,6.654Zm-2.36-6.649,1.173,0,.014,6.655-1.173,0Zm-8.208.017,7.036-.015,0,1.331-5.863.012.008,3.993,5.863-.012,0,1.33-7.036.016Zm-4.039.009,2.881,6.648-1.3,0-2.225-5.135-2.2,5.144-1.3,0,2.853-6.661Zm-9.432,6.674-.01-5.324-2.932.007,0-1.331,7.036-.015,0,1.331-2.931.007.011,5.322Zm-4.118-6.645.014,6.654-7.035.015L205,67.62l1.173,0,.012,5.323,4.69-.01-.012-5.323Zm-14.065,3.024,4.691-.01,0-1.664-4.69.01ZM196.8,67.637l7.036-.015.009,4.325-5.863.012,0,2.33-1.172,0Zm-1.159,6.657-1.172,0-.01-4.565-2.679,3.906h-.489l-2.7-3.893.009,4.565-1.172,0-.014-6.654,1.221,0,2.891,4.171,2.874-4.183,1.222,0Zm-10.556-1.309-.009-3.992-4.69.009L180.391,73Zm-5.86,1.344-.014-6.655,7.036-.015.014,6.654ZM171,67.692l7.036-.015,0,1.331-5.863.012.008,3.992L178.047,73l0,1.331-7.035.015Zm-9.966.021,1.759,0,0,2-1.759,0Zm.01,4.658,1.758,0,.005,2-1.759,0ZM158.1,67.719l1.759,0,0,2-1.759,0Zm.01,4.658,1.759,0,0,2-1.758,0ZM145.8,74.4l-.012-5.324-2.931.006,0-1.331,7.036-.015,0,1.331-2.932.006.012,5.324Zm-11.139.023-.015-6.654,7.036-.015,0,1.331-5.862.012,0,1.331,4.69-.01,0,1.331-4.691.01,0,1.331,5.863-.013,0,1.331Zm-1.173,0-1.173,0-.011-5.323-4.69.01.011,5.323-1.173,0-.014-6.653,7.035-.016ZM124.1,69.676v-.554l-4.691.01.012,5.324-1.173,0q0-.832,0-1.663t0-1.664q0-.833,0-1.664c0-.554,0-1.109,0-1.663l7.036-.016,0,2.662-2.228,1.464,2.237,2.529-1.661,0-3.086-3.505,1.646,0Zm-14.061,4.8-.014-6.654,7.035-.015,0,1.331-5.863.012,0,1.331,4.69-.01,0,1.331-4.691.01,0,1.331,5.863-.012,0,1.33Zm-5.277.012-.011-5.324-2.932.006,0-1.33,7.035-.016,0,1.332-2.931,0,.011,5.324Zm-4.1.008-1.172,0-.012-5.323-4.69.009.011,5.324-1.172,0-.015-6.654,7.036-.015Zm-9.395-6.634,1.173,0,.015,6.653-1.173,0Z" fill="#161814"/></svg>
                         </div>
                         <div className="pushy-content">
                             <ul>
-                                <li className="pushy-link"><a href="index.php">Inicio</a></li>
-                                <li className="pushy-link"><a href="servicios.php">Servicios</a></li>
-                                <li className="pushy-submenu">
-                                    <button id="first-link">Productos</button>
+                                <Link className="pushy-link" onClick={closeMobileMenu} to="/">Inicio</Link>
+                                <li className="pushy-link"><Link onClick={closeMobileMenu} to="/services">Servicios</Link></li>
+                                <li className={`pushy-submenu pushy-submenu-${productmenustate ? 'open' : 'closed'}`}>
+                                    <button onClick={() => setProductmenustate(!productmenustate)} id="first-link">Productos</button>
                                     <ul>
-                                        <li className="pushy-submenu">
-                                            <button>Categoria 1</button>
+                                        <li className={`pushy-submenu pushy-submenu-${categorystate1 ? 'open' : 'closed'}`}>
+                                            <button onClick={() => setCategorystate1(!categorystate1)}>PC e Impresión</button>
                                             <ul>
-                                                <li className="pushy-link"><a href="productos.php">Item 1</a></li>
-                                                <li className="pushy-link"><a href="productos.php">Item 2</a></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('impresora')} >Impresoras</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('notebook')}>Notebooks</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('mother')} >Placas Madres</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('monitor')} >Monitores</Link></li>
+                                            </ul>
+                                        </li>                                        
+                                        <li className={`pushy-submenu pushy-submenu-${categorystate3 ? 'open' : 'closed'}`}>
+                                            <button onClick={() => setCategorystate3(!categorystate3)}>Componentes de PC</button>
+                                            <ul>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('mother')} >Mothers</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('disco')} >Discos Rígidos</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('procesador')} >Procesadores</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('fuente')} >Fuentes</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('ram')} >Memorias RAM</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('gabinete')} >Gabinetes</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('lector')} >Lectoras</Link></li>                                                
                                             </ul>
                                         </li>
-                                        <li className="pushy-submenu">
-                                            <button>Categoria 2</button>
+                                        <li className={`pushy-submenu pushy-submenu-${categorystate4 ? 'open' : 'closed'}`}>
+                                            <button onClick={() => setCategorystate4(!categorystate4)}>Periféricos</button>
                                             <ul>
-                                                <li className="pushy-link"><a href="productos.php">Item 1</a></li>
-                                                <li className="pushy-link"><a href="productos.php">Item 2</a></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('teclado')} >Teclados</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('mouses')} >Mouse's</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('pad')} >Pads</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('auricular')} >Auriculares</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('kit')} >Kit's</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('adap')} >Accesorios</Link></li>
                                             </ul>
                                         </li>
-                                        <li className="pushy-link"><a href="productos.php">Categoria 4</a></li>
-                                        <li className="pushy-link"><a href="productos.php">Categoria 5</a></li>
+                                        <li className={`pushy-submenu pushy-submenu-${categorystate5 ? 'open' : 'closed'}`}>
+                                            <button onClick={() => setCategorystate5(!categorystate5)}>Audio y Video</button>
+                                            <ul>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('sonido')} >Placas de sonido</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('video')} >Placas de video</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('parlante')} >Parlantes</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('monitor')} >Monitores</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('microfono')} >Micrófonos</Link></li>
+                                            </ul>
+                                        </li>
+                                        <li className={`pushy-submenu pushy-submenu-${categorystate6 ? 'open' : 'closed'}`}>
+                                            <button onClick={() => setCategorystate6(!categorystate6)}>Conectividad</button>
+                                            <ul>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('router')} >Routers</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('switch')} >Switch</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('wireless')} >Wireless</Link></li>
+                                                <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('cables')} >Cables</Link></li>
+                                            </ul>
+                                        </li> 
+                                        <li className={`pushy-submenu pushy-submenu-${categorystate2 ? 'open' : 'closed'}`}>
+                                            <button onClick={() => setCategorystate2(!categorystate2)}>Varios</button>
+                                            <ul>
+                                            <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('consola')}>Consolas</Link></li>
+                                            <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('pendrive')}>PenDrives</Link></li>
+                                            <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('estabilizador')}>Estabilizadores</Link></li>
+                                            <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('sd')}>Memorias SD</Link></li>
+                                            <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('celulares')}>Celulares</Link></li>
+                                            <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('mouse')}>Mouses</Link></li>
+                                            <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('cartucho%20toner%20tinta')}>Cartuchos / Toners / Tinta</Link></li>
+                                            <li className="pushy-link"><Link to={""} onClick={() => handleChangeStepper('estuche%20funda%20soport%20silla')}>Otros</Link></li>
+                                            </ul>
+                                        </li>                                       
                                     </ul>
                                 </li>
-                                <li className="pushy-link"><a href="nosotros.php">Sobre La Red</a></li>
-                                <li className="pushy-link"><a href="#">Acceso a clientes</a></li>
-                                <li className="pushy-link"><a href="contacto.php">Contacto</a></li>
+                                <li className="pushy-link"><Link onClick={closeMobileMenu} to="/aboutus">Sobre La Red</Link></li>
+                                <li className="pushy-link"><Link onClick={closeMobileMenu} to="/login">Acceso a clientes</Link></li>
+                                <li className="pushy-link"><Link onClick={closeMobileMenu} to="/contact">Contacto</Link></li>
+                                
+                                <li style={{display: !user ? 'none' : 'block'}}className={`pushy-submenu pushy-submenu-${profilemenustate ? 'open' : 'closed'}`}>
+                                <button onClick={() => setProfilemenustate(!profilemenustate)} ><Profile/></button>
+                                <ul>
+                                    <li onClick={handleShowModal} className="pushy-link">
+                                        <Link to={""} onClick={closeMobileMenu}>Mis compras</Link></li>                                    
+                                    <MydModalWithGrid show={modalShow} onHide={() => setModalShow(false)} />
+                                    <li><LogoutButton/></li>
+                                </ul>
+                                </li> 
+                                                                                            
                             </ul>
                         </div>
                     </nav>
@@ -79,8 +397,10 @@ class Header extends React.Component {
 
                     <div className="bandmobile">
                         <div className="band">
-                            <button className="menu-btn"><span>&#9776;</span> Menu</button>
-                            <a href="#" className="icontop" >
+                            <button onClick={() => openMobileMenu()} className="menu-btn dropdown"><span>&#9776;</span> Menu</button>
+                                <img alt="" style={{display: !user ? 'none' : 'inline-flex', margin: '8px 15px', float: 'right', height: '25px', 
+                                    }} src={user && user.picture}/>
+                            <a href="" onClick={(e) => openSearch(e)} className="icontop" >
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>search</title>
                                     <path
                                         d="M39.063,37.986,27.935,26.858a14.549,14.549,0,1,0-1.078,1.077L37.985,39.063a.762.762,0,1,0,1.078-1.077ZM17.19,30.143A12.953,12.953,0,1,1,30.143,17.19,12.968,12.968,0,0,1,17.19,30.143Z"/>
@@ -88,29 +408,17 @@ class Header extends React.Component {
                                         d="M38.523,40.507a1.985,1.985,0,0,1-1.393-.574L26.785,29.584a15.745,15.745,0,1,1,2.8-2.8L39.926,37.123a1.983,1.983,0,0,1-1.4,3.384ZM17.19,5.456A11.735,11.735,0,1,0,28.923,17.19,11.746,11.746,0,0,0,17.19,5.456Z"/>
                                 </svg>
                             </a>
-                            <a href="#" title="modal" target="#modalCart"
-                               className="icontop">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><title>cart</title>
-                                    <path
-                                        d="M20.511,37.073A3.932,3.932,0,1,0,16.58,41,3.931,3.931,0,0,0,20.511,37.073Zm-6.469,0A2.537,2.537,0,1,1,16.58,39.61,2.537,2.537,0,0,1,14.042,37.073Z"
-                                        fill="#161814"/>
-                                    <path
-                                        d="M31.137,41a3.932,3.932,0,1,0-3.931-3.931A3.931,3.931,0,0,0,31.137,41Zm0-6.468A2.537,2.537,0,1,1,28.6,37.073,2.536,2.536,0,0,1,31.137,34.536Z"
-                                        fill="#161814"/>
-                                    <path
-                                        d="M1.041,3.394H5.293A2.828,2.828,0,0,1,8.1,5.791l3.367,21.267a4.216,4.216,0,0,0,4.183,3.573h20.81a.7.7,0,0,0,0-1.395H15.649a2.829,2.829,0,0,1-2.806-2.4l-.572-3.615H33.584a4.239,4.239,0,0,0,4-2.849L41.54,8.963a.7.7,0,0,0-.659-.926H9.867l-.39-2.464A4.216,4.216,0,0,0,5.293,2H1.041a.7.7,0,1,0,0,1.394ZM39.9,9.432,36.268,19.919a2.842,2.842,0,0,1-2.684,1.91H12.05l-1.963-12.4Z"
-                                        fill="#161814"/>
-                                </svg>
-                            </a>
+                            <ModalCart/>                            
                             <div className="spacer"></div>
                         </div>
-                        <div className="logotop"><a href="index.php">
-                            {/*<?php include('svg/logo.php');?>*/}
-                        </a></div>
+                        <div className="logotop"><Link to="/">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 258 90"><title>logo</title><path d="M7.037,61.112,25.493,67.98,27.9,88.666l5.42-17.3,12.934,4.89a6.24,6.24,0,0,0,7.936-4.093L68.352,27.606l-7.906-3.06,2.46-7.439L26.448,2.273C22.316.685,19.529.523,16.509,6.555L2.56,49.805l7.663,3Z" fill="#be1d7b" fillRule="evenodd"/><path d="M38.938,42.016c5.019,2.272,8.318,7.991,7.784,14.361l4.238.37A19.54,19.54,0,0,0,43.6,39.4a19.385,19.385,0,0,0,10.144-15.82l-4.239-.37c-.5,6.021-4.288,10.875-9.2,12.544a6.551,6.551,0,0,1,.261,2.477,6.366,6.366,0,0,1-1.628,3.788ZM35.59,33.267a4.314,4.314,0,0,1,3.652,4.846,4.279,4.279,0,0,1-4.407,4.142,4.316,4.316,0,0,1-3.653-4.847,4.279,4.279,0,0,1,4.408-4.141Zm-4.982,1.477a14.47,14.47,0,0,1-6.644-13.769l-4.238-.37a19.54,19.54,0,0,0,7.36,17.35,19.387,19.387,0,0,0-10.144,15.82l4.239.371c.524-6.239,4.566-11.225,9.735-12.713a6.387,6.387,0,0,1-1.057-4.14,6.529,6.529,0,0,1,.749-2.549ZM26.835,61.812l-4.158-.363.769-9.16c.872-5.779,4.6-8.843,8.561-9.666a4.92,4.92,0,0,0,5.794.343c3.723,1.3,6.991,4.968,6.954,11.71l-.724,8.639-4.144-.363.753-9.041a6.422,6.422,0,0,0-5.951-6.766,6.34,6.34,0,0,0-7.141,5.991l-.713,8.676ZM30.813,14.4l-.743,8.674A6.561,6.561,0,0,0,43.1,24.582l.764-9.041,4.143.362-.725,8.639C46.32,30.435,43.2,33.5,39.8,34.562a5.226,5.226,0,0,0-4.088-2.771,5.144,5.144,0,0,0-4.3,1.8C28.246,31.817,25.8,28.356,25.887,23.2l.768-9.16Z" fill="#fff" fillRule="evenodd"/><path d="M91.263,49.847l.078-24.633,5.152-.022-.073,23.08,21.956-.095c2.837-.068,3.975,1.98,3.785,5.753l-27.7.12.013-4.217-3.206.014Zm94.92-16.87.007-2.4-20.607.089-.073,23.08-5.152.023.023-7.213.023-7.212.022-7.213q.008-2.036.013-4.072c.006-1.766,1.152-3.138,3.508-3.156L188,24.8l-.01,3.5,3.364-.014-.025,8.036-9.826,6.37,9.771,10.94-7.3.031L170.5,38.5l7.23-.031,8.458-5.49ZM192.4,53.626l.077-24.236,4.493-.02.015-4.613,26.418-.115-.019,5.77-25.759.112-.018,5.77,20.607-.09-.017,5.77-20.608.089-.019,5.771,25.76-.112c.09,2.874-.78,5.032-3.54,5.785l-27.39.119Zm32.045-.139.055-17.31,2.345-.01-.01,3.224,2.806-.012-.026,8.316,20.607-.09L250.28,30.3l-21.9.094-3.864.017.018-5.769,28.336-.123,2.566,2.874-.067,21.234q-.177,4.539-4.222,4.748l-26.7.116ZM141.7,25l12.5,28.8-5.727.025-9.658-22.239-8.959,20.41c-.5,1.152-.931,2.069-2.883,1.922l-3.684.016L134.063,29.4l4.227-.019.014-4.366Z" fill="#161814" fillRule="evenodd"/><path d="M255.44,74.167l-1.173,0-.01-5.323-4.691.01.011,5.323-1.172,0-.015-6.655,7.036-.014Zm-9.384-1.311-.008-3.993-4.69.01.008,3.993ZM240.2,74.2l-.014-6.654,7.035-.015.014,6.654Zm-2.36-6.649,1.173,0,.014,6.655-1.173,0Zm-8.208.017,7.036-.015,0,1.331-5.863.012.008,3.993,5.863-.012,0,1.33-7.036.016Zm-4.039.009,2.881,6.648-1.3,0-2.225-5.135-2.2,5.144-1.3,0,2.853-6.661Zm-9.432,6.674-.01-5.324-2.932.007,0-1.331,7.036-.015,0,1.331-2.931.007.011,5.322Zm-4.118-6.645.014,6.654-7.035.015L205,67.62l1.173,0,.012,5.323,4.69-.01-.012-5.323Zm-14.065,3.024,4.691-.01,0-1.664-4.69.01ZM196.8,67.637l7.036-.015.009,4.325-5.863.012,0,2.33-1.172,0Zm-1.159,6.657-1.172,0-.01-4.565-2.679,3.906h-.489l-2.7-3.893.009,4.565-1.172,0-.014-6.654,1.221,0,2.891,4.171,2.874-4.183,1.222,0Zm-10.556-1.309-.009-3.992-4.69.009L180.391,73Zm-5.86,1.344-.014-6.655,7.036-.015.014,6.654ZM171,67.692l7.036-.015,0,1.331-5.863.012.008,3.992L178.047,73l0,1.331-7.035.015Zm-9.966.021,1.759,0,0,2-1.759,0Zm.01,4.658,1.758,0,.005,2-1.759,0ZM158.1,67.719l1.759,0,0,2-1.759,0Zm.01,4.658,1.759,0,0,2-1.758,0ZM145.8,74.4l-.012-5.324-2.931.006,0-1.331,7.036-.015,0,1.331-2.932.006.012,5.324Zm-11.139.023-.015-6.654,7.036-.015,0,1.331-5.862.012,0,1.331,4.69-.01,0,1.331-4.691.01,0,1.331,5.863-.013,0,1.331Zm-1.173,0-1.173,0-.011-5.323-4.69.01.011,5.323-1.173,0-.014-6.653,7.035-.016ZM124.1,69.676v-.554l-4.691.01.012,5.324-1.173,0q0-.832,0-1.663t0-1.664q0-.833,0-1.664c0-.554,0-1.109,0-1.663l7.036-.016,0,2.662-2.228,1.464,2.237,2.529-1.661,0-3.086-3.505,1.646,0Zm-14.061,4.8-.014-6.654,7.035-.015,0,1.331-5.863.012,0,1.331,4.69-.01,0,1.331-4.691.01,0,1.331,5.863-.012,0,1.33Zm-5.277.012-.011-5.324-2.932.006,0-1.33,7.035-.016,0,1.332-2.931,0,.011,5.324Zm-4.1.008-1.172,0-.012-5.323-4.69.009.011,5.324-1.172,0-.015-6.654,7.036-.015Zm-9.395-6.634,1.173,0,.015,6.653-1.173,0Z" fill="#161814"/></svg>
+                        </Link></div>
+                        
                     </div>
 
-                    <div className="banddesktop" style={{height: '200px'}}>
-                        <div className="band1" style={{height: '35px'}}>
+                    <div className="banddesktop">
+                        <div className="band1">
                             <div className="container">
                                 <ul className="datos">
                                     <li>
@@ -145,20 +453,46 @@ class Header extends React.Component {
                                             <path
                                                 d="M464 64H48a48 48 0 0 0-48 48v288a48 48 0 0 0 48 48h416a48 48 0 0 0 48-48V112a48 48 0 0 0-48-48zM48 96h416a16 16 0 0 1 16 16v41.4c-21.9 18.5-53.2 44-150.6 121.3-16.9 13.4-50.2 45.7-73.4 45.3-23.2.4-56.6-31.9-73.4-45.3A6862.8 6862.8 0 0 1 32 153.4V112a16 16 0 0 1 16-16zm416 320H48a16 16 0 0 1-16-16V195a11843 11843 0 0 0 130.7 104.7c20.5 16.4 56.7 52.5 93.3 52.3 36.4.3 72.3-35.5 93.3-52.3A11843 11843 0 0 0 480 195v205a16 16 0 0 1-16 16z"/>
                                         </svg>
-                                        &nbsp;info@laredwifi.com.ar
+                                        &nbsp;gestiones@laredwifi.com.ar
                                     </li>
+                                    
+                                    <li style={{position: 'absolute', left: '53%', top: '3px', display: user ? 'flex' : 'none'}}>
+                                        <DropdownButton id="dropdown-profile-button" title={<Profile/>}>
+                                            <Dropdown.Item  className="login-option-list" onClick={handleShowModal}>
+                                                {`Mis compras`}
+                                            </Dropdown.Item>
+                                            {user && 
+                                            (user.email === "agustin.sosa.n2015@gmail.com" || 
+                                            user.email === "laredwificomputacion@gmail.com" ||
+                                            user.email === "pablo.psir@gmail.com") ? 
+                                            <Dropdown.Item 
+                                            className="login-option-list">
+                                                <Link 
+                                                style={{color: 'black',
+                                                    textDecoration: 'none'}}
+                                                to={"/fileupload"}>Subir Imágenes</Link>
+                                            </Dropdown.Item> : '' }
+
+                                            <Dropdown.Item className="login-option-list">
+                                                {<LogoutButton/>}
+                                            </Dropdown.Item>    
+                                                                               
+                                        </DropdownButton></li>                                
+                                    <Wrapper/>
                                 </ul>
-                                <div>
-                                    <ModalCustomers/>
-                                </div>
+                                <Link to={"/login"}
+                                 className="clientes">
+                                     Acceso a clientes
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><title>arrow-right-circle</title><path d="M7,13.635A6.635,6.635,0,1,0,.365,7,6.642,6.642,0,0,0,7,13.635ZM7,1.028A5.972,5.972,0,1,1,1.028,7,5.979,5.979,0,0,1,7,1.028Z" /><path d="M4.118,7.333H9.081l-1.3,1.3a.332.332,0,0,0,.471.468l1.864-1.865a.33.33,0,0,0,0-.468L8.253,4.9a.331.331,0,0,0-.468.468l1.3,1.3H4.118a.332.332,0,1,0,0,.663Z" /></svg>
+                                </Link>
                                 <div className="spacer"></div>
                             </div>
                         </div>
-                        <div className="band2" style={{height: '155px'}}>
-                            <div className="container" style={{height: '100px'}}>
+                        <div className="band2">
+                            <div className="container">
                                 <div className="row" >
                                     <div className="col">
-                                        <div className="logotop"><a href="/">
+                                        <div className="logotop"><Link to={"/"}>
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 258 90">
                                                 <title>logo</title>
                                                 <path
@@ -174,29 +508,33 @@ class Header extends React.Component {
                                                     d="M255.44,74.167l-1.173,0-.01-5.323-4.691.01.011,5.323-1.172,0-.015-6.655,7.036-.014Zm-9.384-1.311-.008-3.993-4.69.01.008,3.993ZM240.2,74.2l-.014-6.654,7.035-.015.014,6.654Zm-2.36-6.649,1.173,0,.014,6.655-1.173,0Zm-8.208.017,7.036-.015,0,1.331-5.863.012.008,3.993,5.863-.012,0,1.33-7.036.016Zm-4.039.009,2.881,6.648-1.3,0-2.225-5.135-2.2,5.144-1.3,0,2.853-6.661Zm-9.432,6.674-.01-5.324-2.932.007,0-1.331,7.036-.015,0,1.331-2.931.007.011,5.322Zm-4.118-6.645.014,6.654-7.035.015L205,67.62l1.173,0,.012,5.323,4.69-.01-.012-5.323Zm-14.065,3.024,4.691-.01,0-1.664-4.69.01ZM196.8,67.637l7.036-.015.009,4.325-5.863.012,0,2.33-1.172,0Zm-1.159,6.657-1.172,0-.01-4.565-2.679,3.906h-.489l-2.7-3.893.009,4.565-1.172,0-.014-6.654,1.221,0,2.891,4.171,2.874-4.183,1.222,0Zm-10.556-1.309-.009-3.992-4.69.009L180.391,73Zm-5.86,1.344-.014-6.655,7.036-.015.014,6.654ZM171,67.692l7.036-.015,0,1.331-5.863.012.008,3.992L178.047,73l0,1.331-7.035.015Zm-9.966.021,1.759,0,0,2-1.759,0Zm.01,4.658,1.758,0,.005,2-1.759,0ZM158.1,67.719l1.759,0,0,2-1.759,0Zm.01,4.658,1.759,0,0,2-1.758,0ZM145.8,74.4l-.012-5.324-2.931.006,0-1.331,7.036-.015,0,1.331-2.932.006.012,5.324Zm-11.139.023-.015-6.654,7.036-.015,0,1.331-5.862.012,0,1.331,4.69-.01,0,1.331-4.691.01,0,1.331,5.863-.013,0,1.331Zm-1.173,0-1.173,0-.011-5.323-4.69.01.011,5.323-1.173,0-.014-6.653,7.035-.016ZM124.1,69.676v-.554l-4.691.01.012,5.324-1.173,0q0-.832,0-1.663t0-1.664q0-.833,0-1.664c0-.554,0-1.109,0-1.663l7.036-.016,0,2.662-2.228,1.464,2.237,2.529-1.661,0-3.086-3.505,1.646,0Zm-14.061,4.8-.014-6.654,7.035-.015,0,1.331-5.863.012,0,1.331,4.69-.01,0,1.331-4.691.01,0,1.331,5.863-.012,0,1.33Zm-5.277.012-.011-5.324-2.932.006,0-1.33,7.035-.016,0,1.332-2.931,0,.011,5.324Zm-4.1.008-1.172,0-.012-5.323-4.69.009.011,5.324-1.172,0-.015-6.654,7.036-.015Zm-9.395-6.634,1.173,0,.015,6.653-1.173,0Z"
                                                     fill="#161814"/>
                                             </svg>
-                                        </a>
+                                        </Link>
                                         </div>
                                     </div>
                                     <SearchBarComponent/>
                                     {/*===MODAL===*/}
-                                    <div className="col-sm-2" style={{width: '230px', paddingRight: '0px',paddingLeft: '23px',}}>
-                                            <ModalCart/>
+                                    <div className="col-sm-2">
+                                        <ModalCart/>
                                     </div>
                                 </div>
                             </div >
-
-                            {/*//NAVBARREACT*/}
-                            <div style={{height: '53px', backgroundColor: '#fff'}}>
-                                <NavBarReact/>
+                        </div>
+                        {/*//NAVBARREACT*/}
+                        <div className="band3">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-12">
+                                        <NavBarReact/>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        
+                                                
                     </div>
-
                 </div>
 
         );
-
-    }
 }
 
 export default Header;
