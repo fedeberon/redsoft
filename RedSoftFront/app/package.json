@@ -34,7 +34,7 @@
     "yarn": "^1.22.4"
   },
   "scripts": {
-    "start": "export HTTPS=true&&SSL_CRT_FILE=/etc/letsencrypt/live/laredintercomp.com.ar/cert.pem&&SSL_KEY_FILE=/etc/letsencrypt/live/laredintercomp.com.ar/privkey.pem react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
