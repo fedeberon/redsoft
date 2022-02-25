@@ -3,7 +3,6 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 const Wrapper = ({ children }) => {
     const {
-        isLoading,
         error,
     } = useAuth0();
     // console.log("**************** Wrapper component *****************");

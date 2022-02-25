@@ -5,12 +5,8 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {Link} from "react-router-dom";
-import { useHistory } from "react-router-dom";
 
 const NavBarReact = () => {
-
-    const history = useHistory();
-
 
         return (
             <Fragment>

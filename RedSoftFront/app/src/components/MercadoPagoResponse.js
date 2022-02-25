@@ -11,7 +11,6 @@ const MercadoPagoResponse = () => {
 
     const [orderResume, setOrderResume] = useState([]);
     const [orders, setOrders] = useState([]);
-    const [details, setDetails] = useState([]);
     const { user } = useAuth0();
     const {id} = useParams();
 
@@ -29,22 +28,25 @@ const MercadoPagoResponse = () => {
 
     const getHistory = async() => {
 
-        await fetch(`https://laredintercomp.com.ar:8886/api/orders/${id}`, {
-            method: 'GET',
-            headers: {'Content-Type': 'application/json',
-                    'Accept': '*/*'},
-        }).then(response => response.json())
-        .then(data => {
-
-            if(data.paystate === true){
-                setTimeout(()=> {
-                    sendEmail(data);
-                },4000)
-            };
-
-            setOrders(data);
-            setDetails(data.details);
-        });
+        try{
+            await fetch(`https://laredintercomp.com.ar:8886/api/orders/${id}`, {
+                method: 'GET',
+                headers: {'Content-Type': 'application/json',
+                        'Accept': '*/*'},
+            }).then(response => response.json())
+            .then(data => {
+    
+                if(data.paystate === true){
+                    setTimeout(()=> {
+                        sendEmail(data);
+                    },4000)
+                };
+    
+                setOrders(data);
+            });
+        } catch (e) {
+            console.log(e);
+        }        
     }
 
     const detailsConstructor = (data) => {
@@ -81,6 +83,7 @@ const MercadoPagoResponse = () => {
     useEffect(()=> {
         getResume();
         getHistory();
+    // eslint-disable-next-line
     },[]);
 
     function FormatDate(date) {
@@ -97,8 +100,7 @@ const MercadoPagoResponse = () => {
             case 'failure':
                 return 'Rechazada'
             default: 
-                return 'Pendiente'
-            break;   
+                return 'Pendiente' 
         }
     }
     

@@ -12,8 +12,8 @@ const BannersHomeComponent = () => {
         <div className="bannershome">
             <div className="container">
                 <div className="row">
-                    <div className="col-md-6" onClick={() => loginWithRedirect()}><a href=""><img alt="" src="img/banner-home-clientes.jpg"/></a></div>
-                    <div className="col-md-6"><Link to={"/services"}><img src="img/banner-home-servicios.jpg"/></Link></div>
+                    <div style={{cursor: 'pointer'}} className="col-md-6" onClick={() => loginWithRedirect()}><img alt="Acceso a clientes" src="img/banner-home-clientes.jpg"/></div>
+                    <div className="col-md-6"><Link to={"/services"}><img alt="" src="img/banner-home-servicios.jpg"/></Link></div>
                 </div>
             </div>
         </div>

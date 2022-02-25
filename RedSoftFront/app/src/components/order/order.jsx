@@ -21,14 +21,18 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
     const dispatch = useDispatch();
     let cotizValue = sessionStorage.getItem('dolarToday');
 
+    // eslint-disable-next-line
     useEffect(() => {changePreference(false)}, [products])
 
+    // eslint-disable-next-line
     useEffect(() => {setIsLoading(false)},[setSpinLoad])
 
     let totalPrice = 0;
 
     products.map((product, index) => {
         totalPrice += (parseFloat(product.precioUniVta) * cotizValue) * product.quantity;
+
+        return totalPrice;
     })
 
     const {
@@ -51,7 +55,6 @@ const Order = ({products, changePreference, isReady, setSpinLoad}) => {
                 isEqual = false
             }
         }
-        console.log(isEqual)
 
         if(link !== "" && isEqual){
             changePreference(true)
