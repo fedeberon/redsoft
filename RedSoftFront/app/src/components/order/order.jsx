@@ -1,50 +1,95 @@
-import React, {useState} from "react";
-import {useDispatch, useSelector} from 'react-redux'
+import React, {useEffect, useState} from "react";
+import {useDispatch} from 'react-redux'
 import {ordersActions, preferenceActions} from "../../store";
 import {Button, Table} from 'react-bootstrap';
 import axios from 'axios'
-import {useHistory} from 'react-router-dom'
 import Preference from "./preference";
-import product from "../product/product";
-import Figure from "react-bootstrap/Figure";
+import Spinner from "react-bootstrap/Spinner";
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 let api = axios.create({
-    baseURL: 'http://localhost:8886/api',
-    timeout: 10000,
+    baseURL: 'https://laredintercomp.com.ar:8886/api',
+    timeout: 30000,
 });
 
-const Order = () => {
+const Order = ({products, changePreference, isReady, setSpinLoad}) => {
 
+    const [link, setLink] = useState('');
+    const [order, setOrder] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
+    let cotizValue = sessionStorage.getItem('dolarToday');
 
-    const products = useSelector(state => Object.values(state.order.items));
+    // eslint-disable-next-line
+    useEffect(() => {changePreference(false)}, [products])
 
-    const [preferenceIsReady, setPreferenceIsReady] = useState(false)
+    // eslint-disable-next-line
+    useEffect(() => {setIsLoading(false)},[setSpinLoad])
+
+    let totalPrice = 0;
+
+    products.map((product, index) => {
+        totalPrice += (parseFloat(product.precioUniVta) * cotizValue) * product.quantity;
+
+        return totalPrice;
+    })
+
+    const {
+        user,
+    } = useAuth0();
 
     const handleSubmit = async (event) => {
+
+        setIsLoading(true)
         event.preventDefault();
         let details = [];
 
-        this.state.products.map((product, index) => {
+        let isEqual = true
+
+        for(let i = 0 ; i < order.length; i++) {
+
+            if (order.length === products.length && order[i].quantity === products[i].quantity) {
+                order.map((element, index) => isEqual = isEqual && element.code === products[index].code)
+            } else {
+                isEqual = false
+            }
+        }
+
+        if(link !== "" && isEqual){
+            changePreference(true)
+            setIsLoading(false);
+            return
+        }
+
+        products.map((product, index) => {
+            let totalTopay = (product.precioUniVta * sessionStorage.getItem('dolarToday')).toFixed(2);
             let detail = {
                 product: {
                     code: product.code,
                     name: product.description,
-                    price: 200
+                    price: Number(totalTopay),
+                    image: product.webLink,
                 },
-                quantity: 1
+                quantity: product.quantity
             }
             details.push(detail);
+            console.log(totalTopay)
         })
+        
+        console.log(details);
 
-        debugger;
         try {
-            const res = await api
-                .post('/cart/preference', details)
+            await api
+                .post(`/cart/preference?user=${user.email}`, details)
                 .then(function (res) {
-                    console.log(res.data);
+                    console.log(res.data)
+                    setIsLoading(false);
                     dispatch(preferenceActions.set(res.data));
-                    setPreferenceIsReady(true)
+                    changePreference(true);
+                    setLink(res.data);
+                    setOrder(products);
+                    localStorage.removeItem('cartlared');
                 })
                 .catch(function (error) {
                     console.log(error)
@@ -55,33 +100,28 @@ const Order = () => {
     }
 
     const removeProduct = (product) => {
-        dispatch(ordersActions.remove(product));
+        if(products.length === 1){
+            localStorage.removeItem('cartlared');
+        }
+        dispatch(ordersActions.remove(product));               
     }
 
-    return (
-        <>  {!preferenceIsReady ?
-            <form onSubmit={handleSubmit}>
-                <Table responsive>
-                    <thead>
-                    <tr>
-                        <th>Code</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        products.map((product, index) => (
-                            <tr key={index}>
-                                <td>{product.code}</td>
-                                <td>{product.description}</td>
-                                <td>{product.precioUniVta}</td>
+    return (    
 
+        <>  {!isReady ?
+            <form onSubmit={handleSubmit} style={{paddingTop: '15px'}}>
+                <Table responsive>
+                    <tbody>
+                        {products.map((product, index) => (
+                            <tr key={index} className="item cart animate">
+                                <td style={{width: '114px', heigth: '115px'}}><img alt={product.description} src={product && product.webLink} style={{width: '90px'}}/></td>
+                                <td className="col-description">{product.description} <br></br><strong>x {product.quantity}</strong></td>
+                                <td className="col-price">${Intl.NumberFormat("de-DE").format((parseFloat(product.precioUniVta).toFixed(2) * sessionStorage.getItem('dolarToday')).toFixed(2))}</td>
                                 <td>
-                                    <Button variant="light" onClick={() => removeProduct(product)}>
+                                    <Button id="btnRemove" variant="light" onClick={() => removeProduct(product)}>
                                         <a className="deletecart">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427 427">
-                                                <title>delete</title>
+                                                <title>Eliminar producto</title>
                                                 <path
                                                     d="M272.4,154.7a10,10,0,0,0-10,10v189a10,10,0,0,0,20,0v-189A10,10,0,0,0,272.4,154.7Z"/>
                                                 <path
@@ -94,7 +134,7 @@ const Order = () => {
                                         </a>
                                     </Button>
                                 </td>
-                            </tr>
+                             </tr>
                         ))
                     }
                     </tbody>
@@ -103,14 +143,17 @@ const Order = () => {
                     <div className="cart-total">
                         <h2 className="row text-primary mb-0">
                             <span className="col">Total:</span>
-                            <span className="col text-right">$0</span>
+                            <span className="col text-right">${Intl.NumberFormat("de-DE").format(totalPrice.toFixed(2))}</span>
                         </h2>
                     </div>
                     <div className="mb-3">
-                        <Button variant="dark" type="submit" size="lg" block>Iniciar Compra</Button>
+                        <Button variant="dark" className={`${(products.length === 0) || (products.lenght > 0 && totalPrice === 0) ? 'btn-disab' : ''}`}
+                                type={`${(products.length === 0) || (products.lenght > 0 && totalPrice === 0) ? '' : 'submit'}`}
+                                size="lg" block><Spinner style={{display: isLoading ? 'block' : 'none',
+                                position: 'absolute'}} animation="border" variant="light"
+                                />{isLoading ? 'Obteniendo link...' : 'INICIAR COMPRA'}</Button>
                     </div>
                 </div>
-
             </form>
             :
             <Preference/>}

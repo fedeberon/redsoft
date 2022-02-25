@@ -1,7 +1,12 @@
 package com.ideaas.lared.domain;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import java.util.List;
+import java.util.Date;
 
 @Entity
 @Table(name = "ORDERS")
@@ -12,11 +17,27 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    @Cascade({CascadeType.PERSIST, CascadeType.MERGE, CascadeType.SAVE_UPDATE})
     private List<Detail> details;
 
     @Column(name = "ORD_PREFERENCE")
     private String preferenceId;
+
+    @Column(name = "ORD_USER_EMAIL")
+    private String userEmail;
+
+    @Column(name = "ORD_CREATION_DATE")
+    private Date creationDate = new Date();
+
+    @Column(name = "ORD_PAYED_STATE")
+    private Boolean paystate = false;
+
+    @Column(name = "ORD_CANCELED_STATE")
+    private Boolean canceledOrder = false;
+
+    @Column(name = "ORD_LAST_UPDATED")
+    private Date lastUpdated;
 
     public Order withDetails(List<Detail> details){
         this.details = details;
@@ -29,6 +50,46 @@ public class Order {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date getDate(){
+        return creationDate;
+    }
+
+    public void setDate(Date creationDate){
+        this.creationDate = creationDate;
+    }
+
+    public Boolean getPaystate(){
+        return paystate;
+    }
+
+    public void setPaystate(Boolean paystate){
+        this.paystate = paystate;
+    }
+
+    public Boolean getCanceledOrder(){
+        return canceledOrder;
+    }
+
+    public void setCanceledOrder(Boolean canceledOrder){
+        this.canceledOrder = canceledOrder;
+    }
+
+    public Date getLastUpdate(){
+        return lastUpdated;
+    }
+
+    public void setLastUpdate(Date lastUpdated){
+        this.lastUpdated = lastUpdated;
+    }    
+
+    public String getUserEmail(){
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail){
+        this.userEmail = userEmail;
     }
 
     public List<Detail> getDetails() {

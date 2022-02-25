@@ -3,16 +3,20 @@ import CarouselComponent from "./home/CarouselComponent";
 import BannersHomeComponent from "./home/BannersHomeComponent";
 import CategoriesHomeComponent from "./home/CategoriesHomeComponent";
 import FeaturedProductsComponent from "./home/FeaturedProductsComponent";
+import Header from "./header/Header";
+import FooterComponent from "./home/FooterComponent";
 
 class HomeContainer extends React.Component {
 
     render () {
         return (
             <div >
-                <CarouselComponent/>
+                <Header/>
+                <CarouselComponent focus={0}/>
                 <BannersHomeComponent/>
                 <CategoriesHomeComponent/>
                 <FeaturedProductsComponent/>
+                <FooterComponent/>
             </div>
         );
     }

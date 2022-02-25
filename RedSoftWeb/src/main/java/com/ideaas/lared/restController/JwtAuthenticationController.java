@@ -1,7 +1,8 @@
 package com.ideaas.lared.restController;
 
 import com.ideaas.lared.configuration.JwtTokenUtil;
-import com.ideaas.lared.service.UserService;
+import com.ideaas.lared.domain.User;
+import com.ideaas.lared.service.UserServiceImpl;
 import com.ideaas.lared.utils.JwtRequest;
 import com.ideaas.lared.utils.JwtResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class JwtAuthenticationController {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    private UserService userDetailsService;
+    private UserServiceImpl userDetailsService;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
