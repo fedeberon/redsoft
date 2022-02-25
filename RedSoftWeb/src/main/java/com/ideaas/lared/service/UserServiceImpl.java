@@ -16,12 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service("usuarioService")
-public class UserService implements IUserService {
+public class UserServiceImpl implements IUserService {
 
     private UsuarioDao dao;
 
     @Autowired
-    public UserService(UsuarioDao dao) {
+    public UserServiceImpl(UsuarioDao dao) {
         this.dao = dao;
     }
 
