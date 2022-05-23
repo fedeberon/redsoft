@@ -2,6 +2,8 @@ import React,{Component} from "react";
 
 class CarouselComponent extends Component {
 
+    
+
     state = {
         x : 0,
         n : "next",
@@ -23,6 +25,14 @@ class CarouselComponent extends Component {
       }
 
     render (){
+        const mystyle = {
+            height:"auto",
+            width:"110%",
+	        position: "relative",
+	        right: "5%",
+	        height: "auto",
+          };
+        
 
         return (
             <div className="carousel slide" data-ride="carousel">
@@ -40,7 +50,7 @@ class CarouselComponent extends Component {
                         <img style={{cursor: 'pointer'}} src="img/slider-desktop-03.png" alt="img3" className="d-block w-100"/>
                     </div>*/}
                     <div className="carousel-inner">
-                        <video className="carouselvideo" autoPlay loop muted >
+                        <video  autoPlay loop muted style={mystyle}>
                             <source src="videos/laRed.mp4" type="video/mp4"/>
                         </video>
                     </div>
