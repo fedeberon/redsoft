@@ -40,7 +40,7 @@ class CarouselComponent extends Component {
                         <img style={{cursor: 'pointer'}} src="img/slider-desktop-03.png" alt="img3" className="d-block w-100"/>
                     </div>*/}
                     <div className="carousel-inner">
-                        <video className="img-fluid" autoPlay loop muted>
+                        <video className="img-fluid" autoPlay loop muted style="height:auto;position: relative;max-width: 110%;right: 5%;">
                             <source src="videos/laRed.mp4" type="video/mp4"/>
                         </video>
                     </div>
