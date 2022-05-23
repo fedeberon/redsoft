@@ -893,6 +893,12 @@ footer {padding-top: 35px;}
 @media (max-width: 992px) {
 
 }
+.carouselvideo {height:auto;
+	position: relative;
+	max-width: 110%;
+	right: 5%;
+	height: auto;
+}
 
 @media screen and (max-width: 767px) {
 
