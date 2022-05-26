@@ -24,7 +24,7 @@ class CarouselComponent extends Component {
   render() {
     return (
       <div className="carousel slide" data-ride="carousel">
-        <div className="carousel-inner">
+        <div className="carouseldiv">
           {/*<div className="carousel-item active">
                         <img style={{cursor: 'pointer'}} src="img/slider-desktop-01.jpg" alt="img1" className="d-block w-100"/>
                     </div>
@@ -37,11 +37,9 @@ class CarouselComponent extends Component {
                     <div className="carousel-item">
                         <img style={{cursor: 'pointer'}} src="img/slider-desktop-03.png" alt="img3" className="d-block w-100"/>
                     </div>*/}
-          <div className="carousel-inner">
             <video className="carouselvideo" autoPlay loop muted>
               <source src="videos/laRed.mp4" type="video/mp4" />
             </video>
-          </div>
         </div>
         {/* <a className="carousel-control-prev" href="" role="button" data-slide="prev">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
